@@ -141,7 +141,7 @@ jobs:
         run: pdoc ovirtsdk4 -o ./${{ env.GEN_DOC_DIR }} -t pdoc
 
       - name: Upload generated documentation artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: generated-documentation
           path: ${{ env.GEN_DOC_DIR }}/*
@@ -156,7 +156,7 @@ jobs:
       image: quay.io/centos/centos:stream9
     steps:
       - name: Download generated documentation artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: generated-documentation
           path: ${{ env.GEN_DOC_DIR }}/
@@ -175,7 +175,7 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Checkout target repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: ovirt-engine-sdk
           ref: 'gh-pages'
