@@ -1,19 +1,24 @@
 {
   lib,
-  python3Packages,
+  python314Packages,
   nix-update-script,
+  pkg-config,
   libxml2,
 }:
 
 let
-  src = lib.cleanSourceWith {
-    src = ./.;
-    name = "source";
-    filter =
-      path: type: builtins.match ".*\\.(c|h|py|toml)" path != null;
-  };
+  src = lib.sourceFilesBySuffices ./. [
+    ".c"
+    ".h"
+    ".py"
+    ".toml"
+    ".crt"
+    ".key"
+  ];
+
+  python3Packages = python314Packages;
 in
-python3Packages.buildPythonPackage (finalAttrs: {
+python3Packages.buildPythonPackage {
   pname = "ovirtsdk4";
   version = ("${src}/pyproject.toml" |> builtins.readFile |> fromTOML).project.version;
   pyproject = true;
@@ -29,8 +34,16 @@ python3Packages.buildPythonPackage (finalAttrs: {
     python3Packages.pycurl
   ];
 
+  nativeBuildInputs = [
+    pkg-config
+  ];
+
   buildInputs = [
     libxml2
+  ];
+
+  nativeCheckInputs = [
+    python3Packages.pytestCheckHook
   ];
 
   passthru.updateScript = nix-update-script { };
@@ -42,4 +55,4 @@ python3Packages.buildPythonPackage (finalAttrs: {
     maintainers = with lib.maintainers; [ bartoostveen ];
     platforms = lib.platforms.all;
   };
-})
+}

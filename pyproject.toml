@@ -16,7 +16,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.14"
-dependencies = ["pycurl>=7.46.0", "setuptools>=83.0.0"]
+dependencies = [
+    "pycurl>=7.46.0",
+    "pytest>=9.1.1",
+    "setuptools>=83.0.0",
+]
 
 [project.optional-dependencies]
 dev = ["types-setuptools>=84.0.0.20260812"]
