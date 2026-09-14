@@ -5,7 +5,7 @@ description = "Python SDK for oVirt Engine API"
 readme = "README.md"
 authors = [
     { name = "oVirt Developers", email = "devel@ovirt.org" },
-    { name = "Bart Oostveen", email = "bart@bartoostveen.nl" }
+    { name = "Bart Oostveen", email = "bart@bartoostveen.nl" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -13,14 +13,13 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3"
+    "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.14"
-dependencies = [
-    "pycurl>=7.47.0",
-    "setuptools>=84.0.0",
-    "types-setuptools>=84.0.0.20260812",
-]
+dependencies = ["pycurl>=7.46.0", "setuptools>=83.0.0"]
+
+[project.optional-dependencies]
+dev = ["types-setuptools>=84.0.0.20260812"]
 
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]

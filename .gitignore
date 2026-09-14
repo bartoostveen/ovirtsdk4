@@ -48,3 +48,4 @@ cover/
 .mypy_cache/
 .envrc
 .venv
+result

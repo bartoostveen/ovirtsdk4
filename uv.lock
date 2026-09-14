@@ -9,15 +9,20 @@ source = { editable = "." }
 dependencies = [
     { name = "pycurl" },
     { name = "setuptools" },
+]
+
+[package.optional-dependencies]
+dev = [
     { name = "types-setuptools" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pycurl", specifier = ">=7.47.0" },
-    { name = "setuptools", specifier = ">=84.0.0" },
-    { name = "types-setuptools", specifier = ">=84.0.0.20260812" },
+    { name = "pycurl", specifier = ">=7.46.0" },
+    { name = "setuptools", specifier = ">=83.0.0" },
+    { name = "types-setuptools", marker = "extra == 'dev'", specifier = ">=84.0.0.20260812" },
 ]
+provides-extras = ["dev"]
 
 [[package]]
 name = "pycurl"
