@@ -35,6 +35,10 @@
             default = self'.packages.ovirtsdk4;
           };
 
+          checks = {
+            inherit (self'.packages) ovirtsdk4;
+          };
+
           devShells.default = pkgs.mkShell {
             packages = [
               pkgs.python314
