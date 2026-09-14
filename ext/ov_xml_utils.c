@@ -20,46 +20,45 @@ limitations under the License.
 
 #include "ov_xml_utils.h"
 
-xmlChar*
-ov_xml_get_string_parameter(const char* name, PyObject* value) {
+xmlChar *ov_xml_get_string_parameter(const char *name, PyObject *value) {
 #if PY_MAJOR_VERSION >= 3
 #else
-    PyObject* encoded = NULL;
+  PyObject *encoded = NULL;
 #endif
-    xmlChar* result = NULL;
+  xmlChar *result = NULL;
 
 #if PY_MAJOR_VERSION >= 3
-    if (PyUnicode_Check(value)) {
-        result = xmlCharStrdup(PyUnicode_AsUTF8(value));
-        if (result == NULL) {
-            PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
-            return NULL;
-        }
-        return result;
+  if (PyUnicode_Check(value)) {
+    result = xmlCharStrdup(PyUnicode_AsUTF8(value));
+    if (result == NULL) {
+      PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
+      return NULL;
     }
+    return result;
+  }
 #else
-    if (PyString_Check(value)) {
-        result = xmlCharStrdup(PyString_AsString(value));
-        if (result == NULL) {
-            PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
-            return NULL;
-        }
-        return result;
+  if (PyString_Check(value)) {
+    result = xmlCharStrdup(PyString_AsString(value));
+    if (result == NULL) {
+      PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
+      return NULL;
     }
-    if (PyUnicode_Check(value)) {
-        encoded = PyUnicode_AsUTF8String(value);
-        if (encoded == NULL) {
-            return NULL;
-        }
-        result = xmlCharStrdup(PyString_AsString(encoded));
-        Py_DECREF(encoded);
-        if (result == NULL) {
-            PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
-            return NULL;
-        }
-        return result;
+    return result;
+  }
+  if (PyUnicode_Check(value)) {
+    encoded = PyUnicode_AsUTF8String(value);
+    if (encoded == NULL) {
+      return NULL;
     }
+    result = xmlCharStrdup(PyString_AsString(encoded));
+    Py_DECREF(encoded);
+    if (result == NULL) {
+      PyErr_Format(PyExc_TypeError, "Can't allocate XML string");
+      return NULL;
+    }
+    return result;
+  }
 #endif
-    PyErr_Format(PyExc_TypeError, "The '%s' parameter must be a string", name);
-    return NULL;
+  PyErr_Format(PyExc_TypeError, "The '%s' parameter must be a string", name);
+  return NULL;
 }

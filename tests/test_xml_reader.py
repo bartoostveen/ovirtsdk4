@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -17,6 +15,7 @@
 #
 
 from io import BytesIO
+
 from ovirtsdk4.xml import XmlReader
 
 
@@ -24,7 +23,7 @@ def make_reader(text):
     """
     Creates an IO objec that reads from the given text.
     """
-    text = text.encode('utf-8')
+    text = text.encode("utf-8")
     return XmlReader(BytesIO(text))
 
 
@@ -34,7 +33,7 @@ def test_get_attribute_with_value():
     method returns the value.
     """
     reader = make_reader('<root id="123"/>')
-    assert reader.get_attribute('id') == '123'
+    assert reader.get_attribute("id") == "123"
 
 
 def test_get_empty_attribute():
@@ -43,7 +42,7 @@ def test_get_empty_attribute():
     returns an empty string.
     """
     reader = make_reader('<root id=""/>')
-    assert reader.get_attribute('id') == ''
+    assert reader.get_attribute("id") == ""
 
 
 def test_get_non_existent_attribute():
@@ -51,8 +50,8 @@ def test_get_non_existent_attribute():
     Checks that given a non existing attribute the `get_attribute`
     method returns `None`.
     """
-    reader = make_reader('<root/>')
-    assert reader.get_attribute('id') is None
+    reader = make_reader("<root/>")
+    assert reader.get_attribute("id") is None
 
 
 def test_read_empty_element():
@@ -60,7 +59,7 @@ def test_read_empty_element():
     Checks that given an empty element the `read_element` method
     returns `None`.
     """
-    reader = make_reader('<root/>')
+    reader = make_reader("<root/>")
     assert reader.read_element() is None
 
 
@@ -69,8 +68,8 @@ def test_read_blank_element():
     Checks that given an blank element the `read_element` method
     returns an empty string.
     """
-    reader = make_reader('<root></root>')
-    assert reader.read_element() == ''
+    reader = make_reader("<root></root>")
+    assert reader.read_element() == ""
 
 
 def test_read_empty_list():
@@ -78,7 +77,7 @@ def test_read_empty_list():
     Checks that given an empty element the `read_elements` method
     returns an empty list.
     """
-    reader = make_reader('<list></list>')
+    reader = make_reader("<list></list>")
     assert reader.read_elements() == []
 
 
@@ -87,7 +86,7 @@ def test_read_list_with_empty_element():
     Checks that given a list with an empty element the `read_elements` method
     returns a list containing `None`.
     """
-    reader = make_reader('<list><item/></list>')
+    reader = make_reader("<list><item/></list>")
     assert reader.read_elements() == [None]
 
 
@@ -96,8 +95,8 @@ def test_read_list_with_blank_element():
     Checks that given a list with an blank element the `read_elements` method
     returns a list containing an empty string.
     """
-    reader = make_reader('<list><item></item></list>')
-    assert reader.read_elements() == ['']
+    reader = make_reader("<list><item></item></list>")
+    assert reader.read_elements() == [""]
 
 
 def test_read_list_one_element():
@@ -105,8 +104,8 @@ def test_read_list_one_element():
     Checks that given a list with an one element the `read_elements` method
     returns a list containing it.
     """
-    reader = make_reader('<list><item>first</item></list>')
-    assert reader.read_elements() == ['first']
+    reader = make_reader("<list><item>first</item></list>")
+    assert reader.read_elements() == ["first"]
 
 
 def test_read_list_two_element():
@@ -120,7 +119,7 @@ def test_read_list_two_element():
             <item>second</item>
         </list>
     """)
-    assert reader.read_elements() == ['first', 'second']
+    assert reader.read_elements() == ["first", "second"]
 
 
 def test_forward_with_preceding_test():
@@ -128,10 +127,10 @@ def test_forward_with_preceding_test():
     Checks that given some text before an element, the `forward` method
     skips the text and returns `True`.
     """
-    reader = make_reader('<root>text<target/></root>')
+    reader = make_reader("<root>text<target/></root>")
     reader.read()
     assert reader.forward()
-    assert reader.node_name() == 'target'
+    assert reader.node_name() == "target"
 
 
 def test_forward_end_of_document():
@@ -139,7 +138,7 @@ def test_forward_end_of_document():
     Checks that when positioned at the end of the document the `forward`
     method returns `False`.
     """
-    reader = make_reader('<root/>')
+    reader = make_reader("<root/>")
     reader.read()
     assert not reader.forward()
 
@@ -149,10 +148,10 @@ def test_forward_with_empty_element():
     Checks that when positioned at an empty element the `forward` method
     returns `True` and stays at the empty element.
     """
-    reader = make_reader('<root><target/></root>')
+    reader = make_reader("<root><target/></root>")
     reader.read()
     assert reader.forward()
-    assert reader.node_name() == 'target'
+    assert reader.node_name() == "target"
     assert reader.empty_element()
 
 
@@ -162,10 +161,10 @@ def test_read_element_after_empty_list():
     `read_elements` method returns an empty list and the next element
     can be read with the `read_element` method.
     """
-    reader = make_reader('<root><list/><value>next</value></root>')
+    reader = make_reader("<root><list/><value>next</value></root>")
     reader.read()
     assert reader.read_elements() == []
-    assert reader.read_element() == 'next'
+    assert reader.read_element() == "next"
 
 
 def test_read_accents():
@@ -173,5 +172,5 @@ def test_read_accents():
     Checks that reading text that is already encoded using UTF-8
     works correctly.
     """
-    reader = make_reader('<root>áéíóúÁÉÍÓÚ</root>')
-    assert reader.read_element() == 'áéíóúÁÉÍÓÚ'
+    reader = make_reader("<root>áéíóúÁÉÍÓÚ</root>")
+    assert reader.read_element() == "áéíóúÁÉÍÓÚ"

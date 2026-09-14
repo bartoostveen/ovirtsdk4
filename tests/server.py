@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -18,36 +16,25 @@
 
 import json
 import os.path
-import ovirtsdk4 as sdk
 import re
-import socket
 import ssl
-
-try:
-    from http.server import HTTPServer
-    from http.server import SimpleHTTPRequestHandler
-except ImportError:
-    from BaseHTTPServer import HTTPServer
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 from threading import Thread
 from time import sleep
+from typing import ClassVar
+from urllib.parse import urlparse
 
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urlparse import urlparse
+import ovirtsdk4 as sdk
 
 
 class TestHandler(SimpleHTTPRequestHandler):
     # Path handlers:
-    handlers = {}
+    handlers: ClassVar[dict[str, any]] = {}  # type: ignore
 
     def log_message(self, format, *args):
         """
         Empty method, so we don't mix output of HTTP server with tests
         """
-        pass
 
     def do_GET(self):
         params = urlparse(self.path)
@@ -66,16 +53,16 @@ class TestHandler(SimpleHTTPRequestHandler):
             SimpleHTTPRequestHandler.do_POST(self)
 
 
-class TestServer(object):
+class TestServer:
     # The authentication details used by the embedded tests web server:
-    REALM = 'API'
-    USER = 'admin@internal'
-    PASSWORD = 'vzhJgfyaDPHRhg'
-    TOKEN = 'bvY7txV9ltmmRQ'
+    REALM = "API"
+    USER = "admin@internal"
+    PASSWORD = "vzhJgfyaDPHRhg"
+    TOKEN = "bvY7txV9ltmmRQ"
 
     # The host and port and path used by the embedded tests web server:
-    HOST = 'localhost'
-    PREFIX = '/ovirt-engine'
+    HOST = "localhost"
+    PREFIX = "/ovirt-engine"
     PORT = None
 
     # The embedded web server:
@@ -84,8 +71,8 @@ class TestServer(object):
     _thread = None
 
     def _get_request_content(self, handler):
-        content_len = int(handler.headers.get('content-length', 0))
-        content = handler.rfile.read(content_len).decode('utf-8')
+        content_len = int(handler.headers.get("content-length", 0))
+        content = handler.rfile.read(content_len).decode("utf-8")
         content = re.sub(r">\s+<", "><", content)
         return content.strip()
 
@@ -98,71 +85,68 @@ class TestServer(object):
             # Store request headers:
             self.last_request_headers = handler.headers
 
-            authorization = handler.headers.get('Authorization')
-            if authorization != "Bearer %s" % self.TOKEN:
-                data = '401  - Unauthorized'.encode('utf-8')
+            authorization = handler.headers.get("Authorization")
+            if authorization != f"Bearer {self.TOKEN}":
+                data = b"401  - Unauthorized"
 
                 handler.send_response(401)
-                handler.send_header('Content-Length', len(data))
+                handler.send_header("Content-Length", len(data))
                 handler.end_headers()
                 handler.wfile.write()
             else:
-                data = body.encode('utf-8')
+                data = body.encode("utf-8")
 
                 sleep(delay)
                 handler.send_response(code)
-                handler.send_header('Content-Type', 'application/xml')
-                handler.send_header('Content-Length', len(data))
+                handler.send_header("Content-Type", "application/xml")
+                handler.send_header("Content-Length", len(data))
                 handler.end_headers()
 
                 handler.wfile.write(data)
 
         TestHandler.handlers[
-            '%s/api%s' % (self.prefix(), '/%s' % path if path else '')
+            "{}/api{}".format(self.prefix(), f"/{path}" if path else "")
         ] = _handle_request
 
     def set_json_response(self, path, code, body):
         def _handle_request(handler):
-            data = json.dumps(body, ensure_ascii=False).encode('utf-8')
+            data = json.dumps(body, ensure_ascii=False).encode("utf-8")
 
             handler.send_response(code)
-            handler.send_header('Content-Type', 'application/json')
-            handler.send_header('Content-Length', len(data))
+            handler.send_header("Content-Type", "application/json")
+            handler.send_header("Content-Length", len(data))
             handler.end_headers()
 
             handler.wfile.write(data)
 
         TestHandler.handlers[path] = _handle_request
 
-    def start_server(self, host='localhost'):
+    def start_server(self, host="localhost"):
         self._httpd = HTTPServer((self.host(), self.port()), TestHandler)
         context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         context.minimum_version = ssl.TLSVersion.TLSv1_2
         context.load_cert_chain(
-            certfile=self.__absolute_path('%s.crt' % host),
-            keyfile=self.__absolute_path('%s.key' % host)
+            certfile=self.__absolute_path(f"{host}.crt"),
+            keyfile=self.__absolute_path(f"{host}.key"),
         )
-        self._httpd.socket = context.wrap_socket(
-            self._httpd.socket,
-            server_side=True
-        )
+        self._httpd.socket = context.wrap_socket(self._httpd.socket, server_side=True)
         # Path handler for username/password authentication service:
         self.set_json_response(
-            path='%s/sso/oauth/token' % self.prefix(),
+            path=f"{self.prefix()}/sso/oauth/token",
             code=200,
-            body={"access_token": self.TOKEN}
+            body={"access_token": self.TOKEN},
         )
         # SSO Logout service:
         self.set_json_response(
-            path='%s/services/sso-logout' % self.prefix(),
+            path=f"{self.prefix()}/services/sso-logout",
             code=200,
-            body={"access_token": self.TOKEN}
+            body={"access_token": self.TOKEN},
         )
         # Path handler for Kerberos authentication service:
         self.set_json_response(
-            path='%s/sso/oauth/token-http-auth' % self.prefix(),
+            path=f"{self.prefix()}/sso/oauth/token-http-auth",
             code=200,
-            body={"access_token": self.TOKEN}
+            body={"access_token": self.TOKEN},
         )
 
         # Server requests in different thread, because it block current thread
@@ -178,16 +162,13 @@ class TestServer(object):
             server = None
             for port in range(60000, 61000):
                 try:
-                    server = HTTPServer(
-                        (self.host(), port),
-                        TestHandler
-                    )
+                    server = HTTPServer((self.host(), port), TestHandler)
                     self.PORT = port
                     break
-                except socket.error:
+                except OSError:
                     pass
             if server is None:
-                raise Exception("Can't find a free port")
+                raise RuntimeError("Cannot find a free port")
 
         return self.PORT
 
@@ -195,14 +176,10 @@ class TestServer(object):
         return self.PREFIX
 
     def url(self):
-        return "https://{host}:{port}{prefix}/api".format(
-            host=self.host(),
-            port=self.port(),
-            prefix=self.prefix(),
-        )
+        return f"https://{self.host()}:{self.port()}{self.prefix()}/api"
 
     def ca_file(self):
-        return self.__absolute_path('ca.crt')
+        return self.__absolute_path("ca.crt")
 
     def user(self):
         return self.USER
@@ -223,4 +200,4 @@ class TestServer(object):
         )
 
     def __absolute_path(self, str):
-        return os.path.join(os.path.dirname(__file__), 'pki/%s' % str)
+        return os.path.join(os.path.dirname(__file__), f"pki/{str}")

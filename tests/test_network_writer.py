@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,11 +14,12 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.writers import NetworkWriter
+
 from ovirtsdk4.xml import XmlWriter
+
+from ovirtsdk4 import types
+from ovirtsdk4.writers import NetworkWriter
 
 
 def make_buffer():
@@ -35,7 +34,7 @@ def decode_buffer(io_buffer):
     Extracts the text stored in the given bytes buffer and generates an
     Unicode string.
     """
-    return io_buffer.getvalue().decode('utf-8')
+    return io_buffer.getvalue().decode("utf-8")
 
 
 def test_write_network_with_no_usages():
@@ -48,7 +47,7 @@ def test_write_network_with_no_usages():
     writer = XmlWriter(buf, indent=True)
     NetworkWriter.write_one(network, writer)
     writer.flush()
-    assert decode_buffer(buf) == '<network/>\n'
+    assert decode_buffer(buf) == "<network/>\n"
 
 
 def test_write_network_with_empty_usages():
@@ -63,13 +62,7 @@ def test_write_network_with_empty_usages():
     writer = XmlWriter(buf, indent=True)
     NetworkWriter.write_one(network, writer)
     writer.flush()
-    assert (
-        decode_buffer(buf) == (
-            '<network>\n'
-            '  <usages/>\n'
-            '</network>\n'
-        )
-    )
+    assert decode_buffer(buf) == ("<network>\n  <usages/>\n</network>\n")
 
 
 def test_write_network_with_one_usages():
@@ -78,22 +71,14 @@ def test_write_network_with_one_usages():
     the usages element with one value is written to output xml
     """
     network = types.Network(
-        usages=[
-            types.NetworkUsage.VM
-        ],
+        usages=[types.NetworkUsage.VM],
     )
     buf = make_buffer()
     writer = XmlWriter(buf, indent=True)
     NetworkWriter.write_one(network, writer)
     writer.flush()
-    assert (
-        decode_buffer(buf) == (
-            '<network>\n'
-            '  <usages>\n'
-            '    <usage>vm</usage>\n'
-            '  </usages>\n'
-            '</network>\n'
-        )
+    assert decode_buffer(buf) == (
+        "<network>\n  <usages>\n    <usage>vm</usage>\n  </usages>\n</network>\n"
     )
 
 
@@ -112,13 +97,11 @@ def test_write_network_with_two_usages():
     writer = XmlWriter(buf, indent=True)
     NetworkWriter.write_one(network, writer)
     writer.flush()
-    assert (
-        decode_buffer(buf) == (
-            '<network>\n'
-            '  <usages>\n'
-            '    <usage>vm</usage>\n'
-            '    <usage>display</usage>\n'
-            '  </usages>\n'
-            '</network>\n'
-        )
+    assert decode_buffer(buf) == (
+        "<network>\n"
+        "  <usages>\n"
+        "    <usage>vm</usage>\n"
+        "    <usage>display</usage>\n"
+        "  </usages>\n"
+        "</network>\n"
     )

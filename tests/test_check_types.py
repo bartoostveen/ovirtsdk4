@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,14 +14,14 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.services as services
-import ovirtsdk4.types as types
 import unittest
+
 import pytest
+
+from ovirtsdk4 import services, types
 
 
 class CheckTypesTest(unittest.TestCase):
-
     def test_service_type_error(self):
         """
         Test that calling a method with multiple wrong parameter types
@@ -32,19 +30,17 @@ class CheckTypesTest(unittest.TestCase):
         vm_service = services.VmService(None, None)
         with pytest.raises(TypeError) as context:
             vm_service.start(
-                use_cloud_init='true',
+                use_cloud_init="true",
                 vm=types.Disk(),
             )
         message = str(context.value)
         assert (
             "The 'use_cloud_init' parameter should be of type 'bool', "
-            "but it is of type 'str'" in
-            message
+            "but it is of type 'str'" in message
         )
         assert (
             "The 'vm' parameter should be of type 'Vm', but it is of "
-            "type 'Disk'" in
-            message
+            "type 'Disk'" in message
         )
 
     def test_locator_type_error(self):
@@ -58,6 +54,5 @@ class CheckTypesTest(unittest.TestCase):
         message = str(context.value)
         assert (
             "The 'id' parameter should be of type 'str', but it is of "
-            "type 'Vm'." in
-            message
+            "type 'Vm'." in message
         )

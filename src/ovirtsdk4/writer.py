@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -17,12 +15,12 @@
 #
 
 import datetime
+from typing import ClassVar
 
-from ovirtsdk4 import Error
-from ovirtsdk4 import xml
+from ovirtsdk4 import Error, xml
 
 
-class Writer(object):
+class Writer:
     """
     This is the base class for all the writers of the SDK. It contains
     the utility methods used by all of them.
@@ -35,7 +33,7 @@ class Writer(object):
     # method that writes the XML document corresponding for that type.
     # For example, for the `Vm` type it will contain a reference to the
     # `VmWriter.write_one` method.
-    _writers = {}
+    _writers: ClassVar[dict[str, any]] = {}  # type: ignore
 
     @staticmethod
     def write_string(writer, name, value):
@@ -50,8 +48,8 @@ class Writer(object):
         Converts the given boolean value to a string.
         """
         if not isinstance(value, bool):
-            raise TypeError('The \'value\' parameter must be a boolean')
-        return 'true' if value else 'false'
+            raise TypeError("The 'value' parameter must be a boolean")
+        return "true" if value else "false"
 
     @staticmethod
     def write_boolean(writer, name, value):
@@ -66,7 +64,7 @@ class Writer(object):
         Converts the given integer value to a string.
         """
         if not isinstance(value, int):
-            raise TypeError('The \'value\' parameter must be an integer')
+            raise TypeError("The 'value' parameter must be an integer")
         return str(value)
 
     @staticmethod
@@ -82,7 +80,7 @@ class Writer(object):
         Converts the given decimal value to a string.
         """
         if not isinstance(value, float):
-            raise TypeError('The \'value\' parameter must be a decimal')
+            raise TypeError("The 'value' parameter must be a decimal")
         return str(value)
 
     @staticmethod
@@ -98,7 +96,7 @@ class Writer(object):
         Converts the given date value to a string.
         """
         if not isinstance(value, datetime.datetime):
-            raise TypeError('The \'value\' parameter must be a date')
+            raise TypeError("The 'value' parameter must be a date")
         return value.isoformat()
 
     @staticmethod
@@ -152,10 +150,7 @@ class Writer(object):
         elif isinstance(target, xml.XmlWriter):
             cursor = target
         else:
-            raise Error(
-                'Expected an \'XmlWriter\', but got \'%s\'' %
-                type(target)
-            )
+            raise Error(f"Expected an 'XmlWriter', but got '{type(target)}'")
 
         # Do the actual write, and make sure to always close the XML
         # writer if we created it:
@@ -164,10 +159,7 @@ class Writer(object):
                 # For lists we can't decide which tag to use, so the
                 # 'root' parameter is mandatory in this case:
                 if root is None:
-                    raise Error(
-                        'The \'root\' parameter is mandatory when '
-                        'writing lists.'
-                    )
+                    raise Error("The 'root' parameter is mandatory when writing lists.")
 
                 # Write the root tag, and then recursively call the
                 # method to write each of the items of the list:
@@ -180,10 +172,7 @@ class Writer(object):
                 typ = type(obj)
                 writer = cls._writers.get(typ)
                 if writer is None:
-                    raise Error(
-                        'Can\'t find a writer for type \'%s\'' %
-                        typ
-                    )
+                    raise Error(f"Can't find a writer for type '{typ}'")
 
                 # Write the object using the specific method:
                 writer(obj, cursor, root)

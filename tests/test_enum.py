@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -23,4 +21,4 @@ def test_enum():
     """
     Check Architecture.x86_64 exists and has expected value
     """
-    assert str(types.Architecture.X86_64) == 'x86_64'
+    assert str(types.Architecture.X86_64) == "x86_64"

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -22,7 +20,6 @@ from .server import TestServer
 
 
 class ClusterServiceTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -68,7 +65,7 @@ class ClusterServiceTest(unittest.TestCase):
         self.server.set_xml_response(
             path="clusters/123",
             code=200,
-            body="<cluster id=\"123\"><name>testcluster</name></cluster>"
+            body='<cluster id="123"><name>testcluster</name></cluster>',
         )
         cluster = self.clusters_service.cluster_service("123").get()
         assert cluster.id == "123"

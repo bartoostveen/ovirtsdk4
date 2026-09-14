@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -18,25 +16,26 @@
 
 from datetime import datetime
 from io import BytesIO
-from ovirtsdk4 import Error
-from ovirtsdk4 import types
-from ovirtsdk4.reader import Reader, TZ
-from ovirtsdk4.xml import XmlReader
+
 import pytest
+from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import Error, types
+from ovirtsdk4.reader import TZ, Reader
 
 
 def make_buffer(str):
     """
     Creates an IO object to be used for writing.
     """
-    return BytesIO(str.encode('utf-8'))
+    return BytesIO(str.encode("utf-8"))
 
 
 def test_read_boolean_false():
     """
     Test given 'false' return False.
     """
-    io_buffer = make_buffer('<value>false</value>')
+    io_buffer = make_buffer("<value>false</value>")
     xml_reader = XmlReader(io_buffer)
     assert not Reader.read_boolean(xml_reader)
 
@@ -45,7 +44,7 @@ def test_read_boolean_FALSE():
     """
     Test given 'FALSE' return False.
     """
-    io_buffer = make_buffer('<value>FALSE</value>')
+    io_buffer = make_buffer("<value>FALSE</value>")
     xml_reader = XmlReader(io_buffer)
     assert not Reader.read_boolean(xml_reader)
 
@@ -54,7 +53,7 @@ def test_read_boolean_0():
     """
     Test given '0' return False.
     """
-    io_buffer = make_buffer('<value>0</value>')
+    io_buffer = make_buffer("<value>0</value>")
     xml_reader = XmlReader(io_buffer)
     assert not Reader.read_boolean(xml_reader)
 
@@ -63,7 +62,7 @@ def test_read_boolean_true():
     """
     Test given 'true' return True.
     """
-    io_buffer = make_buffer('<value>true</value>')
+    io_buffer = make_buffer("<value>true</value>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_boolean(xml_reader)
 
@@ -72,7 +71,7 @@ def test_read_boolean_TRUE():
     """
     Test given 'TRUE' return True.
     """
-    io_buffer = make_buffer('<value>TRUE</value>')
+    io_buffer = make_buffer("<value>TRUE</value>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_boolean(xml_reader)
 
@@ -81,7 +80,7 @@ def test_read_boolean_1():
     """
     Test given '1' return True.
     """
-    io_buffer = make_buffer('<value>1</value>')
+    io_buffer = make_buffer("<value>1</value>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_boolean(xml_reader)
 
@@ -91,7 +90,7 @@ def test_read_boolean_invalid_value():
     Test given 'ugly' raises error.
     """
     with pytest.raises(ValueError):
-        io_buffer = make_buffer('<value>ugly</value>')
+        io_buffer = make_buffer("<value>ugly</value>")
         xml_reader = XmlReader(io_buffer)
         Reader.read_boolean(xml_reader)
 
@@ -100,7 +99,7 @@ def test_read_booleans_empty_list_with_close_tag():
     """
     Test given no values with close tag returns empty list.
     """
-    io_buffer = make_buffer('<list></list>')
+    io_buffer = make_buffer("<list></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_booleans(xml_reader) == []
 
@@ -109,7 +108,7 @@ def test_read_booleans_empty_list_without_close_tag():
     """
     Test given no values without close tag returns empty list.
     """
-    io_buffer = make_buffer('<list/>')
+    io_buffer = make_buffer("<list/>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_booleans(xml_reader) == []
 
@@ -118,7 +117,7 @@ def test_read_booleans_with_one_value():
     """
     Test given one value returns list containing one value.
     """
-    io_buffer = make_buffer('<list><value>false</value></list>')
+    io_buffer = make_buffer("<list><value>false</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_booleans(xml_reader) == [False]
 
@@ -127,9 +126,7 @@ def test_read_booleans_with_two_values():
     """
     Test given two values returns list containing two values.
     """
-    io_buffer = make_buffer(
-        '<list><value>false</value><value>true</value></list>'
-    )
+    io_buffer = make_buffer("<list><value>false</value><value>true</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_booleans(xml_reader) == [False, True]
 
@@ -138,7 +135,7 @@ def test_read_integer_with_valid_value():
     """
     Test given valid value returns that value.
     """
-    io_buffer = make_buffer('<value>0</value>')
+    io_buffer = make_buffer("<value>0</value>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_integer(xml_reader) == 0
 
@@ -148,7 +145,7 @@ def test_read_integer_with_invalid_value():
     Test given invalid value raises error.
     """
     with pytest.raises(ValueError):
-        io_buffer = make_buffer('<value>ugly</value>')
+        io_buffer = make_buffer("<value>ugly</value>")
         xml_reader = XmlReader(io_buffer)
         Reader.read_integer(xml_reader)
 
@@ -157,7 +154,7 @@ def test_read_integers_empty_list_with_close_tag():
     """
     Test given no values with close tag returns empty list.
     """
-    io_buffer = make_buffer('<list></list>')
+    io_buffer = make_buffer("<list></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_integers(xml_reader) == []
 
@@ -166,7 +163,7 @@ def test_read_integers_empty_list_without_close_tag():
     """
     Test given no values without close tag returns empty list.
     """
-    io_buffer = make_buffer('<list/>')
+    io_buffer = make_buffer("<list/>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_integers(xml_reader) == []
 
@@ -175,7 +172,7 @@ def test_read_integers_with_one_value():
     """
     Test given one value returns list containing one value.
     """
-    io_buffer = make_buffer('<list><value>0</value></list>')
+    io_buffer = make_buffer("<list><value>0</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_integers(xml_reader) == [0]
 
@@ -184,7 +181,7 @@ def test_read_integers_with_two_values():
     """
     Test given two values returns list containing two values.
     """
-    io_buffer = make_buffer('<list><value>0</value><value>1</value></list>')
+    io_buffer = make_buffer("<list><value>0</value><value>1</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_integers(xml_reader) == [0, 1]
 
@@ -193,7 +190,7 @@ def test_read_decimal_with_valid_value():
     """
     Test given valid value returns that value.
     """
-    io_buffer = make_buffer('<value>1.1</value>')
+    io_buffer = make_buffer("<value>1.1</value>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_decimal(xml_reader) == 1.1
 
@@ -203,7 +200,7 @@ def test_read_decimal_with_invalid_value():
     Test given invalid value raises error.
     """
     with pytest.raises(ValueError):
-        io_buffer = make_buffer('<value>ugly</value>')
+        io_buffer = make_buffer("<value>ugly</value>")
         xml_reader = XmlReader(io_buffer)
         Reader.read_decimal(xml_reader)
 
@@ -212,7 +209,7 @@ def test_read_decimals_empty_list_with_close_tag():
     """
     Test given no values with close tag returns empty list.
     """
-    io_buffer = make_buffer('<list></list>')
+    io_buffer = make_buffer("<list></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_decimals(xml_reader) == []
 
@@ -221,7 +218,7 @@ def test_read_decimals_empty_list_without_close_tag():
     """
     Test given no values without close tag returns empty list.
     """
-    io_buffer = make_buffer('<list/>')
+    io_buffer = make_buffer("<list/>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_decimals(xml_reader) == []
 
@@ -230,7 +227,7 @@ def test_read_decimals_with_one_value():
     """
     Test given one value returns list containing one value.
     """
-    io_buffer = make_buffer('<list><value>1.1</value></list>')
+    io_buffer = make_buffer("<list><value>1.1</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_decimals(xml_reader) == [1.1]
 
@@ -239,9 +236,7 @@ def test_read_decimals_with_two_values():
     """
     Test given two values returns list containing two values.
     """
-    io_buffer = make_buffer(
-        '<list><value>1.1</value><value>2.2</value></list>'
-    )
+    io_buffer = make_buffer("<list><value>1.1</value><value>2.2</value></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_decimals(xml_reader) == [1.1, 2.2]
 
@@ -250,7 +245,7 @@ def test_read_date_with_valid_value():
     """
     Test given valid value returns that value.
     """
-    io_buffer = make_buffer('<value>2015-12-10T22:00:30+01:00</value>')
+    io_buffer = make_buffer("<value>2015-12-10T22:00:30+01:00</value>")
     xml_reader = XmlReader(io_buffer)
     date = datetime(2015, 12, 10, 22, 0, 30, tzinfo=TZ(60, None))
     assert Reader.read_date(xml_reader) == date
@@ -261,7 +256,7 @@ def test_read_date_with_invalid_value():
     Test given invalid value raises error.
     """
     with pytest.raises(ValueError):
-        io_buffer = make_buffer('<value>ugly</value>')
+        io_buffer = make_buffer("<value>ugly</value>")
         xml_reader = XmlReader(io_buffer)
         Reader.read_date(xml_reader)
 
@@ -270,7 +265,7 @@ def test_read_dates_empty_list_with_close_tag():
     """
     Test given no values with close tag returns empty list.
     """
-    io_buffer = make_buffer('<list></list>')
+    io_buffer = make_buffer("<list></list>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_dates(xml_reader) == []
 
@@ -279,7 +274,7 @@ def test_read_dates_empty_list_without_close_tag():
     """
     Test given no values without close tag returns empty list.
     """
-    io_buffer = make_buffer('<list/>')
+    io_buffer = make_buffer("<list/>")
     xml_reader = XmlReader(io_buffer)
     assert Reader.read_dates(xml_reader) == []
 
@@ -288,9 +283,7 @@ def test_read_dates_with_one_value():
     """
     Test given one value returns list containing one value.
     """
-    io_buffer = make_buffer(
-        '<list><value>2015-12-10T22:00:30+01:00</value></list>'
-    )
+    io_buffer = make_buffer("<list><value>2015-12-10T22:00:30+01:00</value></list>")
     xml_reader = XmlReader(io_buffer)
     date = datetime(2015, 12, 10, 22, 0, 30, tzinfo=TZ(60, None))
     assert Reader.read_dates(xml_reader) == [date]
@@ -301,10 +294,10 @@ def test_read_dates_with_two_values():
     Test given two values returns list containing two values.
     """
     io_buffer = make_buffer(
-        '<list>'
-        '<value>2015-12-10T22:00:30+01:00</value>'
-        '<value>2016-12-10T22:00:30+01:00</value>'
-        '</list>'
+        "<list>"
+        "<value>2015-12-10T22:00:30+01:00</value>"
+        "<value>2016-12-10T22:00:30+01:00</value>"
+        "</list>"
     )
     xml_reader = XmlReader(io_buffer)
     date1 = datetime(2015, 12, 10, 22, 0, 30, tzinfo=TZ(60, None))
@@ -316,14 +309,14 @@ def test_read_with_io():
     """
     Test if read method accepts io object.
     """
-    Reader.read(make_buffer('<vm/>'))
+    Reader.read(make_buffer("<vm/>"))
 
 
 def test_read_with_xml_reader():
     """
     Test if read method accepts xml reader.
     """
-    cursor = XmlReader(make_buffer('<vm/>'))
+    cursor = XmlReader(make_buffer("<vm/>"))
     Reader.read(cursor)
     cursor.close()
 
@@ -332,10 +325,10 @@ def test_read_leaves_position():
     """
     Test if read method leaves it positioned in the next element.
     """
-    cursor = XmlReader(make_buffer('<root><vm/><next/></root>'))
+    cursor = XmlReader(make_buffer("<root><vm/><next/></root>"))
     cursor.read()
     Reader.read(cursor)
-    assert cursor.node_name() == 'next'
+    assert cursor.node_name() == "next"
     cursor.close()
 
 
@@ -351,15 +344,15 @@ def test_read_given_incorrect_reader():
     """
     Test if given incorrect input data, read method raises an exception.
     """
-    with pytest.raises(Exception):
-        Reader.read(make_buffer('<ugly/>'))
+    with pytest.raises(Exception):  # noqa: B017
+        Reader.read(make_buffer("<ugly/>"))
 
 
 def test_read_given_vm():
     """
     Test if given vm, it creates VM object.
     """
-    object = Reader.read(make_buffer('<vm/>'))
+    object = Reader.read(make_buffer("<vm/>"))
     assert isinstance(object, types.Vm)
 
 
@@ -367,7 +360,7 @@ def test_read_given_two_vms():
     """
     Test if given two vms, it creates list of VMs.
     """
-    vms = Reader.read(make_buffer('<vms><vm/><vm/></vms>'))
+    vms = Reader.read(make_buffer("<vms><vm/><vm/></vms>"))
     assert isinstance(vms, list)
     assert len(vms) == 2
     assert isinstance(vms[0], types.Vm)
@@ -378,7 +371,7 @@ def test_read_given_disk():
     """
     Test if given disk, it creates disk object.
     """
-    disk = Reader.read(make_buffer('<disk/>'))
+    disk = Reader.read(make_buffer("<disk/>"))
     assert isinstance(disk, types.Disk)
 
 
@@ -386,7 +379,7 @@ def test_read_given_two_disks():
     """
     Test if given two disks, it creates list of Disks.
     """
-    disks = Reader.read(make_buffer('<disks><disk/><disk/></disks>'))
+    disks = Reader.read(make_buffer("<disks><disk/><disk/></disks>"))
     assert isinstance(disks, list)
     assert len(disks) == 2
     assert isinstance(disks[0], types.Disk)
@@ -400,9 +393,9 @@ def test_read_given_openstack_image_provider():
     """
     openstack_image_provider = Reader.read(
         make_buffer(
-            '<openstack_image_provider>'
-                '<name>myprovider</name>'
-            '</openstack_image_provider>'
+            "<openstack_image_provider>"
+            "<name>myprovider</name>"
+            "</openstack_image_provider>"
         )
     )
     assert isinstance(openstack_image_provider, types.OpenStackImageProvider)
@@ -416,10 +409,10 @@ def test_read_given_two_openstack_image_providers():
     """
     openstack_image_providers = Reader.read(
         make_buffer(
-            '<openstack_image_providers>'
-                '<openstack_image_provider/>'
-                '<openstack_image_provider/>'
-            '</openstack_image_providers>'
+            "<openstack_image_providers>"
+            "<openstack_image_provider/>"
+            "<openstack_image_provider/>"
+            "</openstack_image_providers>"
         )
     )
     assert isinstance(openstack_image_providers, list)
@@ -432,7 +425,7 @@ def test_read_given_two_different_objects():
     """
     Test if given two different consecutive objects, they can be read with two calls.
     """
-    cursor = XmlReader(make_buffer('<root><vm/><disk/></root>'))
+    cursor = XmlReader(make_buffer("<root><vm/><disk/></root>"))
     cursor.read()
     vm = Reader.read(cursor)
     disk = Reader.read(cursor)
@@ -444,7 +437,7 @@ def test_read_given_two_different_empty_objects():
     """
     Test if given given an empty document, read returns None.
     """
-    cursor = XmlReader(make_buffer('<root/>'))
+    cursor = XmlReader(make_buffer("<root/>"))
     cursor.read()
     object = Reader.read(cursor)
     assert object is None
@@ -455,7 +448,7 @@ def test_read_unknonw_tag():
     Test that when an unknonw tag is received an exception with a
     message is generated.
     """
-    cursor = XmlReader(make_buffer('<html>blah<html>'))
+    cursor = XmlReader(make_buffer("<html>blah<html>"))
     cursor.read()
     with pytest.raises(Error) as context:
         Reader.read(cursor)
@@ -466,5 +459,5 @@ def test_read_supports_strings():
     """
     Test that the generic `read` methods supports strings as parameters.
     """
-    vm = Reader.read('<vm/>')
+    vm = Reader.read("<vm/>")
     assert isinstance(vm, types.Vm)

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -17,15 +15,13 @@
 #
 
 
-from ovirtsdk4 import List
-from ovirtsdk4 import types
+from ovirtsdk4 import List, types
 from ovirtsdk4.reader import Reader
 
 
 class ActionReader(Reader):
-
     def __init__(self):
-        super(ActionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -37,8 +33,8 @@ class ActionReader(Reader):
         obj = types.Action()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -52,199 +48,213 @@ class ActionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'activate':
+            if tag == "activate":
                 obj.activate = Reader.read_boolean(reader)
-            elif tag == 'allow_partial_import':
+            elif tag == "allow_partial_import":
                 obj.allow_partial_import = Reader.read_boolean(reader)
-            elif tag == 'async':
+            elif tag == "async":
                 obj.async_ = Reader.read_boolean(reader)
-            elif tag == 'attach_wgt':
+            elif tag == "attach_wgt":
                 obj.attach_wgt = Reader.read_boolean(reader)
-            elif tag == 'attachment':
+            elif tag == "attachment":
                 obj.attachment = DiskAttachmentReader.read_one(reader)
-            elif tag == 'authorized_key':
+            elif tag == "authorized_key":
                 obj.authorized_key = AuthorizedKeyReader.read_one(reader)
-            elif tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bricks':
+            elif tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bricks":
                 obj.bricks = GlusterBrickReader.read_many(reader)
-            elif tag == 'certificates':
+            elif tag == "certificates":
                 obj.certificates = CertificateReader.read_many(reader)
-            elif tag == 'check_connectivity':
+            elif tag == "check_connectivity":
                 obj.check_connectivity = Reader.read_boolean(reader)
-            elif tag == 'clone':
+            elif tag == "clone":
                 obj.clone = Reader.read_boolean(reader)
-            elif tag == 'clone_permissions':
+            elif tag == "clone_permissions":
                 obj.clone_permissions = Reader.read_boolean(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'collapse_snapshots':
+            elif tag == "collapse_snapshots":
                 obj.collapse_snapshots = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'commit_on_success':
+            elif tag == "commit_on_success":
                 obj.commit_on_success = Reader.read_boolean(reader)
-            elif tag == 'connection':
+            elif tag == "connection":
                 obj.connection = StorageConnectionReader.read_one(reader)
-            elif tag == 'connectivity_timeout':
+            elif tag == "connectivity_timeout":
                 obj.connectivity_timeout = Reader.read_integer(reader)
-            elif tag == 'correlation_id':
+            elif tag == "correlation_id":
                 obj.correlation_id = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'deploy_hosted_engine':
+            elif tag == "deploy_hosted_engine":
                 obj.deploy_hosted_engine = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'details':
+            elif tag == "details":
                 obj.details = GlusterVolumeProfileDetailsReader.read_one(reader)
-            elif tag == 'directory':
+            elif tag == "directory":
                 obj.directory = Reader.read_string(reader)
-            elif tag == 'discard_snapshots':
+            elif tag == "discard_snapshots":
                 obj.discard_snapshots = Reader.read_boolean(reader)
-            elif tag == 'discovered_targets':
+            elif tag == "discovered_targets":
                 obj.discovered_targets = IscsiDetailsReader.read_many(reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'disk_profile':
+            elif tag == "disk_profile":
                 obj.disk_profile = DiskProfileReader.read_one(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'exclusive':
+            elif tag == "exclusive":
                 obj.exclusive = Reader.read_boolean(reader)
-            elif tag == 'fault':
+            elif tag == "fault":
                 obj.fault = FaultReader.read_one(reader)
-            elif tag == 'fence_type':
+            elif tag == "fence_type":
                 obj.fence_type = Reader.read_string(reader)
-            elif tag == 'filename':
+            elif tag == "filename":
                 obj.filename = Reader.read_string(reader)
-            elif tag == 'filter':
+            elif tag == "filter":
                 obj.filter = Reader.read_boolean(reader)
-            elif tag == 'fix_layout':
+            elif tag == "fix_layout":
                 obj.fix_layout = Reader.read_boolean(reader)
-            elif tag == 'follow':
+            elif tag == "follow":
                 obj.follow = Reader.read_string(reader)
-            elif tag == 'force':
+            elif tag == "force":
                 obj.force = Reader.read_boolean(reader)
-            elif tag == 'grace_period':
+            elif tag == "grace_period":
                 obj.grace_period = GracePeriodReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'image':
+            elif tag == "image":
                 obj.image = Reader.read_string(reader)
-            elif tag == 'image_transfer':
+            elif tag == "image_transfer":
                 obj.image_transfer = ImageTransferReader.read_one(reader)
-            elif tag == 'import_as_template':
+            elif tag == "import_as_template":
                 obj.import_as_template = Reader.read_boolean(reader)
-            elif tag == 'is_attached':
+            elif tag == "is_attached":
                 obj.is_attached = Reader.read_boolean(reader)
-            elif tag == 'iscsi':
+            elif tag == "iscsi":
                 obj.iscsi = IscsiDetailsReader.read_one(reader)
-            elif tag == 'iscsi_targets':
+            elif tag == "iscsi_targets":
                 obj.iscsi_targets = Reader.read_strings(reader)
-            elif tag == 'job':
+            elif tag == "job":
                 obj.job = JobReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'logical_units':
+            elif tag == "logical_units":
                 obj.logical_units = LogicalUnitReader.read_many(reader)
-            elif tag == 'maintenance_after_restart':
+            elif tag == "maintenance_after_restart":
                 obj.maintenance_after_restart = Reader.read_boolean(reader)
-            elif tag == 'maintenance_enabled':
+            elif tag == "maintenance_enabled":
                 obj.maintenance_enabled = Reader.read_boolean(reader)
-            elif tag == 'migrate_vms_in_affinity_closure':
+            elif tag == "migrate_vms_in_affinity_closure":
                 obj.migrate_vms_in_affinity_closure = Reader.read_boolean(reader)
-            elif tag == 'modified_bonds':
+            elif tag == "modified_bonds":
                 obj.modified_bonds = HostNicReader.read_many(reader)
-            elif tag == 'modified_labels':
+            elif tag == "modified_labels":
                 obj.modified_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'modified_network_attachments':
-                obj.modified_network_attachments = NetworkAttachmentReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "modified_network_attachments":
+                obj.modified_network_attachments = NetworkAttachmentReader.read_many(
+                    reader
+                )
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'optimize_cpu_settings':
+            elif tag == "optimize_cpu_settings":
                 obj.optimize_cpu_settings = Reader.read_boolean(reader)
-            elif tag == 'option':
+            elif tag == "option":
                 obj.option = OptionReader.read_one(reader)
-            elif tag == 'pause':
+            elif tag == "pause":
                 obj.pause = Reader.read_boolean(reader)
-            elif tag == 'permission':
+            elif tag == "permission":
                 obj.permission = PermissionReader.read_one(reader)
-            elif tag == 'power_management':
+            elif tag == "power_management":
                 obj.power_management = PowerManagementReader.read_one(reader)
-            elif tag == 'proxy_ticket':
+            elif tag == "proxy_ticket":
                 obj.proxy_ticket = ProxyTicketReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'reason':
+            elif tag == "reason":
                 obj.reason = Reader.read_string(reader)
-            elif tag == 'reassign_bad_macs':
+            elif tag == "reassign_bad_macs":
                 obj.reassign_bad_macs = Reader.read_boolean(reader)
-            elif tag == 'reboot':
+            elif tag == "reboot":
                 obj.reboot = Reader.read_boolean(reader)
-            elif tag == 'registration_configuration':
-                obj.registration_configuration = RegistrationConfigurationReader.read_one(reader)
-            elif tag == 'remote_viewer_connection_file':
+            elif tag == "registration_configuration":
+                obj.registration_configuration = (
+                    RegistrationConfigurationReader.read_one(reader)
+                )
+            elif tag == "remote_viewer_connection_file":
                 obj.remote_viewer_connection_file = Reader.read_string(reader)
-            elif tag == 'removed_bonds':
+            elif tag == "removed_bonds":
                 obj.removed_bonds = HostNicReader.read_many(reader)
-            elif tag == 'removed_labels':
+            elif tag == "removed_labels":
                 obj.removed_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'removed_network_attachments':
-                obj.removed_network_attachments = NetworkAttachmentReader.read_many(reader)
-            elif tag == 'resolution_type':
+            elif tag == "removed_network_attachments":
+                obj.removed_network_attachments = NetworkAttachmentReader.read_many(
+                    reader
+                )
+            elif tag == "resolution_type":
                 obj.resolution_type = Reader.read_string(reader)
-            elif tag == 'restore_memory':
+            elif tag == "restore_memory":
                 obj.restore_memory = Reader.read_boolean(reader)
-            elif tag == 'root_password':
+            elif tag == "root_password":
                 obj.root_password = Reader.read_string(reader)
-            elif tag == 'seal':
+            elif tag == "seal":
                 obj.seal = Reader.read_boolean(reader)
-            elif tag == 'snapshot':
+            elif tag == "snapshot":
                 obj.snapshot = SnapshotReader.read_one(reader)
-            elif tag == 'source_host':
+            elif tag == "source_host":
                 obj.source_host = HostReader.read_one(reader)
-            elif tag == 'ssh':
+            elif tag == "ssh":
                 obj.ssh = SshReader.read_one(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_string(reader)
-            elif tag == 'stop_gluster_service':
+            elif tag == "stop_gluster_service":
                 obj.stop_gluster_service = Reader.read_boolean(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_domains':
+            elif tag == "storage_domains":
                 obj.storage_domains = StorageDomainReader.read_many(reader)
-            elif tag == 'succeeded':
+            elif tag == "succeeded":
                 obj.succeeded = Reader.read_boolean(reader)
-            elif tag == 'synchronized_network_attachments':
-                obj.synchronized_network_attachments = NetworkAttachmentReader.read_many(reader)
-            elif tag == 'template':
+            elif tag == "synchronized_network_attachments":
+                obj.synchronized_network_attachments = (
+                    NetworkAttachmentReader.read_many(reader)
+                )
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'ticket':
+            elif tag == "ticket":
                 obj.ticket = TicketReader.read_one(reader)
-            elif tag == 'timeout':
+            elif tag == "timeout":
                 obj.timeout = Reader.read_integer(reader)
-            elif tag == 'undeploy_hosted_engine':
+            elif tag == "undeploy_hosted_engine":
                 obj.undeploy_hosted_engine = Reader.read_boolean(reader)
-            elif tag == 'upgrade_action':
-                obj.upgrade_action = Reader.read_enum(types.ClusterUpgradeAction, reader)
-            elif tag == 'upgrade_percent_complete':
+            elif tag == "upgrade_action":
+                obj.upgrade_action = Reader.read_enum(
+                    types.ClusterUpgradeAction, reader
+                )
+            elif tag == "upgrade_percent_complete":
                 obj.upgrade_percent_complete = Reader.read_integer(reader)
-            elif tag == 'use_cloud_init':
+            elif tag == "use_cloud_init":
                 obj.use_cloud_init = Reader.read_boolean(reader)
-            elif tag == 'use_ignition':
+            elif tag == "use_ignition":
                 obj.use_ignition = Reader.read_boolean(reader)
-            elif tag == 'use_initialization':
+            elif tag == "use_initialization":
                 obj.use_initialization = Reader.read_boolean(reader)
-            elif tag == 'use_sysprep':
+            elif tag == "use_sysprep":
                 obj.use_sysprep = Reader.read_boolean(reader)
-            elif tag == 'virtual_functions_configuration':
-                obj.virtual_functions_configuration = HostNicVirtualFunctionsConfigurationReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "virtual_functions_configuration":
+                obj.virtual_functions_configuration = (
+                    HostNicVirtualFunctionsConfigurationReader.read_one(reader)
+                )
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vnic_profile_mappings':
+            elif tag == "vnic_profile_mappings":
                 obj.vnic_profile_mappings = VnicProfileMappingReader.read_many(reader)
-            elif tag == 'volatile':
+            elif tag == "volatile":
                 obj.volatile = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -264,7 +274,7 @@ class ActionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -283,9 +293,8 @@ class ActionReader(Reader):
 
 
 class AffinityGroupReader(Reader):
-
     def __init__(self):
-        super(AffinityGroupReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -297,8 +306,8 @@ class AffinityGroupReader(Reader):
         obj = types.AffinityGroup()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -312,36 +321,38 @@ class AffinityGroupReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'broken':
+            if tag == "broken":
                 obj.broken = Reader.read_boolean(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'enforcing':
+            elif tag == "enforcing":
                 obj.enforcing = Reader.read_boolean(reader)
-            elif tag == 'host_labels':
+            elif tag == "host_labels":
                 obj.host_labels = AffinityLabelReader.read_many(reader)
-            elif tag == 'hosts':
+            elif tag == "hosts":
                 obj.hosts = HostReader.read_many(reader)
-            elif tag == 'hosts_rule':
+            elif tag == "hosts_rule":
                 obj.hosts_rule = AffinityRuleReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'positive':
+            elif tag == "positive":
                 obj.positive = Reader.read_boolean(reader)
-            elif tag == 'priority':
+            elif tag == "priority":
                 obj.priority = Reader.read_decimal(reader)
-            elif tag == 'vm_labels':
+            elif tag == "vm_labels":
                 obj.vm_labels = AffinityLabelReader.read_many(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'vms_rule':
+            elif tag == "vms_rule":
                 obj.vms_rule = AffinityRuleReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -361,7 +372,7 @@ class AffinityGroupReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -407,9 +418,8 @@ class AffinityGroupReader(Reader):
 
 
 class AffinityLabelReader(Reader):
-
     def __init__(self):
-        super(AffinityLabelReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -421,8 +431,8 @@ class AffinityLabelReader(Reader):
         obj = types.AffinityLabel()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -436,22 +446,24 @@ class AffinityLabelReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'has_implicit_affinity_group':
+            elif tag == "has_implicit_affinity_group":
                 obj.has_implicit_affinity_group = Reader.read_boolean(reader)
-            elif tag == 'hosts':
+            elif tag == "hosts":
                 obj.hosts = HostReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'read_only':
+            elif tag == "read_only":
                 obj.read_only = Reader.read_boolean(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -471,7 +483,7 @@ class AffinityLabelReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -507,9 +519,8 @@ class AffinityLabelReader(Reader):
 
 
 class AffinityRuleReader(Reader):
-
     def __init__(self):
-        super(AffinityRuleReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -521,7 +532,7 @@ class AffinityRuleReader(Reader):
         obj = types.AffinityRule()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -533,11 +544,11 @@ class AffinityRuleReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'enforcing':
+            elif tag == "enforcing":
                 obj.enforcing = Reader.read_boolean(reader)
-            elif tag == 'positive':
+            elif tag == "positive":
                 obj.positive = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -557,7 +568,7 @@ class AffinityRuleReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -576,9 +587,8 @@ class AffinityRuleReader(Reader):
 
 
 class AgentReader(Reader):
-
     def __init__(self):
-        super(AgentReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -590,8 +600,8 @@ class AgentReader(Reader):
         obj = types.Agent()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -605,31 +615,31 @@ class AgentReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'concurrent':
+            elif tag == "concurrent":
                 obj.concurrent = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'encrypt_options':
+            elif tag == "encrypt_options":
                 obj.encrypt_options = Reader.read_boolean(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'options':
+            elif tag == "options":
                 obj.options = OptionReader.read_many(reader)
-            elif tag == 'order':
+            elif tag == "order":
                 obj.order = Reader.read_integer(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -649,7 +659,7 @@ class AgentReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -668,9 +678,8 @@ class AgentReader(Reader):
 
 
 class AgentConfigurationReader(Reader):
-
     def __init__(self):
-        super(AgentConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -682,7 +691,7 @@ class AgentConfigurationReader(Reader):
         obj = types.AgentConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -694,17 +703,17 @@ class AgentConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'broker_type':
+            elif tag == "broker_type":
                 obj.broker_type = Reader.read_enum(types.MessageBrokerType, reader)
-            elif tag == 'network_mappings':
+            elif tag == "network_mappings":
                 obj.network_mappings = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -724,7 +733,7 @@ class AgentConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -743,9 +752,8 @@ class AgentConfigurationReader(Reader):
 
 
 class ApiReader(Reader):
-
     def __init__(self):
-        super(ApiReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -757,7 +765,7 @@ class ApiReader(Reader):
         obj = types.Api()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -769,19 +777,19 @@ class ApiReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authenticated_user':
+            if tag == "authenticated_user":
                 obj.authenticated_user = UserReader.read_one(reader)
-            elif tag == 'effective_user':
+            elif tag == "effective_user":
                 obj.effective_user = UserReader.read_one(reader)
-            elif tag == 'engine_backup':
+            elif tag == "engine_backup":
                 obj.engine_backup = EngineBackupInfoReader.read_one(reader)
-            elif tag == 'product_info':
+            elif tag == "product_info":
                 obj.product_info = ProductInfoReader.read_one(reader)
-            elif tag == 'special_objects':
+            elif tag == "special_objects":
                 obj.special_objects = SpecialObjectsReader.read_one(reader)
-            elif tag == 'summary':
+            elif tag == "summary":
                 obj.summary = ApiSummaryReader.read_one(reader)
-            elif tag == 'time':
+            elif tag == "time":
                 obj.time = Reader.read_date(reader)
             else:
                 reader.next_element()
@@ -801,7 +809,7 @@ class ApiReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -820,9 +828,8 @@ class ApiReader(Reader):
 
 
 class ApiSummaryReader(Reader):
-
     def __init__(self):
-        super(ApiSummaryReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -834,7 +841,7 @@ class ApiSummaryReader(Reader):
         obj = types.ApiSummary()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -846,13 +853,13 @@ class ApiSummaryReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'hosts':
+            if tag == "hosts":
                 obj.hosts = ApiSummaryItemReader.read_one(reader)
-            elif tag == 'storage_domains':
+            elif tag == "storage_domains":
                 obj.storage_domains = ApiSummaryItemReader.read_one(reader)
-            elif tag == 'users':
+            elif tag == "users":
                 obj.users = ApiSummaryItemReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = ApiSummaryItemReader.read_one(reader)
             else:
                 reader.next_element()
@@ -872,7 +879,7 @@ class ApiSummaryReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -891,9 +898,8 @@ class ApiSummaryReader(Reader):
 
 
 class ApiSummaryItemReader(Reader):
-
     def __init__(self):
-        super(ApiSummaryItemReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -905,7 +911,7 @@ class ApiSummaryItemReader(Reader):
         obj = types.ApiSummaryItem()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -917,9 +923,9 @@ class ApiSummaryItemReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_integer(reader)
-            elif tag == 'total':
+            elif tag == "total":
                 obj.total = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -939,7 +945,7 @@ class ApiSummaryItemReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -958,9 +964,8 @@ class ApiSummaryItemReader(Reader):
 
 
 class ApplicationReader(Reader):
-
     def __init__(self):
-        super(ApplicationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -972,8 +977,8 @@ class ApplicationReader(Reader):
         obj = types.Application()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -987,13 +992,13 @@ class ApplicationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -1013,7 +1018,7 @@ class ApplicationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1032,9 +1037,8 @@ class ApplicationReader(Reader):
 
 
 class AuthorizedKeyReader(Reader):
-
     def __init__(self):
-        super(AuthorizedKeyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1046,8 +1050,8 @@ class AuthorizedKeyReader(Reader):
         obj = types.AuthorizedKey()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1061,15 +1065,15 @@ class AuthorizedKeyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'key':
+            elif tag == "key":
                 obj.key = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
             else:
                 reader.next_element()
@@ -1089,7 +1093,7 @@ class AuthorizedKeyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1108,9 +1112,8 @@ class AuthorizedKeyReader(Reader):
 
 
 class BackupReader(Reader):
-
     def __init__(self):
-        super(BackupReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1122,8 +1125,8 @@ class BackupReader(Reader):
         obj = types.Backup()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1137,32 +1140,34 @@ class BackupReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'creation_date':
+            elif tag == "creation_date":
                 obj.creation_date = Reader.read_date(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'from_checkpoint_id':
+            elif tag == "from_checkpoint_id":
                 obj.from_checkpoint_id = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'modification_date':
+            elif tag == "modification_date":
                 obj.modification_date = Reader.read_date(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'phase':
+            elif tag == "phase":
                 obj.phase = Reader.read_enum(types.BackupPhase, reader)
-            elif tag == 'snapshot':
+            elif tag == "snapshot":
                 obj.snapshot = SnapshotReader.read_one(reader)
-            elif tag == 'to_checkpoint_id':
+            elif tag == "to_checkpoint_id":
                 obj.to_checkpoint_id = Reader.read_string(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -1182,7 +1187,7 @@ class BackupReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1204,18 +1209,16 @@ class BackupReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "disks":
-                if obj.disks is not None:
-                    obj.disks.href = href
-                else:
-                    obj.disks = List(href)
+        if href and rel and rel == "disks":
+            if obj.disks is not None:
+                obj.disks.href = href
+            else:
+                obj.disks = List(href)
 
 
 class BalanceReader(Reader):
-
     def __init__(self):
-        super(BalanceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1227,8 +1230,8 @@ class BalanceReader(Reader):
         obj = types.Balance()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1242,15 +1245,15 @@ class BalanceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'scheduling_policy':
+            elif tag == "scheduling_policy":
                 obj.scheduling_policy = SchedulingPolicyReader.read_one(reader)
-            elif tag == 'scheduling_policy_unit':
+            elif tag == "scheduling_policy_unit":
                 obj.scheduling_policy_unit = SchedulingPolicyUnitReader.read_one(reader)
             else:
                 reader.next_element()
@@ -1270,7 +1273,7 @@ class BalanceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1289,9 +1292,8 @@ class BalanceReader(Reader):
 
 
 class BiosReader(Reader):
-
     def __init__(self):
-        super(BiosReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1303,7 +1305,7 @@ class BiosReader(Reader):
         obj = types.Bios()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1315,9 +1317,9 @@ class BiosReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'boot_menu':
+            if tag == "boot_menu":
                 obj.boot_menu = BootMenuReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.BiosType, reader)
             else:
                 reader.next_element()
@@ -1337,7 +1339,7 @@ class BiosReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1356,9 +1358,8 @@ class BiosReader(Reader):
 
 
 class BlockStatisticReader(Reader):
-
     def __init__(self):
-        super(BlockStatisticReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1370,7 +1371,7 @@ class BlockStatisticReader(Reader):
         obj = types.BlockStatistic()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1382,7 +1383,7 @@ class BlockStatisticReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'statistics':
+            if tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
             else:
                 reader.next_element()
@@ -1402,7 +1403,7 @@ class BlockStatisticReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1421,9 +1422,8 @@ class BlockStatisticReader(Reader):
 
 
 class BondingReader(Reader):
-
     def __init__(self):
-        super(BondingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1435,7 +1435,7 @@ class BondingReader(Reader):
         obj = types.Bonding()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1447,13 +1447,13 @@ class BondingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active_slave':
+            if tag == "active_slave":
                 obj.active_slave = HostNicReader.read_one(reader)
-            elif tag == 'ad_partner_mac':
+            elif tag == "ad_partner_mac":
                 obj.ad_partner_mac = MacReader.read_one(reader)
-            elif tag == 'options':
+            elif tag == "options":
                 obj.options = OptionReader.read_many(reader)
-            elif tag == 'slaves':
+            elif tag == "slaves":
                 obj.slaves = HostNicReader.read_many(reader)
             else:
                 reader.next_element()
@@ -1473,7 +1473,7 @@ class BondingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1492,9 +1492,8 @@ class BondingReader(Reader):
 
 
 class BookmarkReader(Reader):
-
     def __init__(self):
-        super(BookmarkReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1506,8 +1505,8 @@ class BookmarkReader(Reader):
         obj = types.Bookmark()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1521,13 +1520,13 @@ class BookmarkReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -1547,7 +1546,7 @@ class BookmarkReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1566,9 +1565,8 @@ class BookmarkReader(Reader):
 
 
 class BootReader(Reader):
-
     def __init__(self):
-        super(BootReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1580,7 +1578,7 @@ class BootReader(Reader):
         obj = types.Boot()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1592,7 +1590,7 @@ class BootReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'devices':
+            if tag == "devices":
                 obj.devices = Reader.read_enums(types.BootDevice, reader)
             else:
                 reader.next_element()
@@ -1612,7 +1610,7 @@ class BootReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1631,9 +1629,8 @@ class BootReader(Reader):
 
 
 class BootMenuReader(Reader):
-
     def __init__(self):
-        super(BootMenuReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1645,7 +1642,7 @@ class BootMenuReader(Reader):
         obj = types.BootMenu()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1657,7 +1654,7 @@ class BootMenuReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -1677,7 +1674,7 @@ class BootMenuReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1696,9 +1693,8 @@ class BootMenuReader(Reader):
 
 
 class BrickProfileDetailReader(Reader):
-
     def __init__(self):
-        super(BrickProfileDetailReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1710,7 +1706,7 @@ class BrickProfileDetailReader(Reader):
         obj = types.BrickProfileDetail()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1722,9 +1718,9 @@ class BrickProfileDetailReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'brick':
+            if tag == "brick":
                 obj.brick = GlusterBrickReader.read_one(reader)
-            elif tag == 'profile_details':
+            elif tag == "profile_details":
                 obj.profile_details = ProfileDetailReader.read_many(reader)
             else:
                 reader.next_element()
@@ -1744,7 +1740,7 @@ class BrickProfileDetailReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1763,9 +1759,8 @@ class BrickProfileDetailReader(Reader):
 
 
 class CdromReader(Reader):
-
     def __init__(self):
-        super(CdromReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1777,8 +1772,8 @@ class CdromReader(Reader):
         obj = types.Cdrom()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1792,24 +1787,26 @@ class CdromReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'file':
+            elif tag == "file":
                 obj.file = FileReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -1829,7 +1826,7 @@ class CdromReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1851,18 +1848,16 @@ class CdromReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class CertificateReader(Reader):
-
     def __init__(self):
-        super(CertificateReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1874,8 +1869,8 @@ class CertificateReader(Reader):
         obj = types.Certificate()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1889,17 +1884,17 @@ class CertificateReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content':
+            elif tag == "content":
                 obj.content = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'organization':
+            elif tag == "organization":
                 obj.organization = Reader.read_string(reader)
-            elif tag == 'subject':
+            elif tag == "subject":
                 obj.subject = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -1919,7 +1914,7 @@ class CertificateReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -1938,9 +1933,8 @@ class CertificateReader(Reader):
 
 
 class CheckpointReader(Reader):
-
     def __init__(self):
-        super(CheckpointReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -1952,8 +1946,8 @@ class CheckpointReader(Reader):
         obj = types.Checkpoint()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -1967,24 +1961,26 @@ class CheckpointReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'creation_date':
+            elif tag == "creation_date":
                 obj.creation_date = Reader.read_date(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'parent_id':
+            elif tag == "parent_id":
                 obj.parent_id = Reader.read_string(reader)
-            elif tag == 'state':
+            elif tag == "state":
                 obj.state = Reader.read_enum(types.CheckpointState, reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -2004,7 +2000,7 @@ class CheckpointReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2026,18 +2022,16 @@ class CheckpointReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "disks":
-                if obj.disks is not None:
-                    obj.disks.href = href
-                else:
-                    obj.disks = List(href)
+        if href and rel and rel == "disks":
+            if obj.disks is not None:
+                obj.disks.href = href
+            else:
+                obj.disks = List(href)
 
 
 class CloudInitReader(Reader):
-
     def __init__(self):
-        super(CloudInitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2049,7 +2043,7 @@ class CloudInitReader(Reader):
         obj = types.CloudInit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2061,19 +2055,19 @@ class CloudInitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authorized_keys':
+            if tag == "authorized_keys":
                 obj.authorized_keys = AuthorizedKeyReader.read_many(reader)
-            elif tag == 'files':
+            elif tag == "files":
                 obj.files = FileReader.read_many(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'network_configuration':
+            elif tag == "network_configuration":
                 obj.network_configuration = NetworkConfigurationReader.read_one(reader)
-            elif tag == 'regenerate_ssh_keys':
+            elif tag == "regenerate_ssh_keys":
                 obj.regenerate_ssh_keys = Reader.read_boolean(reader)
-            elif tag == 'timezone':
+            elif tag == "timezone":
                 obj.timezone = Reader.read_string(reader)
-            elif tag == 'users':
+            elif tag == "users":
                 obj.users = UserReader.read_many(reader)
             else:
                 reader.next_element()
@@ -2093,7 +2087,7 @@ class CloudInitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2112,9 +2106,8 @@ class CloudInitReader(Reader):
 
 
 class ClusterReader(Reader):
-
     def __init__(self):
-        super(ClusterReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2126,8 +2119,8 @@ class ClusterReader(Reader):
         obj = types.Cluster()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -2141,104 +2134,112 @@ class ClusterReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'affinity_groups':
+            if tag == "affinity_groups":
                 obj.affinity_groups = AffinityGroupReader.read_many(reader)
-            elif tag == 'ballooning_enabled':
+            elif tag == "ballooning_enabled":
                 obj.ballooning_enabled = Reader.read_boolean(reader)
-            elif tag == 'bios_type':
+            elif tag == "bios_type":
                 obj.bios_type = Reader.read_enum(types.BiosType, reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_profiles':
+            elif tag == "cpu_profiles":
                 obj.cpu_profiles = CpuProfileReader.read_many(reader)
-            elif tag == 'custom_scheduling_policy_properties':
-                obj.custom_scheduling_policy_properties = PropertyReader.read_many(reader)
-            elif tag == 'data_center':
+            elif tag == "custom_scheduling_policy_properties":
+                obj.custom_scheduling_policy_properties = PropertyReader.read_many(
+                    reader
+                )
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'enabled_features':
+            elif tag == "enabled_features":
                 obj.enabled_features = ClusterFeatureReader.read_many(reader)
-            elif tag == 'error_handling':
+            elif tag == "error_handling":
                 obj.error_handling = ErrorHandlingReader.read_one(reader)
-            elif tag == 'external_network_providers':
-                obj.external_network_providers = ExternalProviderReader.read_many(reader)
-            elif tag == 'fencing_policy':
+            elif tag == "external_network_providers":
+                obj.external_network_providers = ExternalProviderReader.read_many(
+                    reader
+                )
+            elif tag == "fencing_policy":
                 obj.fencing_policy = FencingPolicyReader.read_one(reader)
-            elif tag == 'fips_mode':
+            elif tag == "fips_mode":
                 obj.fips_mode = Reader.read_enum(types.FipsMode, reader)
-            elif tag == 'firewall_type':
+            elif tag == "firewall_type":
                 obj.firewall_type = Reader.read_enum(types.FirewallType, reader)
-            elif tag == 'gluster_hooks':
+            elif tag == "gluster_hooks":
                 obj.gluster_hooks = GlusterHookReader.read_many(reader)
-            elif tag == 'gluster_service':
+            elif tag == "gluster_service":
                 obj.gluster_service = Reader.read_boolean(reader)
-            elif tag == 'gluster_tuned_profile':
+            elif tag == "gluster_tuned_profile":
                 obj.gluster_tuned_profile = Reader.read_string(reader)
-            elif tag == 'gluster_volumes':
+            elif tag == "gluster_volumes":
                 obj.gluster_volumes = GlusterVolumeReader.read_many(reader)
-            elif tag == 'ha_reservation':
+            elif tag == "ha_reservation":
                 obj.ha_reservation = Reader.read_boolean(reader)
-            elif tag == 'ksm':
+            elif tag == "ksm":
                 obj.ksm = KsmReader.read_one(reader)
-            elif tag == 'log_max_memory_used_threshold':
+            elif tag == "log_max_memory_used_threshold":
                 obj.log_max_memory_used_threshold = Reader.read_integer(reader)
-            elif tag == 'log_max_memory_used_threshold_type':
-                obj.log_max_memory_used_threshold_type = Reader.read_enum(types.LogMaxMemoryUsedThresholdType, reader)
-            elif tag == 'mac_pool':
+            elif tag == "log_max_memory_used_threshold_type":
+                obj.log_max_memory_used_threshold_type = Reader.read_enum(
+                    types.LogMaxMemoryUsedThresholdType, reader
+                )
+            elif tag == "mac_pool":
                 obj.mac_pool = MacPoolReader.read_one(reader)
-            elif tag == 'maintenance_reason_required':
+            elif tag == "maintenance_reason_required":
                 obj.maintenance_reason_required = Reader.read_boolean(reader)
-            elif tag == 'management_network':
+            elif tag == "management_network":
                 obj.management_network = NetworkReader.read_one(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network_filters':
+            elif tag == "network_filters":
                 obj.network_filters = NetworkFilterReader.read_many(reader)
-            elif tag == 'networks':
+            elif tag == "networks":
                 obj.networks = NetworkReader.read_many(reader)
-            elif tag == 'optional_reason':
+            elif tag == "optional_reason":
                 obj.optional_reason = Reader.read_boolean(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'required_rng_sources':
+            elif tag == "required_rng_sources":
                 obj.required_rng_sources = Reader.read_enums(types.RngSource, reader)
-            elif tag == 'scheduling_policy':
+            elif tag == "scheduling_policy":
                 obj.scheduling_policy = SchedulingPolicyReader.read_one(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'supported_versions':
+            elif tag == "supported_versions":
                 obj.supported_versions = VersionReader.read_many(reader)
-            elif tag == 'switch_type':
+            elif tag == "switch_type":
                 obj.switch_type = Reader.read_enum(types.SwitchType, reader)
-            elif tag == 'threads_as_cores':
+            elif tag == "threads_as_cores":
                 obj.threads_as_cores = Reader.read_boolean(reader)
-            elif tag == 'trusted_service':
+            elif tag == "trusted_service":
                 obj.trusted_service = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'upgrade_correlation_id':
+            elif tag == "upgrade_correlation_id":
                 obj.upgrade_correlation_id = Reader.read_string(reader)
-            elif tag == 'upgrade_in_progress':
+            elif tag == "upgrade_in_progress":
                 obj.upgrade_in_progress = Reader.read_boolean(reader)
-            elif tag == 'upgrade_percent_complete':
+            elif tag == "upgrade_percent_complete":
                 obj.upgrade_percent_complete = Reader.read_integer(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
-            elif tag == 'virt_service':
+            elif tag == "virt_service":
                 obj.virt_service = Reader.read_boolean(reader)
-            elif tag == 'vnc_encryption':
+            elif tag == "vnc_encryption":
                 obj.vnc_encryption = Reader.read_boolean(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -2258,7 +2259,7 @@ class ClusterReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2329,9 +2330,8 @@ class ClusterReader(Reader):
 
 
 class ClusterFeatureReader(Reader):
-
     def __init__(self):
-        super(ClusterFeatureReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2343,8 +2343,8 @@ class ClusterFeatureReader(Reader):
         obj = types.ClusterFeature()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -2358,13 +2358,13 @@ class ClusterFeatureReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster_level':
+            if tag == "cluster_level":
                 obj.cluster_level = ClusterLevelReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -2384,7 +2384,7 @@ class ClusterFeatureReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2403,9 +2403,8 @@ class ClusterFeatureReader(Reader):
 
 
 class ClusterLevelReader(Reader):
-
     def __init__(self):
-        super(ClusterLevelReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2417,8 +2416,8 @@ class ClusterLevelReader(Reader):
         obj = types.ClusterLevel()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -2432,20 +2431,22 @@ class ClusterLevelReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster_features':
+            if tag == "cluster_features":
                 obj.cluster_features = ClusterFeatureReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu_types':
+            elif tag == "cpu_types":
                 obj.cpu_types = CpuTypeReader.read_many(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permits':
+            elif tag == "permits":
                 obj.permits = PermitReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -2465,7 +2466,7 @@ class ClusterLevelReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2487,18 +2488,16 @@ class ClusterLevelReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "clusterfeatures":
-                if obj.cluster_features is not None:
-                    obj.cluster_features.href = href
-                else:
-                    obj.cluster_features = List(href)
+        if href and rel and rel == "clusterfeatures":
+            if obj.cluster_features is not None:
+                obj.cluster_features.href = href
+            else:
+                obj.cluster_features = List(href)
 
 
 class ConfigurationReader(Reader):
-
     def __init__(self):
-        super(ConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2510,7 +2509,7 @@ class ConfigurationReader(Reader):
         obj = types.Configuration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2522,9 +2521,9 @@ class ConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'data':
+            if tag == "data":
                 obj.data = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.ConfigurationType, reader)
             else:
                 reader.next_element()
@@ -2544,7 +2543,7 @@ class ConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2563,9 +2562,8 @@ class ConfigurationReader(Reader):
 
 
 class ConsoleReader(Reader):
-
     def __init__(self):
-        super(ConsoleReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2577,7 +2575,7 @@ class ConsoleReader(Reader):
         obj = types.Console()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2589,7 +2587,7 @@ class ConsoleReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -2609,7 +2607,7 @@ class ConsoleReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2628,9 +2626,8 @@ class ConsoleReader(Reader):
 
 
 class CoreReader(Reader):
-
     def __init__(self):
-        super(CoreReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2642,7 +2639,7 @@ class CoreReader(Reader):
         obj = types.Core()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2654,9 +2651,9 @@ class CoreReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'index':
+            if tag == "index":
                 obj.index = Reader.read_integer(reader)
-            elif tag == 'socket':
+            elif tag == "socket":
                 obj.socket = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -2676,7 +2673,7 @@ class CoreReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2695,9 +2692,8 @@ class CoreReader(Reader):
 
 
 class CpuReader(Reader):
-
     def __init__(self):
-        super(CpuReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2709,7 +2705,7 @@ class CpuReader(Reader):
         obj = types.Cpu()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2721,23 +2717,23 @@ class CpuReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'architecture':
+            if tag == "architecture":
                 obj.architecture = Reader.read_enum(types.Architecture, reader)
-            elif tag == 'cores':
+            elif tag == "cores":
                 obj.cores = CoreReader.read_many(reader)
-            elif tag == 'cpu_tune':
+            elif tag == "cpu_tune":
                 obj.cpu_tune = CpuTuneReader.read_one(reader)
-            elif tag == 'level':
+            elif tag == "level":
                 obj.level = Reader.read_integer(reader)
-            elif tag == 'mode':
+            elif tag == "mode":
                 obj.mode = Reader.read_enum(types.CpuMode, reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'speed':
+            elif tag == "speed":
                 obj.speed = Reader.read_decimal(reader)
-            elif tag == 'topology':
+            elif tag == "topology":
                 obj.topology = CpuTopologyReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -2757,7 +2753,7 @@ class CpuReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2776,9 +2772,8 @@ class CpuReader(Reader):
 
 
 class CpuProfileReader(Reader):
-
     def __init__(self):
-        super(CpuProfileReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2790,8 +2785,8 @@ class CpuProfileReader(Reader):
         obj = types.CpuProfile()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -2805,20 +2800,22 @@ class CpuProfileReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -2838,7 +2835,7 @@ class CpuProfileReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2860,18 +2857,16 @@ class CpuProfileReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permissions":
-                if obj.permissions is not None:
-                    obj.permissions.href = href
-                else:
-                    obj.permissions = List(href)
+        if href and rel and rel == "permissions":
+            if obj.permissions is not None:
+                obj.permissions.href = href
+            else:
+                obj.permissions = List(href)
 
 
 class CpuTopologyReader(Reader):
-
     def __init__(self):
-        super(CpuTopologyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2883,7 +2878,7 @@ class CpuTopologyReader(Reader):
         obj = types.CpuTopology()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2895,11 +2890,11 @@ class CpuTopologyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cores':
+            if tag == "cores":
                 obj.cores = Reader.read_integer(reader)
-            elif tag == 'sockets':
+            elif tag == "sockets":
                 obj.sockets = Reader.read_integer(reader)
-            elif tag == 'threads':
+            elif tag == "threads":
                 obj.threads = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -2919,7 +2914,7 @@ class CpuTopologyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2938,9 +2933,8 @@ class CpuTopologyReader(Reader):
 
 
 class CpuTuneReader(Reader):
-
     def __init__(self):
-        super(CpuTuneReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -2952,7 +2946,7 @@ class CpuTuneReader(Reader):
         obj = types.CpuTune()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -2964,7 +2958,7 @@ class CpuTuneReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'vcpu_pins':
+            if tag == "vcpu_pins":
                 obj.vcpu_pins = VcpuPinReader.read_many(reader)
             else:
                 reader.next_element()
@@ -2984,7 +2978,7 @@ class CpuTuneReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3003,9 +2997,8 @@ class CpuTuneReader(Reader):
 
 
 class CpuTypeReader(Reader):
-
     def __init__(self):
-        super(CpuTypeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3017,7 +3010,7 @@ class CpuTypeReader(Reader):
         obj = types.CpuType()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3029,11 +3022,11 @@ class CpuTypeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'architecture':
+            if tag == "architecture":
                 obj.architecture = Reader.read_enum(types.Architecture, reader)
-            elif tag == 'level':
+            elif tag == "level":
                 obj.level = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -3053,7 +3046,7 @@ class CpuTypeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3072,9 +3065,8 @@ class CpuTypeReader(Reader):
 
 
 class CustomPropertyReader(Reader):
-
     def __init__(self):
-        super(CustomPropertyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3086,7 +3078,7 @@ class CustomPropertyReader(Reader):
         obj = types.CustomProperty()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3098,11 +3090,11 @@ class CustomPropertyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'regexp':
+            elif tag == "regexp":
                 obj.regexp = Reader.read_string(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -3122,7 +3114,7 @@ class CustomPropertyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3141,9 +3133,8 @@ class CustomPropertyReader(Reader):
 
 
 class DataCenterReader(Reader):
-
     def __init__(self):
-        super(DataCenterReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3155,8 +3146,8 @@ class DataCenterReader(Reader):
         obj = types.DataCenter()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3170,42 +3161,44 @@ class DataCenterReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'clusters':
+            if tag == "clusters":
                 obj.clusters = ClusterReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'iscsi_bonds':
+            elif tag == "iscsi_bonds":
                 obj.iscsi_bonds = IscsiBondReader.read_many(reader)
-            elif tag == 'local':
+            elif tag == "local":
                 obj.local = Reader.read_boolean(reader)
-            elif tag == 'mac_pool':
+            elif tag == "mac_pool":
                 obj.mac_pool = MacPoolReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'networks':
+            elif tag == "networks":
                 obj.networks = NetworkReader.read_many(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'qoss':
+            elif tag == "qoss":
                 obj.qoss = QosReader.read_many(reader)
-            elif tag == 'quota_mode':
+            elif tag == "quota_mode":
                 obj.quota_mode = Reader.read_enum(types.QuotaModeType, reader)
-            elif tag == 'quotas':
+            elif tag == "quotas":
                 obj.quotas = QuotaReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.DataCenterStatus, reader)
-            elif tag == 'storage_domains':
+            elif tag == "storage_domains":
                 obj.storage_domains = StorageDomainReader.read_many(reader)
-            elif tag == 'storage_format':
+            elif tag == "storage_format":
                 obj.storage_format = Reader.read_enum(types.StorageFormat, reader)
-            elif tag == 'supported_versions':
+            elif tag == "supported_versions":
                 obj.supported_versions = VersionReader.read_many(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -3225,7 +3218,7 @@ class DataCenterReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3286,9 +3279,8 @@ class DataCenterReader(Reader):
 
 
 class DeviceReader(Reader):
-
     def __init__(self):
-        super(DeviceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3300,8 +3292,8 @@ class DeviceReader(Reader):
         obj = types.Device()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3315,22 +3307,24 @@ class DeviceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -3350,7 +3344,7 @@ class DeviceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3372,18 +3366,16 @@ class DeviceReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class DiskReader(Reader):
-
     def __init__(self):
-        super(DiskReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3395,8 +3387,8 @@ class DiskReader(Reader):
         obj = types.Disk()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3410,92 +3402,94 @@ class DiskReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_boolean(reader)
-            elif tag == 'actual_size':
+            elif tag == "actual_size":
                 obj.actual_size = Reader.read_integer(reader)
-            elif tag == 'alias':
+            elif tag == "alias":
                 obj.alias = Reader.read_string(reader)
-            elif tag == 'backup':
+            elif tag == "backup":
                 obj.backup = Reader.read_enum(types.DiskBackup, reader)
-            elif tag == 'backup_mode':
+            elif tag == "backup_mode":
                 obj.backup_mode = Reader.read_enum(types.DiskBackupMode, reader)
-            elif tag == 'bootable':
+            elif tag == "bootable":
                 obj.bootable = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content_type':
+            elif tag == "content_type":
                 obj.content_type = Reader.read_enum(types.DiskContentType, reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk_profile':
+            elif tag == "disk_profile":
                 obj.disk_profile = DiskProfileReader.read_one(reader)
-            elif tag == 'disk_snapshots':
+            elif tag == "disk_snapshots":
                 obj.disk_snapshots = DiskSnapshotReader.read_many(reader)
-            elif tag == 'external_disk':
+            elif tag == "external_disk":
                 obj.external_disk = Reader.read_string(reader)
-            elif tag == 'format':
+            elif tag == "format":
                 obj.format = Reader.read_enum(types.DiskFormat, reader)
-            elif tag == 'image_id':
+            elif tag == "image_id":
                 obj.image_id = Reader.read_string(reader)
-            elif tag == 'initial_size':
+            elif tag == "initial_size":
                 obj.initial_size = Reader.read_integer(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'interface':
+            elif tag == "interface":
                 obj.interface = Reader.read_enum(types.DiskInterface, reader)
-            elif tag == 'logical_name':
+            elif tag == "logical_name":
                 obj.logical_name = Reader.read_string(reader)
-            elif tag == 'lun_storage':
+            elif tag == "lun_storage":
                 obj.lun_storage = HostStorageReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_volume_type':
+            elif tag == "openstack_volume_type":
                 obj.openstack_volume_type = OpenStackVolumeTypeReader.read_one(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'propagate_errors':
+            elif tag == "propagate_errors":
                 obj.propagate_errors = Reader.read_boolean(reader)
-            elif tag == 'provisioned_size':
+            elif tag == "provisioned_size":
                 obj.provisioned_size = Reader.read_integer(reader)
-            elif tag == 'qcow_version':
+            elif tag == "qcow_version":
                 obj.qcow_version = Reader.read_enum(types.QcowVersion, reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'read_only':
+            elif tag == "read_only":
                 obj.read_only = Reader.read_boolean(reader)
-            elif tag == 'sgio':
+            elif tag == "sgio":
                 obj.sgio = Reader.read_enum(types.ScsiGenericIO, reader)
-            elif tag == 'shareable':
+            elif tag == "shareable":
                 obj.shareable = Reader.read_boolean(reader)
-            elif tag == 'snapshot':
+            elif tag == "snapshot":
                 obj.snapshot = SnapshotReader.read_one(reader)
-            elif tag == 'sparse':
+            elif tag == "sparse":
                 obj.sparse = Reader.read_boolean(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.DiskStatus, reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_domains':
+            elif tag == "storage_domains":
                 obj.storage_domains = StorageDomainReader.read_many(reader)
-            elif tag == 'storage_type':
+            elif tag == "storage_type":
                 obj.storage_type = Reader.read_enum(types.DiskStorageType, reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'total_size':
+            elif tag == "total_size":
                 obj.total_size = Reader.read_integer(reader)
-            elif tag == 'uses_scsi_reservation':
+            elif tag == "uses_scsi_reservation":
                 obj.uses_scsi_reservation = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'wipe_after_delete':
+            elif tag == "wipe_after_delete":
                 obj.wipe_after_delete = Reader.read_boolean(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -3515,7 +3509,7 @@ class DiskReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3566,9 +3560,8 @@ class DiskReader(Reader):
 
 
 class DiskAttachmentReader(Reader):
-
     def __init__(self):
-        super(DiskAttachmentReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3580,8 +3573,8 @@ class DiskAttachmentReader(Reader):
         obj = types.DiskAttachment()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3595,31 +3588,31 @@ class DiskAttachmentReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_boolean(reader)
-            elif tag == 'bootable':
+            elif tag == "bootable":
                 obj.bootable = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'interface':
+            elif tag == "interface":
                 obj.interface = Reader.read_enum(types.DiskInterface, reader)
-            elif tag == 'logical_name':
+            elif tag == "logical_name":
                 obj.logical_name = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'pass_discard':
+            elif tag == "pass_discard":
                 obj.pass_discard = Reader.read_boolean(reader)
-            elif tag == 'read_only':
+            elif tag == "read_only":
                 obj.read_only = Reader.read_boolean(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'uses_scsi_reservation':
+            elif tag == "uses_scsi_reservation":
                 obj.uses_scsi_reservation = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -3639,7 +3632,7 @@ class DiskAttachmentReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3658,9 +3651,8 @@ class DiskAttachmentReader(Reader):
 
 
 class DiskProfileReader(Reader):
-
     def __init__(self):
-        super(DiskProfileReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3672,8 +3664,8 @@ class DiskProfileReader(Reader):
         obj = types.DiskProfile()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3687,20 +3679,22 @@ class DiskProfileReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -3720,7 +3714,7 @@ class DiskProfileReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3742,18 +3736,16 @@ class DiskProfileReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permissions":
-                if obj.permissions is not None:
-                    obj.permissions.href = href
-                else:
-                    obj.permissions = List(href)
+        if href and rel and rel == "permissions":
+            if obj.permissions is not None:
+                obj.permissions.href = href
+            else:
+                obj.permissions = List(href)
 
 
 class DiskSnapshotReader(Reader):
-
     def __init__(self):
-        super(DiskSnapshotReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3765,8 +3757,8 @@ class DiskSnapshotReader(Reader):
         obj = types.DiskSnapshot()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -3780,96 +3772,98 @@ class DiskSnapshotReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_boolean(reader)
-            elif tag == 'actual_size':
+            elif tag == "actual_size":
                 obj.actual_size = Reader.read_integer(reader)
-            elif tag == 'alias':
+            elif tag == "alias":
                 obj.alias = Reader.read_string(reader)
-            elif tag == 'backup':
+            elif tag == "backup":
                 obj.backup = Reader.read_enum(types.DiskBackup, reader)
-            elif tag == 'backup_mode':
+            elif tag == "backup_mode":
                 obj.backup_mode = Reader.read_enum(types.DiskBackupMode, reader)
-            elif tag == 'bootable':
+            elif tag == "bootable":
                 obj.bootable = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content_type':
+            elif tag == "content_type":
                 obj.content_type = Reader.read_enum(types.DiskContentType, reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'disk_profile':
+            elif tag == "disk_profile":
                 obj.disk_profile = DiskProfileReader.read_one(reader)
-            elif tag == 'disk_snapshots':
+            elif tag == "disk_snapshots":
                 obj.disk_snapshots = DiskSnapshotReader.read_many(reader)
-            elif tag == 'external_disk':
+            elif tag == "external_disk":
                 obj.external_disk = Reader.read_string(reader)
-            elif tag == 'format':
+            elif tag == "format":
                 obj.format = Reader.read_enum(types.DiskFormat, reader)
-            elif tag == 'image_id':
+            elif tag == "image_id":
                 obj.image_id = Reader.read_string(reader)
-            elif tag == 'initial_size':
+            elif tag == "initial_size":
                 obj.initial_size = Reader.read_integer(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'interface':
+            elif tag == "interface":
                 obj.interface = Reader.read_enum(types.DiskInterface, reader)
-            elif tag == 'logical_name':
+            elif tag == "logical_name":
                 obj.logical_name = Reader.read_string(reader)
-            elif tag == 'lun_storage':
+            elif tag == "lun_storage":
                 obj.lun_storage = HostStorageReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_volume_type':
+            elif tag == "openstack_volume_type":
                 obj.openstack_volume_type = OpenStackVolumeTypeReader.read_one(reader)
-            elif tag == 'parent':
+            elif tag == "parent":
                 obj.parent = DiskSnapshotReader.read_one(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'propagate_errors':
+            elif tag == "propagate_errors":
                 obj.propagate_errors = Reader.read_boolean(reader)
-            elif tag == 'provisioned_size':
+            elif tag == "provisioned_size":
                 obj.provisioned_size = Reader.read_integer(reader)
-            elif tag == 'qcow_version':
+            elif tag == "qcow_version":
                 obj.qcow_version = Reader.read_enum(types.QcowVersion, reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'read_only':
+            elif tag == "read_only":
                 obj.read_only = Reader.read_boolean(reader)
-            elif tag == 'sgio':
+            elif tag == "sgio":
                 obj.sgio = Reader.read_enum(types.ScsiGenericIO, reader)
-            elif tag == 'shareable':
+            elif tag == "shareable":
                 obj.shareable = Reader.read_boolean(reader)
-            elif tag == 'snapshot':
+            elif tag == "snapshot":
                 obj.snapshot = SnapshotReader.read_one(reader)
-            elif tag == 'sparse':
+            elif tag == "sparse":
                 obj.sparse = Reader.read_boolean(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.DiskStatus, reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_domains':
+            elif tag == "storage_domains":
                 obj.storage_domains = StorageDomainReader.read_many(reader)
-            elif tag == 'storage_type':
+            elif tag == "storage_type":
                 obj.storage_type = Reader.read_enum(types.DiskStorageType, reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'total_size':
+            elif tag == "total_size":
                 obj.total_size = Reader.read_integer(reader)
-            elif tag == 'uses_scsi_reservation':
+            elif tag == "uses_scsi_reservation":
                 obj.uses_scsi_reservation = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'wipe_after_delete':
+            elif tag == "wipe_after_delete":
                 obj.wipe_after_delete = Reader.read_boolean(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -3889,7 +3883,7 @@ class DiskSnapshotReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3940,9 +3934,8 @@ class DiskSnapshotReader(Reader):
 
 
 class DisplayReader(Reader):
-
     def __init__(self):
-        super(DisplayReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -3954,7 +3947,7 @@ class DisplayReader(Reader):
         obj = types.Display()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -3966,37 +3959,37 @@ class DisplayReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'allow_override':
+            elif tag == "allow_override":
                 obj.allow_override = Reader.read_boolean(reader)
-            elif tag == 'certificate':
+            elif tag == "certificate":
                 obj.certificate = CertificateReader.read_one(reader)
-            elif tag == 'copy_paste_enabled':
+            elif tag == "copy_paste_enabled":
                 obj.copy_paste_enabled = Reader.read_boolean(reader)
-            elif tag == 'disconnect_action':
+            elif tag == "disconnect_action":
                 obj.disconnect_action = Reader.read_string(reader)
-            elif tag == 'disconnect_action_delay':
+            elif tag == "disconnect_action_delay":
                 obj.disconnect_action_delay = Reader.read_integer(reader)
-            elif tag == 'file_transfer_enabled':
+            elif tag == "file_transfer_enabled":
                 obj.file_transfer_enabled = Reader.read_boolean(reader)
-            elif tag == 'keyboard_layout':
+            elif tag == "keyboard_layout":
                 obj.keyboard_layout = Reader.read_string(reader)
-            elif tag == 'monitors':
+            elif tag == "monitors":
                 obj.monitors = Reader.read_integer(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'proxy':
+            elif tag == "proxy":
                 obj.proxy = Reader.read_string(reader)
-            elif tag == 'secure_port':
+            elif tag == "secure_port":
                 obj.secure_port = Reader.read_integer(reader)
-            elif tag == 'single_qxl_pci':
+            elif tag == "single_qxl_pci":
                 obj.single_qxl_pci = Reader.read_boolean(reader)
-            elif tag == 'smartcard_enabled':
+            elif tag == "smartcard_enabled":
                 obj.smartcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.DisplayType, reader)
-            elif tag == 'video_type':
+            elif tag == "video_type":
                 obj.video_type = Reader.read_enum(types.VideoType, reader)
             else:
                 reader.next_element()
@@ -4016,7 +4009,7 @@ class DisplayReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4035,9 +4028,8 @@ class DisplayReader(Reader):
 
 
 class DnsReader(Reader):
-
     def __init__(self):
-        super(DnsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4049,7 +4041,7 @@ class DnsReader(Reader):
         obj = types.Dns()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4061,9 +4053,9 @@ class DnsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'search_domains':
+            if tag == "search_domains":
                 obj.search_domains = HostReader.read_many(reader)
-            elif tag == 'servers':
+            elif tag == "servers":
                 obj.servers = HostReader.read_many(reader)
             else:
                 reader.next_element()
@@ -4083,7 +4075,7 @@ class DnsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4102,9 +4094,8 @@ class DnsReader(Reader):
 
 
 class DnsResolverConfigurationReader(Reader):
-
     def __init__(self):
-        super(DnsResolverConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4116,7 +4107,7 @@ class DnsResolverConfigurationReader(Reader):
         obj = types.DnsResolverConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4128,7 +4119,7 @@ class DnsResolverConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name_servers':
+            if tag == "name_servers":
                 obj.name_servers = Reader.read_strings(reader)
             else:
                 reader.next_element()
@@ -4148,7 +4139,7 @@ class DnsResolverConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4167,9 +4158,8 @@ class DnsResolverConfigurationReader(Reader):
 
 
 class DomainReader(Reader):
-
     def __init__(self):
-        super(DomainReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4181,8 +4171,8 @@ class DomainReader(Reader):
         obj = types.Domain()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4196,20 +4186,22 @@ class DomainReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'groups':
+            elif tag == "groups":
                 obj.groups = GroupReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'users':
+            elif tag == "users":
                 obj.users = UserReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -4229,7 +4221,7 @@ class DomainReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4265,9 +4257,8 @@ class DomainReader(Reader):
 
 
 class DynamicCpuReader(Reader):
-
     def __init__(self):
-        super(DynamicCpuReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4279,7 +4270,7 @@ class DynamicCpuReader(Reader):
         obj = types.DynamicCpu()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4291,9 +4282,9 @@ class DynamicCpuReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cpu_tune':
+            if tag == "cpu_tune":
                 obj.cpu_tune = CpuTuneReader.read_one(reader)
-            elif tag == 'topology':
+            elif tag == "topology":
                 obj.topology = CpuTopologyReader.read_one(reader)
             else:
                 reader.next_element()
@@ -4313,7 +4304,7 @@ class DynamicCpuReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4332,9 +4323,8 @@ class DynamicCpuReader(Reader):
 
 
 class EngineBackupInfoReader(Reader):
-
     def __init__(self):
-        super(EngineBackupInfoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4346,7 +4336,7 @@ class EngineBackupInfoReader(Reader):
         obj = types.EngineBackupInfo()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4358,17 +4348,17 @@ class EngineBackupInfoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'last_cinder_backup':
+            if tag == "last_cinder_backup":
                 obj.last_cinder_backup = Reader.read_date(reader)
-            elif tag == 'last_db_backup':
+            elif tag == "last_db_backup":
                 obj.last_db_backup = Reader.read_date(reader)
-            elif tag == 'last_dwh_backup':
+            elif tag == "last_dwh_backup":
                 obj.last_dwh_backup = Reader.read_date(reader)
-            elif tag == 'last_engine_backup':
+            elif tag == "last_engine_backup":
                 obj.last_engine_backup = Reader.read_date(reader)
-            elif tag == 'last_grafana_backup':
+            elif tag == "last_grafana_backup":
                 obj.last_grafana_backup = Reader.read_date(reader)
-            elif tag == 'last_keycloak_backup':
+            elif tag == "last_keycloak_backup":
                 obj.last_keycloak_backup = Reader.read_date(reader)
             else:
                 reader.next_element()
@@ -4388,7 +4378,7 @@ class EngineBackupInfoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4407,9 +4397,8 @@ class EngineBackupInfoReader(Reader):
 
 
 class EntityProfileDetailReader(Reader):
-
     def __init__(self):
-        super(EntityProfileDetailReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4421,7 +4410,7 @@ class EntityProfileDetailReader(Reader):
         obj = types.EntityProfileDetail()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4433,7 +4422,7 @@ class EntityProfileDetailReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'profile_details':
+            if tag == "profile_details":
                 obj.profile_details = ProfileDetailReader.read_many(reader)
             else:
                 reader.next_element()
@@ -4453,7 +4442,7 @@ class EntityProfileDetailReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4472,9 +4461,8 @@ class EntityProfileDetailReader(Reader):
 
 
 class ErrorHandlingReader(Reader):
-
     def __init__(self):
-        super(ErrorHandlingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4486,7 +4474,7 @@ class ErrorHandlingReader(Reader):
         obj = types.ErrorHandling()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4498,7 +4486,7 @@ class ErrorHandlingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'on_error':
+            if tag == "on_error":
                 obj.on_error = Reader.read_enum(types.MigrateOnError, reader)
             else:
                 reader.next_element()
@@ -4518,7 +4506,7 @@ class ErrorHandlingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4537,9 +4525,8 @@ class ErrorHandlingReader(Reader):
 
 
 class EventReader(Reader):
-
     def __init__(self):
-        super(EventReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4551,8 +4538,8 @@ class EventReader(Reader):
         obj = types.Event()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4566,45 +4553,45 @@ class EventReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'code':
+            elif tag == "code":
                 obj.code = Reader.read_integer(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'correlation_id':
+            elif tag == "correlation_id":
                 obj.correlation_id = Reader.read_string(reader)
-            elif tag == 'custom_data':
+            elif tag == "custom_data":
                 obj.custom_data = Reader.read_string(reader)
-            elif tag == 'custom_id':
+            elif tag == "custom_id":
                 obj.custom_id = Reader.read_integer(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'flood_rate':
+            elif tag == "flood_rate":
                 obj.flood_rate = Reader.read_integer(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'index':
+            elif tag == "index":
                 obj.index = Reader.read_integer(reader)
-            elif tag == 'log_on_host':
+            elif tag == "log_on_host":
                 obj.log_on_host = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'severity':
+            elif tag == "severity":
                 obj.severity = Reader.read_enum(types.LogSeverity, reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'time':
+            elif tag == "time":
                 obj.time = Reader.read_date(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -4624,7 +4611,7 @@ class EventReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4643,9 +4630,8 @@ class EventReader(Reader):
 
 
 class EventSubscriptionReader(Reader):
-
     def __init__(self):
-        super(EventSubscriptionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4657,8 +4643,8 @@ class EventSubscriptionReader(Reader):
         obj = types.EventSubscription()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4672,19 +4658,21 @@ class EventSubscriptionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'event':
+            elif tag == "event":
                 obj.event = Reader.read_enum(types.NotifiableEvent, reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'notification_method':
-                obj.notification_method = Reader.read_enum(types.NotificationMethod, reader)
-            elif tag == 'user':
+            elif tag == "notification_method":
+                obj.notification_method = Reader.read_enum(
+                    types.NotificationMethod, reader
+                )
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
             else:
                 reader.next_element()
@@ -4704,7 +4692,7 @@ class EventSubscriptionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4723,9 +4711,8 @@ class EventSubscriptionReader(Reader):
 
 
 class ExternalComputeResourceReader(Reader):
-
     def __init__(self):
-        super(ExternalComputeResourceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4737,8 +4724,8 @@ class ExternalComputeResourceReader(Reader):
         obj = types.ExternalComputeResource()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4752,19 +4739,19 @@ class ExternalComputeResourceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'provider':
+            elif tag == "provider":
                 obj.provider = Reader.read_string(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -4784,7 +4771,7 @@ class ExternalComputeResourceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4803,9 +4790,8 @@ class ExternalComputeResourceReader(Reader):
 
 
 class ExternalDiscoveredHostReader(Reader):
-
     def __init__(self):
-        super(ExternalDiscoveredHostReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4817,8 +4803,8 @@ class ExternalDiscoveredHostReader(Reader):
         obj = types.ExternalDiscoveredHost()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4832,21 +4818,21 @@ class ExternalDiscoveredHostReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = Reader.read_string(reader)
-            elif tag == 'last_report':
+            elif tag == "last_report":
                 obj.last_report = Reader.read_string(reader)
-            elif tag == 'mac':
+            elif tag == "mac":
                 obj.mac = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'subnet_name':
+            elif tag == "subnet_name":
                 obj.subnet_name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -4866,7 +4852,7 @@ class ExternalDiscoveredHostReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4885,9 +4871,8 @@ class ExternalDiscoveredHostReader(Reader):
 
 
 class ExternalHostReader(Reader):
-
     def __init__(self):
-        super(ExternalHostReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4899,8 +4884,8 @@ class ExternalHostReader(Reader):
         obj = types.ExternalHost()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4914,15 +4899,15 @@ class ExternalHostReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -4942,7 +4927,7 @@ class ExternalHostReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -4961,9 +4946,8 @@ class ExternalHostReader(Reader):
 
 
 class ExternalHostGroupReader(Reader):
-
     def __init__(self):
-        super(ExternalHostGroupReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -4975,8 +4959,8 @@ class ExternalHostGroupReader(Reader):
         obj = types.ExternalHostGroup()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -4990,21 +4974,21 @@ class ExternalHostGroupReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'architecture_name':
+            if tag == "architecture_name":
                 obj.architecture_name = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'domain_name':
+            elif tag == "domain_name":
                 obj.domain_name = Reader.read_string(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'operating_system_name':
+            elif tag == "operating_system_name":
                 obj.operating_system_name = Reader.read_string(reader)
-            elif tag == 'subnet_name':
+            elif tag == "subnet_name":
                 obj.subnet_name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5024,7 +5008,7 @@ class ExternalHostGroupReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5043,9 +5027,8 @@ class ExternalHostGroupReader(Reader):
 
 
 class ExternalHostProviderReader(Reader):
-
     def __init__(self):
-        super(ExternalHostProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5057,8 +5040,8 @@ class ExternalHostProviderReader(Reader):
         obj = types.ExternalHostProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5072,36 +5055,38 @@ class ExternalHostProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_url':
+            if tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'certificates':
+            elif tag == "certificates":
                 obj.certificates = CertificateReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'compute_resources':
+            elif tag == "compute_resources":
                 obj.compute_resources = ExternalComputeResourceReader.read_many(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'discovered_hosts':
+            elif tag == "discovered_hosts":
                 obj.discovered_hosts = ExternalDiscoveredHostReader.read_many(reader)
-            elif tag == 'host_groups':
+            elif tag == "host_groups":
                 obj.host_groups = ExternalHostGroupReader.read_many(reader)
-            elif tag == 'hosts':
+            elif tag == "hosts":
                 obj.hosts = HostReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -5121,7 +5106,7 @@ class ExternalHostProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5172,9 +5157,8 @@ class ExternalHostProviderReader(Reader):
 
 
 class ExternalNetworkProviderConfigurationReader(Reader):
-
     def __init__(self):
-        super(ExternalNetworkProviderConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5186,8 +5170,8 @@ class ExternalNetworkProviderConfigurationReader(Reader):
         obj = types.ExternalNetworkProviderConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5201,15 +5185,15 @@ class ExternalNetworkProviderConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'external_network_provider':
+            elif tag == "external_network_provider":
                 obj.external_network_provider = ExternalProviderReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5229,7 +5213,7 @@ class ExternalNetworkProviderConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5248,9 +5232,8 @@ class ExternalNetworkProviderConfigurationReader(Reader):
 
 
 class ExternalProviderReader(Reader):
-
     def __init__(self):
-        super(ExternalProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5262,8 +5245,8 @@ class ExternalProviderReader(Reader):
         obj = types.ExternalProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5277,23 +5260,23 @@ class ExternalProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_url':
+            if tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5313,7 +5296,7 @@ class ExternalProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5332,9 +5315,8 @@ class ExternalProviderReader(Reader):
 
 
 class ExternalTemplateImportReader(Reader):
-
     def __init__(self):
-        super(ExternalTemplateImportReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5346,7 +5328,7 @@ class ExternalTemplateImportReader(Reader):
         obj = types.ExternalTemplateImport()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5358,21 +5340,21 @@ class ExternalTemplateImportReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'clone':
+            if tag == "clone":
                 obj.clone = Reader.read_boolean(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5392,7 +5374,7 @@ class ExternalTemplateImportReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5411,9 +5393,8 @@ class ExternalTemplateImportReader(Reader):
 
 
 class ExternalVmImportReader(Reader):
-
     def __init__(self):
-        super(ExternalVmImportReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5425,7 +5406,7 @@ class ExternalVmImportReader(Reader):
         obj = types.ExternalVmImport()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5437,31 +5418,31 @@ class ExternalVmImportReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'drivers_iso':
+            elif tag == "drivers_iso":
                 obj.drivers_iso = FileReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'provider':
+            elif tag == "provider":
                 obj.provider = Reader.read_enum(types.ExternalVmProviderType, reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'sparse':
+            elif tag == "sparse":
                 obj.sparse = Reader.read_boolean(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -5481,7 +5462,7 @@ class ExternalVmImportReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5500,9 +5481,8 @@ class ExternalVmImportReader(Reader):
 
 
 class FaultReader(Reader):
-
     def __init__(self):
-        super(FaultReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5514,7 +5494,7 @@ class FaultReader(Reader):
         obj = types.Fault()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5526,9 +5506,9 @@ class FaultReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'detail':
+            if tag == "detail":
                 obj.detail = Reader.read_string(reader)
-            elif tag == 'reason':
+            elif tag == "reason":
                 obj.reason = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5548,7 +5528,7 @@ class FaultReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5567,9 +5547,8 @@ class FaultReader(Reader):
 
 
 class FencingPolicyReader(Reader):
-
     def __init__(self):
-        super(FencingPolicyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5581,7 +5560,7 @@ class FencingPolicyReader(Reader):
         obj = types.FencingPolicy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5593,15 +5572,17 @@ class FencingPolicyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'skip_if_connectivity_broken':
-                obj.skip_if_connectivity_broken = SkipIfConnectivityBrokenReader.read_one(reader)
-            elif tag == 'skip_if_gluster_bricks_up':
+            elif tag == "skip_if_connectivity_broken":
+                obj.skip_if_connectivity_broken = (
+                    SkipIfConnectivityBrokenReader.read_one(reader)
+                )
+            elif tag == "skip_if_gluster_bricks_up":
                 obj.skip_if_gluster_bricks_up = Reader.read_boolean(reader)
-            elif tag == 'skip_if_gluster_quorum_not_met':
+            elif tag == "skip_if_gluster_quorum_not_met":
                 obj.skip_if_gluster_quorum_not_met = Reader.read_boolean(reader)
-            elif tag == 'skip_if_sd_active':
+            elif tag == "skip_if_sd_active":
                 obj.skip_if_sd_active = SkipIfSdActiveReader.read_one(reader)
             else:
                 reader.next_element()
@@ -5621,7 +5602,7 @@ class FencingPolicyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5640,9 +5621,8 @@ class FencingPolicyReader(Reader):
 
 
 class FileReader(Reader):
-
     def __init__(self):
-        super(FileReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5654,8 +5634,8 @@ class FileReader(Reader):
         obj = types.File()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5669,17 +5649,17 @@ class FileReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content':
+            elif tag == "content":
                 obj.content = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -5699,7 +5679,7 @@ class FileReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5718,9 +5698,8 @@ class FileReader(Reader):
 
 
 class FilterReader(Reader):
-
     def __init__(self):
-        super(FilterReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5732,8 +5711,8 @@ class FilterReader(Reader):
         obj = types.Filter()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5747,15 +5726,15 @@ class FilterReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'position':
+            elif tag == "position":
                 obj.position = Reader.read_integer(reader)
-            elif tag == 'scheduling_policy_unit':
+            elif tag == "scheduling_policy_unit":
                 obj.scheduling_policy_unit = SchedulingPolicyUnitReader.read_one(reader)
             else:
                 reader.next_element()
@@ -5775,7 +5754,7 @@ class FilterReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5794,9 +5773,8 @@ class FilterReader(Reader):
 
 
 class FloppyReader(Reader):
-
     def __init__(self):
-        super(FloppyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5808,8 +5786,8 @@ class FloppyReader(Reader):
         obj = types.Floppy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5823,24 +5801,26 @@ class FloppyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'file':
+            elif tag == "file":
                 obj.file = FileReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -5860,7 +5840,7 @@ class FloppyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5882,18 +5862,16 @@ class FloppyReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class FopStatisticReader(Reader):
-
     def __init__(self):
-        super(FopStatisticReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5905,7 +5883,7 @@ class FopStatisticReader(Reader):
         obj = types.FopStatistic()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5917,9 +5895,9 @@ class FopStatisticReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
             else:
                 reader.next_element()
@@ -5939,7 +5917,7 @@ class FopStatisticReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -5958,9 +5936,8 @@ class FopStatisticReader(Reader):
 
 
 class GlusterBrickReader(Reader):
-
     def __init__(self):
-        super(GlusterBrickReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -5972,8 +5949,8 @@ class GlusterBrickReader(Reader):
         obj = types.GlusterBrick()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -5987,46 +5964,48 @@ class GlusterBrickReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'brick_dir':
+            if tag == "brick_dir":
                 obj.brick_dir = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'device':
+            elif tag == "device":
                 obj.device = Reader.read_string(reader)
-            elif tag == 'fs_name':
+            elif tag == "fs_name":
                 obj.fs_name = Reader.read_string(reader)
-            elif tag == 'gluster_clients':
+            elif tag == "gluster_clients":
                 obj.gluster_clients = GlusterClientReader.read_many(reader)
-            elif tag == 'gluster_volume':
+            elif tag == "gluster_volume":
                 obj.gluster_volume = GlusterVolumeReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'memory_pools':
+            elif tag == "memory_pools":
                 obj.memory_pools = GlusterMemoryPoolReader.read_many(reader)
-            elif tag == 'mnt_options':
+            elif tag == "mnt_options":
                 obj.mnt_options = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'pid':
+            elif tag == "pid":
                 obj.pid = Reader.read_integer(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'server_id':
+            elif tag == "server_id":
                 obj.server_id = Reader.read_string(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.GlusterBrickStatus, reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -6046,7 +6025,7 @@ class GlusterBrickReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6082,9 +6061,8 @@ class GlusterBrickReader(Reader):
 
 
 class GlusterBrickAdvancedDetailsReader(Reader):
-
     def __init__(self):
-        super(GlusterBrickAdvancedDetailsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6096,8 +6074,8 @@ class GlusterBrickAdvancedDetailsReader(Reader):
         obj = types.GlusterBrickAdvancedDetails()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6111,36 +6089,38 @@ class GlusterBrickAdvancedDetailsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'device':
+            elif tag == "device":
                 obj.device = Reader.read_string(reader)
-            elif tag == 'fs_name':
+            elif tag == "fs_name":
                 obj.fs_name = Reader.read_string(reader)
-            elif tag == 'gluster_clients':
+            elif tag == "gluster_clients":
                 obj.gluster_clients = GlusterClientReader.read_many(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'memory_pools':
+            elif tag == "memory_pools":
                 obj.memory_pools = GlusterMemoryPoolReader.read_many(reader)
-            elif tag == 'mnt_options':
+            elif tag == "mnt_options":
                 obj.mnt_options = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'pid':
+            elif tag == "pid":
                 obj.pid = Reader.read_integer(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -6160,7 +6140,7 @@ class GlusterBrickAdvancedDetailsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6182,18 +6162,16 @@ class GlusterBrickAdvancedDetailsReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class GlusterBrickMemoryInfoReader(Reader):
-
     def __init__(self):
-        super(GlusterBrickMemoryInfoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6205,7 +6183,7 @@ class GlusterBrickMemoryInfoReader(Reader):
         obj = types.GlusterBrickMemoryInfo()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6217,7 +6195,7 @@ class GlusterBrickMemoryInfoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'memory_pools':
+            if tag == "memory_pools":
                 obj.memory_pools = GlusterMemoryPoolReader.read_many(reader)
             else:
                 reader.next_element()
@@ -6237,7 +6215,7 @@ class GlusterBrickMemoryInfoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6256,9 +6234,8 @@ class GlusterBrickMemoryInfoReader(Reader):
 
 
 class GlusterClientReader(Reader):
-
     def __init__(self):
-        super(GlusterClientReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6270,7 +6247,7 @@ class GlusterClientReader(Reader):
         obj = types.GlusterClient()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6282,13 +6259,13 @@ class GlusterClientReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'bytes_read':
+            if tag == "bytes_read":
                 obj.bytes_read = Reader.read_integer(reader)
-            elif tag == 'bytes_written':
+            elif tag == "bytes_written":
                 obj.bytes_written = Reader.read_integer(reader)
-            elif tag == 'client_port':
+            elif tag == "client_port":
                 obj.client_port = Reader.read_integer(reader)
-            elif tag == 'host_name':
+            elif tag == "host_name":
                 obj.host_name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -6308,7 +6285,7 @@ class GlusterClientReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6327,9 +6304,8 @@ class GlusterClientReader(Reader):
 
 
 class GlusterHookReader(Reader):
-
     def __init__(self):
-        super(GlusterHookReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6341,8 +6317,8 @@ class GlusterHookReader(Reader):
         obj = types.GlusterHook()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6356,34 +6332,36 @@ class GlusterHookReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'checksum':
+            if tag == "checksum":
                 obj.checksum = Reader.read_string(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'conflict_status':
+            elif tag == "conflict_status":
                 obj.conflict_status = Reader.read_integer(reader)
-            elif tag == 'conflicts':
+            elif tag == "conflicts":
                 obj.conflicts = Reader.read_string(reader)
-            elif tag == 'content':
+            elif tag == "content":
                 obj.content = Reader.read_string(reader)
-            elif tag == 'content_type':
+            elif tag == "content_type":
                 obj.content_type = Reader.read_enum(types.HookContentType, reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'gluster_command':
+            elif tag == "gluster_command":
                 obj.gluster_command = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'server_hooks':
+            elif tag == "server_hooks":
                 obj.server_hooks = GlusterServerHookReader.read_many(reader)
-            elif tag == 'stage':
+            elif tag == "stage":
                 obj.stage = Reader.read_enum(types.HookStage, reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.GlusterHookStatus, reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -6403,7 +6381,7 @@ class GlusterHookReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6425,18 +6403,16 @@ class GlusterHookReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "serverhooks":
-                if obj.server_hooks is not None:
-                    obj.server_hooks.href = href
-                else:
-                    obj.server_hooks = List(href)
+        if href and rel and rel == "serverhooks":
+            if obj.server_hooks is not None:
+                obj.server_hooks.href = href
+            else:
+                obj.server_hooks = List(href)
 
 
 class GlusterMemoryPoolReader(Reader):
-
     def __init__(self):
-        super(GlusterMemoryPoolReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6448,8 +6424,8 @@ class GlusterMemoryPoolReader(Reader):
         obj = types.GlusterMemoryPool()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6463,27 +6439,27 @@ class GlusterMemoryPoolReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'alloc_count':
+            if tag == "alloc_count":
                 obj.alloc_count = Reader.read_integer(reader)
-            elif tag == 'cold_count':
+            elif tag == "cold_count":
                 obj.cold_count = Reader.read_integer(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'hot_count':
+            elif tag == "hot_count":
                 obj.hot_count = Reader.read_integer(reader)
-            elif tag == 'max_alloc':
+            elif tag == "max_alloc":
                 obj.max_alloc = Reader.read_integer(reader)
-            elif tag == 'max_stdalloc':
+            elif tag == "max_stdalloc":
                 obj.max_stdalloc = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'padded_size':
+            elif tag == "padded_size":
                 obj.padded_size = Reader.read_integer(reader)
-            elif tag == 'pool_misses':
+            elif tag == "pool_misses":
                 obj.pool_misses = Reader.read_integer(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -6503,7 +6479,7 @@ class GlusterMemoryPoolReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6522,9 +6498,8 @@ class GlusterMemoryPoolReader(Reader):
 
 
 class GlusterServerHookReader(Reader):
-
     def __init__(self):
-        super(GlusterServerHookReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6536,8 +6511,8 @@ class GlusterServerHookReader(Reader):
         obj = types.GlusterServerHook()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6551,19 +6526,19 @@ class GlusterServerHookReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'checksum':
+            if tag == "checksum":
                 obj.checksum = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content_type':
+            elif tag == "content_type":
                 obj.content_type = Reader.read_enum(types.HookContentType, reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.GlusterHookStatus, reader)
             else:
                 reader.next_element()
@@ -6583,7 +6558,7 @@ class GlusterServerHookReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6602,9 +6577,8 @@ class GlusterServerHookReader(Reader):
 
 
 class GlusterVolumeReader(Reader):
-
     def __init__(self):
-        super(GlusterVolumeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6616,8 +6590,8 @@ class GlusterVolumeReader(Reader):
         obj = types.GlusterVolume()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6631,36 +6605,38 @@ class GlusterVolumeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'bricks':
+            if tag == "bricks":
                 obj.bricks = GlusterBrickReader.read_many(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disperse_count':
+            elif tag == "disperse_count":
                 obj.disperse_count = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'options':
+            elif tag == "options":
                 obj.options = OptionReader.read_many(reader)
-            elif tag == 'redundancy_count':
+            elif tag == "redundancy_count":
                 obj.redundancy_count = Reader.read_integer(reader)
-            elif tag == 'replica_count':
+            elif tag == "replica_count":
                 obj.replica_count = Reader.read_integer(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.GlusterVolumeStatus, reader)
-            elif tag == 'stripe_count':
+            elif tag == "stripe_count":
                 obj.stripe_count = Reader.read_integer(reader)
-            elif tag == 'transport_types':
+            elif tag == "transport_types":
                 obj.transport_types = Reader.read_enums(types.TransportType, reader)
-            elif tag == 'volume_type':
+            elif tag == "volume_type":
                 obj.volume_type = Reader.read_enum(types.GlusterVolumeType, reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -6680,7 +6656,7 @@ class GlusterVolumeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6716,9 +6692,8 @@ class GlusterVolumeReader(Reader):
 
 
 class GlusterVolumeProfileDetailsReader(Reader):
-
     def __init__(self):
-        super(GlusterVolumeProfileDetailsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6730,8 +6705,8 @@ class GlusterVolumeProfileDetailsReader(Reader):
         obj = types.GlusterVolumeProfileDetails()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6745,15 +6720,15 @@ class GlusterVolumeProfileDetailsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'brick_profile_details':
+            if tag == "brick_profile_details":
                 obj.brick_profile_details = BrickProfileDetailReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nfs_profile_details':
+            elif tag == "nfs_profile_details":
                 obj.nfs_profile_details = NfsProfileDetailReader.read_many(reader)
             else:
                 reader.next_element()
@@ -6773,7 +6748,7 @@ class GlusterVolumeProfileDetailsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6792,9 +6767,8 @@ class GlusterVolumeProfileDetailsReader(Reader):
 
 
 class GracePeriodReader(Reader):
-
     def __init__(self):
-        super(GracePeriodReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6806,7 +6780,7 @@ class GracePeriodReader(Reader):
         obj = types.GracePeriod()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6818,7 +6792,7 @@ class GracePeriodReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'expiry':
+            if tag == "expiry":
                 obj.expiry = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -6838,7 +6812,7 @@ class GracePeriodReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6857,9 +6831,8 @@ class GracePeriodReader(Reader):
 
 
 class GraphicsConsoleReader(Reader):
-
     def __init__(self):
-        super(GraphicsConsoleReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6871,8 +6844,8 @@ class GraphicsConsoleReader(Reader):
         obj = types.GraphicsConsole()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6886,25 +6859,25 @@ class GraphicsConsoleReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'protocol':
+            elif tag == "protocol":
                 obj.protocol = Reader.read_enum(types.GraphicsType, reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'tls_port':
+            elif tag == "tls_port":
                 obj.tls_port = Reader.read_integer(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -6924,7 +6897,7 @@ class GraphicsConsoleReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -6943,9 +6916,8 @@ class GraphicsConsoleReader(Reader):
 
 
 class GroupReader(Reader):
-
     def __init__(self):
-        super(GroupReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -6957,8 +6929,8 @@ class GroupReader(Reader):
         obj = types.Group()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -6972,26 +6944,28 @@ class GroupReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'domain_entry_id':
+            elif tag == "domain_entry_id":
                 obj.domain_entry_id = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'namespace':
+            elif tag == "namespace":
                 obj.namespace = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'roles':
+            elif tag == "roles":
                 obj.roles = RoleReader.read_many(reader)
-            elif tag == 'tags':
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -7011,7 +6985,7 @@ class GroupReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7052,9 +7026,8 @@ class GroupReader(Reader):
 
 
 class GuestOperatingSystemReader(Reader):
-
     def __init__(self):
-        super(GuestOperatingSystemReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7066,7 +7039,7 @@ class GuestOperatingSystemReader(Reader):
         obj = types.GuestOperatingSystem()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7078,17 +7051,17 @@ class GuestOperatingSystemReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'architecture':
+            if tag == "architecture":
                 obj.architecture = Reader.read_string(reader)
-            elif tag == 'codename':
+            elif tag == "codename":
                 obj.codename = Reader.read_string(reader)
-            elif tag == 'distribution':
+            elif tag == "distribution":
                 obj.distribution = Reader.read_string(reader)
-            elif tag == 'family':
+            elif tag == "family":
                 obj.family = Reader.read_string(reader)
-            elif tag == 'kernel':
+            elif tag == "kernel":
                 obj.kernel = KernelReader.read_one(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
             else:
                 reader.next_element()
@@ -7108,7 +7081,7 @@ class GuestOperatingSystemReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7127,9 +7100,8 @@ class GuestOperatingSystemReader(Reader):
 
 
 class HardwareInformationReader(Reader):
-
     def __init__(self):
-        super(HardwareInformationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7141,7 +7113,7 @@ class HardwareInformationReader(Reader):
         obj = types.HardwareInformation()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7153,19 +7125,19 @@ class HardwareInformationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'family':
+            if tag == "family":
                 obj.family = Reader.read_string(reader)
-            elif tag == 'manufacturer':
+            elif tag == "manufacturer":
                 obj.manufacturer = Reader.read_string(reader)
-            elif tag == 'product_name':
+            elif tag == "product_name":
                 obj.product_name = Reader.read_string(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = Reader.read_string(reader)
-            elif tag == 'supported_rng_sources':
+            elif tag == "supported_rng_sources":
                 obj.supported_rng_sources = Reader.read_enums(types.RngSource, reader)
-            elif tag == 'uuid':
+            elif tag == "uuid":
                 obj.uuid = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -7185,7 +7157,7 @@ class HardwareInformationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7204,9 +7176,8 @@ class HardwareInformationReader(Reader):
 
 
 class HighAvailabilityReader(Reader):
-
     def __init__(self):
-        super(HighAvailabilityReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7218,7 +7189,7 @@ class HighAvailabilityReader(Reader):
         obj = types.HighAvailability()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7230,9 +7201,9 @@ class HighAvailabilityReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'priority':
+            elif tag == "priority":
                 obj.priority = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -7252,7 +7223,7 @@ class HighAvailabilityReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7271,9 +7242,8 @@ class HighAvailabilityReader(Reader):
 
 
 class HookReader(Reader):
-
     def __init__(self):
-        super(HookReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7285,8 +7255,8 @@ class HookReader(Reader):
         obj = types.Hook()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -7300,17 +7270,17 @@ class HookReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'event_name':
+            elif tag == "event_name":
                 obj.event_name = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'md5':
+            elif tag == "md5":
                 obj.md5 = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -7330,7 +7300,7 @@ class HookReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7349,9 +7319,8 @@ class HookReader(Reader):
 
 
 class HostReader(Reader):
-
     def __init__(self):
-        super(HostReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7363,8 +7332,8 @@ class HostReader(Reader):
         obj = types.Host()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -7378,122 +7347,128 @@ class HostReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'affinity_labels':
+            elif tag == "affinity_labels":
                 obj.affinity_labels = AffinityLabelReader.read_many(reader)
-            elif tag == 'agents':
+            elif tag == "agents":
                 obj.agents = AgentReader.read_many(reader)
-            elif tag == 'auto_numa_status':
+            elif tag == "auto_numa_status":
                 obj.auto_numa_status = Reader.read_enum(types.AutoNumaStatus, reader)
-            elif tag == 'certificate':
+            elif tag == "certificate":
                 obj.certificate = CertificateReader.read_one(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_units':
+            elif tag == "cpu_units":
                 obj.cpu_units = HostCpuUnitReader.read_many(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'device_passthrough':
+            elif tag == "device_passthrough":
                 obj.device_passthrough = HostDevicePassthroughReader.read_one(reader)
-            elif tag == 'devices':
+            elif tag == "devices":
                 obj.devices = HostDeviceReader.read_many(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'external_network_provider_configurations':
-                obj.external_network_provider_configurations = ExternalNetworkProviderConfigurationReader.read_many(reader)
-            elif tag == 'external_status':
+            elif tag == "external_network_provider_configurations":
+                obj.external_network_provider_configurations = (
+                    ExternalNetworkProviderConfigurationReader.read_many(reader)
+                )
+            elif tag == "external_status":
                 obj.external_status = Reader.read_enum(types.ExternalStatus, reader)
-            elif tag == 'hardware_information':
+            elif tag == "hardware_information":
                 obj.hardware_information = HardwareInformationReader.read_one(reader)
-            elif tag == 'hooks':
+            elif tag == "hooks":
                 obj.hooks = HookReader.read_many(reader)
-            elif tag == 'hosted_engine':
+            elif tag == "hosted_engine":
                 obj.hosted_engine = HostedEngineReader.read_one(reader)
-            elif tag == 'iscsi':
+            elif tag == "iscsi":
                 obj.iscsi = IscsiDetailsReader.read_one(reader)
-            elif tag == 'katello_errata':
+            elif tag == "katello_errata":
                 obj.katello_errata = KatelloErratumReader.read_many(reader)
-            elif tag == 'kdump_status':
+            elif tag == "kdump_status":
                 obj.kdump_status = Reader.read_enum(types.KdumpStatus, reader)
-            elif tag == 'ksm':
+            elif tag == "ksm":
                 obj.ksm = KsmReader.read_one(reader)
-            elif tag == 'libvirt_version':
+            elif tag == "libvirt_version":
                 obj.libvirt_version = VersionReader.read_one(reader)
-            elif tag == 'max_scheduling_memory':
+            elif tag == "max_scheduling_memory":
                 obj.max_scheduling_memory = Reader.read_integer(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network_attachments':
+            elif tag == "network_attachments":
                 obj.network_attachments = NetworkAttachmentReader.read_many(reader)
-            elif tag == 'network_operation_in_progress':
+            elif tag == "network_operation_in_progress":
                 obj.network_operation_in_progress = Reader.read_boolean(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = HostNicReader.read_many(reader)
-            elif tag == 'host_numa_nodes':
+            elif tag == "host_numa_nodes":
                 obj.numa_nodes = NumaNodeReader.read_many(reader)
-            elif tag == 'numa_supported':
+            elif tag == "numa_supported":
                 obj.numa_supported = Reader.read_boolean(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'override_iptables':
+            elif tag == "override_iptables":
                 obj.override_iptables = Reader.read_boolean(reader)
-            elif tag == 'ovn_configured':
+            elif tag == "ovn_configured":
                 obj.ovn_configured = Reader.read_boolean(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'power_management':
+            elif tag == "power_management":
                 obj.power_management = PowerManagementReader.read_one(reader)
-            elif tag == 'protocol':
+            elif tag == "protocol":
                 obj.protocol = Reader.read_enum(types.HostProtocol, reader)
-            elif tag == 'reinstallation_required':
+            elif tag == "reinstallation_required":
                 obj.reinstallation_required = Reader.read_boolean(reader)
-            elif tag == 'root_password':
+            elif tag == "root_password":
                 obj.root_password = Reader.read_string(reader)
-            elif tag == 'se_linux':
+            elif tag == "se_linux":
                 obj.se_linux = SeLinuxReader.read_one(reader)
-            elif tag == 'spm':
+            elif tag == "spm":
                 obj.spm = SpmReader.read_one(reader)
-            elif tag == 'ssh':
+            elif tag == "ssh":
                 obj.ssh = SshReader.read_one(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.HostStatus, reader)
-            elif tag == 'status_detail':
+            elif tag == "status_detail":
                 obj.status_detail = Reader.read_string(reader)
-            elif tag == 'storage_connection_extensions':
-                obj.storage_connection_extensions = StorageConnectionExtensionReader.read_many(reader)
-            elif tag == 'storages':
+            elif tag == "storage_connection_extensions":
+                obj.storage_connection_extensions = (
+                    StorageConnectionExtensionReader.read_many(reader)
+                )
+            elif tag == "storages":
                 obj.storages = HostStorageReader.read_many(reader)
-            elif tag == 'summary':
+            elif tag == "summary":
                 obj.summary = VmSummaryReader.read_one(reader)
-            elif tag == 'tags':
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'transparent_hugepages':
+            elif tag == "transparent_hugepages":
                 obj.transparent_huge_pages = TransparentHugePagesReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.HostType, reader)
-            elif tag == 'unmanaged_networks':
+            elif tag == "unmanaged_networks":
                 obj.unmanaged_networks = UnmanagedNetworkReader.read_many(reader)
-            elif tag == 'update_available':
+            elif tag == "update_available":
                 obj.update_available = Reader.read_boolean(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
-            elif tag == 'vgpu_placement':
+            elif tag == "vgpu_placement":
                 obj.vgpu_placement = Reader.read_enum(types.VgpuPlacement, reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -7513,7 +7488,7 @@ class HostReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7619,9 +7594,8 @@ class HostReader(Reader):
 
 
 class HostCpuUnitReader(Reader):
-
     def __init__(self):
-        super(HostCpuUnitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7633,8 +7607,8 @@ class HostCpuUnitReader(Reader):
         obj = types.HostCpuUnit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -7648,24 +7622,26 @@ class HostCpuUnitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'core_id':
+            elif tag == "core_id":
                 obj.core_id = Reader.read_integer(reader)
-            elif tag == 'cpu_id':
+            elif tag == "cpu_id":
                 obj.cpu_id = Reader.read_integer(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'runs_vdsm':
+            elif tag == "runs_vdsm":
                 obj.runs_vdsm = Reader.read_boolean(reader)
-            elif tag == 'socket_id':
+            elif tag == "socket_id":
                 obj.socket_id = Reader.read_integer(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -7685,7 +7661,7 @@ class HostCpuUnitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7707,18 +7683,16 @@ class HostCpuUnitReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class HostDeviceReader(Reader):
-
     def __init__(self):
-        super(HostDeviceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7730,8 +7704,8 @@ class HostDeviceReader(Reader):
         obj = types.HostDevice()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -7745,35 +7719,35 @@ class HostDeviceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'capability':
+            if tag == "capability":
                 obj.capability = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'driver':
+            elif tag == "driver":
                 obj.driver = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'iommu_group':
+            elif tag == "iommu_group":
                 obj.iommu_group = Reader.read_integer(reader)
-            elif tag == 'm_dev_types':
+            elif tag == "m_dev_types":
                 obj.m_dev_types = MDevTypeReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'parent_device':
+            elif tag == "parent_device":
                 obj.parent_device = HostDeviceReader.read_one(reader)
-            elif tag == 'physical_function':
+            elif tag == "physical_function":
                 obj.physical_function = HostDeviceReader.read_one(reader)
-            elif tag == 'placeholder':
+            elif tag == "placeholder":
                 obj.placeholder = Reader.read_boolean(reader)
-            elif tag == 'product':
+            elif tag == "product":
                 obj.product = ProductReader.read_one(reader)
-            elif tag == 'vendor':
+            elif tag == "vendor":
                 obj.vendor = VendorReader.read_one(reader)
-            elif tag == 'virtual_functions':
+            elif tag == "virtual_functions":
                 obj.virtual_functions = Reader.read_integer(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -7793,7 +7767,7 @@ class HostDeviceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7812,9 +7786,8 @@ class HostDeviceReader(Reader):
 
 
 class HostDevicePassthroughReader(Reader):
-
     def __init__(self):
-        super(HostDevicePassthroughReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7826,7 +7799,7 @@ class HostDevicePassthroughReader(Reader):
         obj = types.HostDevicePassthrough()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7838,7 +7811,7 @@ class HostDevicePassthroughReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -7858,7 +7831,7 @@ class HostDevicePassthroughReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -7877,9 +7850,8 @@ class HostDevicePassthroughReader(Reader):
 
 
 class HostNicReader(Reader):
-
     def __init__(self):
-        super(HostNicReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -7891,8 +7863,8 @@ class HostNicReader(Reader):
         obj = types.HostNic()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -7906,62 +7878,66 @@ class HostNicReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'ad_aggregator_id':
+            if tag == "ad_aggregator_id":
                 obj.ad_aggregator_id = Reader.read_integer(reader)
-            elif tag == 'base_interface':
+            elif tag == "base_interface":
                 obj.base_interface = Reader.read_string(reader)
-            elif tag == 'bonding':
+            elif tag == "bonding":
                 obj.bonding = BondingReader.read_one(reader)
-            elif tag == 'boot_protocol':
+            elif tag == "boot_protocol":
                 obj.boot_protocol = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'bridged':
+            elif tag == "bridged":
                 obj.bridged = Reader.read_boolean(reader)
-            elif tag == 'check_connectivity':
+            elif tag == "check_connectivity":
                 obj.check_connectivity = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'custom_configuration':
+            elif tag == "custom_configuration":
                 obj.custom_configuration = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = IpReader.read_one(reader)
-            elif tag == 'ipv6':
+            elif tag == "ipv6":
                 obj.ipv6 = IpReader.read_one(reader)
-            elif tag == 'ipv6_boot_protocol':
+            elif tag == "ipv6_boot_protocol":
                 obj.ipv6_boot_protocol = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'mac':
+            elif tag == "mac":
                 obj.mac = MacReader.read_one(reader)
-            elif tag == 'mtu':
+            elif tag == "mtu":
                 obj.mtu = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network':
+            elif tag == "network":
                 obj.network = NetworkReader.read_one(reader)
-            elif tag == 'network_labels':
+            elif tag == "network_labels":
                 obj.network_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'override_configuration':
+            elif tag == "override_configuration":
                 obj.override_configuration = Reader.read_boolean(reader)
-            elif tag == 'physical_function':
+            elif tag == "physical_function":
                 obj.physical_function = HostNicReader.read_one(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'speed':
+            elif tag == "speed":
                 obj.speed = Reader.read_integer(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.NicStatus, reader)
-            elif tag == 'virtual_functions_configuration':
-                obj.virtual_functions_configuration = HostNicVirtualFunctionsConfigurationReader.read_one(reader)
-            elif tag == 'vlan':
+            elif tag == "virtual_functions_configuration":
+                obj.virtual_functions_configuration = (
+                    HostNicVirtualFunctionsConfigurationReader.read_one(reader)
+                )
+            elif tag == "vlan":
                 obj.vlan = VlanReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -7981,7 +7957,7 @@ class HostNicReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8017,9 +7993,8 @@ class HostNicReader(Reader):
 
 
 class HostNicVirtualFunctionsConfigurationReader(Reader):
-
     def __init__(self):
-        super(HostNicVirtualFunctionsConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8031,7 +8006,7 @@ class HostNicVirtualFunctionsConfigurationReader(Reader):
         obj = types.HostNicVirtualFunctionsConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8043,11 +8018,11 @@ class HostNicVirtualFunctionsConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'all_networks_allowed':
+            if tag == "all_networks_allowed":
                 obj.all_networks_allowed = Reader.read_boolean(reader)
-            elif tag == 'max_number_of_virtual_functions':
+            elif tag == "max_number_of_virtual_functions":
                 obj.max_number_of_virtual_functions = Reader.read_integer(reader)
-            elif tag == 'number_of_virtual_functions':
+            elif tag == "number_of_virtual_functions":
                 obj.number_of_virtual_functions = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -8067,7 +8042,7 @@ class HostNicVirtualFunctionsConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8086,9 +8061,8 @@ class HostNicVirtualFunctionsConfigurationReader(Reader):
 
 
 class HostStorageReader(Reader):
-
     def __init__(self):
-        super(HostStorageReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8100,8 +8074,8 @@ class HostStorageReader(Reader):
         obj = types.HostStorage()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8115,49 +8089,49 @@ class HostStorageReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'driver_options':
+            elif tag == "driver_options":
                 obj.driver_options = PropertyReader.read_many(reader)
-            elif tag == 'driver_sensitive_options':
+            elif tag == "driver_sensitive_options":
                 obj.driver_sensitive_options = PropertyReader.read_many(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'logical_units':
+            elif tag == "logical_units":
                 obj.logical_units = LogicalUnitReader.read_many(reader)
-            elif tag == 'mount_options':
+            elif tag == "mount_options":
                 obj.mount_options = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nfs_retrans':
+            elif tag == "nfs_retrans":
                 obj.nfs_retrans = Reader.read_integer(reader)
-            elif tag == 'nfs_timeo':
+            elif tag == "nfs_timeo":
                 obj.nfs_timeo = Reader.read_integer(reader)
-            elif tag == 'nfs_version':
+            elif tag == "nfs_version":
                 obj.nfs_version = Reader.read_enum(types.NfsVersion, reader)
-            elif tag == 'override_luns':
+            elif tag == "override_luns":
                 obj.override_luns = Reader.read_boolean(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'path':
+            elif tag == "path":
                 obj.path = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'portal':
+            elif tag == "portal":
                 obj.portal = Reader.read_string(reader)
-            elif tag == 'target':
+            elif tag == "target":
                 obj.target = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.StorageType, reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'vfs_type':
+            elif tag == "vfs_type":
                 obj.vfs_type = Reader.read_string(reader)
-            elif tag == 'volume_group':
+            elif tag == "volume_group":
                 obj.volume_group = VolumeGroupReader.read_one(reader)
             else:
                 reader.next_element()
@@ -8177,7 +8151,7 @@ class HostStorageReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8196,9 +8170,8 @@ class HostStorageReader(Reader):
 
 
 class HostedEngineReader(Reader):
-
     def __init__(self):
-        super(HostedEngineReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8210,7 +8183,7 @@ class HostedEngineReader(Reader):
         obj = types.HostedEngine()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8222,15 +8195,15 @@ class HostedEngineReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_boolean(reader)
-            elif tag == 'configured':
+            elif tag == "configured":
                 obj.configured = Reader.read_boolean(reader)
-            elif tag == 'global_maintenance':
+            elif tag == "global_maintenance":
                 obj.global_maintenance = Reader.read_boolean(reader)
-            elif tag == 'local_maintenance':
+            elif tag == "local_maintenance":
                 obj.local_maintenance = Reader.read_boolean(reader)
-            elif tag == 'score':
+            elif tag == "score":
                 obj.score = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -8250,7 +8223,7 @@ class HostedEngineReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8269,9 +8242,8 @@ class HostedEngineReader(Reader):
 
 
 class IconReader(Reader):
-
     def __init__(self):
-        super(IconReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8283,8 +8255,8 @@ class IconReader(Reader):
         obj = types.Icon()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8298,15 +8270,15 @@ class IconReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data':
+            elif tag == "data":
                 obj.data = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'media_type':
+            elif tag == "media_type":
                 obj.media_type = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -8326,7 +8298,7 @@ class IconReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8345,9 +8317,8 @@ class IconReader(Reader):
 
 
 class IdentifiedReader(Reader):
-
     def __init__(self):
-        super(IdentifiedReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8359,8 +8330,8 @@ class IdentifiedReader(Reader):
         obj = types.Identified()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8374,11 +8345,11 @@ class IdentifiedReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -8398,7 +8369,7 @@ class IdentifiedReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8417,9 +8388,8 @@ class IdentifiedReader(Reader):
 
 
 class ImageReader(Reader):
-
     def __init__(self):
-        super(ImageReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8431,8 +8401,8 @@ class ImageReader(Reader):
         obj = types.Image()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8446,17 +8416,17 @@ class ImageReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'size':
+            elif tag == "size":
                 obj.size = Reader.read_integer(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.ImageFileType, reader)
             else:
                 reader.next_element()
@@ -8476,7 +8446,7 @@ class ImageReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8495,9 +8465,8 @@ class ImageReader(Reader):
 
 
 class ImageTransferReader(Reader):
-
     def __init__(self):
-        super(ImageTransferReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8509,8 +8478,8 @@ class ImageTransferReader(Reader):
         obj = types.ImageTransfer()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8524,41 +8493,43 @@ class ImageTransferReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_boolean(reader)
-            elif tag == 'backup':
+            elif tag == "backup":
                 obj.backup = BackupReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'direction':
+            elif tag == "direction":
                 obj.direction = Reader.read_enum(types.ImageTransferDirection, reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'format':
+            elif tag == "format":
                 obj.format = Reader.read_enum(types.DiskFormat, reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'image':
+            elif tag == "image":
                 obj.image = ImageReader.read_one(reader)
-            elif tag == 'inactivity_timeout':
+            elif tag == "inactivity_timeout":
                 obj.inactivity_timeout = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'phase':
+            elif tag == "phase":
                 obj.phase = Reader.read_enum(types.ImageTransferPhase, reader)
-            elif tag == 'proxy_url':
+            elif tag == "proxy_url":
                 obj.proxy_url = Reader.read_string(reader)
-            elif tag == 'shallow':
+            elif tag == "shallow":
                 obj.shallow = Reader.read_boolean(reader)
-            elif tag == 'snapshot':
+            elif tag == "snapshot":
                 obj.snapshot = DiskSnapshotReader.read_one(reader)
-            elif tag == 'timeout_policy':
-                obj.timeout_policy = Reader.read_enum(types.ImageTransferTimeoutPolicy, reader)
-            elif tag == 'transfer_url':
+            elif tag == "timeout_policy":
+                obj.timeout_policy = Reader.read_enum(
+                    types.ImageTransferTimeoutPolicy, reader
+                )
+            elif tag == "transfer_url":
                 obj.transfer_url = Reader.read_string(reader)
-            elif tag == 'transferred':
+            elif tag == "transferred":
                 obj.transferred = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -8578,7 +8549,7 @@ class ImageTransferReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8597,9 +8568,8 @@ class ImageTransferReader(Reader):
 
 
 class InitializationReader(Reader):
-
     def __init__(self):
-        super(InitializationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8611,7 +8581,7 @@ class InitializationReader(Reader):
         obj = types.Initialization()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8623,49 +8593,51 @@ class InitializationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active_directory_ou':
+            if tag == "active_directory_ou":
                 obj.active_directory_ou = Reader.read_string(reader)
-            elif tag == 'authorized_ssh_keys':
+            elif tag == "authorized_ssh_keys":
                 obj.authorized_ssh_keys = Reader.read_string(reader)
-            elif tag == 'cloud_init':
+            elif tag == "cloud_init":
                 obj.cloud_init = CloudInitReader.read_one(reader)
-            elif tag == 'cloud_init_network_protocol':
-                obj.cloud_init_network_protocol = Reader.read_enum(types.CloudInitNetworkProtocol, reader)
-            elif tag == 'configuration':
+            elif tag == "cloud_init_network_protocol":
+                obj.cloud_init_network_protocol = Reader.read_enum(
+                    types.CloudInitNetworkProtocol, reader
+                )
+            elif tag == "configuration":
                 obj.configuration = ConfigurationReader.read_one(reader)
-            elif tag == 'custom_script':
+            elif tag == "custom_script":
                 obj.custom_script = Reader.read_string(reader)
-            elif tag == 'dns_search':
+            elif tag == "dns_search":
                 obj.dns_search = Reader.read_string(reader)
-            elif tag == 'dns_servers':
+            elif tag == "dns_servers":
                 obj.dns_servers = Reader.read_string(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = Reader.read_string(reader)
-            elif tag == 'host_name':
+            elif tag == "host_name":
                 obj.host_name = Reader.read_string(reader)
-            elif tag == 'input_locale':
+            elif tag == "input_locale":
                 obj.input_locale = Reader.read_string(reader)
-            elif tag == 'nic_configurations':
+            elif tag == "nic_configurations":
                 obj.nic_configurations = NicConfigurationReader.read_many(reader)
-            elif tag == 'org_name':
+            elif tag == "org_name":
                 obj.org_name = Reader.read_string(reader)
-            elif tag == 'regenerate_ids':
+            elif tag == "regenerate_ids":
                 obj.regenerate_ids = Reader.read_boolean(reader)
-            elif tag == 'regenerate_ssh_keys':
+            elif tag == "regenerate_ssh_keys":
                 obj.regenerate_ssh_keys = Reader.read_boolean(reader)
-            elif tag == 'root_password':
+            elif tag == "root_password":
                 obj.root_password = Reader.read_string(reader)
-            elif tag == 'system_locale':
+            elif tag == "system_locale":
                 obj.system_locale = Reader.read_string(reader)
-            elif tag == 'timezone':
+            elif tag == "timezone":
                 obj.timezone = Reader.read_string(reader)
-            elif tag == 'ui_language':
+            elif tag == "ui_language":
                 obj.ui_language = Reader.read_string(reader)
-            elif tag == 'user_locale':
+            elif tag == "user_locale":
                 obj.user_locale = Reader.read_string(reader)
-            elif tag == 'user_name':
+            elif tag == "user_name":
                 obj.user_name = Reader.read_string(reader)
-            elif tag == 'windows_license_key':
+            elif tag == "windows_license_key":
                 obj.windows_license_key = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -8685,7 +8657,7 @@ class InitializationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8704,9 +8676,8 @@ class InitializationReader(Reader):
 
 
 class InstanceTypeReader(Reader):
-
     def __init__(self):
-        super(InstanceTypeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8718,8 +8689,8 @@ class InstanceTypeReader(Reader):
         obj = types.InstanceType()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -8733,130 +8704,138 @@ class InstanceTypeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bios':
+            if tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bios":
                 obj.bios = BiosReader.read_one(reader)
-            elif tag == 'cdroms':
+            elif tag == "cdroms":
                 obj.cdroms = CdromReader.read_many(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console':
+            elif tag == "console":
                 obj.console = ConsoleReader.read_one(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_pinning_policy':
-                obj.cpu_pinning_policy = Reader.read_enum(types.CpuPinningPolicy, reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_pinning_policy":
+                obj.cpu_pinning_policy = Reader.read_enum(
+                    types.CpuPinningPolicy, reader
+                )
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'cpu_shares':
+            elif tag == "cpu_shares":
                 obj.cpu_shares = Reader.read_integer(reader)
-            elif tag == 'creation_time':
+            elif tag == "creation_time":
                 obj.creation_time = Reader.read_date(reader)
-            elif tag == 'custom_compatibility_version':
+            elif tag == "custom_compatibility_version":
                 obj.custom_compatibility_version = VersionReader.read_one(reader)
-            elif tag == 'custom_cpu_model':
+            elif tag == "custom_cpu_model":
                 obj.custom_cpu_model = Reader.read_string(reader)
-            elif tag == 'custom_emulated_machine':
+            elif tag == "custom_emulated_machine":
                 obj.custom_emulated_machine = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'delete_protected':
+            elif tag == "delete_protected":
                 obj.delete_protected = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk_attachments':
+            elif tag == "disk_attachments":
                 obj.disk_attachments = DiskAttachmentReader.read_many(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'graphics_consoles':
+            elif tag == "graphics_consoles":
                 obj.graphics_consoles = GraphicsConsoleReader.read_many(reader)
-            elif tag == 'high_availability':
+            elif tag == "high_availability":
                 obj.high_availability = HighAvailabilityReader.read_one(reader)
-            elif tag == 'initialization':
+            elif tag == "initialization":
                 obj.initialization = InitializationReader.read_one(reader)
-            elif tag == 'io':
+            elif tag == "io":
                 obj.io = IoReader.read_one(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'mediated_devices':
+            elif tag == "mediated_devices":
                 obj.mediated_devices = VmMediatedDeviceReader.read_many(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'migration_downtime':
+            elif tag == "migration_downtime":
                 obj.migration_downtime = Reader.read_integer(reader)
-            elif tag == 'multi_queues_enabled':
+            elif tag == "multi_queues_enabled":
                 obj.multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = NicReader.read_many(reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'placement_policy':
+            elif tag == "placement_policy":
                 obj.placement_policy = VmPlacementPolicyReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'sso':
+            elif tag == "sso":
                 obj.sso = SsoReader.read_one(reader)
-            elif tag == 'start_paused':
+            elif tag == "start_paused":
                 obj.start_paused = Reader.read_boolean(reader)
-            elif tag == 'stateless':
+            elif tag == "stateless":
                 obj.stateless = Reader.read_boolean(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.TemplateStatus, reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_error_resume_behaviour':
-                obj.storage_error_resume_behaviour = Reader.read_enum(types.VmStorageErrorResumeBehaviour, reader)
-            elif tag == 'tags':
+            elif tag == "storage_error_resume_behaviour":
+                obj.storage_error_resume_behaviour = Reader.read_enum(
+                    types.VmStorageErrorResumeBehaviour, reader
+                )
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'time_zone':
+            elif tag == "time_zone":
                 obj.time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmType, reader)
-            elif tag == 'usb':
+            elif tag == "usb":
                 obj.usb = UsbReader.read_one(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = TemplateVersionReader.read_one(reader)
-            elif tag == 'virtio_scsi':
+            elif tag == "virtio_scsi":
                 obj.virtio_scsi = VirtioScsiReader.read_one(reader)
-            elif tag == 'virtio_scsi_multi_queues':
+            elif tag == "virtio_scsi_multi_queues":
                 obj.virtio_scsi_multi_queues = Reader.read_integer(reader)
-            elif tag == 'virtio_scsi_multi_queues_enabled':
+            elif tag == "virtio_scsi_multi_queues_enabled":
                 obj.virtio_scsi_multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'watchdogs':
+            elif tag == "watchdogs":
                 obj.watchdogs = WatchdogReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -8876,7 +8855,7 @@ class InstanceTypeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8942,9 +8921,8 @@ class InstanceTypeReader(Reader):
 
 
 class IoReader(Reader):
-
     def __init__(self):
-        super(IoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -8956,7 +8934,7 @@ class IoReader(Reader):
         obj = types.Io()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -8968,7 +8946,7 @@ class IoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'threads':
+            if tag == "threads":
                 obj.threads = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -8988,7 +8966,7 @@ class IoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9007,9 +8985,8 @@ class IoReader(Reader):
 
 
 class IpReader(Reader):
-
     def __init__(self):
-        super(IpReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9021,7 +8998,7 @@ class IpReader(Reader):
         obj = types.Ip()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9033,13 +9010,13 @@ class IpReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'gateway':
+            elif tag == "gateway":
                 obj.gateway = Reader.read_string(reader)
-            elif tag == 'netmask':
+            elif tag == "netmask":
                 obj.netmask = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = Reader.read_enum(types.IpVersion, reader)
             else:
                 reader.next_element()
@@ -9059,7 +9036,7 @@ class IpReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9078,9 +9055,8 @@ class IpReader(Reader):
 
 
 class IpAddressAssignmentReader(Reader):
-
     def __init__(self):
-        super(IpAddressAssignmentReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9092,7 +9068,7 @@ class IpAddressAssignmentReader(Reader):
         obj = types.IpAddressAssignment()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9104,9 +9080,9 @@ class IpAddressAssignmentReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'assignment_method':
+            if tag == "assignment_method":
                 obj.assignment_method = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = IpReader.read_one(reader)
             else:
                 reader.next_element()
@@ -9126,7 +9102,7 @@ class IpAddressAssignmentReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9145,9 +9121,8 @@ class IpAddressAssignmentReader(Reader):
 
 
 class IscsiBondReader(Reader):
-
     def __init__(self):
-        super(IscsiBondReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9159,8 +9134,8 @@ class IscsiBondReader(Reader):
         obj = types.IscsiBond()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -9174,20 +9149,22 @@ class IscsiBondReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'networks':
+            elif tag == "networks":
                 obj.networks = NetworkReader.read_many(reader)
-            elif tag == 'storage_connections':
+            elif tag == "storage_connections":
                 obj.storage_connections = StorageConnectionReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -9207,7 +9184,7 @@ class IscsiBondReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9243,9 +9220,8 @@ class IscsiBondReader(Reader):
 
 
 class IscsiDetailsReader(Reader):
-
     def __init__(self):
-        super(IscsiDetailsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9257,7 +9233,7 @@ class IscsiDetailsReader(Reader):
         obj = types.IscsiDetails()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9269,39 +9245,39 @@ class IscsiDetailsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'disk_id':
+            elif tag == "disk_id":
                 obj.disk_id = Reader.read_string(reader)
-            elif tag == 'initiator':
+            elif tag == "initiator":
                 obj.initiator = Reader.read_string(reader)
-            elif tag == 'lun_mapping':
+            elif tag == "lun_mapping":
                 obj.lun_mapping = Reader.read_integer(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'paths':
+            elif tag == "paths":
                 obj.paths = Reader.read_integer(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'portal':
+            elif tag == "portal":
                 obj.portal = Reader.read_string(reader)
-            elif tag == 'product_id':
+            elif tag == "product_id":
                 obj.product_id = Reader.read_string(reader)
-            elif tag == 'serial':
+            elif tag == "serial":
                 obj.serial = Reader.read_string(reader)
-            elif tag == 'size':
+            elif tag == "size":
                 obj.size = Reader.read_integer(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_string(reader)
-            elif tag == 'storage_domain_id':
+            elif tag == "storage_domain_id":
                 obj.storage_domain_id = Reader.read_string(reader)
-            elif tag == 'target':
+            elif tag == "target":
                 obj.target = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'vendor_id':
+            elif tag == "vendor_id":
                 obj.vendor_id = Reader.read_string(reader)
-            elif tag == 'volume_group_id':
+            elif tag == "volume_group_id":
                 obj.volume_group_id = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -9321,7 +9297,7 @@ class IscsiDetailsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9340,9 +9316,8 @@ class IscsiDetailsReader(Reader):
 
 
 class JobReader(Reader):
-
     def __init__(self):
-        super(JobReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9354,8 +9329,8 @@ class JobReader(Reader):
         obj = types.Job()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -9369,30 +9344,32 @@ class JobReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_cleared':
+            if tag == "auto_cleared":
                 obj.auto_cleared = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'end_time':
+            elif tag == "end_time":
                 obj.end_time = Reader.read_date(reader)
-            elif tag == 'external':
+            elif tag == "external":
                 obj.external = Reader.read_boolean(reader)
-            elif tag == 'last_updated':
+            elif tag == "last_updated":
                 obj.last_updated = Reader.read_date(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'owner':
+            elif tag == "owner":
                 obj.owner = UserReader.read_one(reader)
-            elif tag == 'start_time':
+            elif tag == "start_time":
                 obj.start_time = Reader.read_date(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.JobStatus, reader)
-            elif tag == 'steps':
+            elif tag == "steps":
                 obj.steps = StepReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -9412,7 +9389,7 @@ class JobReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9434,18 +9411,16 @@ class JobReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "steps":
-                if obj.steps is not None:
-                    obj.steps.href = href
-                else:
-                    obj.steps = List(href)
+        if href and rel and rel == "steps":
+            if obj.steps is not None:
+                obj.steps.href = href
+            else:
+                obj.steps = List(href)
 
 
 class KatelloErratumReader(Reader):
-
     def __init__(self):
-        super(KatelloErratumReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9457,8 +9432,8 @@ class KatelloErratumReader(Reader):
         obj = types.KatelloErratum()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -9472,29 +9447,29 @@ class KatelloErratumReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'issued':
+            elif tag == "issued":
                 obj.issued = Reader.read_date(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'packages':
+            elif tag == "packages":
                 obj.packages = PackageReader.read_many(reader)
-            elif tag == 'severity':
+            elif tag == "severity":
                 obj.severity = Reader.read_string(reader)
-            elif tag == 'solution':
+            elif tag == "solution":
                 obj.solution = Reader.read_string(reader)
-            elif tag == 'summary':
+            elif tag == "summary":
                 obj.summary = Reader.read_string(reader)
-            elif tag == 'title':
+            elif tag == "title":
                 obj.title = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -9514,7 +9489,7 @@ class KatelloErratumReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9533,9 +9508,8 @@ class KatelloErratumReader(Reader):
 
 
 class KernelReader(Reader):
-
     def __init__(self):
-        super(KernelReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9547,7 +9521,7 @@ class KernelReader(Reader):
         obj = types.Kernel()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9559,7 +9533,7 @@ class KernelReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'version':
+            if tag == "version":
                 obj.version = VersionReader.read_one(reader)
             else:
                 reader.next_element()
@@ -9579,7 +9553,7 @@ class KernelReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9598,9 +9572,8 @@ class KernelReader(Reader):
 
 
 class KsmReader(Reader):
-
     def __init__(self):
-        super(KsmReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9612,7 +9585,7 @@ class KsmReader(Reader):
         obj = types.Ksm()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9624,9 +9597,9 @@ class KsmReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'merge_across_nodes':
+            elif tag == "merge_across_nodes":
                 obj.merge_across_nodes = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -9646,7 +9619,7 @@ class KsmReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9665,9 +9638,8 @@ class KsmReader(Reader):
 
 
 class LinkLayerDiscoveryProtocolElementReader(Reader):
-
     def __init__(self):
-        super(LinkLayerDiscoveryProtocolElementReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9679,8 +9651,8 @@ class LinkLayerDiscoveryProtocolElementReader(Reader):
         obj = types.LinkLayerDiscoveryProtocolElement()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -9694,19 +9666,19 @@ class LinkLayerDiscoveryProtocolElementReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'oui':
+            elif tag == "oui":
                 obj.oui = Reader.read_integer(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'subtype':
+            elif tag == "subtype":
                 obj.subtype = Reader.read_integer(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -9726,7 +9698,7 @@ class LinkLayerDiscoveryProtocolElementReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9745,9 +9717,8 @@ class LinkLayerDiscoveryProtocolElementReader(Reader):
 
 
 class LogicalUnitReader(Reader):
-
     def __init__(self):
-        super(LogicalUnitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9759,8 +9730,8 @@ class LogicalUnitReader(Reader):
         obj = types.LogicalUnit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -9774,43 +9745,43 @@ class LogicalUnitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active_paths':
+            if tag == "active_paths":
                 obj.active_paths = Reader.read_integer(reader)
-            elif tag == 'address':
+            elif tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'discard_max_size':
+            elif tag == "discard_max_size":
                 obj.discard_max_size = Reader.read_integer(reader)
-            elif tag == 'discard_zeroes_data':
+            elif tag == "discard_zeroes_data":
                 obj.discard_zeroes_data = Reader.read_boolean(reader)
-            elif tag == 'disk_id':
+            elif tag == "disk_id":
                 obj.disk_id = Reader.read_string(reader)
-            elif tag == 'lun_mapping':
+            elif tag == "lun_mapping":
                 obj.lun_mapping = Reader.read_integer(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'paths':
+            elif tag == "paths":
                 obj.paths = Reader.read_integer(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'portal':
+            elif tag == "portal":
                 obj.portal = Reader.read_string(reader)
-            elif tag == 'product_id':
+            elif tag == "product_id":
                 obj.product_id = Reader.read_string(reader)
-            elif tag == 'serial':
+            elif tag == "serial":
                 obj.serial = Reader.read_string(reader)
-            elif tag == 'size':
+            elif tag == "size":
                 obj.size = Reader.read_integer(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.LunStatus, reader)
-            elif tag == 'storage_domain_id':
+            elif tag == "storage_domain_id":
                 obj.storage_domain_id = Reader.read_string(reader)
-            elif tag == 'target':
+            elif tag == "target":
                 obj.target = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'vendor_id':
+            elif tag == "vendor_id":
                 obj.vendor_id = Reader.read_string(reader)
-            elif tag == 'volume_group_id':
+            elif tag == "volume_group_id":
                 obj.volume_group_id = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -9830,7 +9801,7 @@ class LogicalUnitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9849,9 +9820,8 @@ class LogicalUnitReader(Reader):
 
 
 class MDevTypeReader(Reader):
-
     def __init__(self):
-        super(MDevTypeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9863,7 +9833,7 @@ class MDevTypeReader(Reader):
         obj = types.MDevType()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9875,13 +9845,13 @@ class MDevTypeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'available_instances':
+            if tag == "available_instances":
                 obj.available_instances = Reader.read_integer(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'human_readable_name':
+            elif tag == "human_readable_name":
                 obj.human_readable_name = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -9901,7 +9871,7 @@ class MDevTypeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9920,9 +9890,8 @@ class MDevTypeReader(Reader):
 
 
 class MacReader(Reader):
-
     def __init__(self):
-        super(MacReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9934,7 +9903,7 @@ class MacReader(Reader):
         obj = types.Mac()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9946,7 +9915,7 @@ class MacReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -9966,7 +9935,7 @@ class MacReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -9985,9 +9954,8 @@ class MacReader(Reader):
 
 
 class MacPoolReader(Reader):
-
     def __init__(self):
-        super(MacPoolReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -9999,8 +9967,8 @@ class MacPoolReader(Reader):
         obj = types.MacPool()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10014,22 +9982,24 @@ class MacPoolReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'allow_duplicates':
+            if tag == "allow_duplicates":
                 obj.allow_duplicates = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'default_pool':
+            elif tag == "default_pool":
                 obj.default_pool = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'ranges':
+            elif tag == "ranges":
                 obj.ranges = RangeReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -10049,7 +10019,7 @@ class MacPoolReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10071,18 +10041,16 @@ class MacPoolReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permissions":
-                if obj.permissions is not None:
-                    obj.permissions.href = href
-                else:
-                    obj.permissions = List(href)
+        if href and rel and rel == "permissions":
+            if obj.permissions is not None:
+                obj.permissions.href = href
+            else:
+                obj.permissions = List(href)
 
 
 class MemoryOverCommitReader(Reader):
-
     def __init__(self):
-        super(MemoryOverCommitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10094,7 +10062,7 @@ class MemoryOverCommitReader(Reader):
         obj = types.MemoryOverCommit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10106,7 +10074,7 @@ class MemoryOverCommitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'percent':
+            if tag == "percent":
                 obj.percent = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -10126,7 +10094,7 @@ class MemoryOverCommitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10145,9 +10113,8 @@ class MemoryOverCommitReader(Reader):
 
 
 class MemoryPolicyReader(Reader):
-
     def __init__(self):
-        super(MemoryPolicyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10159,7 +10126,7 @@ class MemoryPolicyReader(Reader):
         obj = types.MemoryPolicy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10171,15 +10138,15 @@ class MemoryPolicyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'ballooning':
+            if tag == "ballooning":
                 obj.ballooning = Reader.read_boolean(reader)
-            elif tag == 'guaranteed':
+            elif tag == "guaranteed":
                 obj.guaranteed = Reader.read_integer(reader)
-            elif tag == 'max':
+            elif tag == "max":
                 obj.max = Reader.read_integer(reader)
-            elif tag == 'over_commit':
+            elif tag == "over_commit":
                 obj.over_commit = MemoryOverCommitReader.read_one(reader)
-            elif tag == 'transparent_hugepages':
+            elif tag == "transparent_hugepages":
                 obj.transparent_huge_pages = TransparentHugePagesReader.read_one(reader)
             else:
                 reader.next_element()
@@ -10199,7 +10166,7 @@ class MemoryPolicyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10218,9 +10185,8 @@ class MemoryPolicyReader(Reader):
 
 
 class MethodReader(Reader):
-
     def __init__(self):
-        super(MethodReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10232,8 +10198,8 @@ class MethodReader(Reader):
         obj = types.Method()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = types.SsoMethod(value.lower())
 
@@ -10259,7 +10225,7 @@ class MethodReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10278,9 +10244,8 @@ class MethodReader(Reader):
 
 
 class MigrationBandwidthReader(Reader):
-
     def __init__(self):
-        super(MigrationBandwidthReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10292,7 +10257,7 @@ class MigrationBandwidthReader(Reader):
         obj = types.MigrationBandwidth()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10304,9 +10269,11 @@ class MigrationBandwidthReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'assignment_method':
-                obj.assignment_method = Reader.read_enum(types.MigrationBandwidthAssignmentMethod, reader)
-            elif tag == 'custom_value':
+            if tag == "assignment_method":
+                obj.assignment_method = Reader.read_enum(
+                    types.MigrationBandwidthAssignmentMethod, reader
+                )
+            elif tag == "custom_value":
                 obj.custom_value = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -10326,7 +10293,7 @@ class MigrationBandwidthReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10345,9 +10312,8 @@ class MigrationBandwidthReader(Reader):
 
 
 class MigrationOptionsReader(Reader):
-
     def __init__(self):
-        super(MigrationOptionsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10359,7 +10325,7 @@ class MigrationOptionsReader(Reader):
         obj = types.MigrationOptions()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10371,19 +10337,21 @@ class MigrationOptionsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_converge':
+            if tag == "auto_converge":
                 obj.auto_converge = Reader.read_enum(types.InheritableBoolean, reader)
-            elif tag == 'bandwidth':
+            elif tag == "bandwidth":
                 obj.bandwidth = MigrationBandwidthReader.read_one(reader)
-            elif tag == 'compressed':
+            elif tag == "compressed":
                 obj.compressed = Reader.read_enum(types.InheritableBoolean, reader)
-            elif tag == 'custom_parallel_migrations':
+            elif tag == "custom_parallel_migrations":
                 obj.custom_parallel_migrations = Reader.read_integer(reader)
-            elif tag == 'encrypted':
+            elif tag == "encrypted":
                 obj.encrypted = Reader.read_enum(types.InheritableBoolean, reader)
-            elif tag == 'parallel_migrations_policy':
-                obj.parallel_migrations_policy = Reader.read_enum(types.ParallelMigrationsPolicy, reader)
-            elif tag == 'policy':
+            elif tag == "parallel_migrations_policy":
+                obj.parallel_migrations_policy = Reader.read_enum(
+                    types.ParallelMigrationsPolicy, reader
+                )
+            elif tag == "policy":
                 obj.policy = MigrationPolicyReader.read_one(reader)
             else:
                 reader.next_element()
@@ -10403,7 +10371,7 @@ class MigrationOptionsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10422,9 +10390,8 @@ class MigrationOptionsReader(Reader):
 
 
 class MigrationPolicyReader(Reader):
-
     def __init__(self):
-        super(MigrationPolicyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10436,8 +10403,8 @@ class MigrationPolicyReader(Reader):
         obj = types.MigrationPolicy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10451,11 +10418,11 @@ class MigrationPolicyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -10475,7 +10442,7 @@ class MigrationPolicyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10494,9 +10461,8 @@ class MigrationPolicyReader(Reader):
 
 
 class NetworkReader(Reader):
-
     def __init__(self):
-        super(NetworkReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10508,8 +10474,8 @@ class NetworkReader(Reader):
         obj = types.Network()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10523,54 +10489,58 @@ class NetworkReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = Reader.read_boolean(reader)
-            elif tag == 'dns_resolver_configuration':
-                obj.dns_resolver_configuration = DnsResolverConfigurationReader.read_one(reader)
-            elif tag == 'external_provider':
+            elif tag == "dns_resolver_configuration":
+                obj.dns_resolver_configuration = (
+                    DnsResolverConfigurationReader.read_one(reader)
+                )
+            elif tag == "external_provider":
                 obj.external_provider = OpenStackNetworkProviderReader.read_one(reader)
-            elif tag == 'external_provider_physical_network':
+            elif tag == "external_provider_physical_network":
                 obj.external_provider_physical_network = NetworkReader.read_one(reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = IpReader.read_one(reader)
-            elif tag == 'mtu':
+            elif tag == "mtu":
                 obj.mtu = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network_labels':
+            elif tag == "network_labels":
                 obj.network_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'port_isolation':
+            elif tag == "port_isolation":
                 obj.port_isolation = Reader.read_boolean(reader)
-            elif tag == 'profile_required':
+            elif tag == "profile_required":
                 obj.profile_required = Reader.read_boolean(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'required':
+            elif tag == "required":
                 obj.required = Reader.read_boolean(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.NetworkStatus, reader)
-            elif tag == 'stp':
+            elif tag == "stp":
                 obj.stp = Reader.read_boolean(reader)
-            elif tag == 'usages':
+            elif tag == "usages":
                 obj.usages = Reader.read_enums(types.NetworkUsage, reader)
-            elif tag == 'vdsm_name':
+            elif tag == "vdsm_name":
                 obj.vdsm_name = Reader.read_string(reader)
-            elif tag == 'vlan':
+            elif tag == "vlan":
                 obj.vlan = VlanReader.read_one(reader)
-            elif tag == 'vnic_profiles':
+            elif tag == "vnic_profiles":
                 obj.vnic_profiles = VnicProfileReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -10590,7 +10560,7 @@ class NetworkReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10631,9 +10601,8 @@ class NetworkReader(Reader):
 
 
 class NetworkAttachmentReader(Reader):
-
     def __init__(self):
-        super(NetworkAttachmentReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10645,8 +10614,8 @@ class NetworkAttachmentReader(Reader):
         obj = types.NetworkAttachment()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10660,30 +10629,34 @@ class NetworkAttachmentReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'dns_resolver_configuration':
-                obj.dns_resolver_configuration = DnsResolverConfigurationReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "dns_resolver_configuration":
+                obj.dns_resolver_configuration = (
+                    DnsResolverConfigurationReader.read_one(reader)
+                )
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'host_nic':
+            elif tag == "host_nic":
                 obj.host_nic = HostNicReader.read_one(reader)
-            elif tag == 'in_sync':
+            elif tag == "in_sync":
                 obj.in_sync = Reader.read_boolean(reader)
-            elif tag == 'ip_address_assignments':
+            elif tag == "ip_address_assignments":
                 obj.ip_address_assignments = IpAddressAssignmentReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network':
+            elif tag == "network":
                 obj.network = NetworkReader.read_one(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'reported_configurations':
-                obj.reported_configurations = ReportedConfigurationReader.read_many(reader)
+            elif tag == "reported_configurations":
+                obj.reported_configurations = ReportedConfigurationReader.read_many(
+                    reader
+                )
             else:
                 reader.next_element()
         for link in links:
@@ -10702,7 +10675,7 @@ class NetworkAttachmentReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10721,9 +10694,8 @@ class NetworkAttachmentReader(Reader):
 
 
 class NetworkConfigurationReader(Reader):
-
     def __init__(self):
-        super(NetworkConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10735,7 +10707,7 @@ class NetworkConfigurationReader(Reader):
         obj = types.NetworkConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10747,9 +10719,9 @@ class NetworkConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'dns':
+            if tag == "dns":
                 obj.dns = DnsReader.read_one(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = NicReader.read_many(reader)
             else:
                 reader.next_element()
@@ -10769,7 +10741,7 @@ class NetworkConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10788,9 +10760,8 @@ class NetworkConfigurationReader(Reader):
 
 
 class NetworkFilterReader(Reader):
-
     def __init__(self):
-        super(NetworkFilterReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10802,8 +10773,8 @@ class NetworkFilterReader(Reader):
         obj = types.NetworkFilter()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10817,13 +10788,13 @@ class NetworkFilterReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
             else:
                 reader.next_element()
@@ -10843,7 +10814,7 @@ class NetworkFilterReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10862,9 +10833,8 @@ class NetworkFilterReader(Reader):
 
 
 class NetworkFilterParameterReader(Reader):
-
     def __init__(self):
-        super(NetworkFilterParameterReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10876,8 +10846,8 @@ class NetworkFilterParameterReader(Reader):
         obj = types.NetworkFilterParameter()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10891,15 +10861,15 @@ class NetworkFilterParameterReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nic':
+            elif tag == "nic":
                 obj.nic = NicReader.read_one(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -10919,7 +10889,7 @@ class NetworkFilterParameterReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -10938,9 +10908,8 @@ class NetworkFilterParameterReader(Reader):
 
 
 class NetworkLabelReader(Reader):
-
     def __init__(self):
-        super(NetworkLabelReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -10952,8 +10921,8 @@ class NetworkLabelReader(Reader):
         obj = types.NetworkLabel()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -10967,15 +10936,15 @@ class NetworkLabelReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host_nic':
+            elif tag == "host_nic":
                 obj.host_nic = HostNicReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network':
+            elif tag == "network":
                 obj.network = NetworkReader.read_one(reader)
             else:
                 reader.next_element()
@@ -10995,7 +10964,7 @@ class NetworkLabelReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11014,9 +10983,8 @@ class NetworkLabelReader(Reader):
 
 
 class NfsProfileDetailReader(Reader):
-
     def __init__(self):
-        super(NfsProfileDetailReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11028,7 +10996,7 @@ class NfsProfileDetailReader(Reader):
         obj = types.NfsProfileDetail()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11040,9 +11008,9 @@ class NfsProfileDetailReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'nfs_server_ip':
+            if tag == "nfs_server_ip":
                 obj.nfs_server_ip = Reader.read_string(reader)
-            elif tag == 'profile_details':
+            elif tag == "profile_details":
                 obj.profile_details = ProfileDetailReader.read_many(reader)
             else:
                 reader.next_element()
@@ -11062,7 +11030,7 @@ class NfsProfileDetailReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11081,9 +11049,8 @@ class NfsProfileDetailReader(Reader):
 
 
 class NicReader(Reader):
-
     def __init__(self):
-        super(NicReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11095,8 +11062,8 @@ class NicReader(Reader):
         obj = types.Nic()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11110,54 +11077,60 @@ class NicReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'boot_protocol':
+            if tag == "boot_protocol":
                 obj.boot_protocol = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'interface':
+            elif tag == "interface":
                 obj.interface = Reader.read_enum(types.NicInterface, reader)
-            elif tag == 'linked':
+            elif tag == "linked":
                 obj.linked = Reader.read_boolean(reader)
-            elif tag == 'mac':
+            elif tag == "mac":
                 obj.mac = MacReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network':
+            elif tag == "network":
                 obj.network = NetworkReader.read_one(reader)
-            elif tag == 'network_attachments':
+            elif tag == "network_attachments":
                 obj.network_attachments = NetworkAttachmentReader.read_many(reader)
-            elif tag == 'network_filter_parameters':
-                obj.network_filter_parameters = NetworkFilterParameterReader.read_many(reader)
-            elif tag == 'network_labels':
+            elif tag == "network_filter_parameters":
+                obj.network_filter_parameters = NetworkFilterParameterReader.read_many(
+                    reader
+                )
+            elif tag == "network_labels":
                 obj.network_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'on_boot':
+            elif tag == "on_boot":
                 obj.on_boot = Reader.read_boolean(reader)
-            elif tag == 'plugged':
+            elif tag == "plugged":
                 obj.plugged = Reader.read_boolean(reader)
-            elif tag == 'reported_devices':
+            elif tag == "reported_devices":
                 obj.reported_devices = ReportedDeviceReader.read_many(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'synced':
+            elif tag == "synced":
                 obj.synced = Reader.read_boolean(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'virtual_function_allowed_labels':
-                obj.virtual_function_allowed_labels = NetworkLabelReader.read_many(reader)
-            elif tag == 'virtual_function_allowed_networks':
+            elif tag == "virtual_function_allowed_labels":
+                obj.virtual_function_allowed_labels = NetworkLabelReader.read_many(
+                    reader
+                )
+            elif tag == "virtual_function_allowed_networks":
                 obj.virtual_function_allowed_networks = NetworkReader.read_many(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'vnic_profile':
+            elif tag == "vnic_profile":
                 obj.vnic_profile = VnicProfileReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -11177,7 +11150,7 @@ class NicReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11243,9 +11216,8 @@ class NicReader(Reader):
 
 
 class NicConfigurationReader(Reader):
-
     def __init__(self):
-        super(NicConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11257,7 +11229,7 @@ class NicConfigurationReader(Reader):
         obj = types.NicConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11269,17 +11241,17 @@ class NicConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'boot_protocol':
+            if tag == "boot_protocol":
                 obj.boot_protocol = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = IpReader.read_one(reader)
-            elif tag == 'ipv6':
+            elif tag == "ipv6":
                 obj.ipv6 = IpReader.read_one(reader)
-            elif tag == 'ipv6_boot_protocol':
+            elif tag == "ipv6_boot_protocol":
                 obj.ipv6_boot_protocol = Reader.read_enum(types.BootProtocol, reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'on_boot':
+            elif tag == "on_boot":
                 obj.on_boot = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -11299,7 +11271,7 @@ class NicConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11318,9 +11290,8 @@ class NicConfigurationReader(Reader):
 
 
 class NumaNodeReader(Reader):
-
     def __init__(self):
-        super(NumaNodeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11332,8 +11303,8 @@ class NumaNodeReader(Reader):
         obj = types.NumaNode()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11347,26 +11318,28 @@ class NumaNodeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'index':
+            elif tag == "index":
                 obj.index = Reader.read_integer(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'node_distance':
+            elif tag == "node_distance":
                 obj.node_distance = Reader.read_string(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -11386,7 +11359,7 @@ class NumaNodeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11408,18 +11381,16 @@ class NumaNodeReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "statistics":
-                if obj.statistics is not None:
-                    obj.statistics.href = href
-                else:
-                    obj.statistics = List(href)
+        if href and rel and rel == "statistics":
+            if obj.statistics is not None:
+                obj.statistics.href = href
+            else:
+                obj.statistics = List(href)
 
 
 class NumaNodePinReader(Reader):
-
     def __init__(self):
-        super(NumaNodePinReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11431,7 +11402,7 @@ class NumaNodePinReader(Reader):
         obj = types.NumaNodePin()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11443,11 +11414,11 @@ class NumaNodePinReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'host_numa_node':
+            if tag == "host_numa_node":
                 obj.host_numa_node = NumaNodeReader.read_one(reader)
-            elif tag == 'index':
+            elif tag == "index":
                 obj.index = Reader.read_integer(reader)
-            elif tag == 'pinned':
+            elif tag == "pinned":
                 obj.pinned = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -11467,7 +11438,7 @@ class NumaNodePinReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11486,9 +11457,8 @@ class NumaNodePinReader(Reader):
 
 
 class OpenStackImageReader(Reader):
-
     def __init__(self):
-        super(OpenStackImageReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11500,8 +11470,8 @@ class OpenStackImageReader(Reader):
         obj = types.OpenStackImage()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11515,14 +11485,16 @@ class OpenStackImageReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_image_provider':
-                obj.openstack_image_provider = OpenStackImageProviderReader.read_one(reader)
+            elif tag == "openstack_image_provider":
+                obj.openstack_image_provider = OpenStackImageProviderReader.read_one(
+                    reader
+                )
             else:
                 reader.next_element()
         for link in links:
@@ -11541,7 +11513,7 @@ class OpenStackImageReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11560,9 +11532,8 @@ class OpenStackImageReader(Reader):
 
 
 class OpenStackImageProviderReader(Reader):
-
     def __init__(self):
-        super(OpenStackImageProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11574,8 +11545,8 @@ class OpenStackImageProviderReader(Reader):
         obj = types.OpenStackImageProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11589,32 +11560,34 @@ class OpenStackImageProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_url':
+            if tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'certificates':
+            elif tag == "certificates":
                 obj.certificates = CertificateReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'images':
+            elif tag == "images":
                 obj.images = OpenStackImageReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'tenant_name':
+            elif tag == "tenant_name":
                 obj.tenant_name = Reader.read_string(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -11634,7 +11607,7 @@ class OpenStackImageProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11670,9 +11643,8 @@ class OpenStackImageProviderReader(Reader):
 
 
 class OpenStackNetworkReader(Reader):
-
     def __init__(self):
-        super(OpenStackNetworkReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11684,8 +11656,8 @@ class OpenStackNetworkReader(Reader):
         obj = types.OpenStackNetwork()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11699,14 +11671,16 @@ class OpenStackNetworkReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_network_provider':
-                obj.openstack_network_provider = OpenStackNetworkProviderReader.read_one(reader)
+            elif tag == "openstack_network_provider":
+                obj.openstack_network_provider = (
+                    OpenStackNetworkProviderReader.read_one(reader)
+                )
             else:
                 reader.next_element()
         for link in links:
@@ -11725,7 +11699,7 @@ class OpenStackNetworkReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11744,9 +11718,8 @@ class OpenStackNetworkReader(Reader):
 
 
 class OpenStackNetworkProviderReader(Reader):
-
     def __init__(self):
-        super(OpenStackNetworkProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11758,8 +11731,8 @@ class OpenStackNetworkProviderReader(Reader):
         obj = types.OpenStackNetworkProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11773,54 +11746,56 @@ class OpenStackNetworkProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'agent_configuration':
+            if tag == "agent_configuration":
                 obj.agent_configuration = AgentConfigurationReader.read_one(reader)
-            elif tag == 'authentication_url':
+            elif tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'auto_sync':
+            elif tag == "auto_sync":
                 obj.auto_sync = Reader.read_boolean(reader)
-            elif tag == 'certificates':
+            elif tag == "certificates":
                 obj.certificates = CertificateReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'external_plugin_type':
+            elif tag == "external_plugin_type":
                 obj.external_plugin_type = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'networks':
+            elif tag == "networks":
                 obj.networks = OpenStackNetworkReader.read_many(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'plugin_type':
+            elif tag == "plugin_type":
                 obj.plugin_type = Reader.read_enum(types.NetworkPluginType, reader)
-            elif tag == 'project_domain_name':
+            elif tag == "project_domain_name":
                 obj.project_domain_name = Reader.read_string(reader)
-            elif tag == 'project_name':
+            elif tag == "project_name":
                 obj.project_name = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'read_only':
+            elif tag == "read_only":
                 obj.read_only = Reader.read_boolean(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'subnets':
+            elif tag == "subnets":
                 obj.subnets = OpenStackSubnetReader.read_many(reader)
-            elif tag == 'tenant_name':
+            elif tag == "tenant_name":
                 obj.tenant_name = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.OpenStackNetworkProviderType, reader)
-            elif tag == 'unmanaged':
+            elif tag == "unmanaged":
                 obj.unmanaged = Reader.read_boolean(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'user_domain_name':
+            elif tag == "user_domain_name":
                 obj.user_domain_name = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -11840,7 +11815,7 @@ class OpenStackNetworkProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11881,9 +11856,8 @@ class OpenStackNetworkProviderReader(Reader):
 
 
 class OpenStackProviderReader(Reader):
-
     def __init__(self):
-        super(OpenStackProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11895,8 +11869,8 @@ class OpenStackProviderReader(Reader):
         obj = types.OpenStackProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11910,25 +11884,25 @@ class OpenStackProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_url':
+            if tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'tenant_name':
+            elif tag == "tenant_name":
                 obj.tenant_name = Reader.read_string(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -11948,7 +11922,7 @@ class OpenStackProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -11967,9 +11941,8 @@ class OpenStackProviderReader(Reader):
 
 
 class OpenStackSubnetReader(Reader):
-
     def __init__(self):
-        super(OpenStackSubnetReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -11981,8 +11954,8 @@ class OpenStackSubnetReader(Reader):
         obj = types.OpenStackSubnet()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -11996,21 +11969,21 @@ class OpenStackSubnetReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cidr':
+            if tag == "cidr":
                 obj.cidr = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'dns_servers':
+            elif tag == "dns_servers":
                 obj.dns_servers = Reader.read_strings(reader)
-            elif tag == 'gateway':
+            elif tag == "gateway":
                 obj.gateway = Reader.read_string(reader)
-            elif tag == 'ip_version':
+            elif tag == "ip_version":
                 obj.ip_version = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_network':
+            elif tag == "openstack_network":
                 obj.openstack_network = OpenStackNetworkReader.read_one(reader)
             else:
                 reader.next_element()
@@ -12030,7 +12003,7 @@ class OpenStackSubnetReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12049,9 +12022,8 @@ class OpenStackSubnetReader(Reader):
 
 
 class OpenStackVolumeProviderReader(Reader):
-
     def __init__(self):
-        super(OpenStackVolumeProviderReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12063,8 +12035,8 @@ class OpenStackVolumeProviderReader(Reader):
         obj = types.OpenStackVolumeProvider()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12078,36 +12050,40 @@ class OpenStackVolumeProviderReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_keys':
-                obj.authentication_keys = OpenstackVolumeAuthenticationKeyReader.read_many(reader)
-            elif tag == 'authentication_url':
+            if tag == "authentication_keys":
+                obj.authentication_keys = (
+                    OpenstackVolumeAuthenticationKeyReader.read_many(reader)
+                )
+            elif tag == "authentication_url":
                 obj.authentication_url = Reader.read_string(reader)
-            elif tag == 'certificates':
+            elif tag == "certificates":
                 obj.certificates = CertificateReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'requires_authentication':
+            elif tag == "requires_authentication":
                 obj.requires_authentication = Reader.read_boolean(reader)
-            elif tag == 'tenant_name':
+            elif tag == "tenant_name":
                 obj.tenant_name = Reader.read_string(reader)
-            elif tag == 'url':
+            elif tag == "url":
                 obj.url = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'volume_types':
+            elif tag == "volume_types":
                 obj.volume_types = OpenStackVolumeTypeReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -12127,7 +12103,7 @@ class OpenStackVolumeProviderReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12168,9 +12144,8 @@ class OpenStackVolumeProviderReader(Reader):
 
 
 class OpenStackVolumeTypeReader(Reader):
-
     def __init__(self):
-        super(OpenStackVolumeTypeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12182,8 +12157,8 @@ class OpenStackVolumeTypeReader(Reader):
         obj = types.OpenStackVolumeType()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12197,15 +12172,17 @@ class OpenStackVolumeTypeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_volume_provider':
-                obj.openstack_volume_provider = OpenStackVolumeProviderReader.read_one(reader)
-            elif tag == 'properties':
+            elif tag == "openstack_volume_provider":
+                obj.openstack_volume_provider = OpenStackVolumeProviderReader.read_one(
+                    reader
+                )
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
             else:
                 reader.next_element()
@@ -12225,7 +12202,7 @@ class OpenStackVolumeTypeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12244,9 +12221,8 @@ class OpenStackVolumeTypeReader(Reader):
 
 
 class OpenstackVolumeAuthenticationKeyReader(Reader):
-
     def __init__(self):
-        super(OpenstackVolumeAuthenticationKeyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12258,8 +12234,8 @@ class OpenstackVolumeAuthenticationKeyReader(Reader):
         obj = types.OpenstackVolumeAuthenticationKey()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12273,21 +12249,25 @@ class OpenstackVolumeAuthenticationKeyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'creation_date':
+            elif tag == "creation_date":
                 obj.creation_date = Reader.read_date(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'openstack_volume_provider':
-                obj.openstack_volume_provider = OpenStackVolumeProviderReader.read_one(reader)
-            elif tag == 'usage_type':
-                obj.usage_type = Reader.read_enum(types.OpenstackVolumeAuthenticationKeyUsageType, reader)
-            elif tag == 'uuid':
+            elif tag == "openstack_volume_provider":
+                obj.openstack_volume_provider = OpenStackVolumeProviderReader.read_one(
+                    reader
+                )
+            elif tag == "usage_type":
+                obj.usage_type = Reader.read_enum(
+                    types.OpenstackVolumeAuthenticationKeyUsageType, reader
+                )
+            elif tag == "uuid":
                 obj.uuid = Reader.read_string(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -12307,7 +12287,7 @@ class OpenstackVolumeAuthenticationKeyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12326,9 +12306,8 @@ class OpenstackVolumeAuthenticationKeyReader(Reader):
 
 
 class OperatingSystemReader(Reader):
-
     def __init__(self):
-        super(OperatingSystemReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12340,7 +12319,7 @@ class OperatingSystemReader(Reader):
         obj = types.OperatingSystem()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12352,23 +12331,23 @@ class OperatingSystemReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'boot':
+            if tag == "boot":
                 obj.boot = BootReader.read_one(reader)
-            elif tag == 'cmdline':
+            elif tag == "cmdline":
                 obj.cmdline = Reader.read_string(reader)
-            elif tag == 'custom_kernel_cmdline':
+            elif tag == "custom_kernel_cmdline":
                 obj.custom_kernel_cmdline = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'initrd':
+            elif tag == "initrd":
                 obj.initrd = Reader.read_string(reader)
-            elif tag == 'kernel':
+            elif tag == "kernel":
                 obj.kernel = Reader.read_string(reader)
-            elif tag == 'reported_kernel_cmdline':
+            elif tag == "reported_kernel_cmdline":
                 obj.reported_kernel_cmdline = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
             else:
                 reader.next_element()
@@ -12388,7 +12367,7 @@ class OperatingSystemReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12407,9 +12386,8 @@ class OperatingSystemReader(Reader):
 
 
 class OperatingSystemInfoReader(Reader):
-
     def __init__(self):
-        super(OperatingSystemInfoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12421,8 +12399,8 @@ class OperatingSystemInfoReader(Reader):
         obj = types.OperatingSystemInfo()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12436,19 +12414,19 @@ class OperatingSystemInfoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'architecture':
+            if tag == "architecture":
                 obj.architecture = Reader.read_enum(types.Architecture, reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'tpm_support':
+            elif tag == "tpm_support":
                 obj.tpm_support = Reader.read_enum(types.TpmSupport, reader)
             else:
                 reader.next_element()
@@ -12468,7 +12446,7 @@ class OperatingSystemInfoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12487,9 +12465,8 @@ class OperatingSystemInfoReader(Reader):
 
 
 class OptionReader(Reader):
-
     def __init__(self):
-        super(OptionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12501,7 +12478,7 @@ class OptionReader(Reader):
         obj = types.Option()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12513,11 +12490,11 @@ class OptionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -12537,7 +12514,7 @@ class OptionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12556,9 +12533,8 @@ class OptionReader(Reader):
 
 
 class PackageReader(Reader):
-
     def __init__(self):
-        super(PackageReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12570,7 +12546,7 @@ class PackageReader(Reader):
         obj = types.Package()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12582,7 +12558,7 @@ class PackageReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -12602,7 +12578,7 @@ class PackageReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12621,9 +12597,8 @@ class PackageReader(Reader):
 
 
 class PayloadReader(Reader):
-
     def __init__(self):
-        super(PayloadReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12635,7 +12610,7 @@ class PayloadReader(Reader):
         obj = types.Payload()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12647,11 +12622,11 @@ class PayloadReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'files':
+            if tag == "files":
                 obj.files = FileReader.read_many(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmDeviceType, reader)
-            elif tag == 'volume_id':
+            elif tag == "volume_id":
                 obj.volume_id = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -12671,7 +12646,7 @@ class PayloadReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12690,9 +12665,8 @@ class PayloadReader(Reader):
 
 
 class PermissionReader(Reader):
-
     def __init__(self):
-        super(PermissionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12704,8 +12678,8 @@ class PermissionReader(Reader):
         obj = types.Permission()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12719,33 +12693,33 @@ class PermissionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'group':
+            elif tag == "group":
                 obj.group = GroupReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'role':
+            elif tag == "role":
                 obj.role = RoleReader.read_one(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vm_pool':
+            elif tag == "vm_pool":
                 obj.vm_pool = VmPoolReader.read_one(reader)
             else:
                 reader.next_element()
@@ -12765,7 +12739,7 @@ class PermissionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12784,9 +12758,8 @@ class PermissionReader(Reader):
 
 
 class PermitReader(Reader):
-
     def __init__(self):
-        super(PermitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12798,8 +12771,8 @@ class PermitReader(Reader):
         obj = types.Permit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -12813,15 +12786,15 @@ class PermitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'administrative':
+            if tag == "administrative":
                 obj.administrative = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'role':
+            elif tag == "role":
                 obj.role = RoleReader.read_one(reader)
             else:
                 reader.next_element()
@@ -12841,7 +12814,7 @@ class PermitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12860,9 +12833,8 @@ class PermitReader(Reader):
 
 
 class PmProxyReader(Reader):
-
     def __init__(self):
-        super(PmProxyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12874,7 +12846,7 @@ class PmProxyReader(Reader):
         obj = types.PmProxy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12886,7 +12858,7 @@ class PmProxyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'type':
+            if tag == "type":
                 obj.type = Reader.read_enum(types.PmProxyType, reader)
             else:
                 reader.next_element()
@@ -12906,7 +12878,7 @@ class PmProxyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12925,9 +12897,8 @@ class PmProxyReader(Reader):
 
 
 class PortMirroringReader(Reader):
-
     def __init__(self):
-        super(PortMirroringReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12939,7 +12910,7 @@ class PortMirroringReader(Reader):
         obj = types.PortMirroring()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12963,7 +12934,7 @@ class PortMirroringReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -12982,9 +12953,8 @@ class PortMirroringReader(Reader):
 
 
 class PowerManagementReader(Reader):
-
     def __init__(self):
-        super(PowerManagementReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -12996,7 +12966,7 @@ class PowerManagementReader(Reader):
         obj = types.PowerManagement()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13008,27 +12978,27 @@ class PowerManagementReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'agents':
+            elif tag == "agents":
                 obj.agents = AgentReader.read_many(reader)
-            elif tag == 'automatic_pm_enabled':
+            elif tag == "automatic_pm_enabled":
                 obj.automatic_pm_enabled = Reader.read_boolean(reader)
-            elif tag == 'enabled':
+            elif tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'kdump_detection':
+            elif tag == "kdump_detection":
                 obj.kdump_detection = Reader.read_boolean(reader)
-            elif tag == 'options':
+            elif tag == "options":
                 obj.options = OptionReader.read_many(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'pm_proxies':
+            elif tag == "pm_proxies":
                 obj.pm_proxies = PmProxyReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.PowerManagementStatus, reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -13048,7 +13018,7 @@ class PowerManagementReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13067,9 +13037,8 @@ class PowerManagementReader(Reader):
 
 
 class ProductReader(Reader):
-
     def __init__(self):
-        super(ProductReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13081,8 +13050,8 @@ class ProductReader(Reader):
         obj = types.Product()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -13096,11 +13065,11 @@ class ProductReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -13120,7 +13089,7 @@ class ProductReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13139,9 +13108,8 @@ class ProductReader(Reader):
 
 
 class ProductInfoReader(Reader):
-
     def __init__(self):
-        super(ProductInfoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13153,7 +13121,7 @@ class ProductInfoReader(Reader):
         obj = types.ProductInfo()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13165,13 +13133,13 @@ class ProductInfoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'instance_id':
+            if tag == "instance_id":
                 obj.instance_id = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'vendor':
+            elif tag == "vendor":
                 obj.vendor = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = VersionReader.read_one(reader)
             else:
                 reader.next_element()
@@ -13191,7 +13159,7 @@ class ProductInfoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13210,9 +13178,8 @@ class ProductInfoReader(Reader):
 
 
 class ProfileDetailReader(Reader):
-
     def __init__(self):
-        super(ProfileDetailReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13224,7 +13191,7 @@ class ProfileDetailReader(Reader):
         obj = types.ProfileDetail()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13236,15 +13203,15 @@ class ProfileDetailReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'block_statistics':
+            if tag == "block_statistics":
                 obj.block_statistics = BlockStatisticReader.read_many(reader)
-            elif tag == 'duration':
+            elif tag == "duration":
                 obj.duration = Reader.read_integer(reader)
-            elif tag == 'fop_statistics':
+            elif tag == "fop_statistics":
                 obj.fop_statistics = FopStatisticReader.read_many(reader)
-            elif tag == 'profile_type':
+            elif tag == "profile_type":
                 obj.profile_type = Reader.read_string(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
             else:
                 reader.next_element()
@@ -13264,7 +13231,7 @@ class ProfileDetailReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13283,9 +13250,8 @@ class ProfileDetailReader(Reader):
 
 
 class PropertyReader(Reader):
-
     def __init__(self):
-        super(PropertyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13297,7 +13263,7 @@ class PropertyReader(Reader):
         obj = types.Property()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13309,9 +13275,9 @@ class PropertyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -13331,7 +13297,7 @@ class PropertyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13350,9 +13316,8 @@ class PropertyReader(Reader):
 
 
 class ProxyTicketReader(Reader):
-
     def __init__(self):
-        super(ProxyTicketReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13364,7 +13329,7 @@ class ProxyTicketReader(Reader):
         obj = types.ProxyTicket()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13376,7 +13341,7 @@ class ProxyTicketReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'value':
+            if tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -13396,7 +13361,7 @@ class ProxyTicketReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13415,9 +13380,8 @@ class ProxyTicketReader(Reader):
 
 
 class QosReader(Reader):
-
     def __init__(self):
-        super(QosReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13429,8 +13393,8 @@ class QosReader(Reader):
         obj = types.Qos()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -13444,47 +13408,47 @@ class QosReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu_limit':
+            elif tag == "cpu_limit":
                 obj.cpu_limit = Reader.read_integer(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'inbound_average':
+            elif tag == "inbound_average":
                 obj.inbound_average = Reader.read_integer(reader)
-            elif tag == 'inbound_burst':
+            elif tag == "inbound_burst":
                 obj.inbound_burst = Reader.read_integer(reader)
-            elif tag == 'inbound_peak':
+            elif tag == "inbound_peak":
                 obj.inbound_peak = Reader.read_integer(reader)
-            elif tag == 'max_iops':
+            elif tag == "max_iops":
                 obj.max_iops = Reader.read_integer(reader)
-            elif tag == 'max_read_iops':
+            elif tag == "max_read_iops":
                 obj.max_read_iops = Reader.read_integer(reader)
-            elif tag == 'max_read_throughput':
+            elif tag == "max_read_throughput":
                 obj.max_read_throughput = Reader.read_integer(reader)
-            elif tag == 'max_throughput':
+            elif tag == "max_throughput":
                 obj.max_throughput = Reader.read_integer(reader)
-            elif tag == 'max_write_iops':
+            elif tag == "max_write_iops":
                 obj.max_write_iops = Reader.read_integer(reader)
-            elif tag == 'max_write_throughput':
+            elif tag == "max_write_throughput":
                 obj.max_write_throughput = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'outbound_average':
+            elif tag == "outbound_average":
                 obj.outbound_average = Reader.read_integer(reader)
-            elif tag == 'outbound_average_linkshare':
+            elif tag == "outbound_average_linkshare":
                 obj.outbound_average_linkshare = Reader.read_integer(reader)
-            elif tag == 'outbound_average_realtime':
+            elif tag == "outbound_average_realtime":
                 obj.outbound_average_realtime = Reader.read_integer(reader)
-            elif tag == 'outbound_average_upperlimit':
+            elif tag == "outbound_average_upperlimit":
                 obj.outbound_average_upperlimit = Reader.read_integer(reader)
-            elif tag == 'outbound_burst':
+            elif tag == "outbound_burst":
                 obj.outbound_burst = Reader.read_integer(reader)
-            elif tag == 'outbound_peak':
+            elif tag == "outbound_peak":
                 obj.outbound_peak = Reader.read_integer(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.QosType, reader)
             else:
                 reader.next_element()
@@ -13504,7 +13468,7 @@ class QosReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13523,9 +13487,8 @@ class QosReader(Reader):
 
 
 class QuotaReader(Reader):
-
     def __init__(self):
-        super(QuotaReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13537,8 +13500,8 @@ class QuotaReader(Reader):
         obj = types.Quota()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -13552,36 +13515,38 @@ class QuotaReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster_hard_limit_pct':
+            if tag == "cluster_hard_limit_pct":
                 obj.cluster_hard_limit_pct = Reader.read_integer(reader)
-            elif tag == 'cluster_soft_limit_pct':
+            elif tag == "cluster_soft_limit_pct":
                 obj.cluster_soft_limit_pct = Reader.read_integer(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'quota_cluster_limits':
+            elif tag == "quota_cluster_limits":
                 obj.quota_cluster_limits = QuotaClusterLimitReader.read_many(reader)
-            elif tag == 'quota_storage_limits':
+            elif tag == "quota_storage_limits":
                 obj.quota_storage_limits = QuotaStorageLimitReader.read_many(reader)
-            elif tag == 'storage_hard_limit_pct':
+            elif tag == "storage_hard_limit_pct":
                 obj.storage_hard_limit_pct = Reader.read_integer(reader)
-            elif tag == 'storage_soft_limit_pct':
+            elif tag == "storage_soft_limit_pct":
                 obj.storage_soft_limit_pct = Reader.read_integer(reader)
-            elif tag == 'users':
+            elif tag == "users":
                 obj.users = UserReader.read_many(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -13601,7 +13566,7 @@ class QuotaReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13642,9 +13607,8 @@ class QuotaReader(Reader):
 
 
 class QuotaClusterLimitReader(Reader):
-
     def __init__(self):
-        super(QuotaClusterLimitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13656,8 +13620,8 @@ class QuotaClusterLimitReader(Reader):
         obj = types.QuotaClusterLimit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -13671,23 +13635,23 @@ class QuotaClusterLimitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cluster':
+            if tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'memory_limit':
+            elif tag == "memory_limit":
                 obj.memory_limit = Reader.read_decimal(reader)
-            elif tag == 'memory_usage':
+            elif tag == "memory_usage":
                 obj.memory_usage = Reader.read_decimal(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'vcpu_limit':
+            elif tag == "vcpu_limit":
                 obj.vcpu_limit = Reader.read_integer(reader)
-            elif tag == 'vcpu_usage':
+            elif tag == "vcpu_usage":
                 obj.vcpu_usage = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -13707,7 +13671,7 @@ class QuotaClusterLimitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13726,9 +13690,8 @@ class QuotaClusterLimitReader(Reader):
 
 
 class QuotaStorageLimitReader(Reader):
-
     def __init__(self):
-        super(QuotaStorageLimitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13740,8 +13703,8 @@ class QuotaStorageLimitReader(Reader):
         obj = types.QuotaStorageLimit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -13755,19 +13718,19 @@ class QuotaStorageLimitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'limit':
+            elif tag == "limit":
                 obj.limit = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'usage':
+            elif tag == "usage":
                 obj.usage = Reader.read_decimal(reader)
             else:
                 reader.next_element()
@@ -13787,7 +13750,7 @@ class QuotaStorageLimitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13806,9 +13769,8 @@ class QuotaStorageLimitReader(Reader):
 
 
 class RangeReader(Reader):
-
     def __init__(self):
-        super(RangeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13820,7 +13782,7 @@ class RangeReader(Reader):
         obj = types.Range()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13832,9 +13794,9 @@ class RangeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = Reader.read_string(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -13854,7 +13816,7 @@ class RangeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13873,9 +13835,8 @@ class RangeReader(Reader):
 
 
 class RateReader(Reader):
-
     def __init__(self):
-        super(RateReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13887,7 +13848,7 @@ class RateReader(Reader):
         obj = types.Rate()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13899,9 +13860,9 @@ class RateReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'bytes':
+            if tag == "bytes":
                 obj.bytes = Reader.read_integer(reader)
-            elif tag == 'period':
+            elif tag == "period":
                 obj.period = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -13921,7 +13882,7 @@ class RateReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13940,9 +13901,8 @@ class RateReader(Reader):
 
 
 class RegistrationAffinityGroupMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationAffinityGroupMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -13954,7 +13914,7 @@ class RegistrationAffinityGroupMappingReader(Reader):
         obj = types.RegistrationAffinityGroupMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -13966,9 +13926,9 @@ class RegistrationAffinityGroupMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = AffinityGroupReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = AffinityGroupReader.read_one(reader)
             else:
                 reader.next_element()
@@ -13988,7 +13948,7 @@ class RegistrationAffinityGroupMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14007,9 +13967,8 @@ class RegistrationAffinityGroupMappingReader(Reader):
 
 
 class RegistrationAffinityLabelMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationAffinityLabelMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14021,7 +13980,7 @@ class RegistrationAffinityLabelMappingReader(Reader):
         obj = types.RegistrationAffinityLabelMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14033,9 +13992,9 @@ class RegistrationAffinityLabelMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = AffinityLabelReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = AffinityLabelReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14055,7 +14014,7 @@ class RegistrationAffinityLabelMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14074,9 +14033,8 @@ class RegistrationAffinityLabelMappingReader(Reader):
 
 
 class RegistrationClusterMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationClusterMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14088,7 +14046,7 @@ class RegistrationClusterMappingReader(Reader):
         obj = types.RegistrationClusterMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14100,9 +14058,9 @@ class RegistrationClusterMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = ClusterReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = ClusterReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14122,7 +14080,7 @@ class RegistrationClusterMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14141,9 +14099,8 @@ class RegistrationClusterMappingReader(Reader):
 
 
 class RegistrationConfigurationReader(Reader):
-
     def __init__(self):
-        super(RegistrationConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14155,7 +14112,7 @@ class RegistrationConfigurationReader(Reader):
         obj = types.RegistrationConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14167,20 +14124,28 @@ class RegistrationConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'affinity_group_mappings':
-                obj.affinity_group_mappings = RegistrationAffinityGroupMappingReader.read_many(reader)
-            elif tag == 'affinity_label_mappings':
-                obj.affinity_label_mappings = RegistrationAffinityLabelMappingReader.read_many(reader)
-            elif tag == 'cluster_mappings':
-                obj.cluster_mappings = RegistrationClusterMappingReader.read_many(reader)
-            elif tag == 'domain_mappings':
+            if tag == "affinity_group_mappings":
+                obj.affinity_group_mappings = (
+                    RegistrationAffinityGroupMappingReader.read_many(reader)
+                )
+            elif tag == "affinity_label_mappings":
+                obj.affinity_label_mappings = (
+                    RegistrationAffinityLabelMappingReader.read_many(reader)
+                )
+            elif tag == "cluster_mappings":
+                obj.cluster_mappings = RegistrationClusterMappingReader.read_many(
+                    reader
+                )
+            elif tag == "domain_mappings":
                 obj.domain_mappings = RegistrationDomainMappingReader.read_many(reader)
-            elif tag == 'lun_mappings':
+            elif tag == "lun_mappings":
                 obj.lun_mappings = RegistrationLunMappingReader.read_many(reader)
-            elif tag == 'role_mappings':
+            elif tag == "role_mappings":
                 obj.role_mappings = RegistrationRoleMappingReader.read_many(reader)
-            elif tag == 'vnic_profile_mappings':
-                obj.vnic_profile_mappings = RegistrationVnicProfileMappingReader.read_many(reader)
+            elif tag == "vnic_profile_mappings":
+                obj.vnic_profile_mappings = (
+                    RegistrationVnicProfileMappingReader.read_many(reader)
+                )
             else:
                 reader.next_element()
         for link in links:
@@ -14199,7 +14164,7 @@ class RegistrationConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14218,9 +14183,8 @@ class RegistrationConfigurationReader(Reader):
 
 
 class RegistrationDomainMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationDomainMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14232,7 +14196,7 @@ class RegistrationDomainMappingReader(Reader):
         obj = types.RegistrationDomainMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14244,9 +14208,9 @@ class RegistrationDomainMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = DomainReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = DomainReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14266,7 +14230,7 @@ class RegistrationDomainMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14285,9 +14249,8 @@ class RegistrationDomainMappingReader(Reader):
 
 
 class RegistrationLunMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationLunMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14299,7 +14262,7 @@ class RegistrationLunMappingReader(Reader):
         obj = types.RegistrationLunMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14311,9 +14274,9 @@ class RegistrationLunMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = DiskReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = DiskReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14333,7 +14296,7 @@ class RegistrationLunMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14352,9 +14315,8 @@ class RegistrationLunMappingReader(Reader):
 
 
 class RegistrationRoleMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationRoleMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14366,7 +14328,7 @@ class RegistrationRoleMappingReader(Reader):
         obj = types.RegistrationRoleMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14378,9 +14340,9 @@ class RegistrationRoleMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = RoleReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = RoleReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14400,7 +14362,7 @@ class RegistrationRoleMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14419,9 +14381,8 @@ class RegistrationRoleMappingReader(Reader):
 
 
 class RegistrationVnicProfileMappingReader(Reader):
-
     def __init__(self):
-        super(RegistrationVnicProfileMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14433,7 +14394,7 @@ class RegistrationVnicProfileMappingReader(Reader):
         obj = types.RegistrationVnicProfileMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14445,9 +14406,9 @@ class RegistrationVnicProfileMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'from':
+            if tag == "from":
                 obj.from_ = VnicProfileReader.read_one(reader)
-            elif tag == 'to':
+            elif tag == "to":
                 obj.to = VnicProfileReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14467,7 +14428,7 @@ class RegistrationVnicProfileMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14486,9 +14447,8 @@ class RegistrationVnicProfileMappingReader(Reader):
 
 
 class ReportedConfigurationReader(Reader):
-
     def __init__(self):
-        super(ReportedConfigurationReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14500,7 +14460,7 @@ class ReportedConfigurationReader(Reader):
         obj = types.ReportedConfiguration()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14512,13 +14472,13 @@ class ReportedConfigurationReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'actual_value':
+            if tag == "actual_value":
                 obj.actual_value = Reader.read_string(reader)
-            elif tag == 'expected_value':
+            elif tag == "expected_value":
                 obj.expected_value = Reader.read_string(reader)
-            elif tag == 'in_sync':
+            elif tag == "in_sync":
                 obj.in_sync = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -14538,7 +14498,7 @@ class ReportedConfigurationReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14557,9 +14517,8 @@ class ReportedConfigurationReader(Reader):
 
 
 class ReportedDeviceReader(Reader):
-
     def __init__(self):
-        super(ReportedDeviceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14571,8 +14530,8 @@ class ReportedDeviceReader(Reader):
         obj = types.ReportedDevice()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -14586,19 +14545,19 @@ class ReportedDeviceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'ips':
+            elif tag == "ips":
                 obj.ips = IpReader.read_many(reader)
-            elif tag == 'mac':
+            elif tag == "mac":
                 obj.mac = MacReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.ReportedDeviceType, reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -14618,7 +14577,7 @@ class ReportedDeviceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14637,9 +14596,8 @@ class ReportedDeviceReader(Reader):
 
 
 class RngDeviceReader(Reader):
-
     def __init__(self):
-        super(RngDeviceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14651,7 +14609,7 @@ class RngDeviceReader(Reader):
         obj = types.RngDevice()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14663,9 +14621,9 @@ class RngDeviceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'rate':
+            if tag == "rate":
                 obj.rate = RateReader.read_one(reader)
-            elif tag == 'source':
+            elif tag == "source":
                 obj.source = Reader.read_enum(types.RngSource, reader)
             else:
                 reader.next_element()
@@ -14685,7 +14643,7 @@ class RngDeviceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14704,9 +14662,8 @@ class RngDeviceReader(Reader):
 
 
 class RoleReader(Reader):
-
     def __init__(self):
-        super(RoleReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14718,8 +14675,8 @@ class RoleReader(Reader):
         obj = types.Role()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -14733,22 +14690,24 @@ class RoleReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'administrative':
+            if tag == "administrative":
                 obj.administrative = Reader.read_boolean(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'mutable':
+            elif tag == "mutable":
                 obj.mutable = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permits':
+            elif tag == "permits":
                 obj.permits = PermitReader.read_many(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -14768,7 +14727,7 @@ class RoleReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14790,18 +14749,16 @@ class RoleReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permits":
-                if obj.permits is not None:
-                    obj.permits.href = href
-                else:
-                    obj.permits = List(href)
+        if href and rel and rel == "permits":
+            if obj.permits is not None:
+                obj.permits.href = href
+            else:
+                obj.permits = List(href)
 
 
 class SchedulingPolicyReader(Reader):
-
     def __init__(self):
-        super(SchedulingPolicyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14813,8 +14770,8 @@ class SchedulingPolicyReader(Reader):
         obj = types.SchedulingPolicy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -14828,26 +14785,28 @@ class SchedulingPolicyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'balances':
+            if tag == "balances":
                 obj.balances = BalanceReader.read_many(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'default_policy':
+            elif tag == "default_policy":
                 obj.default_policy = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'filters':
+            elif tag == "filters":
                 obj.filters = FilterReader.read_many(reader)
-            elif tag == 'locked':
+            elif tag == "locked":
                 obj.locked = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'weight':
+            elif tag == "weight":
                 obj.weight = WeightReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -14867,7 +14826,7 @@ class SchedulingPolicyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14908,9 +14867,8 @@ class SchedulingPolicyReader(Reader):
 
 
 class SchedulingPolicyUnitReader(Reader):
-
     def __init__(self):
-        super(SchedulingPolicyUnitReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -14922,8 +14880,8 @@ class SchedulingPolicyUnitReader(Reader):
         obj = types.SchedulingPolicyUnit()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -14937,19 +14895,19 @@ class SchedulingPolicyUnitReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'enabled':
+            elif tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'internal':
+            elif tag == "internal":
                 obj.internal = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'properties':
+            elif tag == "properties":
                 obj.properties = PropertyReader.read_many(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.PolicyUnitType, reader)
             else:
                 reader.next_element()
@@ -14969,7 +14927,7 @@ class SchedulingPolicyUnitReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -14988,9 +14946,8 @@ class SchedulingPolicyUnitReader(Reader):
 
 
 class SeLinuxReader(Reader):
-
     def __init__(self):
-        super(SeLinuxReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15002,7 +14959,7 @@ class SeLinuxReader(Reader):
         obj = types.SeLinux()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15014,7 +14971,7 @@ class SeLinuxReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'mode':
+            if tag == "mode":
                 obj.mode = Reader.read_enum(types.SeLinuxMode, reader)
             else:
                 reader.next_element()
@@ -15034,7 +14991,7 @@ class SeLinuxReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15053,9 +15010,8 @@ class SeLinuxReader(Reader):
 
 
 class SerialNumberReader(Reader):
-
     def __init__(self):
-        super(SerialNumberReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15067,7 +15023,7 @@ class SerialNumberReader(Reader):
         obj = types.SerialNumber()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15079,9 +15035,9 @@ class SerialNumberReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'policy':
+            if tag == "policy":
                 obj.policy = Reader.read_enum(types.SerialNumberPolicy, reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -15101,7 +15057,7 @@ class SerialNumberReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15120,9 +15076,8 @@ class SerialNumberReader(Reader):
 
 
 class SessionReader(Reader):
-
     def __init__(self):
-        super(SessionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15134,8 +15089,8 @@ class SessionReader(Reader):
         obj = types.Session()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -15149,21 +15104,21 @@ class SessionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console_user':
+            elif tag == "console_user":
                 obj.console_user = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'ip':
+            elif tag == "ip":
                 obj.ip = IpReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'protocol':
+            elif tag == "protocol":
                 obj.protocol = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -15183,7 +15138,7 @@ class SessionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15202,9 +15157,8 @@ class SessionReader(Reader):
 
 
 class SkipIfConnectivityBrokenReader(Reader):
-
     def __init__(self):
-        super(SkipIfConnectivityBrokenReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15216,7 +15170,7 @@ class SkipIfConnectivityBrokenReader(Reader):
         obj = types.SkipIfConnectivityBroken()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15228,9 +15182,9 @@ class SkipIfConnectivityBrokenReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'threshold':
+            elif tag == "threshold":
                 obj.threshold = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -15250,7 +15204,7 @@ class SkipIfConnectivityBrokenReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15269,9 +15223,8 @@ class SkipIfConnectivityBrokenReader(Reader):
 
 
 class SkipIfSdActiveReader(Reader):
-
     def __init__(self):
-        super(SkipIfSdActiveReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15283,7 +15236,7 @@ class SkipIfSdActiveReader(Reader):
         obj = types.SkipIfSdActive()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15295,7 +15248,7 @@ class SkipIfSdActiveReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -15315,7 +15268,7 @@ class SkipIfSdActiveReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15334,9 +15287,8 @@ class SkipIfSdActiveReader(Reader):
 
 
 class SnapshotReader(Reader):
-
     def __init__(self):
-        super(SnapshotReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15348,8 +15300,8 @@ class SnapshotReader(Reader):
         obj = types.Snapshot()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -15363,198 +15315,206 @@ class SnapshotReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'affinity_labels':
+            if tag == "affinity_labels":
                 obj.affinity_labels = AffinityLabelReader.read_many(reader)
-            elif tag == 'applications':
+            elif tag == "applications":
                 obj.applications = ApplicationReader.read_many(reader)
-            elif tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bios':
+            elif tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bios":
                 obj.bios = BiosReader.read_one(reader)
-            elif tag == 'cdroms':
+            elif tag == "cdroms":
                 obj.cdroms = CdromReader.read_many(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console':
+            elif tag == "console":
                 obj.console = ConsoleReader.read_one(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_pinning_policy':
-                obj.cpu_pinning_policy = Reader.read_enum(types.CpuPinningPolicy, reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_pinning_policy":
+                obj.cpu_pinning_policy = Reader.read_enum(
+                    types.CpuPinningPolicy, reader
+                )
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'cpu_shares':
+            elif tag == "cpu_shares":
                 obj.cpu_shares = Reader.read_integer(reader)
-            elif tag == 'creation_time':
+            elif tag == "creation_time":
                 obj.creation_time = Reader.read_date(reader)
-            elif tag == 'custom_compatibility_version':
+            elif tag == "custom_compatibility_version":
                 obj.custom_compatibility_version = VersionReader.read_one(reader)
-            elif tag == 'custom_cpu_model':
+            elif tag == "custom_cpu_model":
                 obj.custom_cpu_model = Reader.read_string(reader)
-            elif tag == 'custom_emulated_machine':
+            elif tag == "custom_emulated_machine":
                 obj.custom_emulated_machine = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'date':
+            elif tag == "date":
                 obj.date = Reader.read_date(reader)
-            elif tag == 'delete_protected':
+            elif tag == "delete_protected":
                 obj.delete_protected = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk_attachments':
+            elif tag == "disk_attachments":
                 obj.disk_attachments = DiskAttachmentReader.read_many(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'dynamic_cpu':
+            elif tag == "dynamic_cpu":
                 obj.dynamic_cpu = DynamicCpuReader.read_one(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'floppies':
+            elif tag == "floppies":
                 obj.floppies = FloppyReader.read_many(reader)
-            elif tag == 'fqdn':
+            elif tag == "fqdn":
                 obj.fqdn = Reader.read_string(reader)
-            elif tag == 'graphics_consoles':
+            elif tag == "graphics_consoles":
                 obj.graphics_consoles = GraphicsConsoleReader.read_many(reader)
-            elif tag == 'guest_operating_system':
+            elif tag == "guest_operating_system":
                 obj.guest_operating_system = GuestOperatingSystemReader.read_one(reader)
-            elif tag == 'guest_time_zone':
+            elif tag == "guest_time_zone":
                 obj.guest_time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'has_illegal_images':
+            elif tag == "has_illegal_images":
                 obj.has_illegal_images = Reader.read_boolean(reader)
-            elif tag == 'high_availability':
+            elif tag == "high_availability":
                 obj.high_availability = HighAvailabilityReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'host_devices':
+            elif tag == "host_devices":
                 obj.host_devices = HostDeviceReader.read_many(reader)
-            elif tag == 'initialization':
+            elif tag == "initialization":
                 obj.initialization = InitializationReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'io':
+            elif tag == "io":
                 obj.io = IoReader.read_one(reader)
-            elif tag == 'katello_errata':
+            elif tag == "katello_errata":
                 obj.katello_errata = KatelloErratumReader.read_many(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'mediated_devices':
+            elif tag == "mediated_devices":
                 obj.mediated_devices = VmMediatedDeviceReader.read_many(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'migration_downtime':
+            elif tag == "migration_downtime":
                 obj.migration_downtime = Reader.read_integer(reader)
-            elif tag == 'multi_queues_enabled':
+            elif tag == "multi_queues_enabled":
                 obj.multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'next_run_configuration_exists':
+            elif tag == "next_run_configuration_exists":
                 obj.next_run_configuration_exists = Reader.read_boolean(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = NicReader.read_many(reader)
-            elif tag == 'host_numa_nodes':
+            elif tag == "host_numa_nodes":
                 obj.numa_nodes = NumaNodeReader.read_many(reader)
-            elif tag == 'numa_tune_mode':
+            elif tag == "numa_tune_mode":
                 obj.numa_tune_mode = Reader.read_enum(types.NumaTuneMode, reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'original_template':
+            elif tag == "original_template":
                 obj.original_template = TemplateReader.read_one(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'payloads':
+            elif tag == "payloads":
                 obj.payloads = PayloadReader.read_many(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'persist_memorystate':
+            elif tag == "persist_memorystate":
                 obj.persist_memorystate = Reader.read_boolean(reader)
-            elif tag == 'placement_policy':
+            elif tag == "placement_policy":
                 obj.placement_policy = VmPlacementPolicyReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'reported_devices':
+            elif tag == "reported_devices":
                 obj.reported_devices = ReportedDeviceReader.read_many(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'run_once':
+            elif tag == "run_once":
                 obj.run_once = Reader.read_boolean(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'sessions':
+            elif tag == "sessions":
                 obj.sessions = SessionReader.read_many(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'snapshot_status':
+            elif tag == "snapshot_status":
                 obj.snapshot_status = Reader.read_enum(types.SnapshotStatus, reader)
-            elif tag == 'snapshot_type':
+            elif tag == "snapshot_type":
                 obj.snapshot_type = Reader.read_enum(types.SnapshotType, reader)
-            elif tag == 'snapshots':
+            elif tag == "snapshots":
                 obj.snapshots = SnapshotReader.read_many(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'sso':
+            elif tag == "sso":
                 obj.sso = SsoReader.read_one(reader)
-            elif tag == 'start_paused':
+            elif tag == "start_paused":
                 obj.start_paused = Reader.read_boolean(reader)
-            elif tag == 'start_time':
+            elif tag == "start_time":
                 obj.start_time = Reader.read_date(reader)
-            elif tag == 'stateless':
+            elif tag == "stateless":
                 obj.stateless = Reader.read_boolean(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.VmStatus, reader)
-            elif tag == 'status_detail':
+            elif tag == "status_detail":
                 obj.status_detail = Reader.read_string(reader)
-            elif tag == 'stop_reason':
+            elif tag == "stop_reason":
                 obj.stop_reason = Reader.read_string(reader)
-            elif tag == 'stop_time':
+            elif tag == "stop_time":
                 obj.stop_time = Reader.read_date(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_error_resume_behaviour':
-                obj.storage_error_resume_behaviour = Reader.read_enum(types.VmStorageErrorResumeBehaviour, reader)
-            elif tag == 'tags':
+            elif tag == "storage_error_resume_behaviour":
+                obj.storage_error_resume_behaviour = Reader.read_enum(
+                    types.VmStorageErrorResumeBehaviour, reader
+                )
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'time_zone':
+            elif tag == "time_zone":
                 obj.time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmType, reader)
-            elif tag == 'usb':
+            elif tag == "usb":
                 obj.usb = UsbReader.read_one(reader)
-            elif tag == 'use_latest_template_version':
+            elif tag == "use_latest_template_version":
                 obj.use_latest_template_version = Reader.read_boolean(reader)
-            elif tag == 'virtio_scsi':
+            elif tag == "virtio_scsi":
                 obj.virtio_scsi = VirtioScsiReader.read_one(reader)
-            elif tag == 'virtio_scsi_multi_queues':
+            elif tag == "virtio_scsi_multi_queues":
                 obj.virtio_scsi_multi_queues = Reader.read_integer(reader)
-            elif tag == 'virtio_scsi_multi_queues_enabled':
+            elif tag == "virtio_scsi_multi_queues_enabled":
                 obj.virtio_scsi_multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vm_pool':
+            elif tag == "vm_pool":
                 obj.vm_pool = VmPoolReader.read_one(reader)
-            elif tag == 'watchdogs':
+            elif tag == "watchdogs":
                 obj.watchdogs = WatchdogReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -15574,7 +15534,7 @@ class SnapshotReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15695,9 +15655,8 @@ class SnapshotReader(Reader):
 
 
 class SpecialObjectsReader(Reader):
-
     def __init__(self):
-        super(SpecialObjectsReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15709,7 +15668,7 @@ class SpecialObjectsReader(Reader):
         obj = types.SpecialObjects()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15721,9 +15680,9 @@ class SpecialObjectsReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'blank_template':
+            if tag == "blank_template":
                 obj.blank_template = TemplateReader.read_one(reader)
-            elif tag == 'root_tag':
+            elif tag == "root_tag":
                 obj.root_tag = TagReader.read_one(reader)
             else:
                 reader.next_element()
@@ -15743,7 +15702,7 @@ class SpecialObjectsReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15762,9 +15721,8 @@ class SpecialObjectsReader(Reader):
 
 
 class SpmReader(Reader):
-
     def __init__(self):
-        super(SpmReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15776,7 +15734,7 @@ class SpmReader(Reader):
         obj = types.Spm()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15788,9 +15746,9 @@ class SpmReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'priority':
+            if tag == "priority":
                 obj.priority = Reader.read_integer(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.SpmStatus, reader)
             else:
                 reader.next_element()
@@ -15810,7 +15768,7 @@ class SpmReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15829,9 +15787,8 @@ class SpmReader(Reader):
 
 
 class SshReader(Reader):
-
     def __init__(self):
-        super(SshReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15843,8 +15800,8 @@ class SshReader(Reader):
         obj = types.Ssh()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -15858,21 +15815,23 @@ class SshReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'authentication_method':
-                obj.authentication_method = Reader.read_enum(types.SshAuthenticationMethod, reader)
-            elif tag == 'comment':
+            if tag == "authentication_method":
+                obj.authentication_method = Reader.read_enum(
+                    types.SshAuthenticationMethod, reader
+                )
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'fingerprint':
+            elif tag == "fingerprint":
                 obj.fingerprint = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'public_key':
+            elif tag == "public_key":
                 obj.public_key = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
             else:
                 reader.next_element()
@@ -15892,7 +15851,7 @@ class SshReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15911,9 +15870,8 @@ class SshReader(Reader):
 
 
 class SshPublicKeyReader(Reader):
-
     def __init__(self):
-        super(SshPublicKeyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -15925,8 +15883,8 @@ class SshPublicKeyReader(Reader):
         obj = types.SshPublicKey()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -15940,15 +15898,15 @@ class SshPublicKeyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content':
+            elif tag == "content":
                 obj.content = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
             else:
                 reader.next_element()
@@ -15968,7 +15926,7 @@ class SshPublicKeyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -15987,9 +15945,8 @@ class SshPublicKeyReader(Reader):
 
 
 class SsoReader(Reader):
-
     def __init__(self):
-        super(SsoReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16001,7 +15958,7 @@ class SsoReader(Reader):
         obj = types.Sso()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16013,7 +15970,7 @@ class SsoReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'methods':
+            if tag == "methods":
                 obj.methods = MethodReader.read_many(reader)
             else:
                 reader.next_element()
@@ -16033,7 +15990,7 @@ class SsoReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16052,9 +16009,8 @@ class SsoReader(Reader):
 
 
 class StatisticReader(Reader):
-
     def __init__(self):
-        super(StatisticReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16066,8 +16022,8 @@ class StatisticReader(Reader):
         obj = types.Statistic()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16081,37 +16037,37 @@ class StatisticReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'brick':
+            if tag == "brick":
                 obj.brick = GlusterBrickReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk':
+            elif tag == "disk":
                 obj.disk = DiskReader.read_one(reader)
-            elif tag == 'gluster_volume':
+            elif tag == "gluster_volume":
                 obj.gluster_volume = GlusterVolumeReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'host_nic':
+            elif tag == "host_nic":
                 obj.host_nic = HostNicReader.read_one(reader)
-            elif tag == 'host_numa_node':
+            elif tag == "host_numa_node":
                 obj.host_numa_node = NumaNodeReader.read_one(reader)
-            elif tag == 'kind':
+            elif tag == "kind":
                 obj.kind = Reader.read_enum(types.StatisticKind, reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nic':
+            elif tag == "nic":
                 obj.nic = NicReader.read_one(reader)
-            elif tag == 'step':
+            elif tag == "step":
                 obj.step = StepReader.read_one(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.ValueType, reader)
-            elif tag == 'unit':
+            elif tag == "unit":
                 obj.unit = Reader.read_enum(types.StatisticUnit, reader)
-            elif tag == 'values':
+            elif tag == "values":
                 obj.values = ValueReader.read_many(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -16131,7 +16087,7 @@ class StatisticReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16150,9 +16106,8 @@ class StatisticReader(Reader):
 
 
 class StepReader(Reader):
-
     def __init__(self):
-        super(StepReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16164,8 +16119,8 @@ class StepReader(Reader):
         obj = types.Step()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16179,38 +16134,40 @@ class StepReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'end_time':
+            elif tag == "end_time":
                 obj.end_time = Reader.read_date(reader)
-            elif tag == 'execution_host':
+            elif tag == "execution_host":
                 obj.execution_host = HostReader.read_one(reader)
-            elif tag == 'external':
+            elif tag == "external":
                 obj.external = Reader.read_boolean(reader)
-            elif tag == 'external_type':
+            elif tag == "external_type":
                 obj.external_type = Reader.read_enum(types.ExternalSystemType, reader)
-            elif tag == 'job':
+            elif tag == "job":
                 obj.job = JobReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'number':
+            elif tag == "number":
                 obj.number = Reader.read_integer(reader)
-            elif tag == 'parent_step':
+            elif tag == "parent_step":
                 obj.parent_step = StepReader.read_one(reader)
-            elif tag == 'progress':
+            elif tag == "progress":
                 obj.progress = Reader.read_integer(reader)
-            elif tag == 'start_time':
+            elif tag == "start_time":
                 obj.start_time = Reader.read_date(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.StepStatus, reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.StepEnum, reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -16230,7 +16187,7 @@ class StepReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16252,18 +16209,16 @@ class StepReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "statistics":
-                if obj.statistics is not None:
-                    obj.statistics.href = href
-                else:
-                    obj.statistics = List(href)
+        if href and rel and rel == "statistics":
+            if obj.statistics is not None:
+                obj.statistics.href = href
+            else:
+                obj.statistics = List(href)
 
 
 class StorageConnectionReader(Reader):
-
     def __init__(self):
-        super(StorageConnectionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16275,8 +16230,8 @@ class StorageConnectionReader(Reader):
         obj = types.StorageConnection()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16290,41 +16245,41 @@ class StorageConnectionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'address':
+            if tag == "address":
                 obj.address = Reader.read_string(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'gluster_volume':
+            elif tag == "gluster_volume":
                 obj.gluster_volume = GlusterVolumeReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'mount_options':
+            elif tag == "mount_options":
                 obj.mount_options = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nfs_retrans':
+            elif tag == "nfs_retrans":
                 obj.nfs_retrans = Reader.read_integer(reader)
-            elif tag == 'nfs_timeo':
+            elif tag == "nfs_timeo":
                 obj.nfs_timeo = Reader.read_integer(reader)
-            elif tag == 'nfs_version':
+            elif tag == "nfs_version":
                 obj.nfs_version = Reader.read_enum(types.NfsVersion, reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'path':
+            elif tag == "path":
                 obj.path = Reader.read_string(reader)
-            elif tag == 'port':
+            elif tag == "port":
                 obj.port = Reader.read_integer(reader)
-            elif tag == 'portal':
+            elif tag == "portal":
                 obj.portal = Reader.read_string(reader)
-            elif tag == 'target':
+            elif tag == "target":
                 obj.target = Reader.read_string(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.StorageType, reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
-            elif tag == 'vfs_type':
+            elif tag == "vfs_type":
                 obj.vfs_type = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -16344,7 +16299,7 @@ class StorageConnectionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16363,9 +16318,8 @@ class StorageConnectionReader(Reader):
 
 
 class StorageConnectionExtensionReader(Reader):
-
     def __init__(self):
-        super(StorageConnectionExtensionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16377,8 +16331,8 @@ class StorageConnectionExtensionReader(Reader):
         obj = types.StorageConnectionExtension()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16392,19 +16346,19 @@ class StorageConnectionExtensionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'target':
+            elif tag == "target":
                 obj.target = Reader.read_string(reader)
-            elif tag == 'username':
+            elif tag == "username":
                 obj.username = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -16424,7 +16378,7 @@ class StorageConnectionExtensionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16443,9 +16397,8 @@ class StorageConnectionExtensionReader(Reader):
 
 
 class StorageDomainReader(Reader):
-
     def __init__(self):
-        super(StorageDomainReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16457,8 +16410,8 @@ class StorageDomainReader(Reader):
         obj = types.StorageDomain()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16472,74 +16425,76 @@ class StorageDomainReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'available':
+            if tag == "available":
                 obj.available = Reader.read_integer(reader)
-            elif tag == 'backup':
+            elif tag == "backup":
                 obj.backup = Reader.read_boolean(reader)
-            elif tag == 'block_size':
+            elif tag == "block_size":
                 obj.block_size = Reader.read_integer(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'committed':
+            elif tag == "committed":
                 obj.committed = Reader.read_integer(reader)
-            elif tag == 'critical_space_action_blocker':
+            elif tag == "critical_space_action_blocker":
                 obj.critical_space_action_blocker = Reader.read_integer(reader)
-            elif tag == 'data_center':
+            elif tag == "data_center":
                 obj.data_center = DataCenterReader.read_one(reader)
-            elif tag == 'data_centers':
+            elif tag == "data_centers":
                 obj.data_centers = DataCenterReader.read_many(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'discard_after_delete':
+            elif tag == "discard_after_delete":
                 obj.discard_after_delete = Reader.read_boolean(reader)
-            elif tag == 'disk_profiles':
+            elif tag == "disk_profiles":
                 obj.disk_profiles = DiskProfileReader.read_many(reader)
-            elif tag == 'disk_snapshots':
+            elif tag == "disk_snapshots":
                 obj.disk_snapshots = DiskSnapshotReader.read_many(reader)
-            elif tag == 'disks':
+            elif tag == "disks":
                 obj.disks = DiskReader.read_many(reader)
-            elif tag == 'external_status':
+            elif tag == "external_status":
                 obj.external_status = Reader.read_enum(types.ExternalStatus, reader)
-            elif tag == 'files':
+            elif tag == "files":
                 obj.files = FileReader.read_many(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'images':
+            elif tag == "images":
                 obj.images = ImageReader.read_many(reader)
-            elif tag == 'import':
+            elif tag == "import":
                 obj.import_ = Reader.read_boolean(reader)
-            elif tag == 'master':
+            elif tag == "master":
                 obj.master = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.StorageDomainStatus, reader)
-            elif tag == 'storage':
+            elif tag == "storage":
                 obj.storage = HostStorageReader.read_one(reader)
-            elif tag == 'storage_connections':
+            elif tag == "storage_connections":
                 obj.storage_connections = StorageConnectionReader.read_many(reader)
-            elif tag == 'storage_format':
+            elif tag == "storage_format":
                 obj.storage_format = Reader.read_enum(types.StorageFormat, reader)
-            elif tag == 'supports_discard':
+            elif tag == "supports_discard":
                 obj.supports_discard = Reader.read_boolean(reader)
-            elif tag == 'supports_discard_zeroes_data':
+            elif tag == "supports_discard_zeroes_data":
                 obj.supports_discard_zeroes_data = Reader.read_boolean(reader)
-            elif tag == 'templates':
+            elif tag == "templates":
                 obj.templates = TemplateReader.read_many(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.StorageDomainType, reader)
-            elif tag == 'used':
+            elif tag == "used":
                 obj.used = Reader.read_integer(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'warning_low_space_indicator':
+            elif tag == "warning_low_space_indicator":
                 obj.warning_low_space_indicator = Reader.read_integer(reader)
-            elif tag == 'wipe_after_delete':
+            elif tag == "wipe_after_delete":
                 obj.wipe_after_delete = Reader.read_boolean(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -16559,7 +16514,7 @@ class StorageDomainReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16635,9 +16590,8 @@ class StorageDomainReader(Reader):
 
 
 class StorageDomainLeaseReader(Reader):
-
     def __init__(self):
-        super(StorageDomainLeaseReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16649,7 +16603,7 @@ class StorageDomainLeaseReader(Reader):
         obj = types.StorageDomainLease()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16661,7 +16615,7 @@ class StorageDomainLeaseReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'storage_domain':
+            if tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
             else:
                 reader.next_element()
@@ -16681,7 +16635,7 @@ class StorageDomainLeaseReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16700,9 +16654,8 @@ class StorageDomainLeaseReader(Reader):
 
 
 class SystemOptionReader(Reader):
-
     def __init__(self):
-        super(SystemOptionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16714,8 +16667,8 @@ class SystemOptionReader(Reader):
         obj = types.SystemOption()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16729,13 +16682,13 @@ class SystemOptionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'values':
+            elif tag == "values":
                 obj.values = SystemOptionValueReader.read_many(reader)
             else:
                 reader.next_element()
@@ -16755,7 +16708,7 @@ class SystemOptionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16774,9 +16727,8 @@ class SystemOptionReader(Reader):
 
 
 class SystemOptionValueReader(Reader):
-
     def __init__(self):
-        super(SystemOptionValueReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16788,7 +16740,7 @@ class SystemOptionValueReader(Reader):
         obj = types.SystemOptionValue()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16800,9 +16752,9 @@ class SystemOptionValueReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'value':
+            if tag == "value":
                 obj.value = Reader.read_string(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -16822,7 +16774,7 @@ class SystemOptionValueReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16841,9 +16793,8 @@ class SystemOptionValueReader(Reader):
 
 
 class TagReader(Reader):
-
     def __init__(self):
-        super(TagReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16855,8 +16806,8 @@ class TagReader(Reader):
         obj = types.Tag()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16870,23 +16821,23 @@ class TagReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'group':
+            elif tag == "group":
                 obj.group = GroupReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'parent':
+            elif tag == "parent":
                 obj.parent = TagReader.read_one(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
             else:
                 reader.next_element()
@@ -16906,7 +16857,7 @@ class TagReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -16925,9 +16876,8 @@ class TagReader(Reader):
 
 
 class TemplateReader(Reader):
-
     def __init__(self):
-        super(TemplateReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -16939,8 +16889,8 @@ class TemplateReader(Reader):
         obj = types.Template()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -16954,130 +16904,138 @@ class TemplateReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bios':
+            if tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bios":
                 obj.bios = BiosReader.read_one(reader)
-            elif tag == 'cdroms':
+            elif tag == "cdroms":
                 obj.cdroms = CdromReader.read_many(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console':
+            elif tag == "console":
                 obj.console = ConsoleReader.read_one(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_pinning_policy':
-                obj.cpu_pinning_policy = Reader.read_enum(types.CpuPinningPolicy, reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_pinning_policy":
+                obj.cpu_pinning_policy = Reader.read_enum(
+                    types.CpuPinningPolicy, reader
+                )
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'cpu_shares':
+            elif tag == "cpu_shares":
                 obj.cpu_shares = Reader.read_integer(reader)
-            elif tag == 'creation_time':
+            elif tag == "creation_time":
                 obj.creation_time = Reader.read_date(reader)
-            elif tag == 'custom_compatibility_version':
+            elif tag == "custom_compatibility_version":
                 obj.custom_compatibility_version = VersionReader.read_one(reader)
-            elif tag == 'custom_cpu_model':
+            elif tag == "custom_cpu_model":
                 obj.custom_cpu_model = Reader.read_string(reader)
-            elif tag == 'custom_emulated_machine':
+            elif tag == "custom_emulated_machine":
                 obj.custom_emulated_machine = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'delete_protected':
+            elif tag == "delete_protected":
                 obj.delete_protected = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk_attachments':
+            elif tag == "disk_attachments":
                 obj.disk_attachments = DiskAttachmentReader.read_many(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'graphics_consoles':
+            elif tag == "graphics_consoles":
                 obj.graphics_consoles = GraphicsConsoleReader.read_many(reader)
-            elif tag == 'high_availability':
+            elif tag == "high_availability":
                 obj.high_availability = HighAvailabilityReader.read_one(reader)
-            elif tag == 'initialization':
+            elif tag == "initialization":
                 obj.initialization = InitializationReader.read_one(reader)
-            elif tag == 'io':
+            elif tag == "io":
                 obj.io = IoReader.read_one(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'mediated_devices':
+            elif tag == "mediated_devices":
                 obj.mediated_devices = VmMediatedDeviceReader.read_many(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'migration_downtime':
+            elif tag == "migration_downtime":
                 obj.migration_downtime = Reader.read_integer(reader)
-            elif tag == 'multi_queues_enabled':
+            elif tag == "multi_queues_enabled":
                 obj.multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = NicReader.read_many(reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'placement_policy':
+            elif tag == "placement_policy":
                 obj.placement_policy = VmPlacementPolicyReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'sso':
+            elif tag == "sso":
                 obj.sso = SsoReader.read_one(reader)
-            elif tag == 'start_paused':
+            elif tag == "start_paused":
                 obj.start_paused = Reader.read_boolean(reader)
-            elif tag == 'stateless':
+            elif tag == "stateless":
                 obj.stateless = Reader.read_boolean(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.TemplateStatus, reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_error_resume_behaviour':
-                obj.storage_error_resume_behaviour = Reader.read_enum(types.VmStorageErrorResumeBehaviour, reader)
-            elif tag == 'tags':
+            elif tag == "storage_error_resume_behaviour":
+                obj.storage_error_resume_behaviour = Reader.read_enum(
+                    types.VmStorageErrorResumeBehaviour, reader
+                )
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'time_zone':
+            elif tag == "time_zone":
                 obj.time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmType, reader)
-            elif tag == 'usb':
+            elif tag == "usb":
                 obj.usb = UsbReader.read_one(reader)
-            elif tag == 'version':
+            elif tag == "version":
                 obj.version = TemplateVersionReader.read_one(reader)
-            elif tag == 'virtio_scsi':
+            elif tag == "virtio_scsi":
                 obj.virtio_scsi = VirtioScsiReader.read_one(reader)
-            elif tag == 'virtio_scsi_multi_queues':
+            elif tag == "virtio_scsi_multi_queues":
                 obj.virtio_scsi_multi_queues = Reader.read_integer(reader)
-            elif tag == 'virtio_scsi_multi_queues_enabled':
+            elif tag == "virtio_scsi_multi_queues_enabled":
                 obj.virtio_scsi_multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'watchdogs':
+            elif tag == "watchdogs":
                 obj.watchdogs = WatchdogReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -17097,7 +17055,7 @@ class TemplateReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17163,9 +17121,8 @@ class TemplateReader(Reader):
 
 
 class TemplateVersionReader(Reader):
-
     def __init__(self):
-        super(TemplateVersionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17177,7 +17134,7 @@ class TemplateVersionReader(Reader):
         obj = types.TemplateVersion()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17189,11 +17146,11 @@ class TemplateVersionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'base_template':
+            if tag == "base_template":
                 obj.base_template = TemplateReader.read_one(reader)
-            elif tag == 'version_name':
+            elif tag == "version_name":
                 obj.version_name = Reader.read_string(reader)
-            elif tag == 'version_number':
+            elif tag == "version_number":
                 obj.version_number = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -17213,7 +17170,7 @@ class TemplateVersionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17232,9 +17189,8 @@ class TemplateVersionReader(Reader):
 
 
 class TicketReader(Reader):
-
     def __init__(self):
-        super(TicketReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17246,7 +17202,7 @@ class TicketReader(Reader):
         obj = types.Ticket()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17258,9 +17214,9 @@ class TicketReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'expiry':
+            if tag == "expiry":
                 obj.expiry = Reader.read_integer(reader)
-            elif tag == 'value':
+            elif tag == "value":
                 obj.value = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -17280,7 +17236,7 @@ class TicketReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17299,9 +17255,8 @@ class TicketReader(Reader):
 
 
 class TimeZoneReader(Reader):
-
     def __init__(self):
-        super(TimeZoneReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17313,7 +17268,7 @@ class TimeZoneReader(Reader):
         obj = types.TimeZone()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17325,9 +17280,9 @@ class TimeZoneReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'name':
+            if tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'utc_offset':
+            elif tag == "utc_offset":
                 obj.utc_offset = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -17347,7 +17302,7 @@ class TimeZoneReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17366,9 +17321,8 @@ class TimeZoneReader(Reader):
 
 
 class TransparentHugePagesReader(Reader):
-
     def __init__(self):
-        super(TransparentHugePagesReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17380,7 +17334,7 @@ class TransparentHugePagesReader(Reader):
         obj = types.TransparentHugePages()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17392,7 +17346,7 @@ class TransparentHugePagesReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -17412,7 +17366,7 @@ class TransparentHugePagesReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17431,9 +17385,8 @@ class TransparentHugePagesReader(Reader):
 
 
 class UnmanagedNetworkReader(Reader):
-
     def __init__(self):
-        super(UnmanagedNetworkReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17445,8 +17398,8 @@ class UnmanagedNetworkReader(Reader):
         obj = types.UnmanagedNetwork()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -17460,15 +17413,15 @@ class UnmanagedNetworkReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'host_nic':
+            elif tag == "host_nic":
                 obj.host_nic = HostNicReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -17488,7 +17441,7 @@ class UnmanagedNetworkReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17507,9 +17460,8 @@ class UnmanagedNetworkReader(Reader):
 
 
 class UsbReader(Reader):
-
     def __init__(self):
-        super(UsbReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17521,7 +17473,7 @@ class UsbReader(Reader):
         obj = types.Usb()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17533,9 +17485,9 @@ class UsbReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.UsbType, reader)
             else:
                 reader.next_element()
@@ -17555,7 +17507,7 @@ class UsbReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17574,9 +17526,8 @@ class UsbReader(Reader):
 
 
 class UserReader(Reader):
-
     def __init__(self):
-        super(UserReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17588,8 +17539,8 @@ class UserReader(Reader):
         obj = types.User()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -17603,48 +17554,50 @@ class UserReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'department':
+            elif tag == "department":
                 obj.department = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'domain_entry_id':
+            elif tag == "domain_entry_id":
                 obj.domain_entry_id = Reader.read_string(reader)
-            elif tag == 'email':
+            elif tag == "email":
                 obj.email = Reader.read_string(reader)
-            elif tag == 'groups':
+            elif tag == "groups":
                 obj.groups = GroupReader.read_many(reader)
-            elif tag == 'last_name':
+            elif tag == "last_name":
                 obj.last_name = Reader.read_string(reader)
-            elif tag == 'logged_in':
+            elif tag == "logged_in":
                 obj.logged_in = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'namespace':
+            elif tag == "namespace":
                 obj.namespace = Reader.read_string(reader)
-            elif tag == 'options':
+            elif tag == "options":
                 obj.options = UserOptionReader.read_many(reader)
-            elif tag == 'password':
+            elif tag == "password":
                 obj.password = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'principal':
+            elif tag == "principal":
                 obj.principal = Reader.read_string(reader)
-            elif tag == 'roles':
+            elif tag == "roles":
                 obj.roles = RoleReader.read_many(reader)
-            elif tag == 'ssh_public_keys':
+            elif tag == "ssh_public_keys":
                 obj.ssh_public_keys = SshPublicKeyReader.read_many(reader)
-            elif tag == 'tags':
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'user_name':
+            elif tag == "user_name":
                 obj.user_name = Reader.read_string(reader)
-            elif tag == 'user_options':
+            elif tag == "user_options":
                 obj.user_options = PropertyReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -17664,7 +17617,7 @@ class UserReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17720,9 +17673,8 @@ class UserReader(Reader):
 
 
 class UserOptionReader(Reader):
-
     def __init__(self):
-        super(UserOptionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17734,8 +17686,8 @@ class UserOptionReader(Reader):
         obj = types.UserOption()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -17749,15 +17701,15 @@ class UserOptionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'content':
+            elif tag == "content":
                 obj.content = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'user':
+            elif tag == "user":
                 obj.user = UserReader.read_one(reader)
             else:
                 reader.next_element()
@@ -17777,7 +17729,7 @@ class UserOptionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17796,9 +17748,8 @@ class UserOptionReader(Reader):
 
 
 class ValueReader(Reader):
-
     def __init__(self):
-        super(ValueReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17810,7 +17761,7 @@ class ValueReader(Reader):
         obj = types.Value()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17822,9 +17773,9 @@ class ValueReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'datum':
+            if tag == "datum":
                 obj.datum = Reader.read_decimal(reader)
-            elif tag == 'detail':
+            elif tag == "detail":
                 obj.detail = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -17844,7 +17795,7 @@ class ValueReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17863,9 +17814,8 @@ class ValueReader(Reader):
 
 
 class VcpuPinReader(Reader):
-
     def __init__(self):
-        super(VcpuPinReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17877,7 +17827,7 @@ class VcpuPinReader(Reader):
         obj = types.VcpuPin()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17889,9 +17839,9 @@ class VcpuPinReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'cpu_set':
+            if tag == "cpu_set":
                 obj.cpu_set = Reader.read_string(reader)
-            elif tag == 'vcpu':
+            elif tag == "vcpu":
                 obj.vcpu = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -17911,7 +17861,7 @@ class VcpuPinReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -17930,9 +17880,8 @@ class VcpuPinReader(Reader):
 
 
 class VendorReader(Reader):
-
     def __init__(self):
-        super(VendorReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -17944,8 +17893,8 @@ class VendorReader(Reader):
         obj = types.Vendor()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -17959,11 +17908,11 @@ class VendorReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -17983,7 +17932,7 @@ class VendorReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18002,9 +17951,8 @@ class VendorReader(Reader):
 
 
 class VersionReader(Reader):
-
     def __init__(self):
-        super(VersionReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18016,8 +17964,8 @@ class VersionReader(Reader):
         obj = types.Version()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -18031,21 +17979,21 @@ class VersionReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'build':
+            if tag == "build":
                 obj.build = Reader.read_integer(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'full_version':
+            elif tag == "full_version":
                 obj.full_version = Reader.read_string(reader)
-            elif tag == 'major':
+            elif tag == "major":
                 obj.major = Reader.read_integer(reader)
-            elif tag == 'minor':
+            elif tag == "minor":
                 obj.minor = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'revision':
+            elif tag == "revision":
                 obj.revision = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -18065,7 +18013,7 @@ class VersionReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18084,9 +18032,8 @@ class VersionReader(Reader):
 
 
 class VirtioScsiReader(Reader):
-
     def __init__(self):
-        super(VirtioScsiReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18098,7 +18045,7 @@ class VirtioScsiReader(Reader):
         obj = types.VirtioScsi()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18110,7 +18057,7 @@ class VirtioScsiReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'enabled':
+            if tag == "enabled":
                 obj.enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -18130,7 +18077,7 @@ class VirtioScsiReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18149,9 +18096,8 @@ class VirtioScsiReader(Reader):
 
 
 class VirtualNumaNodeReader(Reader):
-
     def __init__(self):
-        super(VirtualNumaNodeReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18163,8 +18109,8 @@ class VirtualNumaNodeReader(Reader):
         obj = types.VirtualNumaNode()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -18178,32 +18124,34 @@ class VirtualNumaNodeReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'index':
+            elif tag == "index":
                 obj.index = Reader.read_integer(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'node_distance':
+            elif tag == "node_distance":
                 obj.node_distance = Reader.read_string(reader)
-            elif tag == 'numa_node_pins':
+            elif tag == "numa_node_pins":
                 obj.numa_node_pins = NumaNodePinReader.read_many(reader)
-            elif tag == 'numa_tune_mode':
+            elif tag == "numa_tune_mode":
                 obj.numa_tune_mode = Reader.read_enum(types.NumaTuneMode, reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -18223,7 +18171,7 @@ class VirtualNumaNodeReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18245,18 +18193,16 @@ class VirtualNumaNodeReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "statistics":
-                if obj.statistics is not None:
-                    obj.statistics.href = href
-                else:
-                    obj.statistics = List(href)
+        if href and rel and rel == "statistics":
+            if obj.statistics is not None:
+                obj.statistics.href = href
+            else:
+                obj.statistics = List(href)
 
 
 class VlanReader(Reader):
-
     def __init__(self):
-        super(VlanReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18268,8 +18214,8 @@ class VlanReader(Reader):
         obj = types.Vlan()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = Reader.parse_integer(value)
 
@@ -18295,7 +18241,7 @@ class VlanReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18314,9 +18260,8 @@ class VlanReader(Reader):
 
 
 class VmReader(Reader):
-
     def __init__(self):
-        super(VmReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18328,8 +18273,8 @@ class VmReader(Reader):
         obj = types.Vm()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -18343,186 +18288,194 @@ class VmReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'affinity_labels':
+            if tag == "affinity_labels":
                 obj.affinity_labels = AffinityLabelReader.read_many(reader)
-            elif tag == 'applications':
+            elif tag == "applications":
                 obj.applications = ApplicationReader.read_many(reader)
-            elif tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bios':
+            elif tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bios":
                 obj.bios = BiosReader.read_one(reader)
-            elif tag == 'cdroms':
+            elif tag == "cdroms":
                 obj.cdroms = CdromReader.read_many(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console':
+            elif tag == "console":
                 obj.console = ConsoleReader.read_one(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_pinning_policy':
-                obj.cpu_pinning_policy = Reader.read_enum(types.CpuPinningPolicy, reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_pinning_policy":
+                obj.cpu_pinning_policy = Reader.read_enum(
+                    types.CpuPinningPolicy, reader
+                )
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'cpu_shares':
+            elif tag == "cpu_shares":
                 obj.cpu_shares = Reader.read_integer(reader)
-            elif tag == 'creation_time':
+            elif tag == "creation_time":
                 obj.creation_time = Reader.read_date(reader)
-            elif tag == 'custom_compatibility_version':
+            elif tag == "custom_compatibility_version":
                 obj.custom_compatibility_version = VersionReader.read_one(reader)
-            elif tag == 'custom_cpu_model':
+            elif tag == "custom_cpu_model":
                 obj.custom_cpu_model = Reader.read_string(reader)
-            elif tag == 'custom_emulated_machine':
+            elif tag == "custom_emulated_machine":
                 obj.custom_emulated_machine = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'delete_protected':
+            elif tag == "delete_protected":
                 obj.delete_protected = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'disk_attachments':
+            elif tag == "disk_attachments":
                 obj.disk_attachments = DiskAttachmentReader.read_many(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'dynamic_cpu':
+            elif tag == "dynamic_cpu":
                 obj.dynamic_cpu = DynamicCpuReader.read_one(reader)
-            elif tag == 'external_host_provider':
+            elif tag == "external_host_provider":
                 obj.external_host_provider = ExternalHostProviderReader.read_one(reader)
-            elif tag == 'floppies':
+            elif tag == "floppies":
                 obj.floppies = FloppyReader.read_many(reader)
-            elif tag == 'fqdn':
+            elif tag == "fqdn":
                 obj.fqdn = Reader.read_string(reader)
-            elif tag == 'graphics_consoles':
+            elif tag == "graphics_consoles":
                 obj.graphics_consoles = GraphicsConsoleReader.read_many(reader)
-            elif tag == 'guest_operating_system':
+            elif tag == "guest_operating_system":
                 obj.guest_operating_system = GuestOperatingSystemReader.read_one(reader)
-            elif tag == 'guest_time_zone':
+            elif tag == "guest_time_zone":
                 obj.guest_time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'has_illegal_images':
+            elif tag == "has_illegal_images":
                 obj.has_illegal_images = Reader.read_boolean(reader)
-            elif tag == 'high_availability':
+            elif tag == "high_availability":
                 obj.high_availability = HighAvailabilityReader.read_one(reader)
-            elif tag == 'host':
+            elif tag == "host":
                 obj.host = HostReader.read_one(reader)
-            elif tag == 'host_devices':
+            elif tag == "host_devices":
                 obj.host_devices = HostDeviceReader.read_many(reader)
-            elif tag == 'initialization':
+            elif tag == "initialization":
                 obj.initialization = InitializationReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'io':
+            elif tag == "io":
                 obj.io = IoReader.read_one(reader)
-            elif tag == 'katello_errata':
+            elif tag == "katello_errata":
                 obj.katello_errata = KatelloErratumReader.read_many(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'mediated_devices':
+            elif tag == "mediated_devices":
                 obj.mediated_devices = VmMediatedDeviceReader.read_many(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'migration_downtime':
+            elif tag == "migration_downtime":
                 obj.migration_downtime = Reader.read_integer(reader)
-            elif tag == 'multi_queues_enabled':
+            elif tag == "multi_queues_enabled":
                 obj.multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'next_run_configuration_exists':
+            elif tag == "next_run_configuration_exists":
                 obj.next_run_configuration_exists = Reader.read_boolean(reader)
-            elif tag == 'nics':
+            elif tag == "nics":
                 obj.nics = NicReader.read_many(reader)
-            elif tag == 'host_numa_nodes':
+            elif tag == "host_numa_nodes":
                 obj.numa_nodes = NumaNodeReader.read_many(reader)
-            elif tag == 'numa_tune_mode':
+            elif tag == "numa_tune_mode":
                 obj.numa_tune_mode = Reader.read_enum(types.NumaTuneMode, reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'original_template':
+            elif tag == "original_template":
                 obj.original_template = TemplateReader.read_one(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'payloads':
+            elif tag == "payloads":
                 obj.payloads = PayloadReader.read_many(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'placement_policy':
+            elif tag == "placement_policy":
                 obj.placement_policy = VmPlacementPolicyReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'reported_devices':
+            elif tag == "reported_devices":
                 obj.reported_devices = ReportedDeviceReader.read_many(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'run_once':
+            elif tag == "run_once":
                 obj.run_once = Reader.read_boolean(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'sessions':
+            elif tag == "sessions":
                 obj.sessions = SessionReader.read_many(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'snapshots':
+            elif tag == "snapshots":
                 obj.snapshots = SnapshotReader.read_many(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'sso':
+            elif tag == "sso":
                 obj.sso = SsoReader.read_one(reader)
-            elif tag == 'start_paused':
+            elif tag == "start_paused":
                 obj.start_paused = Reader.read_boolean(reader)
-            elif tag == 'start_time':
+            elif tag == "start_time":
                 obj.start_time = Reader.read_date(reader)
-            elif tag == 'stateless':
+            elif tag == "stateless":
                 obj.stateless = Reader.read_boolean(reader)
-            elif tag == 'statistics':
+            elif tag == "statistics":
                 obj.statistics = StatisticReader.read_many(reader)
-            elif tag == 'status':
+            elif tag == "status":
                 obj.status = Reader.read_enum(types.VmStatus, reader)
-            elif tag == 'status_detail':
+            elif tag == "status_detail":
                 obj.status_detail = Reader.read_string(reader)
-            elif tag == 'stop_reason':
+            elif tag == "stop_reason":
                 obj.stop_reason = Reader.read_string(reader)
-            elif tag == 'stop_time':
+            elif tag == "stop_time":
                 obj.stop_time = Reader.read_date(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_error_resume_behaviour':
-                obj.storage_error_resume_behaviour = Reader.read_enum(types.VmStorageErrorResumeBehaviour, reader)
-            elif tag == 'tags':
+            elif tag == "storage_error_resume_behaviour":
+                obj.storage_error_resume_behaviour = Reader.read_enum(
+                    types.VmStorageErrorResumeBehaviour, reader
+                )
+            elif tag == "tags":
                 obj.tags = TagReader.read_many(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'time_zone':
+            elif tag == "time_zone":
                 obj.time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmType, reader)
-            elif tag == 'usb':
+            elif tag == "usb":
                 obj.usb = UsbReader.read_one(reader)
-            elif tag == 'use_latest_template_version':
+            elif tag == "use_latest_template_version":
                 obj.use_latest_template_version = Reader.read_boolean(reader)
-            elif tag == 'virtio_scsi':
+            elif tag == "virtio_scsi":
                 obj.virtio_scsi = VirtioScsiReader.read_one(reader)
-            elif tag == 'virtio_scsi_multi_queues':
+            elif tag == "virtio_scsi_multi_queues":
                 obj.virtio_scsi_multi_queues = Reader.read_integer(reader)
-            elif tag == 'virtio_scsi_multi_queues_enabled':
+            elif tag == "virtio_scsi_multi_queues_enabled":
                 obj.virtio_scsi_multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'vm_pool':
+            elif tag == "vm_pool":
                 obj.vm_pool = VmPoolReader.read_one(reader)
-            elif tag == 'watchdogs':
+            elif tag == "watchdogs":
                 obj.watchdogs = WatchdogReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -18542,7 +18495,7 @@ class VmReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18658,9 +18611,8 @@ class VmReader(Reader):
 
 
 class VmBaseReader(Reader):
-
     def __init__(self):
-        super(VmBaseReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18672,8 +18624,8 @@ class VmBaseReader(Reader):
         obj = types.VmBase()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -18687,105 +18639,111 @@ class VmBaseReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_pinning_policy':
-                obj.auto_pinning_policy = Reader.read_enum(types.AutoPinningPolicy, reader)
-            elif tag == 'bios':
+            if tag == "auto_pinning_policy":
+                obj.auto_pinning_policy = Reader.read_enum(
+                    types.AutoPinningPolicy, reader
+                )
+            elif tag == "bios":
                 obj.bios = BiosReader.read_one(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'console':
+            elif tag == "console":
                 obj.console = ConsoleReader.read_one(reader)
-            elif tag == 'cpu':
+            elif tag == "cpu":
                 obj.cpu = CpuReader.read_one(reader)
-            elif tag == 'cpu_pinning_policy':
-                obj.cpu_pinning_policy = Reader.read_enum(types.CpuPinningPolicy, reader)
-            elif tag == 'cpu_profile':
+            elif tag == "cpu_pinning_policy":
+                obj.cpu_pinning_policy = Reader.read_enum(
+                    types.CpuPinningPolicy, reader
+                )
+            elif tag == "cpu_profile":
                 obj.cpu_profile = CpuProfileReader.read_one(reader)
-            elif tag == 'cpu_shares':
+            elif tag == "cpu_shares":
                 obj.cpu_shares = Reader.read_integer(reader)
-            elif tag == 'creation_time':
+            elif tag == "creation_time":
                 obj.creation_time = Reader.read_date(reader)
-            elif tag == 'custom_compatibility_version':
+            elif tag == "custom_compatibility_version":
                 obj.custom_compatibility_version = VersionReader.read_one(reader)
-            elif tag == 'custom_cpu_model':
+            elif tag == "custom_cpu_model":
                 obj.custom_cpu_model = Reader.read_string(reader)
-            elif tag == 'custom_emulated_machine':
+            elif tag == "custom_emulated_machine":
                 obj.custom_emulated_machine = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'delete_protected':
+            elif tag == "delete_protected":
                 obj.delete_protected = Reader.read_boolean(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'domain':
+            elif tag == "domain":
                 obj.domain = DomainReader.read_one(reader)
-            elif tag == 'high_availability':
+            elif tag == "high_availability":
                 obj.high_availability = HighAvailabilityReader.read_one(reader)
-            elif tag == 'initialization':
+            elif tag == "initialization":
                 obj.initialization = InitializationReader.read_one(reader)
-            elif tag == 'io':
+            elif tag == "io":
                 obj.io = IoReader.read_one(reader)
-            elif tag == 'large_icon':
+            elif tag == "large_icon":
                 obj.large_icon = IconReader.read_one(reader)
-            elif tag == 'lease':
+            elif tag == "lease":
                 obj.lease = StorageDomainLeaseReader.read_one(reader)
-            elif tag == 'memory':
+            elif tag == "memory":
                 obj.memory = Reader.read_integer(reader)
-            elif tag == 'memory_policy':
+            elif tag == "memory_policy":
                 obj.memory_policy = MemoryPolicyReader.read_one(reader)
-            elif tag == 'migration':
+            elif tag == "migration":
                 obj.migration = MigrationOptionsReader.read_one(reader)
-            elif tag == 'migration_downtime':
+            elif tag == "migration_downtime":
                 obj.migration_downtime = Reader.read_integer(reader)
-            elif tag == 'multi_queues_enabled':
+            elif tag == "multi_queues_enabled":
                 obj.multi_queues_enabled = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'origin':
+            elif tag == "origin":
                 obj.origin = Reader.read_string(reader)
-            elif tag == 'os':
+            elif tag == "os":
                 obj.os = OperatingSystemReader.read_one(reader)
-            elif tag == 'placement_policy':
+            elif tag == "placement_policy":
                 obj.placement_policy = VmPlacementPolicyReader.read_one(reader)
-            elif tag == 'quota':
+            elif tag == "quota":
                 obj.quota = QuotaReader.read_one(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'serial_number':
+            elif tag == "serial_number":
                 obj.serial_number = SerialNumberReader.read_one(reader)
-            elif tag == 'small_icon':
+            elif tag == "small_icon":
                 obj.small_icon = IconReader.read_one(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'sso':
+            elif tag == "sso":
                 obj.sso = SsoReader.read_one(reader)
-            elif tag == 'start_paused':
+            elif tag == "start_paused":
                 obj.start_paused = Reader.read_boolean(reader)
-            elif tag == 'stateless':
+            elif tag == "stateless":
                 obj.stateless = Reader.read_boolean(reader)
-            elif tag == 'storage_domain':
+            elif tag == "storage_domain":
                 obj.storage_domain = StorageDomainReader.read_one(reader)
-            elif tag == 'storage_error_resume_behaviour':
-                obj.storage_error_resume_behaviour = Reader.read_enum(types.VmStorageErrorResumeBehaviour, reader)
-            elif tag == 'time_zone':
+            elif tag == "storage_error_resume_behaviour":
+                obj.storage_error_resume_behaviour = Reader.read_enum(
+                    types.VmStorageErrorResumeBehaviour, reader
+                )
+            elif tag == "time_zone":
                 obj.time_zone = TimeZoneReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'tunnel_migration':
+            elif tag == "tunnel_migration":
                 obj.tunnel_migration = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmType, reader)
-            elif tag == 'usb':
+            elif tag == "usb":
                 obj.usb = UsbReader.read_one(reader)
-            elif tag == 'virtio_scsi':
+            elif tag == "virtio_scsi":
                 obj.virtio_scsi = VirtioScsiReader.read_one(reader)
-            elif tag == 'virtio_scsi_multi_queues':
+            elif tag == "virtio_scsi_multi_queues":
                 obj.virtio_scsi_multi_queues = Reader.read_integer(reader)
-            elif tag == 'virtio_scsi_multi_queues_enabled':
+            elif tag == "virtio_scsi_multi_queues_enabled":
                 obj.virtio_scsi_multi_queues_enabled = Reader.read_boolean(reader)
             else:
                 reader.next_element()
@@ -18805,7 +18763,7 @@ class VmBaseReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18824,9 +18782,8 @@ class VmBaseReader(Reader):
 
 
 class VmMediatedDeviceReader(Reader):
-
     def __init__(self):
-        super(VmMediatedDeviceReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18838,8 +18795,8 @@ class VmMediatedDeviceReader(Reader):
         obj = types.VmMediatedDevice()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -18853,24 +18810,26 @@ class VmMediatedDeviceReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'spec_params':
+            elif tag == "spec_params":
                 obj.spec_params = PropertyReader.read_many(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -18890,7 +18849,7 @@ class VmMediatedDeviceReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18912,18 +18871,16 @@ class VmMediatedDeviceReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class VmPlacementPolicyReader(Reader):
-
     def __init__(self):
-        super(VmPlacementPolicyReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -18935,7 +18892,7 @@ class VmPlacementPolicyReader(Reader):
         obj = types.VmPlacementPolicy()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18947,12 +18904,14 @@ class VmPlacementPolicyReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'affinity':
+            if tag == "affinity":
                 obj.affinity = Reader.read_enum(types.VmAffinity, reader)
-            elif tag == 'hosts':
+            elif tag == "hosts":
                 obj.hosts = HostReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -18972,7 +18931,7 @@ class VmPlacementPolicyReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -18994,18 +18953,16 @@ class VmPlacementPolicyReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "hosts":
-                if obj.hosts is not None:
-                    obj.hosts.href = href
-                else:
-                    obj.hosts = List(href)
+        if href and rel and rel == "hosts":
+            if obj.hosts is not None:
+                obj.hosts.href = href
+            else:
+                obj.hosts = List(href)
 
 
 class VmPoolReader(Reader):
-
     def __init__(self):
-        super(VmPoolReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19017,8 +18974,8 @@ class VmPoolReader(Reader):
         obj = types.VmPool()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -19032,46 +18989,48 @@ class VmPoolReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'auto_storage_select':
+            if tag == "auto_storage_select":
                 obj.auto_storage_select = Reader.read_boolean(reader)
-            elif tag == 'cluster':
+            elif tag == "cluster":
                 obj.cluster = ClusterReader.read_one(reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'display':
+            elif tag == "display":
                 obj.display = DisplayReader.read_one(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'max_user_vms':
+            elif tag == "max_user_vms":
                 obj.max_user_vms = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'prestarted_vms':
+            elif tag == "prestarted_vms":
                 obj.prestarted_vms = Reader.read_integer(reader)
-            elif tag == 'rng_device':
+            elif tag == "rng_device":
                 obj.rng_device = RngDeviceReader.read_one(reader)
-            elif tag == 'size':
+            elif tag == "size":
                 obj.size = Reader.read_integer(reader)
-            elif tag == 'soundcard_enabled':
+            elif tag == "soundcard_enabled":
                 obj.soundcard_enabled = Reader.read_boolean(reader)
-            elif tag == 'stateful':
+            elif tag == "stateful":
                 obj.stateful = Reader.read_boolean(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'tpm_enabled':
+            elif tag == "tpm_enabled":
                 obj.tpm_enabled = Reader.read_boolean(reader)
-            elif tag == 'type':
+            elif tag == "type":
                 obj.type = Reader.read_enum(types.VmPoolType, reader)
-            elif tag == 'use_latest_template_version':
+            elif tag == "use_latest_template_version":
                 obj.use_latest_template_version = Reader.read_boolean(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -19091,7 +19050,7 @@ class VmPoolReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19113,18 +19072,16 @@ class VmPoolReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permissions":
-                if obj.permissions is not None:
-                    obj.permissions.href = href
-                else:
-                    obj.permissions = List(href)
+        if href and rel and rel == "permissions":
+            if obj.permissions is not None:
+                obj.permissions.href = href
+            else:
+                obj.permissions = List(href)
 
 
 class VmSummaryReader(Reader):
-
     def __init__(self):
-        super(VmSummaryReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19136,7 +19093,7 @@ class VmSummaryReader(Reader):
         obj = types.VmSummary()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19148,11 +19105,11 @@ class VmSummaryReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'active':
+            if tag == "active":
                 obj.active = Reader.read_integer(reader)
-            elif tag == 'migrating':
+            elif tag == "migrating":
                 obj.migrating = Reader.read_integer(reader)
-            elif tag == 'total':
+            elif tag == "total":
                 obj.total = Reader.read_integer(reader)
             else:
                 reader.next_element()
@@ -19172,7 +19129,7 @@ class VmSummaryReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19191,9 +19148,8 @@ class VmSummaryReader(Reader):
 
 
 class VnicPassThroughReader(Reader):
-
     def __init__(self):
-        super(VnicPassThroughReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19205,7 +19161,7 @@ class VnicPassThroughReader(Reader):
         obj = types.VnicPassThrough()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19217,7 +19173,7 @@ class VnicPassThroughReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'mode':
+            if tag == "mode":
                 obj.mode = Reader.read_enum(types.VnicPassThroughMode, reader)
             else:
                 reader.next_element()
@@ -19237,7 +19193,7 @@ class VnicPassThroughReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19256,9 +19212,8 @@ class VnicPassThroughReader(Reader):
 
 
 class VnicProfileReader(Reader):
-
     def __init__(self):
-        super(VnicProfileReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19270,8 +19225,8 @@ class VnicProfileReader(Reader):
         obj = types.VnicProfile()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -19285,32 +19240,34 @@ class VnicProfileReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'custom_properties':
+            elif tag == "custom_properties":
                 obj.custom_properties = CustomPropertyReader.read_many(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'failover':
+            elif tag == "failover":
                 obj.failover = VnicProfileReader.read_one(reader)
-            elif tag == 'migratable':
+            elif tag == "migratable":
                 obj.migratable = Reader.read_boolean(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'network':
+            elif tag == "network":
                 obj.network = NetworkReader.read_one(reader)
-            elif tag == 'network_filter':
+            elif tag == "network_filter":
                 obj.network_filter = NetworkFilterReader.read_one(reader)
-            elif tag == 'pass_through':
+            elif tag == "pass_through":
                 obj.pass_through = VnicPassThroughReader.read_one(reader)
-            elif tag == 'permissions':
+            elif tag == "permissions":
                 obj.permissions = PermissionReader.read_many(reader)
-            elif tag == 'port_mirroring':
+            elif tag == "port_mirroring":
                 obj.port_mirroring = Reader.read_boolean(reader)
-            elif tag == 'qos':
+            elif tag == "qos":
                 obj.qos = QosReader.read_one(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -19330,7 +19287,7 @@ class VnicProfileReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19352,18 +19309,16 @@ class VnicProfileReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "permissions":
-                if obj.permissions is not None:
-                    obj.permissions.href = href
-                else:
-                    obj.permissions = List(href)
+        if href and rel and rel == "permissions":
+            if obj.permissions is not None:
+                obj.permissions.href = href
+            else:
+                obj.permissions = List(href)
 
 
 class VnicProfileMappingReader(Reader):
-
     def __init__(self):
-        super(VnicProfileMappingReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19375,7 +19330,7 @@ class VnicProfileMappingReader(Reader):
         obj = types.VnicProfileMapping()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
+        obj.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19387,11 +19342,11 @@ class VnicProfileMappingReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'source_network_name':
+            if tag == "source_network_name":
                 obj.source_network_name = Reader.read_string(reader)
-            elif tag == 'source_network_profile_name':
+            elif tag == "source_network_profile_name":
                 obj.source_network_profile_name = Reader.read_string(reader)
-            elif tag == 'target_vnic_profile':
+            elif tag == "target_vnic_profile":
                 obj.target_vnic_profile = VnicProfileReader.read_one(reader)
             else:
                 reader.next_element()
@@ -19411,7 +19366,7 @@ class VnicProfileMappingReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19430,9 +19385,8 @@ class VnicProfileMappingReader(Reader):
 
 
 class VolumeGroupReader(Reader):
-
     def __init__(self):
-        super(VolumeGroupReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19444,8 +19398,8 @@ class VolumeGroupReader(Reader):
         obj = types.VolumeGroup()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -19459,9 +19413,9 @@ class VolumeGroupReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'logical_units':
+            if tag == "logical_units":
                 obj.logical_units = LogicalUnitReader.read_many(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
             else:
                 reader.next_element()
@@ -19481,7 +19435,7 @@ class VolumeGroupReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19500,9 +19454,8 @@ class VolumeGroupReader(Reader):
 
 
 class WatchdogReader(Reader):
-
     def __init__(self):
-        super(WatchdogReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19514,8 +19467,8 @@ class WatchdogReader(Reader):
         obj = types.Watchdog()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -19529,26 +19482,28 @@ class WatchdogReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'action':
+            if tag == "action":
                 obj.action = Reader.read_enum(types.WatchdogAction, reader)
-            elif tag == 'comment':
+            elif tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'instance_type':
+            elif tag == "instance_type":
                 obj.instance_type = InstanceTypeReader.read_one(reader)
-            elif tag == 'model':
+            elif tag == "model":
                 obj.model = Reader.read_enum(types.WatchdogModel, reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'template':
+            elif tag == "template":
                 obj.template = TemplateReader.read_one(reader)
-            elif tag == 'vm':
+            elif tag == "vm":
                 obj.vm = VmReader.read_one(reader)
-            elif tag == 'vms':
+            elif tag == "vms":
                 obj.vms = VmReader.read_many(reader)
-            elif tag == 'link':
-                links.append((reader.get_attribute('rel'), reader.get_attribute('href')))
+            elif tag == "link":
+                links.append(
+                    (reader.get_attribute("rel"), reader.get_attribute("href"))
+                )
                 reader.next_element()
             else:
                 reader.next_element()
@@ -19568,7 +19523,7 @@ class WatchdogReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19590,18 +19545,16 @@ class WatchdogReader(Reader):
         # Process the attributes:
         rel = link[0]
         href = link[1]
-        if href and rel:
-            if rel == "vms":
-                if obj.vms is not None:
-                    obj.vms.href = href
-                else:
-                    obj.vms = List(href)
+        if href and rel and rel == "vms":
+            if obj.vms is not None:
+                obj.vms.href = href
+            else:
+                obj.vms = List(href)
 
 
 class WeightReader(Reader):
-
     def __init__(self):
-        super(WeightReader, self).__init__()
+        super().__init__()
 
     @staticmethod
     def read_one(reader):
@@ -19613,8 +19566,8 @@ class WeightReader(Reader):
         obj = types.Weight()
 
         # Process the attributes:
-        obj.href = reader.get_attribute('href')
-        value = reader.get_attribute('id')
+        obj.href = reader.get_attribute("href")
+        value = reader.get_attribute("id")
         if value is not None:
             obj.id = value
 
@@ -19628,17 +19581,17 @@ class WeightReader(Reader):
         links = []
         while reader.forward():
             tag = reader.node_name()
-            if tag == 'comment':
+            if tag == "comment":
                 obj.comment = Reader.read_string(reader)
-            elif tag == 'description':
+            elif tag == "description":
                 obj.description = Reader.read_string(reader)
-            elif tag == 'factor':
+            elif tag == "factor":
                 obj.factor = Reader.read_integer(reader)
-            elif tag == 'name':
+            elif tag == "name":
                 obj.name = Reader.read_string(reader)
-            elif tag == 'scheduling_policy':
+            elif tag == "scheduling_policy":
                 obj.scheduling_policy = SchedulingPolicyReader.read_one(reader)
-            elif tag == 'scheduling_policy_unit':
+            elif tag == "scheduling_policy_unit":
                 obj.scheduling_policy_unit = SchedulingPolicyUnitReader.read_one(reader)
             else:
                 reader.next_element()
@@ -19658,7 +19611,7 @@ class WeightReader(Reader):
             return objs
 
         # Process the attributes:
-        objs.href = reader.get_attribute('href')
+        objs.href = reader.get_attribute("href")
 
         # Discard the start tag:
         empty = reader.empty_element()
@@ -19676,443 +19629,505 @@ class WeightReader(Reader):
         return objs
 
 
-Reader.register('action', ActionReader.read_one)
-Reader.register('actions', ActionReader.read_many)
-Reader.register('affinity_group', AffinityGroupReader.read_one)
-Reader.register('affinity_groups', AffinityGroupReader.read_many)
-Reader.register('affinity_label', AffinityLabelReader.read_one)
-Reader.register('affinity_labels', AffinityLabelReader.read_many)
-Reader.register('affinity_rule', AffinityRuleReader.read_one)
-Reader.register('affinity_rules', AffinityRuleReader.read_many)
-Reader.register('agent', AgentReader.read_one)
-Reader.register('agents', AgentReader.read_many)
-Reader.register('agent_configuration', AgentConfigurationReader.read_one)
-Reader.register('agent_configurations', AgentConfigurationReader.read_many)
-Reader.register('api', ApiReader.read_one)
-Reader.register('apis', ApiReader.read_many)
-Reader.register('api_summary', ApiSummaryReader.read_one)
-Reader.register('api_summaries', ApiSummaryReader.read_many)
-Reader.register('api_summary_item', ApiSummaryItemReader.read_one)
-Reader.register('api_summary_items', ApiSummaryItemReader.read_many)
-Reader.register('application', ApplicationReader.read_one)
-Reader.register('applications', ApplicationReader.read_many)
-Reader.register('authorized_key', AuthorizedKeyReader.read_one)
-Reader.register('authorized_keys', AuthorizedKeyReader.read_many)
-Reader.register('backup', BackupReader.read_one)
-Reader.register('backups', BackupReader.read_many)
-Reader.register('balance', BalanceReader.read_one)
-Reader.register('balances', BalanceReader.read_many)
-Reader.register('bios', BiosReader.read_one)
-Reader.register('bioss', BiosReader.read_many)
-Reader.register('block_statistic', BlockStatisticReader.read_one)
-Reader.register('block_statistics', BlockStatisticReader.read_many)
-Reader.register('bonding', BondingReader.read_one)
-Reader.register('bondings', BondingReader.read_many)
-Reader.register('bookmark', BookmarkReader.read_one)
-Reader.register('bookmarks', BookmarkReader.read_many)
-Reader.register('boot', BootReader.read_one)
-Reader.register('boots', BootReader.read_many)
-Reader.register('boot_menu', BootMenuReader.read_one)
-Reader.register('boot_menus', BootMenuReader.read_many)
-Reader.register('brick_profile_detail', BrickProfileDetailReader.read_one)
-Reader.register('brick_profile_details', BrickProfileDetailReader.read_many)
-Reader.register('cdrom', CdromReader.read_one)
-Reader.register('cdroms', CdromReader.read_many)
-Reader.register('certificate', CertificateReader.read_one)
-Reader.register('certificates', CertificateReader.read_many)
-Reader.register('checkpoint', CheckpointReader.read_one)
-Reader.register('checkpoints', CheckpointReader.read_many)
-Reader.register('cloud_init', CloudInitReader.read_one)
-Reader.register('cloud_inits', CloudInitReader.read_many)
-Reader.register('cluster', ClusterReader.read_one)
-Reader.register('clusters', ClusterReader.read_many)
-Reader.register('cluster_feature', ClusterFeatureReader.read_one)
-Reader.register('cluster_features', ClusterFeatureReader.read_many)
-Reader.register('cluster_level', ClusterLevelReader.read_one)
-Reader.register('cluster_levels', ClusterLevelReader.read_many)
-Reader.register('configuration', ConfigurationReader.read_one)
-Reader.register('configurations', ConfigurationReader.read_many)
-Reader.register('console', ConsoleReader.read_one)
-Reader.register('consoles', ConsoleReader.read_many)
-Reader.register('core', CoreReader.read_one)
-Reader.register('cores', CoreReader.read_many)
-Reader.register('cpu', CpuReader.read_one)
-Reader.register('cpus', CpuReader.read_many)
-Reader.register('cpu_profile', CpuProfileReader.read_one)
-Reader.register('cpu_profiles', CpuProfileReader.read_many)
-Reader.register('cpu_topology', CpuTopologyReader.read_one)
-Reader.register('cpu_topologies', CpuTopologyReader.read_many)
-Reader.register('cpu_tune', CpuTuneReader.read_one)
-Reader.register('cpu_tunes', CpuTuneReader.read_many)
-Reader.register('cpu_type', CpuTypeReader.read_one)
-Reader.register('cpu_types', CpuTypeReader.read_many)
-Reader.register('custom_property', CustomPropertyReader.read_one)
-Reader.register('custom_properties', CustomPropertyReader.read_many)
-Reader.register('data_center', DataCenterReader.read_one)
-Reader.register('data_centers', DataCenterReader.read_many)
-Reader.register('device', DeviceReader.read_one)
-Reader.register('devices', DeviceReader.read_many)
-Reader.register('disk', DiskReader.read_one)
-Reader.register('disks', DiskReader.read_many)
-Reader.register('disk_attachment', DiskAttachmentReader.read_one)
-Reader.register('disk_attachments', DiskAttachmentReader.read_many)
-Reader.register('disk_profile', DiskProfileReader.read_one)
-Reader.register('disk_profiles', DiskProfileReader.read_many)
-Reader.register('disk_snapshot', DiskSnapshotReader.read_one)
-Reader.register('disk_snapshots', DiskSnapshotReader.read_many)
-Reader.register('display', DisplayReader.read_one)
-Reader.register('displays', DisplayReader.read_many)
-Reader.register('dns', DnsReader.read_one)
-Reader.register('dnss', DnsReader.read_many)
-Reader.register('dns_resolver_configuration', DnsResolverConfigurationReader.read_one)
-Reader.register('dns_resolver_configurations', DnsResolverConfigurationReader.read_many)
-Reader.register('domain', DomainReader.read_one)
-Reader.register('domains', DomainReader.read_many)
-Reader.register('dynamic_cpu', DynamicCpuReader.read_one)
-Reader.register('dynamic_cpus', DynamicCpuReader.read_many)
-Reader.register('engine_backup_info', EngineBackupInfoReader.read_one)
-Reader.register('engine_backup_infos', EngineBackupInfoReader.read_many)
-Reader.register('entity_profile_detail', EntityProfileDetailReader.read_one)
-Reader.register('entity_profile_details', EntityProfileDetailReader.read_many)
-Reader.register('error_handling', ErrorHandlingReader.read_one)
-Reader.register('error_handlings', ErrorHandlingReader.read_many)
-Reader.register('event', EventReader.read_one)
-Reader.register('events', EventReader.read_many)
-Reader.register('event_subscription', EventSubscriptionReader.read_one)
-Reader.register('event_subscriptions', EventSubscriptionReader.read_many)
-Reader.register('external_compute_resource', ExternalComputeResourceReader.read_one)
-Reader.register('external_compute_resources', ExternalComputeResourceReader.read_many)
-Reader.register('external_discovered_host', ExternalDiscoveredHostReader.read_one)
-Reader.register('external_discovered_hosts', ExternalDiscoveredHostReader.read_many)
-Reader.register('external_host', ExternalHostReader.read_one)
-Reader.register('external_hosts', ExternalHostReader.read_many)
-Reader.register('external_host_group', ExternalHostGroupReader.read_one)
-Reader.register('external_host_groups', ExternalHostGroupReader.read_many)
-Reader.register('external_host_provider', ExternalHostProviderReader.read_one)
-Reader.register('external_host_providers', ExternalHostProviderReader.read_many)
-Reader.register('external_network_provider_configuration', ExternalNetworkProviderConfigurationReader.read_one)
-Reader.register('external_network_provider_configurations', ExternalNetworkProviderConfigurationReader.read_many)
-Reader.register('external_provider', ExternalProviderReader.read_one)
-Reader.register('external_providers', ExternalProviderReader.read_many)
-Reader.register('external_template_import', ExternalTemplateImportReader.read_one)
-Reader.register('external_template_imports', ExternalTemplateImportReader.read_many)
-Reader.register('external_vm_import', ExternalVmImportReader.read_one)
-Reader.register('external_vm_imports', ExternalVmImportReader.read_many)
-Reader.register('fault', FaultReader.read_one)
-Reader.register('faults', FaultReader.read_many)
-Reader.register('fencing_policy', FencingPolicyReader.read_one)
-Reader.register('fencing_policies', FencingPolicyReader.read_many)
-Reader.register('file', FileReader.read_one)
-Reader.register('files', FileReader.read_many)
-Reader.register('filter', FilterReader.read_one)
-Reader.register('filters', FilterReader.read_many)
-Reader.register('floppy', FloppyReader.read_one)
-Reader.register('floppies', FloppyReader.read_many)
-Reader.register('fop_statistic', FopStatisticReader.read_one)
-Reader.register('fop_statistics', FopStatisticReader.read_many)
-Reader.register('brick', GlusterBrickReader.read_one)
-Reader.register('bricks', GlusterBrickReader.read_many)
-Reader.register('gluster_brick_advanced_details', GlusterBrickAdvancedDetailsReader.read_one)
-Reader.register('gluster_brick_advanced_detailss', GlusterBrickAdvancedDetailsReader.read_many)
-Reader.register('brick_memoryinfo', GlusterBrickMemoryInfoReader.read_one)
-Reader.register('gluster_brick_memory_infos', GlusterBrickMemoryInfoReader.read_many)
-Reader.register('gluster_client', GlusterClientReader.read_one)
-Reader.register('gluster_clients', GlusterClientReader.read_many)
-Reader.register('gluster_hook', GlusterHookReader.read_one)
-Reader.register('gluster_hooks', GlusterHookReader.read_many)
-Reader.register('memory_pool', GlusterMemoryPoolReader.read_one)
-Reader.register('memory_pools', GlusterMemoryPoolReader.read_many)
-Reader.register('server_hook', GlusterServerHookReader.read_one)
-Reader.register('server_hooks', GlusterServerHookReader.read_many)
-Reader.register('gluster_volume', GlusterVolumeReader.read_one)
-Reader.register('gluster_volumes', GlusterVolumeReader.read_many)
-Reader.register('gluster_volume_profile_details', GlusterVolumeProfileDetailsReader.read_one)
-Reader.register('gluster_volume_profile_detailss', GlusterVolumeProfileDetailsReader.read_many)
-Reader.register('grace_period', GracePeriodReader.read_one)
-Reader.register('grace_periods', GracePeriodReader.read_many)
-Reader.register('graphics_console', GraphicsConsoleReader.read_one)
-Reader.register('graphics_consoles', GraphicsConsoleReader.read_many)
-Reader.register('group', GroupReader.read_one)
-Reader.register('groups', GroupReader.read_many)
-Reader.register('guest_operating_system', GuestOperatingSystemReader.read_one)
-Reader.register('guest_operating_systems', GuestOperatingSystemReader.read_many)
-Reader.register('hardware_information', HardwareInformationReader.read_one)
-Reader.register('hardware_informations', HardwareInformationReader.read_many)
-Reader.register('high_availability', HighAvailabilityReader.read_one)
-Reader.register('high_availabilities', HighAvailabilityReader.read_many)
-Reader.register('hook', HookReader.read_one)
-Reader.register('hooks', HookReader.read_many)
-Reader.register('host', HostReader.read_one)
-Reader.register('hosts', HostReader.read_many)
-Reader.register('host_cpu_unit', HostCpuUnitReader.read_one)
-Reader.register('host_cpu_units', HostCpuUnitReader.read_many)
-Reader.register('host_device', HostDeviceReader.read_one)
-Reader.register('host_devices', HostDeviceReader.read_many)
-Reader.register('host_device_passthrough', HostDevicePassthroughReader.read_one)
-Reader.register('host_device_passthroughs', HostDevicePassthroughReader.read_many)
-Reader.register('host_nic', HostNicReader.read_one)
-Reader.register('host_nics', HostNicReader.read_many)
-Reader.register('host_nic_virtual_functions_configuration', HostNicVirtualFunctionsConfigurationReader.read_one)
-Reader.register('host_nic_virtual_functions_configurations', HostNicVirtualFunctionsConfigurationReader.read_many)
-Reader.register('host_storage', HostStorageReader.read_one)
-Reader.register('host_storages', HostStorageReader.read_many)
-Reader.register('hosted_engine', HostedEngineReader.read_one)
-Reader.register('hosted_engines', HostedEngineReader.read_many)
-Reader.register('icon', IconReader.read_one)
-Reader.register('icons', IconReader.read_many)
-Reader.register('identified', IdentifiedReader.read_one)
-Reader.register('identifieds', IdentifiedReader.read_many)
-Reader.register('image', ImageReader.read_one)
-Reader.register('images', ImageReader.read_many)
-Reader.register('image_transfer', ImageTransferReader.read_one)
-Reader.register('image_transfers', ImageTransferReader.read_many)
-Reader.register('initialization', InitializationReader.read_one)
-Reader.register('initializations', InitializationReader.read_many)
-Reader.register('instance_type', InstanceTypeReader.read_one)
-Reader.register('instance_types', InstanceTypeReader.read_many)
-Reader.register('io', IoReader.read_one)
-Reader.register('ios', IoReader.read_many)
-Reader.register('ip', IpReader.read_one)
-Reader.register('ips', IpReader.read_many)
-Reader.register('ip_address_assignment', IpAddressAssignmentReader.read_one)
-Reader.register('ip_address_assignments', IpAddressAssignmentReader.read_many)
-Reader.register('iscsi_bond', IscsiBondReader.read_one)
-Reader.register('iscsi_bonds', IscsiBondReader.read_many)
-Reader.register('iscsi_details', IscsiDetailsReader.read_one)
-Reader.register('iscsi_detailss', IscsiDetailsReader.read_many)
-Reader.register('job', JobReader.read_one)
-Reader.register('jobs', JobReader.read_many)
-Reader.register('katello_erratum', KatelloErratumReader.read_one)
-Reader.register('katello_errata', KatelloErratumReader.read_many)
-Reader.register('kernel', KernelReader.read_one)
-Reader.register('kernels', KernelReader.read_many)
-Reader.register('ksm', KsmReader.read_one)
-Reader.register('ksms', KsmReader.read_many)
-Reader.register('link_layer_discovery_protocol_element', LinkLayerDiscoveryProtocolElementReader.read_one)
-Reader.register('link_layer_discovery_protocol_elements', LinkLayerDiscoveryProtocolElementReader.read_many)
-Reader.register('logical_unit', LogicalUnitReader.read_one)
-Reader.register('logical_units', LogicalUnitReader.read_many)
-Reader.register('m_dev_type', MDevTypeReader.read_one)
-Reader.register('m_dev_types', MDevTypeReader.read_many)
-Reader.register('mac', MacReader.read_one)
-Reader.register('macs', MacReader.read_many)
-Reader.register('mac_pool', MacPoolReader.read_one)
-Reader.register('mac_pools', MacPoolReader.read_many)
-Reader.register('memory_over_commit', MemoryOverCommitReader.read_one)
-Reader.register('memory_over_commits', MemoryOverCommitReader.read_many)
-Reader.register('memory_policy', MemoryPolicyReader.read_one)
-Reader.register('memory_policies', MemoryPolicyReader.read_many)
-Reader.register('method', MethodReader.read_one)
-Reader.register('methods', MethodReader.read_many)
-Reader.register('migration_bandwidth', MigrationBandwidthReader.read_one)
-Reader.register('migration_bandwidths', MigrationBandwidthReader.read_many)
-Reader.register('migration', MigrationOptionsReader.read_one)
-Reader.register('migration_optionss', MigrationOptionsReader.read_many)
-Reader.register('migration_policy', MigrationPolicyReader.read_one)
-Reader.register('migration_policies', MigrationPolicyReader.read_many)
-Reader.register('network', NetworkReader.read_one)
-Reader.register('networks', NetworkReader.read_many)
-Reader.register('network_attachment', NetworkAttachmentReader.read_one)
-Reader.register('network_attachments', NetworkAttachmentReader.read_many)
-Reader.register('network_configuration', NetworkConfigurationReader.read_one)
-Reader.register('network_configurations', NetworkConfigurationReader.read_many)
-Reader.register('network_filter', NetworkFilterReader.read_one)
-Reader.register('network_filters', NetworkFilterReader.read_many)
-Reader.register('network_filter_parameter', NetworkFilterParameterReader.read_one)
-Reader.register('network_filter_parameters', NetworkFilterParameterReader.read_many)
-Reader.register('network_label', NetworkLabelReader.read_one)
-Reader.register('network_labels', NetworkLabelReader.read_many)
-Reader.register('nfs_profile_detail', NfsProfileDetailReader.read_one)
-Reader.register('nfs_profile_details', NfsProfileDetailReader.read_many)
-Reader.register('nic', NicReader.read_one)
-Reader.register('nics', NicReader.read_many)
-Reader.register('nic_configuration', NicConfigurationReader.read_one)
-Reader.register('nic_configurations', NicConfigurationReader.read_many)
-Reader.register('host_numa_node', NumaNodeReader.read_one)
-Reader.register('host_numa_nodes', NumaNodeReader.read_many)
-Reader.register('numa_node_pin', NumaNodePinReader.read_one)
-Reader.register('numa_node_pins', NumaNodePinReader.read_many)
-Reader.register('openstack_image', OpenStackImageReader.read_one)
-Reader.register('openstack_images', OpenStackImageReader.read_many)
-Reader.register('openstack_image_provider', OpenStackImageProviderReader.read_one)
-Reader.register('openstack_image_providers', OpenStackImageProviderReader.read_many)
-Reader.register('openstack_network', OpenStackNetworkReader.read_one)
-Reader.register('openstack_networks', OpenStackNetworkReader.read_many)
-Reader.register('openstack_network_provider', OpenStackNetworkProviderReader.read_one)
-Reader.register('openstack_network_providers', OpenStackNetworkProviderReader.read_many)
-Reader.register('open_stack_provider', OpenStackProviderReader.read_one)
-Reader.register('open_stack_providers', OpenStackProviderReader.read_many)
-Reader.register('openstack_subnet', OpenStackSubnetReader.read_one)
-Reader.register('openstack_subnets', OpenStackSubnetReader.read_many)
-Reader.register('openstack_volume_provider', OpenStackVolumeProviderReader.read_one)
-Reader.register('openstack_volume_providers', OpenStackVolumeProviderReader.read_many)
-Reader.register('open_stack_volume_type', OpenStackVolumeTypeReader.read_one)
-Reader.register('open_stack_volume_types', OpenStackVolumeTypeReader.read_many)
-Reader.register('openstack_volume_authentication_key', OpenstackVolumeAuthenticationKeyReader.read_one)
-Reader.register('openstack_volume_authentication_keys', OpenstackVolumeAuthenticationKeyReader.read_many)
-Reader.register('os', OperatingSystemReader.read_one)
-Reader.register('oss', OperatingSystemReader.read_many)
-Reader.register('operating_system', OperatingSystemInfoReader.read_one)
-Reader.register('operation_systems', OperatingSystemInfoReader.read_many)
-Reader.register('option', OptionReader.read_one)
-Reader.register('options', OptionReader.read_many)
-Reader.register('package', PackageReader.read_one)
-Reader.register('packages', PackageReader.read_many)
-Reader.register('payload', PayloadReader.read_one)
-Reader.register('payloads', PayloadReader.read_many)
-Reader.register('permission', PermissionReader.read_one)
-Reader.register('permissions', PermissionReader.read_many)
-Reader.register('permit', PermitReader.read_one)
-Reader.register('permits', PermitReader.read_many)
-Reader.register('pm_proxy', PmProxyReader.read_one)
-Reader.register('pm_proxies', PmProxyReader.read_many)
-Reader.register('port_mirroring', PortMirroringReader.read_one)
-Reader.register('port_mirrorings', PortMirroringReader.read_many)
-Reader.register('power_management', PowerManagementReader.read_one)
-Reader.register('power_managements', PowerManagementReader.read_many)
-Reader.register('product', ProductReader.read_one)
-Reader.register('products', ProductReader.read_many)
-Reader.register('product_info', ProductInfoReader.read_one)
-Reader.register('product_infos', ProductInfoReader.read_many)
-Reader.register('profile_detail', ProfileDetailReader.read_one)
-Reader.register('profile_details', ProfileDetailReader.read_many)
-Reader.register('property', PropertyReader.read_one)
-Reader.register('properties', PropertyReader.read_many)
-Reader.register('proxy_ticket', ProxyTicketReader.read_one)
-Reader.register('proxy_tickets', ProxyTicketReader.read_many)
-Reader.register('qos', QosReader.read_one)
-Reader.register('qoss', QosReader.read_many)
-Reader.register('quota', QuotaReader.read_one)
-Reader.register('quotas', QuotaReader.read_many)
-Reader.register('quota_cluster_limit', QuotaClusterLimitReader.read_one)
-Reader.register('quota_cluster_limits', QuotaClusterLimitReader.read_many)
-Reader.register('quota_storage_limit', QuotaStorageLimitReader.read_one)
-Reader.register('quota_storage_limits', QuotaStorageLimitReader.read_many)
-Reader.register('range', RangeReader.read_one)
-Reader.register('ranges', RangeReader.read_many)
-Reader.register('rate', RateReader.read_one)
-Reader.register('rates', RateReader.read_many)
-Reader.register('registration_affinity_group_mapping', RegistrationAffinityGroupMappingReader.read_one)
-Reader.register('registration_affinity_group_mappings', RegistrationAffinityGroupMappingReader.read_many)
-Reader.register('registration_affinity_label_mapping', RegistrationAffinityLabelMappingReader.read_one)
-Reader.register('registration_affinity_label_mappings', RegistrationAffinityLabelMappingReader.read_many)
-Reader.register('registration_cluster_mapping', RegistrationClusterMappingReader.read_one)
-Reader.register('registration_cluster_mappings', RegistrationClusterMappingReader.read_many)
-Reader.register('registration_configuration', RegistrationConfigurationReader.read_one)
-Reader.register('registration_configurations', RegistrationConfigurationReader.read_many)
-Reader.register('registration_domain_mapping', RegistrationDomainMappingReader.read_one)
-Reader.register('registration_domain_mappings', RegistrationDomainMappingReader.read_many)
-Reader.register('registration_lun_mapping', RegistrationLunMappingReader.read_one)
-Reader.register('registration_lun_mappings', RegistrationLunMappingReader.read_many)
-Reader.register('registration_role_mapping', RegistrationRoleMappingReader.read_one)
-Reader.register('registration_role_mappings', RegistrationRoleMappingReader.read_many)
-Reader.register('registration_vnic_profile_mapping', RegistrationVnicProfileMappingReader.read_one)
-Reader.register('registration_vnic_profile_mappings', RegistrationVnicProfileMappingReader.read_many)
-Reader.register('reported_configuration', ReportedConfigurationReader.read_one)
-Reader.register('reported_configurations', ReportedConfigurationReader.read_many)
-Reader.register('reported_device', ReportedDeviceReader.read_one)
-Reader.register('reported_devices', ReportedDeviceReader.read_many)
-Reader.register('rng_device', RngDeviceReader.read_one)
-Reader.register('rng_devices', RngDeviceReader.read_many)
-Reader.register('role', RoleReader.read_one)
-Reader.register('roles', RoleReader.read_many)
-Reader.register('scheduling_policy', SchedulingPolicyReader.read_one)
-Reader.register('scheduling_policies', SchedulingPolicyReader.read_many)
-Reader.register('scheduling_policy_unit', SchedulingPolicyUnitReader.read_one)
-Reader.register('scheduling_policy_units', SchedulingPolicyUnitReader.read_many)
-Reader.register('se_linux', SeLinuxReader.read_one)
-Reader.register('se_linuxs', SeLinuxReader.read_many)
-Reader.register('serial_number', SerialNumberReader.read_one)
-Reader.register('serial_numbers', SerialNumberReader.read_many)
-Reader.register('session', SessionReader.read_one)
-Reader.register('sessions', SessionReader.read_many)
-Reader.register('skip_if_connectivity_broken', SkipIfConnectivityBrokenReader.read_one)
-Reader.register('skip_if_connectivity_brokens', SkipIfConnectivityBrokenReader.read_many)
-Reader.register('skip_if_sd_active', SkipIfSdActiveReader.read_one)
-Reader.register('skip_if_sd_actives', SkipIfSdActiveReader.read_many)
-Reader.register('snapshot', SnapshotReader.read_one)
-Reader.register('snapshots', SnapshotReader.read_many)
-Reader.register('special_objects', SpecialObjectsReader.read_one)
-Reader.register('special_objectss', SpecialObjectsReader.read_many)
-Reader.register('spm', SpmReader.read_one)
-Reader.register('spms', SpmReader.read_many)
-Reader.register('ssh', SshReader.read_one)
-Reader.register('sshs', SshReader.read_many)
-Reader.register('ssh_public_key', SshPublicKeyReader.read_one)
-Reader.register('ssh_public_keys', SshPublicKeyReader.read_many)
-Reader.register('sso', SsoReader.read_one)
-Reader.register('ssos', SsoReader.read_many)
-Reader.register('statistic', StatisticReader.read_one)
-Reader.register('statistics', StatisticReader.read_many)
-Reader.register('step', StepReader.read_one)
-Reader.register('steps', StepReader.read_many)
-Reader.register('storage_connection', StorageConnectionReader.read_one)
-Reader.register('storage_connections', StorageConnectionReader.read_many)
-Reader.register('storage_connection_extension', StorageConnectionExtensionReader.read_one)
-Reader.register('storage_connection_extensions', StorageConnectionExtensionReader.read_many)
-Reader.register('storage_domain', StorageDomainReader.read_one)
-Reader.register('storage_domains', StorageDomainReader.read_many)
-Reader.register('storage_domain_lease', StorageDomainLeaseReader.read_one)
-Reader.register('storage_domain_leases', StorageDomainLeaseReader.read_many)
-Reader.register('system_option', SystemOptionReader.read_one)
-Reader.register('system_options', SystemOptionReader.read_many)
-Reader.register('system_option_value', SystemOptionValueReader.read_one)
-Reader.register('system_option_values', SystemOptionValueReader.read_many)
-Reader.register('tag', TagReader.read_one)
-Reader.register('tags', TagReader.read_many)
-Reader.register('template', TemplateReader.read_one)
-Reader.register('templates', TemplateReader.read_many)
-Reader.register('template_version', TemplateVersionReader.read_one)
-Reader.register('template_versions', TemplateVersionReader.read_many)
-Reader.register('ticket', TicketReader.read_one)
-Reader.register('tickets', TicketReader.read_many)
-Reader.register('time_zone', TimeZoneReader.read_one)
-Reader.register('time_zones', TimeZoneReader.read_many)
-Reader.register('transparent_hugepages', TransparentHugePagesReader.read_one)
-Reader.register('transparent_huge_pagess', TransparentHugePagesReader.read_many)
-Reader.register('unmanaged_network', UnmanagedNetworkReader.read_one)
-Reader.register('unmanaged_networks', UnmanagedNetworkReader.read_many)
-Reader.register('usb', UsbReader.read_one)
-Reader.register('usbs', UsbReader.read_many)
-Reader.register('user', UserReader.read_one)
-Reader.register('users', UserReader.read_many)
-Reader.register('user_option', UserOptionReader.read_one)
-Reader.register('user_options', UserOptionReader.read_many)
-Reader.register('value', ValueReader.read_one)
-Reader.register('values', ValueReader.read_many)
-Reader.register('vcpu_pin', VcpuPinReader.read_one)
-Reader.register('vcpu_pins', VcpuPinReader.read_many)
-Reader.register('vendor', VendorReader.read_one)
-Reader.register('vendors', VendorReader.read_many)
-Reader.register('version', VersionReader.read_one)
-Reader.register('versions', VersionReader.read_many)
-Reader.register('virtio_scsi', VirtioScsiReader.read_one)
-Reader.register('virtio_scsis', VirtioScsiReader.read_many)
-Reader.register('vm_numa_node', VirtualNumaNodeReader.read_one)
-Reader.register('vm_numa_nodes', VirtualNumaNodeReader.read_many)
-Reader.register('vlan', VlanReader.read_one)
-Reader.register('vlans', VlanReader.read_many)
-Reader.register('vm', VmReader.read_one)
-Reader.register('vms', VmReader.read_many)
-Reader.register('vm_base', VmBaseReader.read_one)
-Reader.register('vm_bases', VmBaseReader.read_many)
-Reader.register('vm_mediated_device', VmMediatedDeviceReader.read_one)
-Reader.register('vm_mediated_devices', VmMediatedDeviceReader.read_many)
-Reader.register('vm_placement_policy', VmPlacementPolicyReader.read_one)
-Reader.register('vm_placement_policies', VmPlacementPolicyReader.read_many)
-Reader.register('vm_pool', VmPoolReader.read_one)
-Reader.register('vm_pools', VmPoolReader.read_many)
-Reader.register('vm_summary', VmSummaryReader.read_one)
-Reader.register('vm_summaries', VmSummaryReader.read_many)
-Reader.register('vnic_pass_through', VnicPassThroughReader.read_one)
-Reader.register('vnic_pass_throughs', VnicPassThroughReader.read_many)
-Reader.register('vnic_profile', VnicProfileReader.read_one)
-Reader.register('vnic_profiles', VnicProfileReader.read_many)
-Reader.register('vnic_profile_mapping', VnicProfileMappingReader.read_one)
-Reader.register('vnic_profile_mappings', VnicProfileMappingReader.read_many)
-Reader.register('volume_group', VolumeGroupReader.read_one)
-Reader.register('volume_groups', VolumeGroupReader.read_many)
-Reader.register('watchdog', WatchdogReader.read_one)
-Reader.register('watchdogs', WatchdogReader.read_many)
-Reader.register('weight', WeightReader.read_one)
-Reader.register('weights', WeightReader.read_many)
+Reader.register("action", ActionReader.read_one)
+Reader.register("actions", ActionReader.read_many)
+Reader.register("affinity_group", AffinityGroupReader.read_one)
+Reader.register("affinity_groups", AffinityGroupReader.read_many)
+Reader.register("affinity_label", AffinityLabelReader.read_one)
+Reader.register("affinity_labels", AffinityLabelReader.read_many)
+Reader.register("affinity_rule", AffinityRuleReader.read_one)
+Reader.register("affinity_rules", AffinityRuleReader.read_many)
+Reader.register("agent", AgentReader.read_one)
+Reader.register("agents", AgentReader.read_many)
+Reader.register("agent_configuration", AgentConfigurationReader.read_one)
+Reader.register("agent_configurations", AgentConfigurationReader.read_many)
+Reader.register("api", ApiReader.read_one)
+Reader.register("apis", ApiReader.read_many)
+Reader.register("api_summary", ApiSummaryReader.read_one)
+Reader.register("api_summaries", ApiSummaryReader.read_many)
+Reader.register("api_summary_item", ApiSummaryItemReader.read_one)
+Reader.register("api_summary_items", ApiSummaryItemReader.read_many)
+Reader.register("application", ApplicationReader.read_one)
+Reader.register("applications", ApplicationReader.read_many)
+Reader.register("authorized_key", AuthorizedKeyReader.read_one)
+Reader.register("authorized_keys", AuthorizedKeyReader.read_many)
+Reader.register("backup", BackupReader.read_one)
+Reader.register("backups", BackupReader.read_many)
+Reader.register("balance", BalanceReader.read_one)
+Reader.register("balances", BalanceReader.read_many)
+Reader.register("bios", BiosReader.read_one)
+Reader.register("bioss", BiosReader.read_many)
+Reader.register("block_statistic", BlockStatisticReader.read_one)
+Reader.register("block_statistics", BlockStatisticReader.read_many)
+Reader.register("bonding", BondingReader.read_one)
+Reader.register("bondings", BondingReader.read_many)
+Reader.register("bookmark", BookmarkReader.read_one)
+Reader.register("bookmarks", BookmarkReader.read_many)
+Reader.register("boot", BootReader.read_one)
+Reader.register("boots", BootReader.read_many)
+Reader.register("boot_menu", BootMenuReader.read_one)
+Reader.register("boot_menus", BootMenuReader.read_many)
+Reader.register("brick_profile_detail", BrickProfileDetailReader.read_one)
+Reader.register("brick_profile_details", BrickProfileDetailReader.read_many)
+Reader.register("cdrom", CdromReader.read_one)
+Reader.register("cdroms", CdromReader.read_many)
+Reader.register("certificate", CertificateReader.read_one)
+Reader.register("certificates", CertificateReader.read_many)
+Reader.register("checkpoint", CheckpointReader.read_one)
+Reader.register("checkpoints", CheckpointReader.read_many)
+Reader.register("cloud_init", CloudInitReader.read_one)
+Reader.register("cloud_inits", CloudInitReader.read_many)
+Reader.register("cluster", ClusterReader.read_one)
+Reader.register("clusters", ClusterReader.read_many)
+Reader.register("cluster_feature", ClusterFeatureReader.read_one)
+Reader.register("cluster_features", ClusterFeatureReader.read_many)
+Reader.register("cluster_level", ClusterLevelReader.read_one)
+Reader.register("cluster_levels", ClusterLevelReader.read_many)
+Reader.register("configuration", ConfigurationReader.read_one)
+Reader.register("configurations", ConfigurationReader.read_many)
+Reader.register("console", ConsoleReader.read_one)
+Reader.register("consoles", ConsoleReader.read_many)
+Reader.register("core", CoreReader.read_one)
+Reader.register("cores", CoreReader.read_many)
+Reader.register("cpu", CpuReader.read_one)
+Reader.register("cpus", CpuReader.read_many)
+Reader.register("cpu_profile", CpuProfileReader.read_one)
+Reader.register("cpu_profiles", CpuProfileReader.read_many)
+Reader.register("cpu_topology", CpuTopologyReader.read_one)
+Reader.register("cpu_topologies", CpuTopologyReader.read_many)
+Reader.register("cpu_tune", CpuTuneReader.read_one)
+Reader.register("cpu_tunes", CpuTuneReader.read_many)
+Reader.register("cpu_type", CpuTypeReader.read_one)
+Reader.register("cpu_types", CpuTypeReader.read_many)
+Reader.register("custom_property", CustomPropertyReader.read_one)
+Reader.register("custom_properties", CustomPropertyReader.read_many)
+Reader.register("data_center", DataCenterReader.read_one)
+Reader.register("data_centers", DataCenterReader.read_many)
+Reader.register("device", DeviceReader.read_one)
+Reader.register("devices", DeviceReader.read_many)
+Reader.register("disk", DiskReader.read_one)
+Reader.register("disks", DiskReader.read_many)
+Reader.register("disk_attachment", DiskAttachmentReader.read_one)
+Reader.register("disk_attachments", DiskAttachmentReader.read_many)
+Reader.register("disk_profile", DiskProfileReader.read_one)
+Reader.register("disk_profiles", DiskProfileReader.read_many)
+Reader.register("disk_snapshot", DiskSnapshotReader.read_one)
+Reader.register("disk_snapshots", DiskSnapshotReader.read_many)
+Reader.register("display", DisplayReader.read_one)
+Reader.register("displays", DisplayReader.read_many)
+Reader.register("dns", DnsReader.read_one)
+Reader.register("dnss", DnsReader.read_many)
+Reader.register("dns_resolver_configuration", DnsResolverConfigurationReader.read_one)
+Reader.register("dns_resolver_configurations", DnsResolverConfigurationReader.read_many)
+Reader.register("domain", DomainReader.read_one)
+Reader.register("domains", DomainReader.read_many)
+Reader.register("dynamic_cpu", DynamicCpuReader.read_one)
+Reader.register("dynamic_cpus", DynamicCpuReader.read_many)
+Reader.register("engine_backup_info", EngineBackupInfoReader.read_one)
+Reader.register("engine_backup_infos", EngineBackupInfoReader.read_many)
+Reader.register("entity_profile_detail", EntityProfileDetailReader.read_one)
+Reader.register("entity_profile_details", EntityProfileDetailReader.read_many)
+Reader.register("error_handling", ErrorHandlingReader.read_one)
+Reader.register("error_handlings", ErrorHandlingReader.read_many)
+Reader.register("event", EventReader.read_one)
+Reader.register("events", EventReader.read_many)
+Reader.register("event_subscription", EventSubscriptionReader.read_one)
+Reader.register("event_subscriptions", EventSubscriptionReader.read_many)
+Reader.register("external_compute_resource", ExternalComputeResourceReader.read_one)
+Reader.register("external_compute_resources", ExternalComputeResourceReader.read_many)
+Reader.register("external_discovered_host", ExternalDiscoveredHostReader.read_one)
+Reader.register("external_discovered_hosts", ExternalDiscoveredHostReader.read_many)
+Reader.register("external_host", ExternalHostReader.read_one)
+Reader.register("external_hosts", ExternalHostReader.read_many)
+Reader.register("external_host_group", ExternalHostGroupReader.read_one)
+Reader.register("external_host_groups", ExternalHostGroupReader.read_many)
+Reader.register("external_host_provider", ExternalHostProviderReader.read_one)
+Reader.register("external_host_providers", ExternalHostProviderReader.read_many)
+Reader.register(
+    "external_network_provider_configuration",
+    ExternalNetworkProviderConfigurationReader.read_one,
+)
+Reader.register(
+    "external_network_provider_configurations",
+    ExternalNetworkProviderConfigurationReader.read_many,
+)
+Reader.register("external_provider", ExternalProviderReader.read_one)
+Reader.register("external_providers", ExternalProviderReader.read_many)
+Reader.register("external_template_import", ExternalTemplateImportReader.read_one)
+Reader.register("external_template_imports", ExternalTemplateImportReader.read_many)
+Reader.register("external_vm_import", ExternalVmImportReader.read_one)
+Reader.register("external_vm_imports", ExternalVmImportReader.read_many)
+Reader.register("fault", FaultReader.read_one)
+Reader.register("faults", FaultReader.read_many)
+Reader.register("fencing_policy", FencingPolicyReader.read_one)
+Reader.register("fencing_policies", FencingPolicyReader.read_many)
+Reader.register("file", FileReader.read_one)
+Reader.register("files", FileReader.read_many)
+Reader.register("filter", FilterReader.read_one)
+Reader.register("filters", FilterReader.read_many)
+Reader.register("floppy", FloppyReader.read_one)
+Reader.register("floppies", FloppyReader.read_many)
+Reader.register("fop_statistic", FopStatisticReader.read_one)
+Reader.register("fop_statistics", FopStatisticReader.read_many)
+Reader.register("brick", GlusterBrickReader.read_one)
+Reader.register("bricks", GlusterBrickReader.read_many)
+Reader.register(
+    "gluster_brick_advanced_details", GlusterBrickAdvancedDetailsReader.read_one
+)
+Reader.register(
+    "gluster_brick_advanced_detailss", GlusterBrickAdvancedDetailsReader.read_many
+)
+Reader.register("brick_memoryinfo", GlusterBrickMemoryInfoReader.read_one)
+Reader.register("gluster_brick_memory_infos", GlusterBrickMemoryInfoReader.read_many)
+Reader.register("gluster_client", GlusterClientReader.read_one)
+Reader.register("gluster_clients", GlusterClientReader.read_many)
+Reader.register("gluster_hook", GlusterHookReader.read_one)
+Reader.register("gluster_hooks", GlusterHookReader.read_many)
+Reader.register("memory_pool", GlusterMemoryPoolReader.read_one)
+Reader.register("memory_pools", GlusterMemoryPoolReader.read_many)
+Reader.register("server_hook", GlusterServerHookReader.read_one)
+Reader.register("server_hooks", GlusterServerHookReader.read_many)
+Reader.register("gluster_volume", GlusterVolumeReader.read_one)
+Reader.register("gluster_volumes", GlusterVolumeReader.read_many)
+Reader.register(
+    "gluster_volume_profile_details", GlusterVolumeProfileDetailsReader.read_one
+)
+Reader.register(
+    "gluster_volume_profile_detailss", GlusterVolumeProfileDetailsReader.read_many
+)
+Reader.register("grace_period", GracePeriodReader.read_one)
+Reader.register("grace_periods", GracePeriodReader.read_many)
+Reader.register("graphics_console", GraphicsConsoleReader.read_one)
+Reader.register("graphics_consoles", GraphicsConsoleReader.read_many)
+Reader.register("group", GroupReader.read_one)
+Reader.register("groups", GroupReader.read_many)
+Reader.register("guest_operating_system", GuestOperatingSystemReader.read_one)
+Reader.register("guest_operating_systems", GuestOperatingSystemReader.read_many)
+Reader.register("hardware_information", HardwareInformationReader.read_one)
+Reader.register("hardware_informations", HardwareInformationReader.read_many)
+Reader.register("high_availability", HighAvailabilityReader.read_one)
+Reader.register("high_availabilities", HighAvailabilityReader.read_many)
+Reader.register("hook", HookReader.read_one)
+Reader.register("hooks", HookReader.read_many)
+Reader.register("host", HostReader.read_one)
+Reader.register("hosts", HostReader.read_many)
+Reader.register("host_cpu_unit", HostCpuUnitReader.read_one)
+Reader.register("host_cpu_units", HostCpuUnitReader.read_many)
+Reader.register("host_device", HostDeviceReader.read_one)
+Reader.register("host_devices", HostDeviceReader.read_many)
+Reader.register("host_device_passthrough", HostDevicePassthroughReader.read_one)
+Reader.register("host_device_passthroughs", HostDevicePassthroughReader.read_many)
+Reader.register("host_nic", HostNicReader.read_one)
+Reader.register("host_nics", HostNicReader.read_many)
+Reader.register(
+    "host_nic_virtual_functions_configuration",
+    HostNicVirtualFunctionsConfigurationReader.read_one,
+)
+Reader.register(
+    "host_nic_virtual_functions_configurations",
+    HostNicVirtualFunctionsConfigurationReader.read_many,
+)
+Reader.register("host_storage", HostStorageReader.read_one)
+Reader.register("host_storages", HostStorageReader.read_many)
+Reader.register("hosted_engine", HostedEngineReader.read_one)
+Reader.register("hosted_engines", HostedEngineReader.read_many)
+Reader.register("icon", IconReader.read_one)
+Reader.register("icons", IconReader.read_many)
+Reader.register("identified", IdentifiedReader.read_one)
+Reader.register("identifieds", IdentifiedReader.read_many)
+Reader.register("image", ImageReader.read_one)
+Reader.register("images", ImageReader.read_many)
+Reader.register("image_transfer", ImageTransferReader.read_one)
+Reader.register("image_transfers", ImageTransferReader.read_many)
+Reader.register("initialization", InitializationReader.read_one)
+Reader.register("initializations", InitializationReader.read_many)
+Reader.register("instance_type", InstanceTypeReader.read_one)
+Reader.register("instance_types", InstanceTypeReader.read_many)
+Reader.register("io", IoReader.read_one)
+Reader.register("ios", IoReader.read_many)
+Reader.register("ip", IpReader.read_one)
+Reader.register("ips", IpReader.read_many)
+Reader.register("ip_address_assignment", IpAddressAssignmentReader.read_one)
+Reader.register("ip_address_assignments", IpAddressAssignmentReader.read_many)
+Reader.register("iscsi_bond", IscsiBondReader.read_one)
+Reader.register("iscsi_bonds", IscsiBondReader.read_many)
+Reader.register("iscsi_details", IscsiDetailsReader.read_one)
+Reader.register("iscsi_detailss", IscsiDetailsReader.read_many)
+Reader.register("job", JobReader.read_one)
+Reader.register("jobs", JobReader.read_many)
+Reader.register("katello_erratum", KatelloErratumReader.read_one)
+Reader.register("katello_errata", KatelloErratumReader.read_many)
+Reader.register("kernel", KernelReader.read_one)
+Reader.register("kernels", KernelReader.read_many)
+Reader.register("ksm", KsmReader.read_one)
+Reader.register("ksms", KsmReader.read_many)
+Reader.register(
+    "link_layer_discovery_protocol_element",
+    LinkLayerDiscoveryProtocolElementReader.read_one,
+)
+Reader.register(
+    "link_layer_discovery_protocol_elements",
+    LinkLayerDiscoveryProtocolElementReader.read_many,
+)
+Reader.register("logical_unit", LogicalUnitReader.read_one)
+Reader.register("logical_units", LogicalUnitReader.read_many)
+Reader.register("m_dev_type", MDevTypeReader.read_one)
+Reader.register("m_dev_types", MDevTypeReader.read_many)
+Reader.register("mac", MacReader.read_one)
+Reader.register("macs", MacReader.read_many)
+Reader.register("mac_pool", MacPoolReader.read_one)
+Reader.register("mac_pools", MacPoolReader.read_many)
+Reader.register("memory_over_commit", MemoryOverCommitReader.read_one)
+Reader.register("memory_over_commits", MemoryOverCommitReader.read_many)
+Reader.register("memory_policy", MemoryPolicyReader.read_one)
+Reader.register("memory_policies", MemoryPolicyReader.read_many)
+Reader.register("method", MethodReader.read_one)
+Reader.register("methods", MethodReader.read_many)
+Reader.register("migration_bandwidth", MigrationBandwidthReader.read_one)
+Reader.register("migration_bandwidths", MigrationBandwidthReader.read_many)
+Reader.register("migration", MigrationOptionsReader.read_one)
+Reader.register("migration_optionss", MigrationOptionsReader.read_many)
+Reader.register("migration_policy", MigrationPolicyReader.read_one)
+Reader.register("migration_policies", MigrationPolicyReader.read_many)
+Reader.register("network", NetworkReader.read_one)
+Reader.register("networks", NetworkReader.read_many)
+Reader.register("network_attachment", NetworkAttachmentReader.read_one)
+Reader.register("network_attachments", NetworkAttachmentReader.read_many)
+Reader.register("network_configuration", NetworkConfigurationReader.read_one)
+Reader.register("network_configurations", NetworkConfigurationReader.read_many)
+Reader.register("network_filter", NetworkFilterReader.read_one)
+Reader.register("network_filters", NetworkFilterReader.read_many)
+Reader.register("network_filter_parameter", NetworkFilterParameterReader.read_one)
+Reader.register("network_filter_parameters", NetworkFilterParameterReader.read_many)
+Reader.register("network_label", NetworkLabelReader.read_one)
+Reader.register("network_labels", NetworkLabelReader.read_many)
+Reader.register("nfs_profile_detail", NfsProfileDetailReader.read_one)
+Reader.register("nfs_profile_details", NfsProfileDetailReader.read_many)
+Reader.register("nic", NicReader.read_one)
+Reader.register("nics", NicReader.read_many)
+Reader.register("nic_configuration", NicConfigurationReader.read_one)
+Reader.register("nic_configurations", NicConfigurationReader.read_many)
+Reader.register("host_numa_node", NumaNodeReader.read_one)
+Reader.register("host_numa_nodes", NumaNodeReader.read_many)
+Reader.register("numa_node_pin", NumaNodePinReader.read_one)
+Reader.register("numa_node_pins", NumaNodePinReader.read_many)
+Reader.register("openstack_image", OpenStackImageReader.read_one)
+Reader.register("openstack_images", OpenStackImageReader.read_many)
+Reader.register("openstack_image_provider", OpenStackImageProviderReader.read_one)
+Reader.register("openstack_image_providers", OpenStackImageProviderReader.read_many)
+Reader.register("openstack_network", OpenStackNetworkReader.read_one)
+Reader.register("openstack_networks", OpenStackNetworkReader.read_many)
+Reader.register("openstack_network_provider", OpenStackNetworkProviderReader.read_one)
+Reader.register("openstack_network_providers", OpenStackNetworkProviderReader.read_many)
+Reader.register("open_stack_provider", OpenStackProviderReader.read_one)
+Reader.register("open_stack_providers", OpenStackProviderReader.read_many)
+Reader.register("openstack_subnet", OpenStackSubnetReader.read_one)
+Reader.register("openstack_subnets", OpenStackSubnetReader.read_many)
+Reader.register("openstack_volume_provider", OpenStackVolumeProviderReader.read_one)
+Reader.register("openstack_volume_providers", OpenStackVolumeProviderReader.read_many)
+Reader.register("open_stack_volume_type", OpenStackVolumeTypeReader.read_one)
+Reader.register("open_stack_volume_types", OpenStackVolumeTypeReader.read_many)
+Reader.register(
+    "openstack_volume_authentication_key",
+    OpenstackVolumeAuthenticationKeyReader.read_one,
+)
+Reader.register(
+    "openstack_volume_authentication_keys",
+    OpenstackVolumeAuthenticationKeyReader.read_many,
+)
+Reader.register("os", OperatingSystemReader.read_one)
+Reader.register("oss", OperatingSystemReader.read_many)
+Reader.register("operating_system", OperatingSystemInfoReader.read_one)
+Reader.register("operation_systems", OperatingSystemInfoReader.read_many)
+Reader.register("option", OptionReader.read_one)
+Reader.register("options", OptionReader.read_many)
+Reader.register("package", PackageReader.read_one)
+Reader.register("packages", PackageReader.read_many)
+Reader.register("payload", PayloadReader.read_one)
+Reader.register("payloads", PayloadReader.read_many)
+Reader.register("permission", PermissionReader.read_one)
+Reader.register("permissions", PermissionReader.read_many)
+Reader.register("permit", PermitReader.read_one)
+Reader.register("permits", PermitReader.read_many)
+Reader.register("pm_proxy", PmProxyReader.read_one)
+Reader.register("pm_proxies", PmProxyReader.read_many)
+Reader.register("port_mirroring", PortMirroringReader.read_one)
+Reader.register("port_mirrorings", PortMirroringReader.read_many)
+Reader.register("power_management", PowerManagementReader.read_one)
+Reader.register("power_managements", PowerManagementReader.read_many)
+Reader.register("product", ProductReader.read_one)
+Reader.register("products", ProductReader.read_many)
+Reader.register("product_info", ProductInfoReader.read_one)
+Reader.register("product_infos", ProductInfoReader.read_many)
+Reader.register("profile_detail", ProfileDetailReader.read_one)
+Reader.register("profile_details", ProfileDetailReader.read_many)
+Reader.register("property", PropertyReader.read_one)
+Reader.register("properties", PropertyReader.read_many)
+Reader.register("proxy_ticket", ProxyTicketReader.read_one)
+Reader.register("proxy_tickets", ProxyTicketReader.read_many)
+Reader.register("qos", QosReader.read_one)
+Reader.register("qoss", QosReader.read_many)
+Reader.register("quota", QuotaReader.read_one)
+Reader.register("quotas", QuotaReader.read_many)
+Reader.register("quota_cluster_limit", QuotaClusterLimitReader.read_one)
+Reader.register("quota_cluster_limits", QuotaClusterLimitReader.read_many)
+Reader.register("quota_storage_limit", QuotaStorageLimitReader.read_one)
+Reader.register("quota_storage_limits", QuotaStorageLimitReader.read_many)
+Reader.register("range", RangeReader.read_one)
+Reader.register("ranges", RangeReader.read_many)
+Reader.register("rate", RateReader.read_one)
+Reader.register("rates", RateReader.read_many)
+Reader.register(
+    "registration_affinity_group_mapping",
+    RegistrationAffinityGroupMappingReader.read_one,
+)
+Reader.register(
+    "registration_affinity_group_mappings",
+    RegistrationAffinityGroupMappingReader.read_many,
+)
+Reader.register(
+    "registration_affinity_label_mapping",
+    RegistrationAffinityLabelMappingReader.read_one,
+)
+Reader.register(
+    "registration_affinity_label_mappings",
+    RegistrationAffinityLabelMappingReader.read_many,
+)
+Reader.register(
+    "registration_cluster_mapping", RegistrationClusterMappingReader.read_one
+)
+Reader.register(
+    "registration_cluster_mappings", RegistrationClusterMappingReader.read_many
+)
+Reader.register("registration_configuration", RegistrationConfigurationReader.read_one)
+Reader.register(
+    "registration_configurations", RegistrationConfigurationReader.read_many
+)
+Reader.register("registration_domain_mapping", RegistrationDomainMappingReader.read_one)
+Reader.register(
+    "registration_domain_mappings", RegistrationDomainMappingReader.read_many
+)
+Reader.register("registration_lun_mapping", RegistrationLunMappingReader.read_one)
+Reader.register("registration_lun_mappings", RegistrationLunMappingReader.read_many)
+Reader.register("registration_role_mapping", RegistrationRoleMappingReader.read_one)
+Reader.register("registration_role_mappings", RegistrationRoleMappingReader.read_many)
+Reader.register(
+    "registration_vnic_profile_mapping", RegistrationVnicProfileMappingReader.read_one
+)
+Reader.register(
+    "registration_vnic_profile_mappings", RegistrationVnicProfileMappingReader.read_many
+)
+Reader.register("reported_configuration", ReportedConfigurationReader.read_one)
+Reader.register("reported_configurations", ReportedConfigurationReader.read_many)
+Reader.register("reported_device", ReportedDeviceReader.read_one)
+Reader.register("reported_devices", ReportedDeviceReader.read_many)
+Reader.register("rng_device", RngDeviceReader.read_one)
+Reader.register("rng_devices", RngDeviceReader.read_many)
+Reader.register("role", RoleReader.read_one)
+Reader.register("roles", RoleReader.read_many)
+Reader.register("scheduling_policy", SchedulingPolicyReader.read_one)
+Reader.register("scheduling_policies", SchedulingPolicyReader.read_many)
+Reader.register("scheduling_policy_unit", SchedulingPolicyUnitReader.read_one)
+Reader.register("scheduling_policy_units", SchedulingPolicyUnitReader.read_many)
+Reader.register("se_linux", SeLinuxReader.read_one)
+Reader.register("se_linuxs", SeLinuxReader.read_many)
+Reader.register("serial_number", SerialNumberReader.read_one)
+Reader.register("serial_numbers", SerialNumberReader.read_many)
+Reader.register("session", SessionReader.read_one)
+Reader.register("sessions", SessionReader.read_many)
+Reader.register("skip_if_connectivity_broken", SkipIfConnectivityBrokenReader.read_one)
+Reader.register(
+    "skip_if_connectivity_brokens", SkipIfConnectivityBrokenReader.read_many
+)
+Reader.register("skip_if_sd_active", SkipIfSdActiveReader.read_one)
+Reader.register("skip_if_sd_actives", SkipIfSdActiveReader.read_many)
+Reader.register("snapshot", SnapshotReader.read_one)
+Reader.register("snapshots", SnapshotReader.read_many)
+Reader.register("special_objects", SpecialObjectsReader.read_one)
+Reader.register("special_objectss", SpecialObjectsReader.read_many)
+Reader.register("spm", SpmReader.read_one)
+Reader.register("spms", SpmReader.read_many)
+Reader.register("ssh", SshReader.read_one)
+Reader.register("sshs", SshReader.read_many)
+Reader.register("ssh_public_key", SshPublicKeyReader.read_one)
+Reader.register("ssh_public_keys", SshPublicKeyReader.read_many)
+Reader.register("sso", SsoReader.read_one)
+Reader.register("ssos", SsoReader.read_many)
+Reader.register("statistic", StatisticReader.read_one)
+Reader.register("statistics", StatisticReader.read_many)
+Reader.register("step", StepReader.read_one)
+Reader.register("steps", StepReader.read_many)
+Reader.register("storage_connection", StorageConnectionReader.read_one)
+Reader.register("storage_connections", StorageConnectionReader.read_many)
+Reader.register(
+    "storage_connection_extension", StorageConnectionExtensionReader.read_one
+)
+Reader.register(
+    "storage_connection_extensions", StorageConnectionExtensionReader.read_many
+)
+Reader.register("storage_domain", StorageDomainReader.read_one)
+Reader.register("storage_domains", StorageDomainReader.read_many)
+Reader.register("storage_domain_lease", StorageDomainLeaseReader.read_one)
+Reader.register("storage_domain_leases", StorageDomainLeaseReader.read_many)
+Reader.register("system_option", SystemOptionReader.read_one)
+Reader.register("system_options", SystemOptionReader.read_many)
+Reader.register("system_option_value", SystemOptionValueReader.read_one)
+Reader.register("system_option_values", SystemOptionValueReader.read_many)
+Reader.register("tag", TagReader.read_one)
+Reader.register("tags", TagReader.read_many)
+Reader.register("template", TemplateReader.read_one)
+Reader.register("templates", TemplateReader.read_many)
+Reader.register("template_version", TemplateVersionReader.read_one)
+Reader.register("template_versions", TemplateVersionReader.read_many)
+Reader.register("ticket", TicketReader.read_one)
+Reader.register("tickets", TicketReader.read_many)
+Reader.register("time_zone", TimeZoneReader.read_one)
+Reader.register("time_zones", TimeZoneReader.read_many)
+Reader.register("transparent_hugepages", TransparentHugePagesReader.read_one)
+Reader.register("transparent_huge_pagess", TransparentHugePagesReader.read_many)
+Reader.register("unmanaged_network", UnmanagedNetworkReader.read_one)
+Reader.register("unmanaged_networks", UnmanagedNetworkReader.read_many)
+Reader.register("usb", UsbReader.read_one)
+Reader.register("usbs", UsbReader.read_many)
+Reader.register("user", UserReader.read_one)
+Reader.register("users", UserReader.read_many)
+Reader.register("user_option", UserOptionReader.read_one)
+Reader.register("user_options", UserOptionReader.read_many)
+Reader.register("value", ValueReader.read_one)
+Reader.register("values", ValueReader.read_many)
+Reader.register("vcpu_pin", VcpuPinReader.read_one)
+Reader.register("vcpu_pins", VcpuPinReader.read_many)
+Reader.register("vendor", VendorReader.read_one)
+Reader.register("vendors", VendorReader.read_many)
+Reader.register("version", VersionReader.read_one)
+Reader.register("versions", VersionReader.read_many)
+Reader.register("virtio_scsi", VirtioScsiReader.read_one)
+Reader.register("virtio_scsis", VirtioScsiReader.read_many)
+Reader.register("vm_numa_node", VirtualNumaNodeReader.read_one)
+Reader.register("vm_numa_nodes", VirtualNumaNodeReader.read_many)
+Reader.register("vlan", VlanReader.read_one)
+Reader.register("vlans", VlanReader.read_many)
+Reader.register("vm", VmReader.read_one)
+Reader.register("vms", VmReader.read_many)
+Reader.register("vm_base", VmBaseReader.read_one)
+Reader.register("vm_bases", VmBaseReader.read_many)
+Reader.register("vm_mediated_device", VmMediatedDeviceReader.read_one)
+Reader.register("vm_mediated_devices", VmMediatedDeviceReader.read_many)
+Reader.register("vm_placement_policy", VmPlacementPolicyReader.read_one)
+Reader.register("vm_placement_policies", VmPlacementPolicyReader.read_many)
+Reader.register("vm_pool", VmPoolReader.read_one)
+Reader.register("vm_pools", VmPoolReader.read_many)
+Reader.register("vm_summary", VmSummaryReader.read_one)
+Reader.register("vm_summaries", VmSummaryReader.read_many)
+Reader.register("vnic_pass_through", VnicPassThroughReader.read_one)
+Reader.register("vnic_pass_throughs", VnicPassThroughReader.read_many)
+Reader.register("vnic_profile", VnicProfileReader.read_one)
+Reader.register("vnic_profiles", VnicProfileReader.read_many)
+Reader.register("vnic_profile_mapping", VnicProfileMappingReader.read_one)
+Reader.register("vnic_profile_mappings", VnicProfileMappingReader.read_many)
+Reader.register("volume_group", VolumeGroupReader.read_one)
+Reader.register("volume_groups", VolumeGroupReader.read_many)
+Reader.register("watchdog", WatchdogReader.read_one)
+Reader.register("watchdogs", WatchdogReader.read_many)
+Reader.register("weight", WeightReader.read_one)
+Reader.register("weights", WeightReader.read_many)

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -19,22 +17,19 @@
 import io
 import json
 import os
-import pycurl
 import re
 import sys
 import threading
+from urllib.parse import urlencode, urlparse
 
-try:
-    from urllib.parse import urlencode, urlparse
-except ImportError:
-    from urllib import urlencode
-    from urlparse import urlparse
+import pycurl
 
 from ovirtsdk4.http import Response
 
 
 def get_version():
     from ovirtsdk4 import version
+
     return version.VERSION
 
 
@@ -48,7 +43,7 @@ class Error(Exception):
         """
         Creates an instance of Error class.
         """
-        super(Error, self).__init__(message)
+        super().__init__(message)
         """
         Creates an instance of Error class.
 
@@ -73,7 +68,6 @@ class AuthError(Error):
     problem happenend, like incorrect user name, incorrect password, or
     missing permissions.
     """
-    pass
 
 
 class ConnectionError(Error):
@@ -86,14 +80,12 @@ class ConnectionError(Error):
     always be empty, as no response from the server will be available to
     populate them.
     """
-    pass
 
 
 class NotFoundError(Error):
     """
     This class of error indicates that an object can't be found.
     """
-    pass
 
 
 class TimeoutError(Error):
@@ -104,7 +96,6 @@ class TimeoutError(Error):
     always be empty, as no response from the server will be available to
     populate them.
     """
-    pass
 
 
 class List(list):
@@ -114,7 +105,7 @@ class List(list):
     """
 
     def __init__(self, href=None):
-        super(List, self).__init__()
+        super().__init__()
         self._href = href
 
     @property
@@ -132,14 +123,14 @@ class List(list):
         self._href = value
 
 
-class Struct(object):
+class Struct:
     """
     This is the base class for all the struct types of the SDK. It contains
     the utility methods used by all of them.
     """
 
     def __init__(self, href=None):
-        super(Struct, self).__init__()
+        super().__init__()
         self._href = href
 
     @property
@@ -165,18 +156,14 @@ class Struct(object):
         if value is not None:
             actual = type(value)
             if not actual == expected:
-                raise TypeError((
-                    "The type '{actual}' isn't valid for "
-                    "attribute '{attribute}', it must be "
-                    "'{expected}'"
-                ).format(
-                    attribute=attribute,
-                    actual=actual.__name__,
-                    expected=expected.__name__,
-                ))
+                raise TypeError(
+                    f"The type '{actual.__name__}' isn't valid for "
+                    f"attribute '{attribute}', it must be "
+                    f"'{expected.__name__}'"
+                )
 
 
-class Connection(object):
+class Connection:
     """
     This class is responsible for managing an HTTP connection to the engine
     server. It is intended as the entry point for the SDK, and it provides
@@ -188,15 +175,14 @@ class Connection(object):
     __XML_CONTENT_TYPE_RE = re.compile(r"^\s*(application|text)/xml\s*(;.*)?$")
 
     # Regular expression used to check JSON content type.
-    __JSON_CONTENT_TYPE_RE = \
-        re.compile(r"^\s*(application|text)/json\s*(;.*)?$")
+    __JSON_CONTENT_TYPE_RE = re.compile(r"^\s*(application|text)/json\s*(;.*)?$")
 
     # The typical URL path, used just to generate informative error messages.
-    __TYPICAL_PATH = '/ovirt-engine/api'
+    __TYPICAL_PATH = "/ovirt-engine/api"
 
     # Debug types that we know how to handle. Everything else will be
     # silently ignored.
-    __KNOWN_DEBUG_TYPES = [
+    __KNOWN_DEBUG_TYPES = [  # noqa: RUF012
         pycurl.INFOTYPE_TEXT,
         pycurl.INFOTYPE_HEADER_IN,
         pycurl.INFOTYPE_HEADER_OUT,
@@ -205,12 +191,12 @@ class Connection(object):
     ]
 
     # Prefixes to use for debug data types:
-    __DEBUG_PREFIXES = {
-        pycurl.INFOTYPE_TEXT: '* ',
-        pycurl.INFOTYPE_HEADER_IN: '> ',
-        pycurl.INFOTYPE_HEADER_OUT: '< ',
-        pycurl.INFOTYPE_DATA_IN: '> ',
-        pycurl.INFOTYPE_DATA_OUT: '< ',
+    __DEBUG_PREFIXES = {  # noqa: RUF012
+        pycurl.INFOTYPE_TEXT: "* ",
+        pycurl.INFOTYPE_HEADER_IN: "> ",
+        pycurl.INFOTYPE_HEADER_OUT: "< ",
+        pycurl.INFOTYPE_DATA_IN: "> ",
+        pycurl.INFOTYPE_DATA_OUT: "< ",
     }
 
     def __init__(
@@ -228,7 +214,7 @@ class Connection(object):
         compress=True,
         sso_url=None,
         sso_revoke_url=None,
-        sso_token_name='access_token',
+        sso_token_name="access_token",
         headers=None,
         pipeline=0,
         connections=0,
@@ -310,12 +296,11 @@ class Connection(object):
 
         # Check mandatory parameters:
         if url is None:
-            raise Error('The \'url\' parameter is mandatory')
+            raise Error("The 'url' parameter is mandatory")
 
         # Check that the CA file exists if insecure is not set:
-        if not insecure:
-            if ca_file is not None and not os.path.exists(ca_file):
-                raise Error('The CA file \'%s\' doesn\'t exist' % ca_file)
+        if not insecure and ca_file is not None and not os.path.exists(ca_file):
+            raise Error(f"The CA file '{ca_file}' doesn't exist")
 
         # Save the URL:
         self._url = url
@@ -350,7 +335,7 @@ class Connection(object):
         self._multi = pycurl.CurlMulti()
         self._multi.setopt(pycurl.M_PIPELINING, bool(pipeline))
         # Since libcurl 7.30.0:
-        if hasattr(pycurl, 'M_MAX_PIPELINE_LENGTH'):
+        if hasattr(pycurl, "M_MAX_PIPELINE_LENGTH"):
             self._multi.setopt(pycurl.M_MAX_PIPELINE_LENGTH, pipeline)
             self._multi.setopt(pycurl.M_MAX_HOST_CONNECTIONS, connections)
 
@@ -403,7 +388,7 @@ class Connection(object):
         curl.setopt(pycurl.COOKIEFILE, "")
 
         # Configure TLS parameters:
-        if self._url.startswith('https'):
+        if self._url.startswith("https"):
             curl.setopt(pycurl.SSL_VERIFYPEER, 0 if self._insecure else 1)
             curl.setopt(pycurl.SSL_VERIFYHOST, 0 if self._insecure else 2)
             if self._ca_file is not None:
@@ -416,7 +401,7 @@ class Connection(object):
         # length string means accepting all the compression types that
         # libcurl supports):
         if self._compress and not self._debug:
-            curl.setopt(pycurl.ENCODING, '')
+            curl.setopt(pycurl.ENCODING, "")
 
         # Configure debug mode:
         if self._debug and self._log is not None:
@@ -439,9 +424,9 @@ class Connection(object):
         # the engine we need to check if this parameter is included in
         # the request, and add the corresponding header.
         if request.query is not None:
-            all_content = request.query.get('all_content')
+            all_content = request.query.get("all_content")
             if all_content is not None:
-                request.headers['All-Content'] = all_content
+                request.headers["All-Content"] = all_content
 
         # Add global headers:
         headers_dict = self._headers.copy()
@@ -453,41 +438,38 @@ class Connection(object):
                 headers_dict[header_name] = header_value
 
         for header_name, header_value in headers_dict.items():
-            header_lines.append('%s: %s' % (header_name, header_value))
+            header_lines.append(f"{header_name}: {header_value}")
 
-        header_lines.append('User-Agent: PythonSDK/%s' % get_version())
-        header_lines.append('Version: 4')
-        header_lines.append('Content-Type: application/xml')
-        header_lines.append('Accept: application/xml')
-        header_lines.append('Authorization: Bearer %s' % self._sso_token)
+        header_lines.append(f"User-Agent: PythonSDK/{get_version()}")
+        header_lines.append("Version: 4")
+        header_lines.append("Content-Type: application/xml")
+        header_lines.append("Accept: application/xml")
+        header_lines.append(f"Authorization: Bearer {self._sso_token}")
 
         # Make sure headers values are strings, because
         # pycurl version 7.19.0 supports only string in headers
         for i, header in enumerate(header_lines):
             try:
-                header_lines[i] = header.encode('ascii')
-            except (UnicodeEncodeError, UnicodeDecodeError):
-                header_name, header_value = header.split(':')
+                header_lines[i] = header.encode("ascii")
+            except UnicodeEncodeError, UnicodeDecodeError:
+                header_name, header_value = header.split(":")
                 raise Error(
-                    "The value '{header_value}' of header '{header_name}' "
+                    f"The value '{header_value}' of header '{header_name}' "
                     "contains characters that can't be encoded using ASCII, "
-                    "as required by the HTTP protocol.".format(
-                        header_value=header_value,
-                        header_name=header_name,
-                    )
+                    "as required by the HTTP protocol."
                 )
 
         # Copy headers and the request body to the curl object:
         curl.setopt(pycurl.HTTPHEADER, header_lines)
         body = request.body
         if body is None:
-            body = ''
+            body = ""
 
         # HTTP pipelining is valid only for idempotent operations,
         # pycurl automatically disables pipelining if COPYPOSTFIELDS
         # is set, even if pipelining is explicitly set.
-        if request.method in ['POST', 'PUT']:
-            curl.setopt(pycurl.COPYPOSTFIELDS, body.encode('utf-8'))
+        if request.method in ["POST", "PUT"]:
+            curl.setopt(pycurl.COPYPOSTFIELDS, body.encode("utf-8"))
 
         # Prepare the buffers to receive the response:
         body_buf = io.BytesIO()
@@ -517,7 +499,7 @@ class Connection(object):
                 num_q, ok_list, err_list = self._multi.info_read()
                 self._curls = self._curls.union(set(ok_list))
                 if err_list:
-                    raise Error("Failed to read response: {}".format(err_list))
+                    raise Error(f"Failed to read response: {err_list}")
                 elif context[0] in self._curls:
                     # Remove the curl:
                     self._curls.remove(context[0])
@@ -557,19 +539,14 @@ class Connection(object):
         # Build the SSO revoke URL:
         if self._sso_revoke_url is None:
             url = urlparse(self._url)
-            self._sso_revoke_url = (
-                '{url}/ovirt-engine/services/sso-logout'
-            ).format(
-                url='{scheme}://{netloc}'.format(
-                    scheme=url.scheme,
-                    netloc=url.netloc
-                )
+            self._sso_revoke_url = ("{url}/ovirt-engine/services/sso-logout").format(
+                url=f"{url.scheme}://{url.netloc}"
             )
 
         # Construct POST data:
         post_data = {
-            'scope': 'ovirt-app-api',
-            'token': self._sso_token,
+            "scope": "ovirt-app-api",
+            "token": self._sso_token,
         }
 
         # Send SSO request:
@@ -578,14 +555,9 @@ class Connection(object):
         if isinstance(sso_response, list):
             sso_response = sso_response[0]
 
-        if 'error' in sso_response:
+        if "error" in sso_response:
             sso_error = self._get_sso_error(sso_response)
-            raise AuthError(
-                'Error during SSO revoke %s : %s' % (
-                    sso_error[0],
-                    sso_error[1]
-                )
-            )
+            raise AuthError(f"Error during SSO revoke {sso_error[0]} : {sso_error[1]}")
 
     def _get_access_token(self):
         """
@@ -594,34 +566,31 @@ class Connection(object):
 
         # Build SSO URL:
         if self._kerberos:
-            entry_point = 'token-http-auth'
-            grant_type = 'urn:ovirt:params:oauth:grant-type:http'
+            entry_point = "token-http-auth"
+            grant_type = "urn:ovirt:params:oauth:grant-type:http"
         else:
-            entry_point = 'token'
-            grant_type = 'password'
+            entry_point = "token"
+            grant_type = "password"
 
         if self._sso_url is None:
             url = urlparse(self._url)
-            self._sso_url = (
-                '{url}/ovirt-engine/sso/oauth/{entry_point}'
-            ).format(
-                url='{scheme}://{netloc}'.format(
-                    scheme=url.scheme,
-                    netloc=url.netloc
-                ),
+            self._sso_url = ("{url}/ovirt-engine/sso/oauth/{entry_point}").format(
+                url=f"{url.scheme}://{url.netloc}",
                 entry_point=entry_point,
             )
 
         # Construct POST data:
         post_data = {
-            'grant_type': grant_type,
-            'scope': 'ovirt-app-api',
+            "grant_type": grant_type,
+            "scope": "ovirt-app-api",
         }
         if not self._kerberos:
-            post_data.update({
-                'username': self._username,
-                'password': self._password,
-            })
+            post_data.update(
+                {
+                    "username": self._username,
+                    "password": self._password,
+                }
+            )
 
         # Send SSO request:
         sso_response = self._get_sso_response(self._sso_url, post_data)
@@ -629,42 +598,40 @@ class Connection(object):
         if isinstance(sso_response, list):
             sso_response = sso_response[0]
 
-        if 'error' in sso_response:
+        if "error" in sso_response:
             sso_error = self._get_sso_error(sso_response)
             raise AuthError(
-                'Error during SSO authentication %s : %s' % (
-                    sso_error[0],
-                    sso_error[1]
-                )
+                f"Error during SSO authentication {sso_error[0]} : {sso_error[1]}"
             )
 
         return sso_response[self._sso_token_name]
 
     def _get_sso_error(self, sso_response):
         # OpenId define `error_description` field, OAuth doesn't:
-        if 'error_description' in sso_response:
-            sso_error = (sso_response.get('error'),
-                         sso_response.get('error_description'))
+        if "error_description" in sso_response:
+            sso_error = (
+                sso_response.get("error"),
+                sso_response.get("error_description"),
+            )
         else:
-            sso_error = (sso_response.get('error_code'),
-                         sso_response.get('error'))
+            sso_error = (sso_response.get("error_code"), sso_response.get("error"))
 
         return sso_error
 
-    def _get_sso_response(self, url, params=''):
+    def _get_sso_response(self, url, params=""):
         """
         Perform SSO request and return response body data.
         """
 
         # Set HTTP method and URL:
         curl = pycurl.Curl()
-        curl.setopt(pycurl.CUSTOMREQUEST, 'POST')
+        curl.setopt(pycurl.CUSTOMREQUEST, "POST")
         curl.setopt(pycurl.URL, url)
 
         # Set proper Authorization header if using kerberos:
         if self._kerberos:
             curl.setopt(pycurl.HTTPAUTH, pycurl.HTTPAUTH_GSSNEGOTIATE)
-            curl.setopt(pycurl.USERPWD, ':')
+            curl.setopt(pycurl.USERPWD, ":")
 
         # Configure debug mode:
         if self._debug and self._log is not None:
@@ -672,7 +639,7 @@ class Connection(object):
             curl.setopt(pycurl.DEBUGFUNCTION, self._curl_debug)
 
         # Configure TLS parameters:
-        if self._url.startswith('https'):
+        if self._url.startswith("https"):
             curl.setopt(pycurl.SSL_VERIFYPEER, 0 if self._insecure else 1)
             curl.setopt(pycurl.SSL_VERIFYHOST, 0 if self._insecure else 2)
             if self._ca_file is not None:
@@ -680,8 +647,8 @@ class Connection(object):
 
         # Prepare headers:
         header_lines = [
-            'User-Agent: PythonSDK/%s' % get_version(),
-            'Accept: application/json'
+            f"User-Agent: PythonSDK/{get_version()}",
+            "Accept: application/json",
         ]
         curl.setopt(pycurl.HTTPHEADER, header_lines)
         curl.setopt(pycurl.COPYPOSTFIELDS, urlencode(params))
@@ -694,7 +661,7 @@ class Connection(object):
         # from the server, because we can be forwarded by apache, and we
         # are interested only in last response:
         def write_header(buf):
-            if buf.startswith(b'HTTP/'):
+            if buf.startswith(b"HTTP/"):
                 headers_buf.truncate(0)
                 headers_buf.seek(0)
             headers_buf.write(buf)
@@ -707,14 +674,13 @@ class Connection(object):
         curl.close()
 
         # Get headers:
-        headers_text = headers_buf.getvalue().decode('ascii')
-        header_lines = headers_text.split('\n')
+        headers_text = headers_buf.getvalue().decode("ascii")
+        header_lines = headers_text.split("\n")
 
         # Check the returned content type:
-        self._check_content_type(self.__JSON_CONTENT_TYPE_RE, 'JSON',
-                                 header_lines)
+        self._check_content_type(self.__JSON_CONTENT_TYPE_RE, "JSON", header_lines)
 
-        return json.loads(body_buf.getvalue().decode('utf-8'))
+        return json.loads(body_buf.getvalue().decode("utf-8"))
 
     def system_service(self):
         """
@@ -725,7 +691,8 @@ class Connection(object):
 
         if self.__system_service is None:
             from ovirtsdk4.services import SystemService
-            self.__system_service = SystemService(self, '')
+
+            self.__system_service = SystemService(self, "")
         return self.__system_service
 
     def service(self, path):
@@ -757,7 +724,7 @@ class Connection(object):
             if raise_exception:
                 raise
             return False
-        except Exception as exception:
+        except Exception as exception:  # noqa: BLE001
             if raise_exception:
                 raise Error(exception)
             return False
@@ -781,25 +748,23 @@ class Connection(object):
         href = obj.href
         if href is None:
             raise Error(
-                "Can't follow link because the 'href' attribute does't "
-                "have a value"
+                "Can't follow link because the 'href' attribute does't have a value"
             )
 
         # Check that the value of the "href" attribute is compatible with the
         # base URL of the connection:
         prefix = urlparse(self._url).path
-        if not prefix.endswith('/'):
-            prefix += '/'
+        if not prefix.endswith("/"):
+            prefix += "/"
         if not href.startswith(prefix):
             raise Error(
-                "The URL '%s' isn't compatible with the base URL of the "
-                "connection" % href
+                f"The URL '{href}' isn't compatible with the base URL of the connection"
             )
 
         # Remove the prefix from the URL, follow the path to the relevant
         # service and invoke the "get", or "list method to retrieve its
         # representation:
-        path = href[len(prefix):]
+        path = href[len(prefix) :]
         service = self.service(path)
         if isinstance(obj, List):
             return service.list()
@@ -822,7 +787,7 @@ class Connection(object):
         with self._curl_lock:
             self._multi.close()
 
-    def _build_url(self, path='', query=None):
+    def _build_url(self, path="", query=None):
         """
         Builds a request URL from a path, and the set of query parameters.
 
@@ -844,37 +809,33 @@ class Connection(object):
         """
 
         # Add the path and the parameters:
-        url = '%s%s' % (self._url, path)
+        url = f"{self._url}{path}"
         if query:
-            url = '%s?%s' % (url, urlencode(sorted(query.items())))
+            url = f"{url}?{urlencode(sorted(query.items()))}"
         return url
 
     def check_xml_content_type(self, response):
         """
-         Checks that the content type of the given response is XML. If it is
-         XML then it does nothing. If it isn't XML then it raises an
-         exception.
+        Checks that the content type of the given response is XML. If it is
+        XML then it does nothing. If it isn't XML then it raises an
+        exception.
 
-         `response` The HTTP response to check.
+        `response` The HTTP response to check.
         """
         return self._check_content_type(
-            self.__XML_CONTENT_TYPE_RE,
-            'XML',
-            response.headers
+            self.__XML_CONTENT_TYPE_RE, "XML", response.headers
         )
 
     def check_json_content_type(self, response):
         """
-         Checks that the content type of the given response is JSON. If it is
-         JSON then it does nothing. If it isn't JSON then it raises an
-         exception.
+        Checks that the content type of the given response is JSON. If it is
+        JSON then it does nothing. If it isn't JSON then it raises an
+        exception.
 
-         `response` The HTTP response to check.
+        `response` The HTTP response to check.
         """
         return self._check_content_type(
-            self.__JSON_CONTENT_TYPE_RE,
-            'JSON',
-            response.headers
+            self.__JSON_CONTENT_TYPE_RE, "JSON", response.headers
         )
 
     def _check_content_type(self, expected_re, expected_name, headers):
@@ -887,7 +848,7 @@ class Connection(object):
         `expected_name` The name of the expected content type.
         `headers` The HTTP headers to check.
         """
-        content_type = self._get_header_value(headers, 'content-type')
+        content_type = self._get_header_value(headers, "content-type")
         if expected_re.match(content_type) is None:
             msg = "The response content type '{}' isn't the expected {}"
             msg = msg.format(
@@ -897,10 +858,10 @@ class Connection(object):
             url = urlparse(self._url)
             if url.path != self.__TYPICAL_PATH:
                 msg += (
-                    ". Is the path '{}' included in the 'url' "
+                    f". Is the path '{url.path}' included in the 'url' "
                     "parameter correct?"
-                ).format(url.path)
-                msg += " The typical one is '{}'".format(self.__TYPICAL_PATH)
+                )
+                msg += f" The typical one is '{self.__TYPICAL_PATH}'"
             raise Error(msg)
 
     def _read_reponse(self, context):
@@ -919,14 +880,14 @@ class Connection(object):
         # have a method to extract the response message, so we have to
         # parse the first header line to find it:
         response.reason = ""
-        headers_text = context[2].getvalue().decode('ascii')
-        header_lines = headers_text.split('\n')
+        headers_text = context[2].getvalue().decode("ascii")
+        header_lines = headers_text.split("\n")
         response.headers = header_lines
         if len(header_lines) >= 1:
             response_line = header_lines[0]
             response_fields = response_line.split()
             if len(response_fields) >= 3:
-                response.reason = ' '.join(response_fields[2:])
+                response.reason = " ".join(response_fields[2:])
 
         context[0].close()
         # Return the response:
@@ -935,11 +896,9 @@ class Connection(object):
     def __parse_error(self, error):
         e_code = error.args[0]
         clazz = Error
-        error_msg = "Error while sending HTTP request: {}".format(error)
+        error_msg = f"Error while sending HTTP request: {error}"
 
-        if e_code in [
-            pycurl.E_COULDNT_CONNECT, pycurl.E_COULDNT_RESOLVE_HOST
-        ]:
+        if e_code in [pycurl.E_COULDNT_CONNECT, pycurl.E_COULDNT_RESOLVE_HOST]:
             clazz = ConnectionError
         elif e_code == pycurl.E_OPERATION_TIMEOUTED:
             clazz = TimeoutError
@@ -954,9 +913,8 @@ class Connection(object):
         :param name: name of the header
         """
         return next(
-            (h.split(':')[1].strip() for h in headers
-             if h.lower().startswith(name)),
-            None
+            (h.split(":")[1].strip() for h in headers if h.lower().startswith(name)),
+            None,
         )
 
     def _curl_debug(self, debug_type, data):
@@ -974,11 +932,11 @@ class Connection(object):
         # some as arrays of bytes, so we need to check the type of the
         # provided data and convert it to strings before trying to
         # manipulate it with the "replace", "strip" and "split" methods:
-        text = data.decode('utf-8') if isinstance(data, bytes) else data
+        text = data.decode("utf-8") if isinstance(data, bytes) else data
 
         # Split the debug data into lines and send a debug message for
         # each line:
-        lines = text.replace('\r\n', '\n').strip().split('\n')
+        lines = text.replace("\r\n", "\n").strip().split("\n")
         prefix = self.__DEBUG_PREFIXES.get(debug_type)
         for line in lines:
             if prefix is not None:
@@ -992,7 +950,7 @@ class Connection(object):
         self.close()
 
 
-class ConnectionBuilder(object):
+class ConnectionBuilder:
     """
     This class is a mechanism to simplify the repeated creation of
     multiple connections. It stores the connection parameters given
@@ -1044,7 +1002,9 @@ class ConnectionBuilder(object):
 #   import ovirtsdk4 as sdk
 #   vm = sdk.types.Vm()
 #
-import ovirtsdk4.readers as readers  # noqa: E402, F401
-import ovirtsdk4.writers as writers  # noqa: E402, F401
-import ovirtsdk4.types as types  # noqa: E402, F401
-import ovirtsdk4.services as services  # noqa: E402, F401
+from ovirtsdk4 import (
+    readers,  # noqa: F401
+    services,  # noqa: F401
+    types,  # noqa: F401
+    writers,  # noqa: F401
+)

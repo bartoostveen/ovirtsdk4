@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -17,7 +15,7 @@
 #
 
 
-class Request(object):
+class Request:
     """
     This class represents an HTTP request.
 
@@ -28,8 +26,8 @@ class Request(object):
 
     def __init__(
         self,
-        method='GET',
-        path='',
+        method="GET",
+        path="",
         query=None,
         headers=None,
         body=None,
@@ -41,7 +39,7 @@ class Request(object):
         self.body = body
 
 
-class Response(object):
+class Response:
     """
     This class represents an HTTP response.
 
@@ -50,13 +48,7 @@ class Response(object):
     guarantee.
     """
 
-    def __init__(
-        self,
-        body=None,
-        code=None,
-        headers=None,
-        message=None
-    ):
+    def __init__(self, body=None, code=None, headers=None, message=None):
         self.body = body
         self.code = code
         self.headers = headers if headers is not None else {}

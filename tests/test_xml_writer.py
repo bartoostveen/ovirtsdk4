@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -17,6 +15,7 @@
 #
 
 from io import BytesIO
+
 from ovirtsdk4.xml import XmlWriter
 
 
@@ -32,7 +31,7 @@ def decode_buffer(buf):
     Extracts the text stored in the given bytes buffer and generates an
     Unicode string.
     """
-    return buf.getvalue().decode('utf-8')
+    return buf.getvalue().decode("utf-8")
 
 
 def test_write_string():
@@ -42,6 +41,6 @@ def test_write_string():
     """
     buf = make_buffer()
     writer = XmlWriter(buf)
-    writer.write_element('value', 'myvalue')
+    writer.write_element("value", "myvalue")
     writer.flush()
-    assert decode_buffer(buf) == '<value>myvalue</value>'
+    assert decode_buffer(buf) == "<value>myvalue</value>"

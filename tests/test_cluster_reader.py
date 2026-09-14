@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,18 +14,19 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.readers import ClusterReader
+
 from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import types
+from ovirtsdk4.readers import ClusterReader
 
 
 def make_buffer(str):
     """
     Creates an IO object to be used for writing.
     """
-    return BytesIO(str.encode('utf-8'))
+    return BytesIO(str.encode("utf-8"))
 
 
 def test_cluster_with_no_rng_sources_and_switch_type():
@@ -35,12 +34,14 @@ def test_cluster_with_no_rng_sources_and_switch_type():
     Test that reading the 'switch_type' enum when it appears after an
     empty list works correctly.
     """
-    reader = XmlReader(make_buffer(
-        '<cluster>'
-        '<required_rng_sources/>'
-        '<switch_type>legacy</switch_type>'
-        '</cluster>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<cluster>"
+            "<required_rng_sources/>"
+            "<switch_type>legacy</switch_type>"
+            "</cluster>"
+        )
+    )
     result = ClusterReader.read_one(reader)
     reader.close()
 
@@ -53,11 +54,9 @@ def test_unsupported_switch_type_dont_raise_exception():
     """
     Test when given switch type is unsupported, it don't raise exception.
     """
-    reader = XmlReader(make_buffer(
-        '<cluster>'
-        '<switch_type>ugly</switch_type>'
-        '</cluster>'
-    ))
+    reader = XmlReader(
+        make_buffer("<cluster><switch_type>ugly</switch_type></cluster>")
+    )
     result = ClusterReader.read_one(reader)
     reader.close()
 

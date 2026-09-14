@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,14 +14,14 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
 import unittest
+
+from ovirtsdk4 import types
 
 from .server import TestServer
 
 
 class IscsiDiscoverTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -41,20 +39,18 @@ class IscsiDiscoverTest(unittest.TestCase):
         """
         self.server.set_xml_response("hosts/123/iscsidiscover", 200, "<action/>")
         hosts_service = self.connection.system_service().hosts_service()
-        host_service = hosts_service.host_service('123')
+        host_service = hosts_service.host_service("123")
         host_service.iscsi_discover(
             iscsi=types.IscsiDetails(
-                address='iscsi.example.com',
+                address="iscsi.example.com",
                 port=3260,
             ),
         )
-        assert (
-            self.server.last_request_content == (
-                "<action>"
-                    "<iscsi>"
-                        "<address>iscsi.example.com</address>"
-                        "<port>3260</port>"
-                    "</iscsi>"
-                "</action>"
-            )
+        assert self.server.last_request_content == (
+            "<action>"
+            "<iscsi>"
+            "<address>iscsi.example.com</address>"
+            "<port>3260</port>"
+            "</iscsi>"
+            "</action>"
         )

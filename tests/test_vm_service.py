@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,17 +14,17 @@
 # limitations under the License.
 #
 
-import ovirtsdk4
-import ovirtsdk4.types as types
 import unittest
 
 import pytest
+
+import ovirtsdk4
+from ovirtsdk4 import types
 
 from .server import TestServer
 
 
 class VmServiceTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -70,9 +68,7 @@ class VmServiceTest(unittest.TestCase):
         vm id and correct object
         """
         self.server.set_xml_response(
-            path="vms/123",
-            code=200,
-            body="<vm id=\"123\"><name>testvm</name></vm>"
+            path="vms/123", code=200, body='<vm id="123"><name>testvm</name></vm>'
         )
         dc = self.vms_service.vm_service("123").get()
         assert dc.id == "123"
@@ -84,7 +80,7 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
         self.vms_service.add(types.Vm(), clone=True)
-        assert self.server.last_request_query == 'clone=true'
+        assert self.server.last_request_query == "clone=true"
 
     def test_add_vm_with_clone_and_clone_permissions_parameters(self):
         """
@@ -92,14 +88,8 @@ class VmServiceTest(unittest.TestCase):
         those parameters is sent.
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
-        self.vms_service.add(
-            types.Vm(),
-            clone=True,
-            clone_permissions=True
-        )
-        assert (
-            self.server.last_request_query == 'clone=true&clone_permissions=true'
-        )
+        self.vms_service.add(types.Vm(), clone=True, clone_permissions=True)
+        assert self.server.last_request_query == "clone=true&clone_permissions=true"
 
     def test_add_vm_from_scratch_with_clone_parameter(self):
         """
@@ -108,7 +98,7 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
         self.vms_service.add_from_scratch(types.Vm(), clone=True)
-        assert self.server.last_request_query == 'clone=true'
+        assert self.server.last_request_query == "clone=true"
 
     def test_add_vm_from_scratch_with_clone_and_clone_permissions_parameters(self):
         """
@@ -117,13 +107,9 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
         self.vms_service.add_from_scratch(
-            types.Vm(),
-            clone=True,
-            clone_permissions=True
+            types.Vm(), clone=True, clone_permissions=True
         )
-        assert (
-            self.server.last_request_query == 'clone=true&clone_permissions=true'
-        )
+        assert self.server.last_request_query == "clone=true&clone_permissions=true"
 
     def test_response_200_not_raise_exception(self):
         """
@@ -155,7 +141,7 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms/123", 404, "")
         with pytest.raises(ovirtsdk4.NotFoundError) as context:
-            self.vms_service.vm_service('123').get()
+            self.vms_service.vm_service("123").get()
         assert "404" in str(context.value)
 
     def test_error_code_is_returned_in_exception(self):
@@ -164,7 +150,7 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms/123", 404, "")
         with pytest.raises(ovirtsdk4.NotFoundError) as context:
-            self.vms_service.vm_service('123').get()
+            self.vms_service.vm_service("123").get()
         assert context.value.code == 404
 
     def test_start_with_custom_parameter(self):
@@ -172,26 +158,24 @@ class VmServiceTest(unittest.TestCase):
         Test that sending one parameter a request is sent with that parameter.
         """
         self.server.set_xml_response("vms/123/start", 200, "<action/>")
-        self.vms_service.vm_service("123").start(query={'my': 'value'})
-        assert self.server.last_request_query == 'my=value'
+        self.vms_service.vm_service("123").start(query={"my": "value"})
+        assert self.server.last_request_query == "my=value"
 
     def test_start_with_two_custom_parameters(self):
         """
         Test that sending two parameters a request is sent with that two parameters.
         """
         self.server.set_xml_response("vms/123/start", 200, "<action/>")
-        self.vms_service.vm_service("123").start(
-            query={'my': 'value', 'your': 'value'}
-        )
-        assert self.server.last_request_query == 'my=value&your=value'
+        self.vms_service.vm_service("123").start(query={"my": "value", "your": "value"})
+        assert self.server.last_request_query == "my=value&your=value"
 
     def test_start_with_custom_header(self):
         """
         Test that sending one header a request is sent with that header.
         """
         self.server.set_xml_response("vms/123/start", 200, "<action/>")
-        self.vms_service.vm_service("123").start(headers={'my': 'value'})
-        assert self.server.last_request_headers.get('my') == 'value'
+        self.vms_service.vm_service("123").start(headers={"my": "value"})
+        assert self.server.last_request_headers.get("my") == "value"
 
     def test_start_with_two_custom_headers(self):
         """
@@ -199,74 +183,74 @@ class VmServiceTest(unittest.TestCase):
         """
         self.server.set_xml_response("vms/123/start", 200, "<action/>")
         self.vms_service.vm_service("123").start(
-            headers={'my': 'value', 'your': 'value'}
+            headers={"my": "value", "your": "value"}
         )
-        assert self.server.last_request_headers.get('my') == 'value'
-        assert self.server.last_request_headers.get('your') == 'value'
+        assert self.server.last_request_headers.get("my") == "value"
+        assert self.server.last_request_headers.get("your") == "value"
 
     def test_add_vm_with_custom_parameter(self):
         """
         Test that adding a VM with one parameter a request is sent with that parameter.
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
-        self.vms_service.add(types.Vm(), query={'my': 'value'})
-        assert self.server.last_request_query == 'my=value'
+        self.vms_service.add(types.Vm(), query={"my": "value"})
+        assert self.server.last_request_query == "my=value"
 
     def test_add_vm_with_two_custom_parameters(self):
         """
         Test that adding a VM with two parameters a request is sent with that two parameters.
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
-        self.vms_service.add(types.Vm(), query={'my': 'value', 'your': 'value'})
-        assert self.server.last_request_query == 'my=value&your=value'
+        self.vms_service.add(types.Vm(), query={"my": "value", "your": "value"})
+        assert self.server.last_request_query == "my=value&your=value"
 
     def test_add_vm_with_custom_header(self):
         """
         Test that adding a VM with one header a request is sent with that header.
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
-        self.vms_service.add(types.Vm(), headers={'my': 'value'})
-        assert self.server.last_request_headers.get('my') == 'value'
+        self.vms_service.add(types.Vm(), headers={"my": "value"})
+        assert self.server.last_request_headers.get("my") == "value"
 
     def test_add_vm_with_two_custom_headers(self):
         """
         Test that adding a VM with two headers a request is sent with that two headers.
         """
         self.server.set_xml_response("vms", 201, "<vm/>")
-        self.vms_service.add(types.Vm(), headers={'my': 'value', 'your': 'value'})
-        assert self.server.last_request_headers.get('my') == 'value'
-        assert self.server.last_request_headers.get('your') == 'value'
+        self.vms_service.add(types.Vm(), headers={"my": "value", "your": "value"})
+        assert self.server.last_request_headers.get("my") == "value"
+        assert self.server.last_request_headers.get("your") == "value"
 
     def test_add_vm_with_global_header(self):
         """
         Test that adding a VM with global header a request is sent with that header.
         """
-        connection = self.server.connection(headers={'my': 'value'})
+        connection = self.server.connection(headers={"my": "value"})
         vms_service = connection.system_service().vms_service()
         self.server.set_xml_response("vms", 201, "<vm/>")
         vms_service.add(types.Vm())
-        assert self.server.last_request_headers.get('my') == 'value'
+        assert self.server.last_request_headers.get("my") == "value"
 
     def test_start_vm_with_global_header(self):
         """
         Test that starting a VM with header a request is sent with that header.
         """
-        connection = self.server.connection(headers={'my': 'value'})
+        connection = self.server.connection(headers={"my": "value"})
         vms_service = connection.system_service().vms_service()
         self.server.set_xml_response("vms/123/start", 200, "<action/>")
         vms_service.vm_service("123").start()
-        assert self.server.last_request_headers.get('my') == 'value'
+        assert self.server.last_request_headers.get("my") == "value"
 
     def test_add_vm_with_global_header_overridden(self):
         """
         Test that adding a VM with global header set and a request header set,
         the header is overridden by request header.
         """
-        connection = self.server.connection(headers={'my': 'value'})
+        connection = self.server.connection(headers={"my": "value"})
         vms_service = connection.system_service().vms_service()
         self.server.set_xml_response("vms", 201, "<vm/>")
-        vms_service.add(types.Vm(), headers={'my': 'overridden'})
-        assert self.server.last_request_headers.get('my') == 'overridden'
+        vms_service.add(types.Vm(), headers={"my": "overridden"})
+        assert self.server.last_request_headers.get("my") == "overridden"
 
     def test_when_the_server_return_fault_it_raises_error_with_fault(self):
         """
@@ -274,22 +258,22 @@ class VmServiceTest(unittest.TestCase):
         with fault object.
         """
         self.server.set_xml_response(
-            path='vms/123/start',
+            path="vms/123/start",
             code=201,
             body=(
-                '<action>'
-                    '<fault>'
-                        '<reason>myreason</reason>'
-                        '<detail>mydetail</detail>'
-                    '</fault>'
-                '</action>'
-            )
+                "<action>"
+                "<fault>"
+                "<reason>myreason</reason>"
+                "<detail>mydetail</detail>"
+                "</fault>"
+                "</action>"
+            ),
         )
         with pytest.raises(ovirtsdk4.Error) as context:
-            self.vms_service.vm_service('123').start()
-        assert 'myreason' in str(context.value)
-        assert context.value.fault.reason == 'myreason'
-        assert context.value.fault.detail == 'mydetail'
+            self.vms_service.vm_service("123").start()
+        assert "myreason" in str(context.value)
+        assert context.value.fault.reason == "myreason"
+        assert context.value.fault.detail == "mydetail"
 
     def test_the_server_return_fault_without_action_it_raises_error(self):
         """
@@ -297,17 +281,12 @@ class VmServiceTest(unittest.TestCase):
         an exception with fault object.
         """
         self.server.set_xml_response(
-            path='vms/123/start',
+            path="vms/123/start",
             code=400,
-            body=(
-                '<fault>'
-                    '<reason>myreason</reason>'
-                    '<detail>mydetail</detail>'
-                '</fault>'
-            )
+            body=("<fault><reason>myreason</reason><detail>mydetail</detail></fault>"),
         )
         with pytest.raises(ovirtsdk4.Error) as context:
-            self.vms_service.vm_service('123').start()
-        assert 'myreason' in str(context.value)
-        assert context.value.fault.reason == 'myreason'
-        assert context.value.fault.detail == 'mydetail'
+            self.vms_service.vm_service("123").start()
+        assert "myreason" in str(context.value)
+        assert context.value.fault.reason == "myreason"
+        assert context.value.fault.detail == "mydetail"

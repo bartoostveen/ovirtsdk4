@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -18,19 +16,18 @@
 
 
 from enum import Enum, unique
+
 from ovirtsdk4 import Struct
 
 
 class AffinityRule(Struct):
-
     def __init__(
         self,
         enabled=None,
         enforcing=None,
         positive=None,
     ):
-        super(AffinityRule, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.enforcing = enforcing
         self.positive = positive
@@ -79,7 +76,6 @@ class AffinityRule(Struct):
 
 
 class AgentConfiguration(Struct):
-
     def __init__(
         self,
         address=None,
@@ -89,8 +85,7 @@ class AgentConfiguration(Struct):
         port=None,
         username=None,
     ):
-        super(AgentConfiguration, self).__init__(
-        )
+        super().__init__()
         self.address = address
         self.broker_type = broker_type
         self.network_mappings = network_mappings
@@ -110,7 +105,7 @@ class AgentConfiguration(Struct):
         """
         Sets the value of the `broker_type` property.
         """
-        Struct._check_type('broker_type', value, MessageBrokerType)
+        Struct._check_type("broker_type", value, MessageBrokerType)
         self._broker_type = value
 
     @property
@@ -185,7 +180,6 @@ class AgentConfiguration(Struct):
 
 
 class Api(Struct):
-
     def __init__(
         self,
         authenticated_user=None,
@@ -196,8 +190,7 @@ class Api(Struct):
         summary=None,
         time=None,
     ):
-        super(Api, self).__init__(
-        )
+        super().__init__()
         self.authenticated_user = authenticated_user
         self.effective_user = effective_user
         self.engine_backup = engine_backup
@@ -218,7 +211,7 @@ class Api(Struct):
         """
         Sets the value of the `effective_user` property.
         """
-        Struct._check_type('effective_user', value, User)
+        Struct._check_type("effective_user", value, User)
         self._effective_user = value
 
     @property
@@ -233,7 +226,7 @@ class Api(Struct):
         """
         Sets the value of the `summary` property.
         """
-        Struct._check_type('summary', value, ApiSummary)
+        Struct._check_type("summary", value, ApiSummary)
         self._summary = value
 
     @property
@@ -248,7 +241,7 @@ class Api(Struct):
         """
         Sets the value of the `authenticated_user` property.
         """
-        Struct._check_type('authenticated_user', value, User)
+        Struct._check_type("authenticated_user", value, User)
         self._authenticated_user = value
 
     @property
@@ -263,7 +256,7 @@ class Api(Struct):
         """
         Sets the value of the `engine_backup` property.
         """
-        Struct._check_type('engine_backup', value, EngineBackupInfo)
+        Struct._check_type("engine_backup", value, EngineBackupInfo)
         self._engine_backup = value
 
     @property
@@ -292,7 +285,7 @@ class Api(Struct):
         """
         Sets the value of the `product_info` property.
         """
-        Struct._check_type('product_info', value, ProductInfo)
+        Struct._check_type("product_info", value, ProductInfo)
         self._product_info = value
 
     @property
@@ -307,12 +300,11 @@ class Api(Struct):
         """
         Sets the value of the `special_objects` property.
         """
-        Struct._check_type('special_objects', value, SpecialObjects)
+        Struct._check_type("special_objects", value, SpecialObjects)
         self._special_objects = value
 
 
 class ApiSummary(Struct):
-
     def __init__(
         self,
         hosts=None,
@@ -320,8 +312,7 @@ class ApiSummary(Struct):
         users=None,
         vms=None,
     ):
-        super(ApiSummary, self).__init__(
-        )
+        super().__init__()
         self.hosts = hosts
         self.storage_domains = storage_domains
         self.users = users
@@ -339,7 +330,7 @@ class ApiSummary(Struct):
         """
         Sets the value of the `users` property.
         """
-        Struct._check_type('users', value, ApiSummaryItem)
+        Struct._check_type("users", value, ApiSummaryItem)
         self._users = value
 
     @property
@@ -354,7 +345,7 @@ class ApiSummary(Struct):
         """
         Sets the value of the `hosts` property.
         """
-        Struct._check_type('hosts', value, ApiSummaryItem)
+        Struct._check_type("hosts", value, ApiSummaryItem)
         self._hosts = value
 
     @property
@@ -369,7 +360,7 @@ class ApiSummary(Struct):
         """
         Sets the value of the `vms` property.
         """
-        Struct._check_type('vms', value, ApiSummaryItem)
+        Struct._check_type("vms", value, ApiSummaryItem)
         self._vms = value
 
     @property
@@ -384,19 +375,17 @@ class ApiSummary(Struct):
         """
         Sets the value of the `storage_domains` property.
         """
-        Struct._check_type('storage_domains', value, ApiSummaryItem)
+        Struct._check_type("storage_domains", value, ApiSummaryItem)
         self._storage_domains = value
 
 
 class ApiSummaryItem(Struct):
-
     def __init__(
         self,
         active=None,
         total=None,
     ):
-        super(ApiSummaryItem, self).__init__(
-        )
+        super().__init__()
         self.active = active
         self.total = total
 
@@ -430,14 +419,12 @@ class ApiSummaryItem(Struct):
 
 
 class Bios(Struct):
-
     def __init__(
         self,
         boot_menu=None,
         type=None,
     ):
-        super(Bios, self).__init__(
-        )
+        super().__init__()
         self.boot_menu = boot_menu
         self.type = type
 
@@ -453,7 +440,7 @@ class Bios(Struct):
         """
         Sets the value of the `boot_menu` property.
         """
-        Struct._check_type('boot_menu', value, BootMenu)
+        Struct._check_type("boot_menu", value, BootMenu)
         self._boot_menu = value
 
     @property
@@ -468,18 +455,16 @@ class Bios(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, BiosType)
+        Struct._check_type("type", value, BiosType)
         self._type = value
 
 
 class BlockStatistic(Struct):
-
     def __init__(
         self,
         statistics=None,
     ):
-        super(BlockStatistic, self).__init__(
-        )
+        super().__init__()
         self.statistics = statistics
 
     @property
@@ -498,7 +483,6 @@ class BlockStatistic(Struct):
 
 
 class Bonding(Struct):
-
     def __init__(
         self,
         active_slave=None,
@@ -506,8 +490,7 @@ class Bonding(Struct):
         options=None,
         slaves=None,
     ):
-        super(Bonding, self).__init__(
-        )
+        super().__init__()
         self.active_slave = active_slave
         self.ad_partner_mac = ad_partner_mac
         self.options = options
@@ -525,7 +508,7 @@ class Bonding(Struct):
         """
         Sets the value of the `active_slave` property.
         """
-        Struct._check_type('active_slave', value, HostNic)
+        Struct._check_type("active_slave", value, HostNic)
         self._active_slave = value
 
     @property
@@ -554,7 +537,7 @@ class Bonding(Struct):
         """
         Sets the value of the `ad_partner_mac` property.
         """
-        Struct._check_type('ad_partner_mac', value, Mac)
+        Struct._check_type("ad_partner_mac", value, Mac)
         self._ad_partner_mac = value
 
     @property
@@ -573,13 +556,11 @@ class Bonding(Struct):
 
 
 class Boot(Struct):
-
     def __init__(
         self,
         devices=None,
     ):
-        super(Boot, self).__init__(
-        )
+        super().__init__()
         self.devices = devices
 
     @property
@@ -598,13 +579,11 @@ class Boot(Struct):
 
 
 class BootMenu(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(BootMenu, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -623,7 +602,6 @@ class BootMenu(Struct):
 
 
 class CloudInit(Struct):
-
     def __init__(
         self,
         authorized_keys=None,
@@ -634,8 +612,7 @@ class CloudInit(Struct):
         timezone=None,
         users=None,
     ):
-        super(CloudInit, self).__init__(
-        )
+        super().__init__()
         self.authorized_keys = authorized_keys
         self.files = files
         self.host = host
@@ -670,7 +647,7 @@ class CloudInit(Struct):
         """
         Sets the value of the `network_configuration` property.
         """
-        Struct._check_type('network_configuration', value, NetworkConfiguration)
+        Struct._check_type("network_configuration", value, NetworkConfiguration)
         self._network_configuration = value
 
     @property
@@ -699,7 +676,7 @@ class CloudInit(Struct):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -746,14 +723,12 @@ class CloudInit(Struct):
 
 
 class Configuration(Struct):
-
     def __init__(
         self,
         data=None,
         type=None,
     ):
-        super(Configuration, self).__init__(
-        )
+        super().__init__()
         self.data = data
         self.type = type
 
@@ -783,18 +758,16 @@ class Configuration(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, ConfigurationType)
+        Struct._check_type("type", value, ConfigurationType)
         self._type = value
 
 
 class Console(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(Console, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -813,14 +786,12 @@ class Console(Struct):
 
 
 class Core(Struct):
-
     def __init__(
         self,
         index=None,
         socket=None,
     ):
-        super(Core, self).__init__(
-        )
+        super().__init__()
         self.index = index
         self.socket = socket
 
@@ -854,7 +825,6 @@ class Core(Struct):
 
 
 class Cpu(Struct):
-
     def __init__(
         self,
         architecture=None,
@@ -867,8 +837,7 @@ class Cpu(Struct):
         topology=None,
         type=None,
     ):
-        super(Cpu, self).__init__(
-        )
+        super().__init__()
         self.architecture = architecture
         self.cores = cores
         self.cpu_tune = cpu_tune
@@ -891,7 +860,7 @@ class Cpu(Struct):
         """
         Sets the value of the `mode` property.
         """
-        Struct._check_type('mode', value, CpuMode)
+        Struct._check_type("mode", value, CpuMode)
         self._mode = value
 
     @property
@@ -920,7 +889,7 @@ class Cpu(Struct):
         """
         Sets the value of the `cpu_tune` property.
         """
-        Struct._check_type('cpu_tune', value, CpuTune)
+        Struct._check_type("cpu_tune", value, CpuTune)
         self._cpu_tune = value
 
     @property
@@ -949,7 +918,7 @@ class Cpu(Struct):
         """
         Sets the value of the `topology` property.
         """
-        Struct._check_type('topology', value, CpuTopology)
+        Struct._check_type("topology", value, CpuTopology)
         self._topology = value
 
     @property
@@ -978,7 +947,7 @@ class Cpu(Struct):
         """
         Sets the value of the `architecture` property.
         """
-        Struct._check_type('architecture', value, Architecture)
+        Struct._check_type("architecture", value, Architecture)
         self._architecture = value
 
     @property
@@ -1011,15 +980,13 @@ class Cpu(Struct):
 
 
 class CpuTopology(Struct):
-
     def __init__(
         self,
         cores=None,
         sockets=None,
         threads=None,
     ):
-        super(CpuTopology, self).__init__(
-        )
+        super().__init__()
         self.cores = cores
         self.sockets = sockets
         self.threads = threads
@@ -1068,13 +1035,11 @@ class CpuTopology(Struct):
 
 
 class CpuTune(Struct):
-
     def __init__(
         self,
         vcpu_pins=None,
     ):
-        super(CpuTune, self).__init__(
-        )
+        super().__init__()
         self.vcpu_pins = vcpu_pins
 
     @property
@@ -1093,15 +1058,13 @@ class CpuTune(Struct):
 
 
 class CpuType(Struct):
-
     def __init__(
         self,
         architecture=None,
         level=None,
         name=None,
     ):
-        super(CpuType, self).__init__(
-        )
+        super().__init__()
         self.architecture = architecture
         self.level = level
         self.name = name
@@ -1146,20 +1109,18 @@ class CpuType(Struct):
         """
         Sets the value of the `architecture` property.
         """
-        Struct._check_type('architecture', value, Architecture)
+        Struct._check_type("architecture", value, Architecture)
         self._architecture = value
 
 
 class CustomProperty(Struct):
-
     def __init__(
         self,
         name=None,
         regexp=None,
         value=None,
     ):
-        super(CustomProperty, self).__init__(
-        )
+        super().__init__()
         self.name = name
         self.regexp = regexp
         self.value = value
@@ -1208,7 +1169,6 @@ class CustomProperty(Struct):
 
 
 class Display(Struct):
-
     def __init__(
         self,
         address=None,
@@ -1228,8 +1188,7 @@ class Display(Struct):
         type=None,
         video_type=None,
     ):
-        super(Display, self).__init__(
-        )
+        super().__init__()
         self.address = address
         self.allow_override = allow_override
         self.certificate = certificate
@@ -1343,7 +1302,7 @@ class Display(Struct):
         """
         Sets the value of the `video_type` property.
         """
-        Struct._check_type('video_type', value, VideoType)
+        Struct._check_type("video_type", value, VideoType)
         self._video_type = value
 
     @property
@@ -1358,7 +1317,7 @@ class Display(Struct):
         """
         Sets the value of the `certificate` property.
         """
-        Struct._check_type('certificate', value, Certificate)
+        Struct._check_type("certificate", value, Certificate)
         self._certificate = value
 
     @property
@@ -1373,7 +1332,7 @@ class Display(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, DisplayType)
+        Struct._check_type("type", value, DisplayType)
         self._type = value
 
     @property
@@ -1476,14 +1435,12 @@ class Display(Struct):
 
 
 class Dns(Struct):
-
     def __init__(
         self,
         search_domains=None,
         servers=None,
     ):
-        super(Dns, self).__init__(
-        )
+        super().__init__()
         self.search_domains = search_domains
         self.servers = servers
 
@@ -1517,13 +1474,11 @@ class Dns(Struct):
 
 
 class DnsResolverConfiguration(Struct):
-
     def __init__(
         self,
         name_servers=None,
     ):
-        super(DnsResolverConfiguration, self).__init__(
-        )
+        super().__init__()
         self.name_servers = name_servers
 
     @property
@@ -1542,14 +1497,12 @@ class DnsResolverConfiguration(Struct):
 
 
 class DynamicCpu(Struct):
-
     def __init__(
         self,
         cpu_tune=None,
         topology=None,
     ):
-        super(DynamicCpu, self).__init__(
-        )
+        super().__init__()
         self.cpu_tune = cpu_tune
         self.topology = topology
 
@@ -1565,7 +1518,7 @@ class DynamicCpu(Struct):
         """
         Sets the value of the `cpu_tune` property.
         """
-        Struct._check_type('cpu_tune', value, CpuTune)
+        Struct._check_type("cpu_tune", value, CpuTune)
         self._cpu_tune = value
 
     @property
@@ -1580,12 +1533,11 @@ class DynamicCpu(Struct):
         """
         Sets the value of the `topology` property.
         """
-        Struct._check_type('topology', value, CpuTopology)
+        Struct._check_type("topology", value, CpuTopology)
         self._topology = value
 
 
 class EngineBackupInfo(Struct):
-
     def __init__(
         self,
         last_cinder_backup=None,
@@ -1595,8 +1547,7 @@ class EngineBackupInfo(Struct):
         last_grafana_backup=None,
         last_keycloak_backup=None,
     ):
-        super(EngineBackupInfo, self).__init__(
-        )
+        super().__init__()
         self.last_cinder_backup = last_cinder_backup
         self.last_db_backup = last_db_backup
         self.last_dwh_backup = last_dwh_backup
@@ -1690,13 +1641,11 @@ class EngineBackupInfo(Struct):
 
 
 class EntityProfileDetail(Struct):
-
     def __init__(
         self,
         profile_details=None,
     ):
-        super(EntityProfileDetail, self).__init__(
-        )
+        super().__init__()
         self.profile_details = profile_details
 
     @property
@@ -1715,13 +1664,11 @@ class EntityProfileDetail(Struct):
 
 
 class ErrorHandling(Struct):
-
     def __init__(
         self,
         on_error=None,
     ):
-        super(ErrorHandling, self).__init__(
-        )
+        super().__init__()
         self.on_error = on_error
 
     @property
@@ -1736,12 +1683,11 @@ class ErrorHandling(Struct):
         """
         Sets the value of the `on_error` property.
         """
-        Struct._check_type('on_error', value, MigrateOnError)
+        Struct._check_type("on_error", value, MigrateOnError)
         self._on_error = value
 
 
 class ExternalTemplateImport(Struct):
-
     def __init__(
         self,
         clone=None,
@@ -1753,8 +1699,7 @@ class ExternalTemplateImport(Struct):
         template=None,
         url=None,
     ):
-        super(ExternalTemplateImport, self).__init__(
-        )
+        super().__init__()
         self.clone = clone
         self.cluster = cluster
         self.cpu_profile = cpu_profile
@@ -1776,7 +1721,7 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -1791,7 +1736,7 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -1806,7 +1751,7 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -1821,7 +1766,7 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -1836,7 +1781,7 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -1879,12 +1824,11 @@ class ExternalTemplateImport(Struct):
         """
         Sets the value of the `cpu_profile` property.
         """
-        Struct._check_type('cpu_profile', value, CpuProfile)
+        Struct._check_type("cpu_profile", value, CpuProfile)
         self._cpu_profile = value
 
 
 class ExternalVmImport(Struct):
-
     def __init__(
         self,
         cluster=None,
@@ -1901,8 +1845,7 @@ class ExternalVmImport(Struct):
         username=None,
         vm=None,
     ):
-        super(ExternalVmImport, self).__init__(
-        )
+        super().__init__()
         self.cluster = cluster
         self.cpu_profile = cpu_profile
         self.drivers_iso = drivers_iso
@@ -1929,7 +1872,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -1944,7 +1887,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -1959,7 +1902,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `drivers_iso` property.
         """
-        Struct._check_type('drivers_iso', value, File)
+        Struct._check_type("drivers_iso", value, File)
         self._drivers_iso = value
 
     @property
@@ -2016,7 +1959,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `provider` property.
         """
-        Struct._check_type('provider', value, ExternalVmProviderType)
+        Struct._check_type("provider", value, ExternalVmProviderType)
         self._provider = value
 
     @property
@@ -2031,7 +1974,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -2046,7 +1989,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -2061,7 +2004,7 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -2104,19 +2047,17 @@ class ExternalVmImport(Struct):
         """
         Sets the value of the `cpu_profile` property.
         """
-        Struct._check_type('cpu_profile', value, CpuProfile)
+        Struct._check_type("cpu_profile", value, CpuProfile)
         self._cpu_profile = value
 
 
 class Fault(Struct):
-
     def __init__(
         self,
         detail=None,
         reason=None,
     ):
-        super(Fault, self).__init__(
-        )
+        super().__init__()
         self.detail = detail
         self.reason = reason
 
@@ -2150,7 +2091,6 @@ class Fault(Struct):
 
 
 class FencingPolicy(Struct):
-
     def __init__(
         self,
         enabled=None,
@@ -2159,8 +2099,7 @@ class FencingPolicy(Struct):
         skip_if_gluster_quorum_not_met=None,
         skip_if_sd_active=None,
     ):
-        super(FencingPolicy, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.skip_if_connectivity_broken = skip_if_connectivity_broken
         self.skip_if_gluster_bricks_up = skip_if_gluster_bricks_up
@@ -2179,7 +2118,9 @@ class FencingPolicy(Struct):
         """
         Sets the value of the `skip_if_connectivity_broken` property.
         """
-        Struct._check_type('skip_if_connectivity_broken', value, SkipIfConnectivityBroken)
+        Struct._check_type(
+            "skip_if_connectivity_broken", value, SkipIfConnectivityBroken
+        )
         self._skip_if_connectivity_broken = value
 
     @property
@@ -2208,7 +2149,7 @@ class FencingPolicy(Struct):
         """
         Sets the value of the `skip_if_sd_active` property.
         """
-        Struct._check_type('skip_if_sd_active', value, SkipIfSdActive)
+        Struct._check_type("skip_if_sd_active", value, SkipIfSdActive)
         self._skip_if_sd_active = value
 
     @property
@@ -2241,14 +2182,12 @@ class FencingPolicy(Struct):
 
 
 class FopStatistic(Struct):
-
     def __init__(
         self,
         name=None,
         statistics=None,
     ):
-        super(FopStatistic, self).__init__(
-        )
+        super().__init__()
         self.name = name
         self.statistics = statistics
 
@@ -2282,13 +2221,11 @@ class FopStatistic(Struct):
 
 
 class GlusterBrickMemoryInfo(Struct):
-
     def __init__(
         self,
         memory_pools=None,
     ):
-        super(GlusterBrickMemoryInfo, self).__init__(
-        )
+        super().__init__()
         self.memory_pools = memory_pools
 
     @property
@@ -2307,7 +2244,6 @@ class GlusterBrickMemoryInfo(Struct):
 
 
 class GlusterClient(Struct):
-
     def __init__(
         self,
         bytes_read=None,
@@ -2315,8 +2251,7 @@ class GlusterClient(Struct):
         client_port=None,
         host_name=None,
     ):
-        super(GlusterClient, self).__init__(
-        )
+        super().__init__()
         self.bytes_read = bytes_read
         self.bytes_written = bytes_written
         self.client_port = client_port
@@ -2380,13 +2315,11 @@ class GlusterClient(Struct):
 
 
 class GracePeriod(Struct):
-
     def __init__(
         self,
         expiry=None,
     ):
-        super(GracePeriod, self).__init__(
-        )
+        super().__init__()
         self.expiry = expiry
 
     @property
@@ -2405,7 +2338,6 @@ class GracePeriod(Struct):
 
 
 class GuestOperatingSystem(Struct):
-
     def __init__(
         self,
         architecture=None,
@@ -2415,8 +2347,7 @@ class GuestOperatingSystem(Struct):
         kernel=None,
         version=None,
     ):
-        super(GuestOperatingSystem, self).__init__(
-        )
+        super().__init__()
         self.architecture = architecture
         self.codename = codename
         self.distribution = distribution
@@ -2436,7 +2367,7 @@ class GuestOperatingSystem(Struct):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -2451,7 +2382,7 @@ class GuestOperatingSystem(Struct):
         """
         Sets the value of the `kernel` property.
         """
-        Struct._check_type('kernel', value, Kernel)
+        Struct._check_type("kernel", value, Kernel)
         self._kernel = value
 
     @property
@@ -2512,7 +2443,6 @@ class GuestOperatingSystem(Struct):
 
 
 class HardwareInformation(Struct):
-
     def __init__(
         self,
         family=None,
@@ -2523,8 +2453,7 @@ class HardwareInformation(Struct):
         uuid=None,
         version=None,
     ):
-        super(HardwareInformation, self).__init__(
-        )
+        super().__init__()
         self.family = family
         self.manufacturer = manufacturer
         self.product_name = product_name
@@ -2633,14 +2562,12 @@ class HardwareInformation(Struct):
 
 
 class HighAvailability(Struct):
-
     def __init__(
         self,
         enabled=None,
         priority=None,
     ):
-        super(HighAvailability, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.priority = priority
 
@@ -2674,13 +2601,11 @@ class HighAvailability(Struct):
 
 
 class HostDevicePassthrough(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(HostDevicePassthrough, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -2699,15 +2624,13 @@ class HostDevicePassthrough(Struct):
 
 
 class HostNicVirtualFunctionsConfiguration(Struct):
-
     def __init__(
         self,
         all_networks_allowed=None,
         max_number_of_virtual_functions=None,
         number_of_virtual_functions=None,
     ):
-        super(HostNicVirtualFunctionsConfiguration, self).__init__(
-        )
+        super().__init__()
         self.all_networks_allowed = all_networks_allowed
         self.max_number_of_virtual_functions = max_number_of_virtual_functions
         self.number_of_virtual_functions = number_of_virtual_functions
@@ -2756,7 +2679,6 @@ class HostNicVirtualFunctionsConfiguration(Struct):
 
 
 class HostedEngine(Struct):
-
     def __init__(
         self,
         active=None,
@@ -2765,8 +2687,7 @@ class HostedEngine(Struct):
         local_maintenance=None,
         score=None,
     ):
-        super(HostedEngine, self).__init__(
-        )
+        super().__init__()
         self.active = active
         self.configured = configured
         self.global_maintenance = global_maintenance
@@ -2845,7 +2766,6 @@ class HostedEngine(Struct):
 
 
 class Identified(Struct):
-
     def __init__(
         self,
         comment=None,
@@ -2853,8 +2773,7 @@ class Identified(Struct):
         id=None,
         name=None,
     ):
-        super(Identified, self).__init__(
-        )
+        super().__init__()
         self.comment = comment
         self.description = description
         self.id = id
@@ -2918,7 +2837,6 @@ class Identified(Struct):
 
 
 class Image(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -2929,7 +2847,7 @@ class Image(Identified):
         storage_domain=None,
         type=None,
     ):
-        super(Image, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -2951,7 +2869,7 @@ class Image(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -2980,12 +2898,11 @@ class Image(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, ImageFileType)
+        Struct._check_type("type", value, ImageFileType)
         self._type = value
 
 
 class ImageTransfer(Identified):
-
     def __init__(
         self,
         active=None,
@@ -3008,7 +2925,7 @@ class ImageTransfer(Identified):
         transfer_url=None,
         transferred=None,
     ):
-        super(ImageTransfer, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -3042,7 +2959,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `image` property.
         """
-        Struct._check_type('image', value, Image)
+        Struct._check_type("image", value, Image)
         self._image = value
 
     @property
@@ -3057,7 +2974,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `phase` property.
         """
-        Struct._check_type('phase', value, ImageTransferPhase)
+        Struct._check_type("phase", value, ImageTransferPhase)
         self._phase = value
 
     @property
@@ -3086,7 +3003,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `backup` property.
         """
-        Struct._check_type('backup', value, Backup)
+        Struct._check_type("backup", value, Backup)
         self._backup = value
 
     @property
@@ -3115,7 +3032,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `format` property.
         """
-        Struct._check_type('format', value, DiskFormat)
+        Struct._check_type("format", value, DiskFormat)
         self._format = value
 
     @property
@@ -3158,7 +3075,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
     @property
@@ -3173,7 +3090,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -3202,7 +3119,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `snapshot` property.
         """
-        Struct._check_type('snapshot', value, DiskSnapshot)
+        Struct._check_type("snapshot", value, DiskSnapshot)
         self._snapshot = value
 
     @property
@@ -3217,7 +3134,7 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `timeout_policy` property.
         """
-        Struct._check_type('timeout_policy', value, ImageTransferTimeoutPolicy)
+        Struct._check_type("timeout_policy", value, ImageTransferTimeoutPolicy)
         self._timeout_policy = value
 
     @property
@@ -3246,12 +3163,11 @@ class ImageTransfer(Identified):
         """
         Sets the value of the `direction` property.
         """
-        Struct._check_type('direction', value, ImageTransferDirection)
+        Struct._check_type("direction", value, ImageTransferDirection)
         self._direction = value
 
 
 class Initialization(Struct):
-
     def __init__(
         self,
         active_directory_ou=None,
@@ -3277,8 +3193,7 @@ class Initialization(Struct):
         user_name=None,
         windows_license_key=None,
     ):
-        super(Initialization, self).__init__(
-        )
+        super().__init__()
         self.active_directory_ou = active_directory_ou
         self.authorized_ssh_keys = authorized_ssh_keys
         self.cloud_init = cloud_init
@@ -3342,7 +3257,7 @@ class Initialization(Struct):
         """
         Sets the value of the `configuration` property.
         """
-        Struct._check_type('configuration', value, Configuration)
+        Struct._check_type("configuration", value, Configuration)
         self._configuration = value
 
     @property
@@ -3399,7 +3314,9 @@ class Initialization(Struct):
         """
         Sets the value of the `cloud_init_network_protocol` property.
         """
-        Struct._check_type('cloud_init_network_protocol', value, CloudInitNetworkProtocol)
+        Struct._check_type(
+            "cloud_init_network_protocol", value, CloudInitNetworkProtocol
+        )
         self._cloud_init_network_protocol = value
 
     @property
@@ -3554,7 +3471,7 @@ class Initialization(Struct):
         """
         Sets the value of the `cloud_init` property.
         """
-        Struct._check_type('cloud_init', value, CloudInit)
+        Struct._check_type("cloud_init", value, CloudInit)
         self._cloud_init = value
 
     @property
@@ -3615,13 +3532,11 @@ class Initialization(Struct):
 
 
 class Io(Struct):
-
     def __init__(
         self,
         threads=None,
     ):
-        super(Io, self).__init__(
-        )
+        super().__init__()
         self.threads = threads
 
     @property
@@ -3640,7 +3555,6 @@ class Io(Struct):
 
 
 class Ip(Struct):
-
     def __init__(
         self,
         address=None,
@@ -3648,8 +3562,7 @@ class Ip(Struct):
         netmask=None,
         version=None,
     ):
-        super(Ip, self).__init__(
-        )
+        super().__init__()
         self.address = address
         self.gateway = gateway
         self.netmask = netmask
@@ -3667,7 +3580,7 @@ class Ip(Struct):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, IpVersion)
+        Struct._check_type("version", value, IpVersion)
         self._version = value
 
     @property
@@ -3714,14 +3627,12 @@ class Ip(Struct):
 
 
 class IpAddressAssignment(Struct):
-
     def __init__(
         self,
         assignment_method=None,
         ip=None,
     ):
-        super(IpAddressAssignment, self).__init__(
-        )
+        super().__init__()
         self.assignment_method = assignment_method
         self.ip = ip
 
@@ -3737,7 +3648,7 @@ class IpAddressAssignment(Struct):
         """
         Sets the value of the `ip` property.
         """
-        Struct._check_type('ip', value, Ip)
+        Struct._check_type("ip", value, Ip)
         self._ip = value
 
     @property
@@ -3752,12 +3663,11 @@ class IpAddressAssignment(Struct):
         """
         Sets the value of the `assignment_method` property.
         """
-        Struct._check_type('assignment_method', value, BootProtocol)
+        Struct._check_type("assignment_method", value, BootProtocol)
         self._assignment_method = value
 
 
 class IscsiBond(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -3768,7 +3678,7 @@ class IscsiBond(Identified):
         networks=None,
         storage_connections=None,
     ):
-        super(IscsiBond, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -3804,7 +3714,7 @@ class IscsiBond(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -3823,7 +3733,6 @@ class IscsiBond(Identified):
 
 
 class IscsiDetails(Struct):
-
     def __init__(
         self,
         address=None,
@@ -3844,8 +3753,7 @@ class IscsiDetails(Struct):
         vendor_id=None,
         volume_group_id=None,
     ):
-        super(IscsiDetails, self).__init__(
-        )
+        super().__init__()
         self.address = address
         self.disk_id = disk_id
         self.initiator = initiator
@@ -4104,7 +4012,6 @@ class IscsiDetails(Struct):
 
 
 class Job(Identified):
-
     def __init__(
         self,
         auto_cleared=None,
@@ -4120,7 +4027,7 @@ class Job(Identified):
         status=None,
         steps=None,
     ):
-        super(Job, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -4175,7 +4082,7 @@ class Job(Identified):
         """
         Sets the value of the `owner` property.
         """
-        Struct._check_type('owner', value, User)
+        Struct._check_type("owner", value, User)
         self._owner = value
 
     @property
@@ -4232,7 +4139,7 @@ class Job(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, JobStatus)
+        Struct._check_type("status", value, JobStatus)
         self._status = value
 
     @property
@@ -4251,7 +4158,6 @@ class Job(Identified):
 
 
 class KatelloErratum(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -4268,7 +4174,7 @@ class KatelloErratum(Identified):
         type=None,
         vm=None,
     ):
-        super(KatelloErratum, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -4352,7 +4258,7 @@ class KatelloErratum(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -4367,7 +4273,7 @@ class KatelloErratum(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -4414,13 +4320,11 @@ class KatelloErratum(Identified):
 
 
 class Kernel(Struct):
-
     def __init__(
         self,
         version=None,
     ):
-        super(Kernel, self).__init__(
-        )
+        super().__init__()
         self.version = version
 
     @property
@@ -4435,19 +4339,17 @@ class Kernel(Struct):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
 
 class Ksm(Struct):
-
     def __init__(
         self,
         enabled=None,
         merge_across_nodes=None,
     ):
-        super(Ksm, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.merge_across_nodes = merge_across_nodes
 
@@ -4481,7 +4383,6 @@ class Ksm(Struct):
 
 
 class LinkLayerDiscoveryProtocolElement(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -4493,7 +4394,7 @@ class LinkLayerDiscoveryProtocolElement(Identified):
         subtype=None,
         type=None,
     ):
-        super(LinkLayerDiscoveryProtocolElement, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -4562,7 +4463,6 @@ class LinkLayerDiscoveryProtocolElement(Identified):
 
 
 class LogicalUnit(Struct):
-
     def __init__(
         self,
         active_paths=None,
@@ -4586,8 +4486,7 @@ class LogicalUnit(Struct):
         vendor_id=None,
         volume_group_id=None,
     ):
-        super(LogicalUnit, self).__init__(
-        )
+        super().__init__()
         self.active_paths = active_paths
         self.address = address
         self.discard_max_size = discard_max_size
@@ -4873,7 +4772,7 @@ class LogicalUnit(Struct):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, LunStatus)
+        Struct._check_type("status", value, LunStatus)
         self._status = value
 
     @property
@@ -4892,7 +4791,6 @@ class LogicalUnit(Struct):
 
 
 class MDevType(Struct):
-
     def __init__(
         self,
         available_instances=None,
@@ -4900,8 +4798,7 @@ class MDevType(Struct):
         human_readable_name=None,
         name=None,
     ):
-        super(MDevType, self).__init__(
-        )
+        super().__init__()
         self.available_instances = available_instances
         self.description = description
         self.human_readable_name = human_readable_name
@@ -4965,13 +4862,11 @@ class MDevType(Struct):
 
 
 class Mac(Struct):
-
     def __init__(
         self,
         address=None,
     ):
-        super(Mac, self).__init__(
-        )
+        super().__init__()
         self.address = address
 
     @property
@@ -4990,7 +4885,6 @@ class Mac(Struct):
 
 
 class MacPool(Identified):
-
     def __init__(
         self,
         allow_duplicates=None,
@@ -5002,7 +4896,7 @@ class MacPool(Identified):
         permissions=None,
         ranges=None,
     ):
-        super(MacPool, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -5071,13 +4965,11 @@ class MacPool(Identified):
 
 
 class MemoryOverCommit(Struct):
-
     def __init__(
         self,
         percent=None,
     ):
-        super(MemoryOverCommit, self).__init__(
-        )
+        super().__init__()
         self.percent = percent
 
     @property
@@ -5096,7 +4988,6 @@ class MemoryOverCommit(Struct):
 
 
 class MemoryPolicy(Struct):
-
     def __init__(
         self,
         ballooning=None,
@@ -5105,8 +4996,7 @@ class MemoryPolicy(Struct):
         over_commit=None,
         transparent_huge_pages=None,
     ):
-        super(MemoryPolicy, self).__init__(
-        )
+        super().__init__()
         self.ballooning = ballooning
         self.guaranteed = guaranteed
         self.max = max
@@ -5139,7 +5029,7 @@ class MemoryPolicy(Struct):
         """
         Sets the value of the `over_commit` property.
         """
-        Struct._check_type('over_commit', value, MemoryOverCommit)
+        Struct._check_type("over_commit", value, MemoryOverCommit)
         self._over_commit = value
 
     @property
@@ -5168,7 +5058,7 @@ class MemoryPolicy(Struct):
         """
         Sets the value of the `transparent_huge_pages` property.
         """
-        Struct._check_type('transparent_huge_pages', value, TransparentHugePages)
+        Struct._check_type("transparent_huge_pages", value, TransparentHugePages)
         self._transparent_huge_pages = value
 
     @property
@@ -5187,13 +5077,11 @@ class MemoryPolicy(Struct):
 
 
 class Method(Struct):
-
     def __init__(
         self,
         id=None,
     ):
-        super(Method, self).__init__(
-        )
+        super().__init__()
         self.id = id
 
     @property
@@ -5208,19 +5096,17 @@ class Method(Struct):
         """
         Sets the value of the `id` property.
         """
-        Struct._check_type('id', value, SsoMethod)
+        Struct._check_type("id", value, SsoMethod)
         self._id = value
 
 
 class MigrationBandwidth(Struct):
-
     def __init__(
         self,
         assignment_method=None,
         custom_value=None,
     ):
-        super(MigrationBandwidth, self).__init__(
-        )
+        super().__init__()
         self.assignment_method = assignment_method
         self.custom_value = custom_value
 
@@ -5250,12 +5136,13 @@ class MigrationBandwidth(Struct):
         """
         Sets the value of the `assignment_method` property.
         """
-        Struct._check_type('assignment_method', value, MigrationBandwidthAssignmentMethod)
+        Struct._check_type(
+            "assignment_method", value, MigrationBandwidthAssignmentMethod
+        )
         self._assignment_method = value
 
 
 class MigrationOptions(Struct):
-
     def __init__(
         self,
         auto_converge=None,
@@ -5266,8 +5153,7 @@ class MigrationOptions(Struct):
         parallel_migrations_policy=None,
         policy=None,
     ):
-        super(MigrationOptions, self).__init__(
-        )
+        super().__init__()
         self.auto_converge = auto_converge
         self.bandwidth = bandwidth
         self.compressed = compressed
@@ -5288,7 +5174,7 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `encrypted` property.
         """
-        Struct._check_type('encrypted', value, InheritableBoolean)
+        Struct._check_type("encrypted", value, InheritableBoolean)
         self._encrypted = value
 
     @property
@@ -5303,7 +5189,7 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `bandwidth` property.
         """
-        Struct._check_type('bandwidth', value, MigrationBandwidth)
+        Struct._check_type("bandwidth", value, MigrationBandwidth)
         self._bandwidth = value
 
     @property
@@ -5318,7 +5204,9 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `parallel_migrations_policy` property.
         """
-        Struct._check_type('parallel_migrations_policy', value, ParallelMigrationsPolicy)
+        Struct._check_type(
+            "parallel_migrations_policy", value, ParallelMigrationsPolicy
+        )
         self._parallel_migrations_policy = value
 
     @property
@@ -5333,7 +5221,7 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `auto_converge` property.
         """
-        Struct._check_type('auto_converge', value, InheritableBoolean)
+        Struct._check_type("auto_converge", value, InheritableBoolean)
         self._auto_converge = value
 
     @property
@@ -5348,7 +5236,7 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `compressed` property.
         """
-        Struct._check_type('compressed', value, InheritableBoolean)
+        Struct._check_type("compressed", value, InheritableBoolean)
         self._compressed = value
 
     @property
@@ -5377,12 +5265,11 @@ class MigrationOptions(Struct):
         """
         Sets the value of the `policy` property.
         """
-        Struct._check_type('policy', value, MigrationPolicy)
+        Struct._check_type("policy", value, MigrationPolicy)
         self._policy = value
 
 
 class MigrationPolicy(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -5390,17 +5277,15 @@ class MigrationPolicy(Identified):
         id=None,
         name=None,
     ):
-        super(MigrationPolicy, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
             name=name,
         )
-        pass
 
 
 class Network(Identified):
-
     def __init__(
         self,
         cluster=None,
@@ -5428,7 +5313,7 @@ class Network(Identified):
         vlan=None,
         vnic_profiles=None,
     ):
-        super(Network, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -5467,7 +5352,9 @@ class Network(Identified):
         """
         Sets the value of the `dns_resolver_configuration` property.
         """
-        Struct._check_type('dns_resolver_configuration', value, DnsResolverConfiguration)
+        Struct._check_type(
+            "dns_resolver_configuration", value, DnsResolverConfiguration
+        )
         self._dns_resolver_configuration = value
 
     @property
@@ -5482,7 +5369,7 @@ class Network(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -5497,7 +5384,7 @@ class Network(Identified):
         """
         Sets the value of the `external_provider_physical_network` property.
         """
-        Struct._check_type('external_provider_physical_network', value, Network)
+        Struct._check_type("external_provider_physical_network", value, Network)
         self._external_provider_physical_network = value
 
     @property
@@ -5554,7 +5441,7 @@ class Network(Identified):
         """
         Sets the value of the `ip` property.
         """
-        Struct._check_type('ip', value, Ip)
+        Struct._check_type("ip", value, Ip)
         self._ip = value
 
     @property
@@ -5625,7 +5512,7 @@ class Network(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -5668,7 +5555,7 @@ class Network(Identified):
         """
         Sets the value of the `external_provider` property.
         """
-        Struct._check_type('external_provider', value, OpenStackNetworkProvider)
+        Struct._check_type("external_provider", value, OpenStackNetworkProvider)
         self._external_provider = value
 
     @property
@@ -5697,7 +5584,7 @@ class Network(Identified):
         """
         Sets the value of the `vlan` property.
         """
-        Struct._check_type('vlan', value, Vlan)
+        Struct._check_type("vlan", value, Vlan)
         self._vlan = value
 
     @property
@@ -5712,7 +5599,7 @@ class Network(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
     @property
@@ -5741,12 +5628,11 @@ class Network(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, NetworkStatus)
+        Struct._check_type("status", value, NetworkStatus)
         self._status = value
 
 
 class NetworkAttachment(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -5763,7 +5649,7 @@ class NetworkAttachment(Identified):
         qos=None,
         reported_configurations=None,
     ):
-        super(NetworkAttachment, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -5819,7 +5705,9 @@ class NetworkAttachment(Identified):
         """
         Sets the value of the `dns_resolver_configuration` property.
         """
-        Struct._check_type('dns_resolver_configuration', value, DnsResolverConfiguration)
+        Struct._check_type(
+            "dns_resolver_configuration", value, DnsResolverConfiguration
+        )
         self._dns_resolver_configuration = value
 
     @property
@@ -5834,7 +5722,7 @@ class NetworkAttachment(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
     @property
@@ -5849,7 +5737,7 @@ class NetworkAttachment(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -5878,7 +5766,7 @@ class NetworkAttachment(Identified):
         """
         Sets the value of the `network` property.
         """
-        Struct._check_type('network', value, Network)
+        Struct._check_type("network", value, Network)
         self._network = value
 
     @property
@@ -5893,7 +5781,7 @@ class NetworkAttachment(Identified):
         """
         Sets the value of the `host_nic` property.
         """
-        Struct._check_type('host_nic', value, HostNic)
+        Struct._check_type("host_nic", value, HostNic)
         self._host_nic = value
 
     @property
@@ -5912,14 +5800,12 @@ class NetworkAttachment(Identified):
 
 
 class NetworkConfiguration(Struct):
-
     def __init__(
         self,
         dns=None,
         nics=None,
     ):
-        super(NetworkConfiguration, self).__init__(
-        )
+        super().__init__()
         self.dns = dns
         self.nics = nics
 
@@ -5949,12 +5835,11 @@ class NetworkConfiguration(Struct):
         """
         Sets the value of the `dns` property.
         """
-        Struct._check_type('dns', value, Dns)
+        Struct._check_type("dns", value, Dns)
         self._dns = value
 
 
 class NetworkFilter(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -5963,7 +5848,7 @@ class NetworkFilter(Identified):
         name=None,
         version=None,
     ):
-        super(NetworkFilter, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -5983,12 +5868,11 @@ class NetworkFilter(Identified):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
 
 class NetworkFilterParameter(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -5998,7 +5882,7 @@ class NetworkFilterParameter(Identified):
         nic=None,
         value=None,
     ):
-        super(NetworkFilterParameter, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6019,7 +5903,7 @@ class NetworkFilterParameter(Identified):
         """
         Sets the value of the `nic` property.
         """
-        Struct._check_type('nic', value, Nic)
+        Struct._check_type("nic", value, Nic)
         self._nic = value
 
     @property
@@ -6038,7 +5922,6 @@ class NetworkFilterParameter(Identified):
 
 
 class NetworkLabel(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6048,7 +5931,7 @@ class NetworkLabel(Identified):
         name=None,
         network=None,
     ):
-        super(NetworkLabel, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6069,7 +5952,7 @@ class NetworkLabel(Identified):
         """
         Sets the value of the `network` property.
         """
-        Struct._check_type('network', value, Network)
+        Struct._check_type("network", value, Network)
         self._network = value
 
     @property
@@ -6084,18 +5967,17 @@ class NetworkLabel(Identified):
         """
         Sets the value of the `host_nic` property.
         """
-        Struct._check_type('host_nic', value, HostNic)
+        Struct._check_type("host_nic", value, HostNic)
         self._host_nic = value
 
 
 class NfsProfileDetail(EntityProfileDetail):
-
     def __init__(
         self,
         nfs_server_ip=None,
         profile_details=None,
     ):
-        super(NfsProfileDetail, self).__init__(
+        super().__init__(
             profile_details=profile_details,
         )
         self.nfs_server_ip = nfs_server_ip
@@ -6116,7 +5998,6 @@ class NfsProfileDetail(EntityProfileDetail):
 
 
 class NicConfiguration(Struct):
-
     def __init__(
         self,
         boot_protocol=None,
@@ -6126,8 +6007,7 @@ class NicConfiguration(Struct):
         name=None,
         on_boot=None,
     ):
-        super(NicConfiguration, self).__init__(
-        )
+        super().__init__()
         self.boot_protocol = boot_protocol
         self.ip = ip
         self.ipv6 = ipv6
@@ -6147,7 +6027,7 @@ class NicConfiguration(Struct):
         """
         Sets the value of the `boot_protocol` property.
         """
-        Struct._check_type('boot_protocol', value, BootProtocol)
+        Struct._check_type("boot_protocol", value, BootProtocol)
         self._boot_protocol = value
 
     @property
@@ -6162,7 +6042,7 @@ class NicConfiguration(Struct):
         """
         Sets the value of the `ip` property.
         """
-        Struct._check_type('ip', value, Ip)
+        Struct._check_type("ip", value, Ip)
         self._ip = value
 
     @property
@@ -6177,7 +6057,7 @@ class NicConfiguration(Struct):
         """
         Sets the value of the `ipv6` property.
         """
-        Struct._check_type('ipv6', value, Ip)
+        Struct._check_type("ipv6", value, Ip)
         self._ipv6 = value
 
     @property
@@ -6220,12 +6100,11 @@ class NicConfiguration(Struct):
         """
         Sets the value of the `ipv6_boot_protocol` property.
         """
-        Struct._check_type('ipv6_boot_protocol', value, BootProtocol)
+        Struct._check_type("ipv6_boot_protocol", value, BootProtocol)
         self._ipv6_boot_protocol = value
 
 
 class NumaNode(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6239,7 +6118,7 @@ class NumaNode(Identified):
         node_distance=None,
         statistics=None,
     ):
-        super(NumaNode, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6278,7 +6157,7 @@ class NumaNode(Identified):
         """
         Sets the value of the `cpu` property.
         """
-        Struct._check_type('cpu', value, Cpu)
+        Struct._check_type("cpu", value, Cpu)
         self._cpu = value
 
     @property
@@ -6307,7 +6186,7 @@ class NumaNode(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -6340,15 +6219,13 @@ class NumaNode(Identified):
 
 
 class NumaNodePin(Struct):
-
     def __init__(
         self,
         host_numa_node=None,
         index=None,
         pinned=None,
     ):
-        super(NumaNodePin, self).__init__(
-        )
+        super().__init__()
         self.host_numa_node = host_numa_node
         self.index = index
         self.pinned = pinned
@@ -6379,7 +6256,7 @@ class NumaNodePin(Struct):
         """
         Sets the value of the `host_numa_node` property.
         """
-        Struct._check_type('host_numa_node', value, NumaNode)
+        Struct._check_type("host_numa_node", value, NumaNode)
         self._host_numa_node = value
 
     @property
@@ -6398,7 +6275,6 @@ class NumaNodePin(Struct):
 
 
 class OpenStackImage(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6407,7 +6283,7 @@ class OpenStackImage(Identified):
         name=None,
         openstack_image_provider=None,
     ):
-        super(OpenStackImage, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6427,12 +6303,11 @@ class OpenStackImage(Identified):
         """
         Sets the value of the `openstack_image_provider` property.
         """
-        Struct._check_type('openstack_image_provider', value, OpenStackImageProvider)
+        Struct._check_type("openstack_image_provider", value, OpenStackImageProvider)
         self._openstack_image_provider = value
 
 
 class OpenStackNetwork(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6441,7 +6316,7 @@ class OpenStackNetwork(Identified):
         name=None,
         openstack_network_provider=None,
     ):
-        super(OpenStackNetwork, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6461,12 +6336,13 @@ class OpenStackNetwork(Identified):
         """
         Sets the value of the `openstack_network_provider` property.
         """
-        Struct._check_type('openstack_network_provider', value, OpenStackNetworkProvider)
+        Struct._check_type(
+            "openstack_network_provider", value, OpenStackNetworkProvider
+        )
         self._openstack_network_provider = value
 
 
 class OpenStackSubnet(Identified):
-
     def __init__(
         self,
         cidr=None,
@@ -6479,7 +6355,7 @@ class OpenStackSubnet(Identified):
         name=None,
         openstack_network=None,
     ):
-        super(OpenStackSubnet, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6545,7 +6421,7 @@ class OpenStackSubnet(Identified):
         """
         Sets the value of the `openstack_network` property.
         """
-        Struct._check_type('openstack_network', value, OpenStackNetwork)
+        Struct._check_type("openstack_network", value, OpenStackNetwork)
         self._openstack_network = value
 
     @property
@@ -6564,7 +6440,6 @@ class OpenStackSubnet(Identified):
 
 
 class OpenStackVolumeType(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6574,7 +6449,7 @@ class OpenStackVolumeType(Identified):
         openstack_volume_provider=None,
         properties=None,
     ):
-        super(OpenStackVolumeType, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6595,7 +6470,7 @@ class OpenStackVolumeType(Identified):
         """
         Sets the value of the `openstack_volume_provider` property.
         """
-        Struct._check_type('openstack_volume_provider', value, OpenStackVolumeProvider)
+        Struct._check_type("openstack_volume_provider", value, OpenStackVolumeProvider)
         self._openstack_volume_provider = value
 
     @property
@@ -6614,7 +6489,6 @@ class OpenStackVolumeType(Identified):
 
 
 class OpenstackVolumeAuthenticationKey(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -6627,7 +6501,7 @@ class OpenstackVolumeAuthenticationKey(Identified):
         uuid=None,
         value=None,
     ):
-        super(OpenstackVolumeAuthenticationKey, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6651,7 +6525,7 @@ class OpenstackVolumeAuthenticationKey(Identified):
         """
         Sets the value of the `openstack_volume_provider` property.
         """
-        Struct._check_type('openstack_volume_provider', value, OpenStackVolumeProvider)
+        Struct._check_type("openstack_volume_provider", value, OpenStackVolumeProvider)
         self._openstack_volume_provider = value
 
     @property
@@ -6666,7 +6540,9 @@ class OpenstackVolumeAuthenticationKey(Identified):
         """
         Sets the value of the `usage_type` property.
         """
-        Struct._check_type('usage_type', value, OpenstackVolumeAuthenticationKeyUsageType)
+        Struct._check_type(
+            "usage_type", value, OpenstackVolumeAuthenticationKeyUsageType
+        )
         self._usage_type = value
 
     @property
@@ -6713,7 +6589,6 @@ class OpenstackVolumeAuthenticationKey(Identified):
 
 
 class OperatingSystem(Struct):
-
     def __init__(
         self,
         boot=None,
@@ -6726,8 +6601,7 @@ class OperatingSystem(Struct):
         type=None,
         version=None,
     ):
-        super(OperatingSystem, self).__init__(
-        )
+        super().__init__()
         self.boot = boot
         self.cmdline = cmdline
         self.custom_kernel_cmdline = custom_kernel_cmdline
@@ -6778,7 +6652,7 @@ class OperatingSystem(Struct):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -6863,12 +6737,11 @@ class OperatingSystem(Struct):
         """
         Sets the value of the `boot` property.
         """
-        Struct._check_type('boot', value, Boot)
+        Struct._check_type("boot", value, Boot)
         self._boot = value
 
 
 class OperatingSystemInfo(Identified):
-
     def __init__(
         self,
         architecture=None,
@@ -6880,7 +6753,7 @@ class OperatingSystemInfo(Identified):
         small_icon=None,
         tpm_support=None,
     ):
-        super(OperatingSystemInfo, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -6903,7 +6776,7 @@ class OperatingSystemInfo(Identified):
         """
         Sets the value of the `large_icon` property.
         """
-        Struct._check_type('large_icon', value, Icon)
+        Struct._check_type("large_icon", value, Icon)
         self._large_icon = value
 
     @property
@@ -6918,7 +6791,7 @@ class OperatingSystemInfo(Identified):
         """
         Sets the value of the `tpm_support` property.
         """
-        Struct._check_type('tpm_support', value, TpmSupport)
+        Struct._check_type("tpm_support", value, TpmSupport)
         self._tpm_support = value
 
     @property
@@ -6933,7 +6806,7 @@ class OperatingSystemInfo(Identified):
         """
         Sets the value of the `architecture` property.
         """
-        Struct._check_type('architecture', value, Architecture)
+        Struct._check_type("architecture", value, Architecture)
         self._architecture = value
 
     @property
@@ -6948,20 +6821,18 @@ class OperatingSystemInfo(Identified):
         """
         Sets the value of the `small_icon` property.
         """
-        Struct._check_type('small_icon', value, Icon)
+        Struct._check_type("small_icon", value, Icon)
         self._small_icon = value
 
 
 class Option(Struct):
-
     def __init__(
         self,
         name=None,
         type=None,
         value=None,
     ):
-        super(Option, self).__init__(
-        )
+        super().__init__()
         self.name = name
         self.type = type
         self.value = value
@@ -7010,13 +6881,11 @@ class Option(Struct):
 
 
 class Package(Struct):
-
     def __init__(
         self,
         name=None,
     ):
-        super(Package, self).__init__(
-        )
+        super().__init__()
         self.name = name
 
     @property
@@ -7035,15 +6904,13 @@ class Package(Struct):
 
 
 class Payload(Struct):
-
     def __init__(
         self,
         files=None,
         type=None,
         volume_id=None,
     ):
-        super(Payload, self).__init__(
-        )
+        super().__init__()
         self.files = files
         self.type = type
         self.volume_id = volume_id
@@ -7088,12 +6955,11 @@ class Payload(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, VmDeviceType)
+        Struct._check_type("type", value, VmDeviceType)
         self._type = value
 
 
 class Permission(Identified):
-
     def __init__(
         self,
         cluster=None,
@@ -7112,7 +6978,7 @@ class Permission(Identified):
         vm=None,
         vm_pool=None,
     ):
-        super(Permission, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -7142,7 +7008,7 @@ class Permission(Identified):
         """
         Sets the value of the `role` property.
         """
-        Struct._check_type('role', value, Role)
+        Struct._check_type("role", value, Role)
         self._role = value
 
     @property
@@ -7157,7 +7023,7 @@ class Permission(Identified):
         """
         Sets the value of the `vm_pool` property.
         """
-        Struct._check_type('vm_pool', value, VmPool)
+        Struct._check_type("vm_pool", value, VmPool)
         self._vm_pool = value
 
     @property
@@ -7172,7 +7038,7 @@ class Permission(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -7187,7 +7053,7 @@ class Permission(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -7202,7 +7068,7 @@ class Permission(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -7217,7 +7083,7 @@ class Permission(Identified):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
     @property
@@ -7232,7 +7098,7 @@ class Permission(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -7247,7 +7113,7 @@ class Permission(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -7262,7 +7128,7 @@ class Permission(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -7277,7 +7143,7 @@ class Permission(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -7292,12 +7158,11 @@ class Permission(Identified):
         """
         Sets the value of the `group` property.
         """
-        Struct._check_type('group', value, Group)
+        Struct._check_type("group", value, Group)
         self._group = value
 
 
 class Permit(Identified):
-
     def __init__(
         self,
         administrative=None,
@@ -7307,7 +7172,7 @@ class Permit(Identified):
         name=None,
         role=None,
     ):
-        super(Permit, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -7328,7 +7193,7 @@ class Permit(Identified):
         """
         Sets the value of the `role` property.
         """
-        Struct._check_type('role', value, Role)
+        Struct._check_type("role", value, Role)
         self._role = value
 
     @property
@@ -7347,13 +7212,11 @@ class Permit(Identified):
 
 
 class PmProxy(Struct):
-
     def __init__(
         self,
         type=None,
     ):
-        super(PmProxy, self).__init__(
-        )
+        super().__init__()
         self.type = type
 
     @property
@@ -7368,22 +7231,18 @@ class PmProxy(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, PmProxyType)
+        Struct._check_type("type", value, PmProxyType)
         self._type = value
 
 
 class PortMirroring(Struct):
-
     def __init__(
         self,
     ):
-        super(PortMirroring, self).__init__(
-        )
-        pass
+        super().__init__()
 
 
 class PowerManagement(Struct):
-
     def __init__(
         self,
         address=None,
@@ -7398,8 +7257,7 @@ class PowerManagement(Struct):
         type=None,
         username=None,
     ):
-        super(PowerManagement, self).__init__(
-        )
+        super().__init__()
         self.address = address
         self.agents = agents
         self.automatic_pm_enabled = automatic_pm_enabled
@@ -7508,7 +7366,7 @@ class PowerManagement(Struct):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, PowerManagementStatus)
+        Struct._check_type("status", value, PowerManagementStatus)
         self._status = value
 
     @property
@@ -7569,7 +7427,6 @@ class PowerManagement(Struct):
 
 
 class Product(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -7577,17 +7434,15 @@ class Product(Identified):
         id=None,
         name=None,
     ):
-        super(Product, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
             name=name,
         )
-        pass
 
 
 class ProductInfo(Struct):
-
     def __init__(
         self,
         instance_id=None,
@@ -7595,8 +7450,7 @@ class ProductInfo(Struct):
         vendor=None,
         version=None,
     ):
-        super(ProductInfo, self).__init__(
-        )
+        super().__init__()
         self.instance_id = instance_id
         self.name = name
         self.vendor = vendor
@@ -7614,7 +7468,7 @@ class ProductInfo(Struct):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -7661,7 +7515,6 @@ class ProductInfo(Struct):
 
 
 class ProfileDetail(Struct):
-
     def __init__(
         self,
         block_statistics=None,
@@ -7670,8 +7523,7 @@ class ProfileDetail(Struct):
         profile_type=None,
         statistics=None,
     ):
-        super(ProfileDetail, self).__init__(
-        )
+        super().__init__()
         self.block_statistics = block_statistics
         self.duration = duration
         self.fop_statistics = fop_statistics
@@ -7750,14 +7602,12 @@ class ProfileDetail(Struct):
 
 
 class Property(Struct):
-
     def __init__(
         self,
         name=None,
         value=None,
     ):
-        super(Property, self).__init__(
-        )
+        super().__init__()
         self.name = name
         self.value = value
 
@@ -7791,13 +7641,11 @@ class Property(Struct):
 
 
 class ProxyTicket(Struct):
-
     def __init__(
         self,
         value=None,
     ):
-        super(ProxyTicket, self).__init__(
-        )
+        super().__init__()
         self.value = value
 
     @property
@@ -7816,7 +7664,6 @@ class ProxyTicket(Struct):
 
 
 class Qos(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -7842,7 +7689,7 @@ class Qos(Identified):
         outbound_peak=None,
         type=None,
     ):
-        super(Qos, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -8019,7 +7866,7 @@ class Qos(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -8034,7 +7881,7 @@ class Qos(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, QosType)
+        Struct._check_type("type", value, QosType)
         self._type = value
 
     @property
@@ -8123,7 +7970,6 @@ class Qos(Identified):
 
 
 class Quota(Identified):
-
     def __init__(
         self,
         cluster_hard_limit_pct=None,
@@ -8142,7 +7988,7 @@ class Quota(Identified):
         users=None,
         vms=None,
     ):
-        super(Quota, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -8312,12 +8158,11 @@ class Quota(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
 
 class QuotaClusterLimit(Identified):
-
     def __init__(
         self,
         cluster=None,
@@ -8331,7 +8176,7 @@ class QuotaClusterLimit(Identified):
         vcpu_limit=None,
         vcpu_usage=None,
     ):
-        super(QuotaClusterLimit, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -8356,7 +8201,7 @@ class QuotaClusterLimit(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -8399,7 +8244,7 @@ class QuotaClusterLimit(Identified):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -8432,7 +8277,6 @@ class QuotaClusterLimit(Identified):
 
 
 class QuotaStorageLimit(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -8444,7 +8288,7 @@ class QuotaStorageLimit(Identified):
         storage_domain=None,
         usage=None,
     ):
-        super(QuotaStorageLimit, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -8467,7 +8311,7 @@ class QuotaStorageLimit(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -8496,7 +8340,7 @@ class QuotaStorageLimit(Identified):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -8515,14 +8359,12 @@ class QuotaStorageLimit(Identified):
 
 
 class Range(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(Range, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8556,14 +8398,12 @@ class Range(Struct):
 
 
 class Rate(Struct):
-
     def __init__(
         self,
         bytes=None,
         period=None,
     ):
-        super(Rate, self).__init__(
-        )
+        super().__init__()
         self.bytes = bytes
         self.period = period
 
@@ -8597,14 +8437,12 @@ class Rate(Struct):
 
 
 class RegistrationAffinityGroupMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationAffinityGroupMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8620,7 +8458,7 @@ class RegistrationAffinityGroupMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, AffinityGroup)
+        Struct._check_type("from_", value, AffinityGroup)
         self._from_ = value
 
     @property
@@ -8635,19 +8473,17 @@ class RegistrationAffinityGroupMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, AffinityGroup)
+        Struct._check_type("to", value, AffinityGroup)
         self._to = value
 
 
 class RegistrationAffinityLabelMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationAffinityLabelMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8663,7 +8499,7 @@ class RegistrationAffinityLabelMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, AffinityLabel)
+        Struct._check_type("from_", value, AffinityLabel)
         self._from_ = value
 
     @property
@@ -8678,19 +8514,17 @@ class RegistrationAffinityLabelMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, AffinityLabel)
+        Struct._check_type("to", value, AffinityLabel)
         self._to = value
 
 
 class RegistrationClusterMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationClusterMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8706,7 +8540,7 @@ class RegistrationClusterMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, Cluster)
+        Struct._check_type("from_", value, Cluster)
         self._from_ = value
 
     @property
@@ -8721,12 +8555,11 @@ class RegistrationClusterMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, Cluster)
+        Struct._check_type("to", value, Cluster)
         self._to = value
 
 
 class RegistrationConfiguration(Struct):
-
     def __init__(
         self,
         affinity_group_mappings=None,
@@ -8737,8 +8570,7 @@ class RegistrationConfiguration(Struct):
         role_mappings=None,
         vnic_profile_mappings=None,
     ):
-        super(RegistrationConfiguration, self).__init__(
-        )
+        super().__init__()
         self.affinity_group_mappings = affinity_group_mappings
         self.affinity_label_mappings = affinity_label_mappings
         self.cluster_mappings = cluster_mappings
@@ -8847,14 +8679,12 @@ class RegistrationConfiguration(Struct):
 
 
 class RegistrationDomainMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationDomainMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8870,7 +8700,7 @@ class RegistrationDomainMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, Domain)
+        Struct._check_type("from_", value, Domain)
         self._from_ = value
 
     @property
@@ -8885,19 +8715,17 @@ class RegistrationDomainMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, Domain)
+        Struct._check_type("to", value, Domain)
         self._to = value
 
 
 class RegistrationLunMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationLunMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8913,7 +8741,7 @@ class RegistrationLunMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, Disk)
+        Struct._check_type("from_", value, Disk)
         self._from_ = value
 
     @property
@@ -8928,19 +8756,17 @@ class RegistrationLunMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, Disk)
+        Struct._check_type("to", value, Disk)
         self._to = value
 
 
 class RegistrationRoleMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationRoleMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8956,7 +8782,7 @@ class RegistrationRoleMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, Role)
+        Struct._check_type("from_", value, Role)
         self._from_ = value
 
     @property
@@ -8971,19 +8797,17 @@ class RegistrationRoleMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, Role)
+        Struct._check_type("to", value, Role)
         self._to = value
 
 
 class RegistrationVnicProfileMapping(Struct):
-
     def __init__(
         self,
         from_=None,
         to=None,
     ):
-        super(RegistrationVnicProfileMapping, self).__init__(
-        )
+        super().__init__()
         self.from_ = from_
         self.to = to
 
@@ -8999,7 +8823,7 @@ class RegistrationVnicProfileMapping(Struct):
         """
         Sets the value of the `from_` property.
         """
-        Struct._check_type('from_', value, VnicProfile)
+        Struct._check_type("from_", value, VnicProfile)
         self._from_ = value
 
     @property
@@ -9014,12 +8838,11 @@ class RegistrationVnicProfileMapping(Struct):
         """
         Sets the value of the `to` property.
         """
-        Struct._check_type('to', value, VnicProfile)
+        Struct._check_type("to", value, VnicProfile)
         self._to = value
 
 
 class ReportedConfiguration(Struct):
-
     def __init__(
         self,
         actual_value=None,
@@ -9027,8 +8850,7 @@ class ReportedConfiguration(Struct):
         in_sync=None,
         name=None,
     ):
-        super(ReportedConfiguration, self).__init__(
-        )
+        super().__init__()
         self.actual_value = actual_value
         self.expected_value = expected_value
         self.in_sync = in_sync
@@ -9092,7 +8914,6 @@ class ReportedConfiguration(Struct):
 
 
 class ReportedDevice(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -9104,7 +8925,7 @@ class ReportedDevice(Identified):
         type=None,
         vm=None,
     ):
-        super(ReportedDevice, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9127,7 +8948,7 @@ class ReportedDevice(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -9156,7 +8977,7 @@ class ReportedDevice(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, ReportedDeviceType)
+        Struct._check_type("type", value, ReportedDeviceType)
         self._type = value
 
     @property
@@ -9171,19 +8992,17 @@ class ReportedDevice(Identified):
         """
         Sets the value of the `mac` property.
         """
-        Struct._check_type('mac', value, Mac)
+        Struct._check_type("mac", value, Mac)
         self._mac = value
 
 
 class RngDevice(Struct):
-
     def __init__(
         self,
         rate=None,
         source=None,
     ):
-        super(RngDevice, self).__init__(
-        )
+        super().__init__()
         self.rate = rate
         self.source = source
 
@@ -9199,7 +9018,7 @@ class RngDevice(Struct):
         """
         Sets the value of the `rate` property.
         """
-        Struct._check_type('rate', value, Rate)
+        Struct._check_type("rate", value, Rate)
         self._rate = value
 
     @property
@@ -9214,12 +9033,11 @@ class RngDevice(Struct):
         """
         Sets the value of the `source` property.
         """
-        Struct._check_type('source', value, RngSource)
+        Struct._check_type("source", value, RngSource)
         self._source = value
 
 
 class Role(Identified):
-
     def __init__(
         self,
         administrative=None,
@@ -9231,7 +9049,7 @@ class Role(Identified):
         permits=None,
         user=None,
     ):
-        super(Role, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9296,12 +9114,11 @@ class Role(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
 
 class SchedulingPolicy(Identified):
-
     def __init__(
         self,
         balances=None,
@@ -9315,7 +9132,7 @@ class SchedulingPolicy(Identified):
         properties=None,
         weight=None,
     ):
-        super(SchedulingPolicy, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9414,7 +9231,6 @@ class SchedulingPolicy(Identified):
 
 
 class SchedulingPolicyUnit(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -9426,7 +9242,7 @@ class SchedulingPolicyUnit(Identified):
         properties=None,
         type=None,
     ):
-        super(SchedulingPolicyUnit, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9463,7 +9279,7 @@ class SchedulingPolicyUnit(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, PolicyUnitType)
+        Struct._check_type("type", value, PolicyUnitType)
         self._type = value
 
     @property
@@ -9496,13 +9312,11 @@ class SchedulingPolicyUnit(Identified):
 
 
 class SeLinux(Struct):
-
     def __init__(
         self,
         mode=None,
     ):
-        super(SeLinux, self).__init__(
-        )
+        super().__init__()
         self.mode = mode
 
     @property
@@ -9517,19 +9331,17 @@ class SeLinux(Struct):
         """
         Sets the value of the `mode` property.
         """
-        Struct._check_type('mode', value, SeLinuxMode)
+        Struct._check_type("mode", value, SeLinuxMode)
         self._mode = value
 
 
 class SerialNumber(Struct):
-
     def __init__(
         self,
         policy=None,
         value=None,
     ):
-        super(SerialNumber, self).__init__(
-        )
+        super().__init__()
         self.policy = policy
         self.value = value
 
@@ -9545,7 +9357,7 @@ class SerialNumber(Struct):
         """
         Sets the value of the `policy` property.
         """
-        Struct._check_type('policy', value, SerialNumberPolicy)
+        Struct._check_type("policy", value, SerialNumberPolicy)
         self._policy = value
 
     @property
@@ -9564,7 +9376,6 @@ class SerialNumber(Struct):
 
 
 class Session(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -9577,7 +9388,7 @@ class Session(Identified):
         user=None,
         vm=None,
     ):
-        super(Session, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9601,7 +9412,7 @@ class Session(Identified):
         """
         Sets the value of the `ip` property.
         """
-        Struct._check_type('ip', value, Ip)
+        Struct._check_type("ip", value, Ip)
         self._ip = value
 
     @property
@@ -9616,7 +9427,7 @@ class Session(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -9645,7 +9456,7 @@ class Session(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -9664,14 +9475,12 @@ class Session(Identified):
 
 
 class SkipIfConnectivityBroken(Struct):
-
     def __init__(
         self,
         enabled=None,
         threshold=None,
     ):
-        super(SkipIfConnectivityBroken, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.threshold = threshold
 
@@ -9705,13 +9514,11 @@ class SkipIfConnectivityBroken(Struct):
 
 
 class SkipIfSdActive(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(SkipIfSdActive, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -9730,14 +9537,12 @@ class SkipIfSdActive(Struct):
 
 
 class SpecialObjects(Struct):
-
     def __init__(
         self,
         blank_template=None,
         root_tag=None,
     ):
-        super(SpecialObjects, self).__init__(
-        )
+        super().__init__()
         self.blank_template = blank_template
         self.root_tag = root_tag
 
@@ -9753,7 +9558,7 @@ class SpecialObjects(Struct):
         """
         Sets the value of the `blank_template` property.
         """
-        Struct._check_type('blank_template', value, Template)
+        Struct._check_type("blank_template", value, Template)
         self._blank_template = value
 
     @property
@@ -9768,19 +9573,17 @@ class SpecialObjects(Struct):
         """
         Sets the value of the `root_tag` property.
         """
-        Struct._check_type('root_tag', value, Tag)
+        Struct._check_type("root_tag", value, Tag)
         self._root_tag = value
 
 
 class Spm(Struct):
-
     def __init__(
         self,
         priority=None,
         status=None,
     ):
-        super(Spm, self).__init__(
-        )
+        super().__init__()
         self.priority = priority
         self.status = status
 
@@ -9810,12 +9613,11 @@ class Spm(Struct):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, SpmStatus)
+        Struct._check_type("status", value, SpmStatus)
         self._status = value
 
 
 class Ssh(Identified):
-
     def __init__(
         self,
         authentication_method=None,
@@ -9828,7 +9630,7 @@ class Ssh(Identified):
         public_key=None,
         user=None,
     ):
-        super(Ssh, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9852,7 +9654,7 @@ class Ssh(Identified):
         """
         Sets the value of the `authentication_method` property.
         """
-        Struct._check_type('authentication_method', value, SshAuthenticationMethod)
+        Struct._check_type("authentication_method", value, SshAuthenticationMethod)
         self._authentication_method = value
 
     @property
@@ -9881,7 +9683,7 @@ class Ssh(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -9914,7 +9716,6 @@ class Ssh(Identified):
 
 
 class SshPublicKey(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -9924,7 +9725,7 @@ class SshPublicKey(Identified):
         name=None,
         user=None,
     ):
-        super(SshPublicKey, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -9945,7 +9746,7 @@ class SshPublicKey(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -9964,13 +9765,11 @@ class SshPublicKey(Identified):
 
 
 class Sso(Struct):
-
     def __init__(
         self,
         methods=None,
     ):
-        super(Sso, self).__init__(
-        )
+        super().__init__()
         self.methods = methods
 
     @property
@@ -9989,7 +9788,6 @@ class Sso(Struct):
 
 
 class Statistic(Identified):
-
     def __init__(
         self,
         brick=None,
@@ -10010,7 +9808,7 @@ class Statistic(Identified):
         values=None,
         vm=None,
     ):
-        super(Statistic, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -10042,7 +9840,7 @@ class Statistic(Identified):
         """
         Sets the value of the `kind` property.
         """
-        Struct._check_type('kind', value, StatisticKind)
+        Struct._check_type("kind", value, StatisticKind)
         self._kind = value
 
     @property
@@ -10071,7 +9869,7 @@ class Statistic(Identified):
         """
         Sets the value of the `nic` property.
         """
-        Struct._check_type('nic', value, Nic)
+        Struct._check_type("nic", value, Nic)
         self._nic = value
 
     @property
@@ -10086,7 +9884,7 @@ class Statistic(Identified):
         """
         Sets the value of the `gluster_volume` property.
         """
-        Struct._check_type('gluster_volume', value, GlusterVolume)
+        Struct._check_type("gluster_volume", value, GlusterVolume)
         self._gluster_volume = value
 
     @property
@@ -10101,7 +9899,7 @@ class Statistic(Identified):
         """
         Sets the value of the `host_numa_node` property.
         """
-        Struct._check_type('host_numa_node', value, NumaNode)
+        Struct._check_type("host_numa_node", value, NumaNode)
         self._host_numa_node = value
 
     @property
@@ -10116,7 +9914,7 @@ class Statistic(Identified):
         """
         Sets the value of the `host_nic` property.
         """
-        Struct._check_type('host_nic', value, HostNic)
+        Struct._check_type("host_nic", value, HostNic)
         self._host_nic = value
 
     @property
@@ -10131,7 +9929,7 @@ class Statistic(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, ValueType)
+        Struct._check_type("type", value, ValueType)
         self._type = value
 
     @property
@@ -10146,7 +9944,7 @@ class Statistic(Identified):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
     @property
@@ -10161,7 +9959,7 @@ class Statistic(Identified):
         """
         Sets the value of the `unit` property.
         """
-        Struct._check_type('unit', value, StatisticUnit)
+        Struct._check_type("unit", value, StatisticUnit)
         self._unit = value
 
     @property
@@ -10176,7 +9974,7 @@ class Statistic(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -10191,7 +9989,7 @@ class Statistic(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -10206,7 +10004,7 @@ class Statistic(Identified):
         """
         Sets the value of the `brick` property.
         """
-        Struct._check_type('brick', value, GlusterBrick)
+        Struct._check_type("brick", value, GlusterBrick)
         self._brick = value
 
     @property
@@ -10221,12 +10019,11 @@ class Statistic(Identified):
         """
         Sets the value of the `step` property.
         """
-        Struct._check_type('step', value, Step)
+        Struct._check_type("step", value, Step)
         self._step = value
 
 
 class Step(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -10246,7 +10043,7 @@ class Step(Identified):
         status=None,
         type=None,
     ):
-        super(Step, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -10347,7 +10144,7 @@ class Step(Identified):
         """
         Sets the value of the `execution_host` property.
         """
-        Struct._check_type('execution_host', value, Host)
+        Struct._check_type("execution_host", value, Host)
         self._execution_host = value
 
     @property
@@ -10362,7 +10159,7 @@ class Step(Identified):
         """
         Sets the value of the `external_type` property.
         """
-        Struct._check_type('external_type', value, ExternalSystemType)
+        Struct._check_type("external_type", value, ExternalSystemType)
         self._external_type = value
 
     @property
@@ -10377,7 +10174,7 @@ class Step(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, StepStatus)
+        Struct._check_type("status", value, StepStatus)
         self._status = value
 
     @property
@@ -10392,7 +10189,7 @@ class Step(Identified):
         """
         Sets the value of the `job` property.
         """
-        Struct._check_type('job', value, Job)
+        Struct._check_type("job", value, Job)
         self._job = value
 
     @property
@@ -10421,7 +10218,7 @@ class Step(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, StepEnum)
+        Struct._check_type("type", value, StepEnum)
         self._type = value
 
     @property
@@ -10436,12 +10233,11 @@ class Step(Identified):
         """
         Sets the value of the `parent_step` property.
         """
-        Struct._check_type('parent_step', value, Step)
+        Struct._check_type("parent_step", value, Step)
         self._parent_step = value
 
 
 class StorageConnection(Identified):
-
     def __init__(
         self,
         address=None,
@@ -10464,7 +10260,7 @@ class StorageConnection(Identified):
         username=None,
         vfs_type=None,
     ):
-        super(StorageConnection, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -10512,7 +10308,7 @@ class StorageConnection(Identified):
         """
         Sets the value of the `gluster_volume` property.
         """
-        Struct._check_type('gluster_volume', value, GlusterVolume)
+        Struct._check_type("gluster_volume", value, GlusterVolume)
         self._gluster_volume = value
 
     @property
@@ -10541,7 +10337,7 @@ class StorageConnection(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, StorageType)
+        Struct._check_type("type", value, StorageType)
         self._type = value
 
     @property
@@ -10640,7 +10436,7 @@ class StorageConnection(Identified):
         """
         Sets the value of the `nfs_version` property.
         """
-        Struct._check_type('nfs_version', value, NfsVersion)
+        Struct._check_type("nfs_version", value, NfsVersion)
         self._nfs_version = value
 
     @property
@@ -10655,7 +10451,7 @@ class StorageConnection(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -10702,7 +10498,6 @@ class StorageConnection(Identified):
 
 
 class StorageConnectionExtension(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -10714,7 +10509,7 @@ class StorageConnectionExtension(Identified):
         target=None,
         username=None,
     ):
-        super(StorageConnectionExtension, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -10751,7 +10546,7 @@ class StorageConnectionExtension(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -10784,7 +10579,6 @@ class StorageConnectionExtension(Identified):
 
 
 class StorageDomain(Identified):
-
     def __init__(
         self,
         available=None,
@@ -10822,7 +10616,7 @@ class StorageDomain(Identified):
         warning_low_space_indicator=None,
         wipe_after_delete=None,
     ):
-        super(StorageDomain, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -10941,7 +10735,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `external_status` property.
         """
-        Struct._check_type('external_status', value, ExternalStatus)
+        Struct._check_type("external_status", value, ExternalStatus)
         self._external_status = value
 
     @property
@@ -10984,7 +10778,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -11069,7 +10863,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, StorageDomainStatus)
+        Struct._check_type("status", value, StorageDomainStatus)
         self._status = value
 
     @property
@@ -11112,7 +10906,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `storage_format` property.
         """
-        Struct._check_type('storage_format', value, StorageFormat)
+        Struct._check_type("storage_format", value, StorageFormat)
         self._storage_format = value
 
     @property
@@ -11169,7 +10963,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `storage` property.
         """
-        Struct._check_type('storage', value, HostStorage)
+        Struct._check_type("storage", value, HostStorage)
         self._storage = value
 
     @property
@@ -11212,7 +11006,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, StorageDomainType)
+        Struct._check_type("type", value, StorageDomainType)
         self._type = value
 
     @property
@@ -11255,7 +11049,7 @@ class StorageDomain(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -11288,13 +11082,11 @@ class StorageDomain(Identified):
 
 
 class StorageDomainLease(Struct):
-
     def __init__(
         self,
         storage_domain=None,
     ):
-        super(StorageDomainLease, self).__init__(
-        )
+        super().__init__()
         self.storage_domain = storage_domain
 
     @property
@@ -11309,12 +11101,11 @@ class StorageDomainLease(Struct):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
 
 class SystemOption(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -11323,7 +11114,7 @@ class SystemOption(Identified):
         name=None,
         values=None,
     ):
-        super(SystemOption, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -11347,14 +11138,12 @@ class SystemOption(Identified):
 
 
 class SystemOptionValue(Struct):
-
     def __init__(
         self,
         value=None,
         version=None,
     ):
-        super(SystemOptionValue, self).__init__(
-        )
+        super().__init__()
         self.value = value
         self.version = version
 
@@ -11388,7 +11177,6 @@ class SystemOptionValue(Struct):
 
 
 class Tag(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -11402,7 +11190,7 @@ class Tag(Identified):
         user=None,
         vm=None,
     ):
-        super(Tag, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -11427,7 +11215,7 @@ class Tag(Identified):
         """
         Sets the value of the `parent` property.
         """
-        Struct._check_type('parent', value, Tag)
+        Struct._check_type("parent", value, Tag)
         self._parent = value
 
     @property
@@ -11442,7 +11230,7 @@ class Tag(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -11457,7 +11245,7 @@ class Tag(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -11472,7 +11260,7 @@ class Tag(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -11487,7 +11275,7 @@ class Tag(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -11502,20 +11290,18 @@ class Tag(Identified):
         """
         Sets the value of the `group` property.
         """
-        Struct._check_type('group', value, Group)
+        Struct._check_type("group", value, Group)
         self._group = value
 
 
 class TemplateVersion(Struct):
-
     def __init__(
         self,
         base_template=None,
         version_name=None,
         version_number=None,
     ):
-        super(TemplateVersion, self).__init__(
-        )
+        super().__init__()
         self.base_template = base_template
         self.version_name = version_name
         self.version_number = version_number
@@ -11560,19 +11346,17 @@ class TemplateVersion(Struct):
         """
         Sets the value of the `base_template` property.
         """
-        Struct._check_type('base_template', value, Template)
+        Struct._check_type("base_template", value, Template)
         self._base_template = value
 
 
 class Ticket(Struct):
-
     def __init__(
         self,
         expiry=None,
         value=None,
     ):
-        super(Ticket, self).__init__(
-        )
+        super().__init__()
         self.expiry = expiry
         self.value = value
 
@@ -11606,14 +11390,12 @@ class Ticket(Struct):
 
 
 class TimeZone(Struct):
-
     def __init__(
         self,
         name=None,
         utc_offset=None,
     ):
-        super(TimeZone, self).__init__(
-        )
+        super().__init__()
         self.name = name
         self.utc_offset = utc_offset
 
@@ -11647,13 +11429,11 @@ class TimeZone(Struct):
 
 
 class TransparentHugePages(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(TransparentHugePages, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -11672,7 +11452,6 @@ class TransparentHugePages(Struct):
 
 
 class UnmanagedNetwork(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -11682,7 +11461,7 @@ class UnmanagedNetwork(Identified):
         id=None,
         name=None,
     ):
-        super(UnmanagedNetwork, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -11703,7 +11482,7 @@ class UnmanagedNetwork(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -11718,19 +11497,17 @@ class UnmanagedNetwork(Identified):
         """
         Sets the value of the `host_nic` property.
         """
-        Struct._check_type('host_nic', value, HostNic)
+        Struct._check_type("host_nic", value, HostNic)
         self._host_nic = value
 
 
 class Usb(Struct):
-
     def __init__(
         self,
         enabled=None,
         type=None,
     ):
-        super(Usb, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
         self.type = type
 
@@ -11760,12 +11537,11 @@ class Usb(Struct):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, UsbType)
+        Struct._check_type("type", value, UsbType)
         self._type = value
 
 
 class User(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -11790,7 +11566,7 @@ class User(Identified):
         user_name=None,
         user_options=None,
     ):
-        super(User, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -11910,7 +11686,7 @@ class User(Identified):
         """
         Sets the value of the `domain` property.
         """
-        Struct._check_type('domain', value, Domain)
+        Struct._check_type("domain", value, Domain)
         self._domain = value
 
     @property
@@ -12055,7 +11831,6 @@ class User(Identified):
 
 
 class UserOption(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -12065,7 +11840,7 @@ class UserOption(Identified):
         name=None,
         user=None,
     ):
-        super(UserOption, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -12086,7 +11861,7 @@ class UserOption(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -12105,14 +11880,12 @@ class UserOption(Identified):
 
 
 class Value(Struct):
-
     def __init__(
         self,
         datum=None,
         detail=None,
     ):
-        super(Value, self).__init__(
-        )
+        super().__init__()
         self.datum = datum
         self.detail = detail
 
@@ -12146,14 +11919,12 @@ class Value(Struct):
 
 
 class VcpuPin(Struct):
-
     def __init__(
         self,
         cpu_set=None,
         vcpu=None,
     ):
-        super(VcpuPin, self).__init__(
-        )
+        super().__init__()
         self.cpu_set = cpu_set
         self.vcpu = vcpu
 
@@ -12187,7 +11958,6 @@ class VcpuPin(Struct):
 
 
 class Vendor(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -12195,17 +11965,15 @@ class Vendor(Identified):
         id=None,
         name=None,
     ):
-        super(Vendor, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
             name=name,
         )
-        pass
 
 
 class Version(Identified):
-
     def __init__(
         self,
         build=None,
@@ -12218,7 +11986,7 @@ class Version(Identified):
         name=None,
         revision=None,
     ):
-        super(Version, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -12302,13 +12070,11 @@ class Version(Identified):
 
 
 class VirtioScsi(Struct):
-
     def __init__(
         self,
         enabled=None,
     ):
-        super(VirtioScsi, self).__init__(
-        )
+        super().__init__()
         self.enabled = enabled
 
     @property
@@ -12327,7 +12093,6 @@ class VirtioScsi(Struct):
 
 
 class VirtualNumaNode(NumaNode):
-
     def __init__(
         self,
         comment=None,
@@ -12344,7 +12109,7 @@ class VirtualNumaNode(NumaNode):
         statistics=None,
         vm=None,
     ):
-        super(VirtualNumaNode, self).__init__(
+        super().__init__(
             comment=comment,
             cpu=cpu,
             description=description,
@@ -12372,7 +12137,7 @@ class VirtualNumaNode(NumaNode):
         """
         Sets the value of the `numa_tune_mode` property.
         """
-        Struct._check_type('numa_tune_mode', value, NumaTuneMode)
+        Struct._check_type("numa_tune_mode", value, NumaTuneMode)
         self._numa_tune_mode = value
 
     @property
@@ -12387,7 +12152,7 @@ class VirtualNumaNode(NumaNode):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -12406,13 +12171,11 @@ class VirtualNumaNode(NumaNode):
 
 
 class Vlan(Struct):
-
     def __init__(
         self,
         id=None,
     ):
-        super(Vlan, self).__init__(
-        )
+        super().__init__()
         self.id = id
 
     @property
@@ -12431,7 +12194,6 @@ class Vlan(Struct):
 
 
 class VmBase(Identified):
-
     def __init__(
         self,
         auto_pinning_policy=None,
@@ -12486,7 +12248,7 @@ class VmBase(Identified):
         virtio_scsi_multi_queues=None,
         virtio_scsi_multi_queues_enabled=None,
     ):
-        super(VmBase, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -12566,7 +12328,7 @@ class VmBase(Identified):
         """
         Sets the value of the `high_availability` property.
         """
-        Struct._check_type('high_availability', value, HighAvailability)
+        Struct._check_type("high_availability", value, HighAvailability)
         self._high_availability = value
 
     @property
@@ -12581,7 +12343,7 @@ class VmBase(Identified):
         """
         Sets the value of the `console` property.
         """
-        Struct._check_type('console', value, Console)
+        Struct._check_type("console", value, Console)
         self._console = value
 
     @property
@@ -12596,7 +12358,7 @@ class VmBase(Identified):
         """
         Sets the value of the `serial_number` property.
         """
-        Struct._check_type('serial_number', value, SerialNumber)
+        Struct._check_type("serial_number", value, SerialNumber)
         self._serial_number = value
 
     @property
@@ -12611,7 +12373,7 @@ class VmBase(Identified):
         """
         Sets the value of the `os` property.
         """
-        Struct._check_type('os', value, OperatingSystem)
+        Struct._check_type("os", value, OperatingSystem)
         self._os = value
 
     @property
@@ -12626,7 +12388,7 @@ class VmBase(Identified):
         """
         Sets the value of the `display` property.
         """
-        Struct._check_type('display', value, Display)
+        Struct._check_type("display", value, Display)
         self._display = value
 
     @property
@@ -12641,7 +12403,7 @@ class VmBase(Identified):
         """
         Sets the value of the `io` property.
         """
-        Struct._check_type('io', value, Io)
+        Struct._check_type("io", value, Io)
         self._io = value
 
     @property
@@ -12656,7 +12418,7 @@ class VmBase(Identified):
         """
         Sets the value of the `cpu` property.
         """
-        Struct._check_type('cpu', value, Cpu)
+        Struct._check_type("cpu", value, Cpu)
         self._cpu = value
 
     @property
@@ -12671,7 +12433,7 @@ class VmBase(Identified):
         """
         Sets the value of the `initialization` property.
         """
-        Struct._check_type('initialization', value, Initialization)
+        Struct._check_type("initialization", value, Initialization)
         self._initialization = value
 
     @property
@@ -12700,7 +12462,7 @@ class VmBase(Identified):
         """
         Sets the value of the `time_zone` property.
         """
-        Struct._check_type('time_zone', value, TimeZone)
+        Struct._check_type("time_zone", value, TimeZone)
         self._time_zone = value
 
     @property
@@ -12715,7 +12477,7 @@ class VmBase(Identified):
         """
         Sets the value of the `small_icon` property.
         """
-        Struct._check_type('small_icon', value, Icon)
+        Struct._check_type("small_icon", value, Icon)
         self._small_icon = value
 
     @property
@@ -12730,7 +12492,7 @@ class VmBase(Identified):
         """
         Sets the value of the `domain` property.
         """
-        Struct._check_type('domain', value, Domain)
+        Struct._check_type("domain", value, Domain)
         self._domain = value
 
     @property
@@ -12745,7 +12507,7 @@ class VmBase(Identified):
         """
         Sets the value of the `memory_policy` property.
         """
-        Struct._check_type('memory_policy', value, MemoryPolicy)
+        Struct._check_type("memory_policy", value, MemoryPolicy)
         self._memory_policy = value
 
     @property
@@ -12760,7 +12522,7 @@ class VmBase(Identified):
         """
         Sets the value of the `virtio_scsi` property.
         """
-        Struct._check_type('virtio_scsi', value, VirtioScsi)
+        Struct._check_type("virtio_scsi", value, VirtioScsi)
         self._virtio_scsi = value
 
     @property
@@ -12817,7 +12579,7 @@ class VmBase(Identified):
         """
         Sets the value of the `auto_pinning_policy` property.
         """
-        Struct._check_type('auto_pinning_policy', value, AutoPinningPolicy)
+        Struct._check_type("auto_pinning_policy", value, AutoPinningPolicy)
         self._auto_pinning_policy = value
 
     @property
@@ -12832,7 +12594,7 @@ class VmBase(Identified):
         """
         Sets the value of the `large_icon` property.
         """
-        Struct._check_type('large_icon', value, Icon)
+        Struct._check_type("large_icon", value, Icon)
         self._large_icon = value
 
     @property
@@ -12847,7 +12609,7 @@ class VmBase(Identified):
         """
         Sets the value of the `lease` property.
         """
-        Struct._check_type('lease', value, StorageDomainLease)
+        Struct._check_type("lease", value, StorageDomainLease)
         self._lease = value
 
     @property
@@ -12876,7 +12638,7 @@ class VmBase(Identified):
         """
         Sets the value of the `migration` property.
         """
-        Struct._check_type('migration', value, MigrationOptions)
+        Struct._check_type("migration", value, MigrationOptions)
         self._migration = value
 
     @property
@@ -12905,7 +12667,7 @@ class VmBase(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -12934,7 +12696,7 @@ class VmBase(Identified):
         """
         Sets the value of the `usb` property.
         """
-        Struct._check_type('usb', value, Usb)
+        Struct._check_type("usb", value, Usb)
         self._usb = value
 
     @property
@@ -12963,7 +12725,7 @@ class VmBase(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -12978,7 +12740,7 @@ class VmBase(Identified):
         """
         Sets the value of the `bios` property.
         """
-        Struct._check_type('bios', value, Bios)
+        Struct._check_type("bios", value, Bios)
         self._bios = value
 
     @property
@@ -13035,7 +12797,7 @@ class VmBase(Identified):
         """
         Sets the value of the `rng_device` property.
         """
-        Struct._check_type('rng_device', value, RngDevice)
+        Struct._check_type("rng_device", value, RngDevice)
         self._rng_device = value
 
     @property
@@ -13050,7 +12812,7 @@ class VmBase(Identified):
         """
         Sets the value of the `cpu_pinning_policy` property.
         """
-        Struct._check_type('cpu_pinning_policy', value, CpuPinningPolicy)
+        Struct._check_type("cpu_pinning_policy", value, CpuPinningPolicy)
         self._cpu_pinning_policy = value
 
     @property
@@ -13079,7 +12841,7 @@ class VmBase(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, VmType)
+        Struct._check_type("type", value, VmType)
         self._type = value
 
     @property
@@ -13094,7 +12856,7 @@ class VmBase(Identified):
         """
         Sets the value of the `sso` property.
         """
-        Struct._check_type('sso', value, Sso)
+        Struct._check_type("sso", value, Sso)
         self._sso = value
 
     @property
@@ -13151,7 +12913,7 @@ class VmBase(Identified):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -13166,7 +12928,7 @@ class VmBase(Identified):
         """
         Sets the value of the `custom_compatibility_version` property.
         """
-        Struct._check_type('custom_compatibility_version', value, Version)
+        Struct._check_type("custom_compatibility_version", value, Version)
         self._custom_compatibility_version = value
 
     @property
@@ -13195,7 +12957,9 @@ class VmBase(Identified):
         """
         Sets the value of the `storage_error_resume_behaviour` property.
         """
-        Struct._check_type('storage_error_resume_behaviour', value, VmStorageErrorResumeBehaviour)
+        Struct._check_type(
+            "storage_error_resume_behaviour", value, VmStorageErrorResumeBehaviour
+        )
         self._storage_error_resume_behaviour = value
 
     @property
@@ -13210,7 +12974,7 @@ class VmBase(Identified):
         """
         Sets the value of the `placement_policy` property.
         """
-        Struct._check_type('placement_policy', value, VmPlacementPolicy)
+        Struct._check_type("placement_policy", value, VmPlacementPolicy)
         self._placement_policy = value
 
     @property
@@ -13225,19 +12989,17 @@ class VmBase(Identified):
         """
         Sets the value of the `cpu_profile` property.
         """
-        Struct._check_type('cpu_profile', value, CpuProfile)
+        Struct._check_type("cpu_profile", value, CpuProfile)
         self._cpu_profile = value
 
 
 class VmPlacementPolicy(Struct):
-
     def __init__(
         self,
         affinity=None,
         hosts=None,
     ):
-        super(VmPlacementPolicy, self).__init__(
-        )
+        super().__init__()
         self.affinity = affinity
         self.hosts = hosts
 
@@ -13253,7 +13015,7 @@ class VmPlacementPolicy(Struct):
         """
         Sets the value of the `affinity` property.
         """
-        Struct._check_type('affinity', value, VmAffinity)
+        Struct._check_type("affinity", value, VmAffinity)
         self._affinity = value
 
     @property
@@ -13272,7 +13034,6 @@ class VmPlacementPolicy(Struct):
 
 
 class VmPool(Identified):
-
     def __init__(
         self,
         auto_storage_select=None,
@@ -13296,7 +13057,7 @@ class VmPool(Identified):
         use_latest_template_version=None,
         vm=None,
     ):
-        super(VmPool, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -13359,7 +13120,7 @@ class VmPool(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -13374,7 +13135,7 @@ class VmPool(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -13389,7 +13150,7 @@ class VmPool(Identified):
         """
         Sets the value of the `display` property.
         """
-        Struct._check_type('display', value, Display)
+        Struct._check_type("display", value, Display)
         self._display = value
 
     @property
@@ -13418,7 +13179,7 @@ class VmPool(Identified):
         """
         Sets the value of the `rng_device` property.
         """
-        Struct._check_type('rng_device', value, RngDevice)
+        Struct._check_type("rng_device", value, RngDevice)
         self._rng_device = value
 
     @property
@@ -13433,7 +13194,7 @@ class VmPool(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, VmPoolType)
+        Struct._check_type("type", value, VmPoolType)
         self._type = value
 
     @property
@@ -13476,7 +13237,7 @@ class VmPool(Identified):
         """
         Sets the value of the `instance_type` property.
         """
-        Struct._check_type('instance_type', value, InstanceType)
+        Struct._check_type("instance_type", value, InstanceType)
         self._instance_type = value
 
     @property
@@ -13519,7 +13280,7 @@ class VmPool(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -13552,15 +13313,13 @@ class VmPool(Identified):
 
 
 class VmSummary(Struct):
-
     def __init__(
         self,
         active=None,
         migrating=None,
         total=None,
     ):
-        super(VmSummary, self).__init__(
-        )
+        super().__init__()
         self.active = active
         self.migrating = migrating
         self.total = total
@@ -13609,13 +13368,11 @@ class VmSummary(Struct):
 
 
 class VnicPassThrough(Struct):
-
     def __init__(
         self,
         mode=None,
     ):
-        super(VnicPassThrough, self).__init__(
-        )
+        super().__init__()
         self.mode = mode
 
     @property
@@ -13630,12 +13387,11 @@ class VnicPassThrough(Struct):
         """
         Sets the value of the `mode` property.
         """
-        Struct._check_type('mode', value, VnicPassThroughMode)
+        Struct._check_type("mode", value, VnicPassThroughMode)
         self._mode = value
 
 
 class VnicProfile(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -13652,7 +13408,7 @@ class VnicProfile(Identified):
         port_mirroring=None,
         qos=None,
     ):
-        super(VnicProfile, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -13694,7 +13450,7 @@ class VnicProfile(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
     @property
@@ -13709,7 +13465,7 @@ class VnicProfile(Identified):
         """
         Sets the value of the `failover` property.
         """
-        Struct._check_type('failover', value, VnicProfile)
+        Struct._check_type("failover", value, VnicProfile)
         self._failover = value
 
     @property
@@ -13724,7 +13480,7 @@ class VnicProfile(Identified):
         """
         Sets the value of the `pass_through` property.
         """
-        Struct._check_type('pass_through', value, VnicPassThrough)
+        Struct._check_type("pass_through", value, VnicPassThrough)
         self._pass_through = value
 
     @property
@@ -13739,7 +13495,7 @@ class VnicProfile(Identified):
         """
         Sets the value of the `network_filter` property.
         """
-        Struct._check_type('network_filter', value, NetworkFilter)
+        Struct._check_type("network_filter", value, NetworkFilter)
         self._network_filter = value
 
     @property
@@ -13768,7 +13524,7 @@ class VnicProfile(Identified):
         """
         Sets the value of the `network` property.
         """
-        Struct._check_type('network', value, Network)
+        Struct._check_type("network", value, Network)
         self._network = value
 
     @property
@@ -13801,15 +13557,13 @@ class VnicProfile(Identified):
 
 
 class VnicProfileMapping(Struct):
-
     def __init__(
         self,
         source_network_name=None,
         source_network_profile_name=None,
         target_vnic_profile=None,
     ):
-        super(VnicProfileMapping, self).__init__(
-        )
+        super().__init__()
         self.source_network_name = source_network_name
         self.source_network_profile_name = source_network_profile_name
         self.target_vnic_profile = target_vnic_profile
@@ -13854,20 +13608,18 @@ class VnicProfileMapping(Struct):
         """
         Sets the value of the `target_vnic_profile` property.
         """
-        Struct._check_type('target_vnic_profile', value, VnicProfile)
+        Struct._check_type("target_vnic_profile", value, VnicProfile)
         self._target_vnic_profile = value
 
 
 class VolumeGroup(Struct):
-
     def __init__(
         self,
         id=None,
         logical_units=None,
         name=None,
     ):
-        super(VolumeGroup, self).__init__(
-        )
+        super().__init__()
         self.id = id
         self.logical_units = logical_units
         self.name = name
@@ -13916,7 +13668,6 @@ class VolumeGroup(Struct):
 
 
 class Weight(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -13927,7 +13678,7 @@ class Weight(Identified):
         scheduling_policy=None,
         scheduling_policy_unit=None,
     ):
-        super(Weight, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -13949,7 +13700,7 @@ class Weight(Identified):
         """
         Sets the value of the `scheduling_policy` property.
         """
-        Struct._check_type('scheduling_policy', value, SchedulingPolicy)
+        Struct._check_type("scheduling_policy", value, SchedulingPolicy)
         self._scheduling_policy = value
 
     @property
@@ -13964,7 +13715,7 @@ class Weight(Identified):
         """
         Sets the value of the `scheduling_policy_unit` property.
         """
-        Struct._check_type('scheduling_policy_unit', value, SchedulingPolicyUnit)
+        Struct._check_type("scheduling_policy_unit", value, SchedulingPolicyUnit)
         self._scheduling_policy_unit = value
 
     @property
@@ -13983,7 +13734,6 @@ class Weight(Identified):
 
 
 class Action(Identified):
-
     def __init__(
         self,
         activate=None,
@@ -14085,7 +13835,7 @@ class Action(Identified):
         vnic_profile_mappings=None,
         volatile=None,
     ):
-        super(Action, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -14240,7 +13990,7 @@ class Action(Identified):
         """
         Sets the value of the `image_transfer` property.
         """
-        Struct._check_type('image_transfer', value, ImageTransfer)
+        Struct._check_type("image_transfer", value, ImageTransfer)
         self._image_transfer = value
 
     @property
@@ -14255,7 +14005,7 @@ class Action(Identified):
         """
         Sets the value of the `source_host` property.
         """
-        Struct._check_type('source_host', value, Host)
+        Struct._check_type("source_host", value, Host)
         self._source_host = value
 
     @property
@@ -14298,7 +14048,7 @@ class Action(Identified):
         """
         Sets the value of the `fault` property.
         """
-        Struct._check_type('fault', value, Fault)
+        Struct._check_type("fault", value, Fault)
         self._fault = value
 
     @property
@@ -14425,7 +14175,7 @@ class Action(Identified):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
     @property
@@ -14454,7 +14204,11 @@ class Action(Identified):
         """
         Sets the value of the `virtual_functions_configuration` property.
         """
-        Struct._check_type('virtual_functions_configuration', value, HostNicVirtualFunctionsConfiguration)
+        Struct._check_type(
+            "virtual_functions_configuration",
+            value,
+            HostNicVirtualFunctionsConfiguration,
+        )
         self._virtual_functions_configuration = value
 
     @property
@@ -14483,7 +14237,7 @@ class Action(Identified):
         """
         Sets the value of the `snapshot` property.
         """
-        Struct._check_type('snapshot', value, Snapshot)
+        Struct._check_type("snapshot", value, Snapshot)
         self._snapshot = value
 
     @property
@@ -14498,7 +14252,7 @@ class Action(Identified):
         """
         Sets the value of the `proxy_ticket` property.
         """
-        Struct._check_type('proxy_ticket', value, ProxyTicket)
+        Struct._check_type("proxy_ticket", value, ProxyTicket)
         self._proxy_ticket = value
 
     @property
@@ -14541,7 +14295,7 @@ class Action(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -14556,7 +14310,7 @@ class Action(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -14599,7 +14353,7 @@ class Action(Identified):
         """
         Sets the value of the `ssh` property.
         """
-        Struct._check_type('ssh', value, Ssh)
+        Struct._check_type("ssh", value, Ssh)
         self._ssh = value
 
     @property
@@ -14656,7 +14410,7 @@ class Action(Identified):
         """
         Sets the value of the `disk_profile` property.
         """
-        Struct._check_type('disk_profile', value, DiskProfile)
+        Struct._check_type("disk_profile", value, DiskProfile)
         self._disk_profile = value
 
     @property
@@ -14741,7 +14495,9 @@ class Action(Identified):
         """
         Sets the value of the `registration_configuration` property.
         """
-        Struct._check_type('registration_configuration', value, RegistrationConfiguration)
+        Struct._check_type(
+            "registration_configuration", value, RegistrationConfiguration
+        )
         self._registration_configuration = value
 
     @property
@@ -14798,7 +14554,7 @@ class Action(Identified):
         """
         Sets the value of the `attachment` property.
         """
-        Struct._check_type('attachment', value, DiskAttachment)
+        Struct._check_type("attachment", value, DiskAttachment)
         self._attachment = value
 
     @property
@@ -14813,7 +14569,7 @@ class Action(Identified):
         """
         Sets the value of the `power_management` property.
         """
-        Struct._check_type('power_management', value, PowerManagement)
+        Struct._check_type("power_management", value, PowerManagement)
         self._power_management = value
 
     @property
@@ -14828,7 +14584,7 @@ class Action(Identified):
         """
         Sets the value of the `connection` property.
         """
-        Struct._check_type('connection', value, StorageConnection)
+        Struct._check_type("connection", value, StorageConnection)
         self._connection = value
 
     @property
@@ -14843,7 +14599,7 @@ class Action(Identified):
         """
         Sets the value of the `details` property.
         """
-        Struct._check_type('details', value, GlusterVolumeProfileDetails)
+        Struct._check_type("details", value, GlusterVolumeProfileDetails)
         self._details = value
 
     @property
@@ -14942,7 +14698,7 @@ class Action(Identified):
         """
         Sets the value of the `ticket` property.
         """
-        Struct._check_type('ticket', value, Ticket)
+        Struct._check_type("ticket", value, Ticket)
         self._ticket = value
 
     @property
@@ -14985,7 +14741,7 @@ class Action(Identified):
         """
         Sets the value of the `permission` property.
         """
-        Struct._check_type('permission', value, Permission)
+        Struct._check_type("permission", value, Permission)
         self._permission = value
 
     @property
@@ -15014,7 +14770,7 @@ class Action(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -15071,7 +14827,7 @@ class Action(Identified):
         """
         Sets the value of the `grace_period` property.
         """
-        Struct._check_type('grace_period', value, GracePeriod)
+        Struct._check_type("grace_period", value, GracePeriod)
         self._grace_period = value
 
     @property
@@ -15100,7 +14856,7 @@ class Action(Identified):
         """
         Sets the value of the `upgrade_action` property.
         """
-        Struct._check_type('upgrade_action', value, ClusterUpgradeAction)
+        Struct._check_type("upgrade_action", value, ClusterUpgradeAction)
         self._upgrade_action = value
 
     @property
@@ -15129,7 +14885,7 @@ class Action(Identified):
         """
         Sets the value of the `iscsi` property.
         """
-        Struct._check_type('iscsi', value, IscsiDetails)
+        Struct._check_type("iscsi", value, IscsiDetails)
         self._iscsi = value
 
     @property
@@ -15144,7 +14900,7 @@ class Action(Identified):
         """
         Sets the value of the `auto_pinning_policy` property.
         """
-        Struct._check_type('auto_pinning_policy', value, AutoPinningPolicy)
+        Struct._check_type("auto_pinning_policy", value, AutoPinningPolicy)
         self._auto_pinning_policy = value
 
     @property
@@ -15159,7 +14915,7 @@ class Action(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -15174,7 +14930,7 @@ class Action(Identified):
         """
         Sets the value of the `lease` property.
         """
-        Struct._check_type('lease', value, StorageDomainLease)
+        Struct._check_type("lease", value, StorageDomainLease)
         self._lease = value
 
     @property
@@ -15259,7 +15015,7 @@ class Action(Identified):
         """
         Sets the value of the `job` property.
         """
-        Struct._check_type('job', value, Job)
+        Struct._check_type("job", value, Job)
         self._job = value
 
     @property
@@ -15274,7 +15030,7 @@ class Action(Identified):
         """
         Sets the value of the `option` property.
         """
-        Struct._check_type('option', value, Option)
+        Struct._check_type("option", value, Option)
         self._option = value
 
     @property
@@ -15345,7 +15101,7 @@ class Action(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -15444,7 +15200,7 @@ class Action(Identified):
         """
         Sets the value of the `authorized_key` property.
         """
-        Struct._check_type('authorized_key', value, AuthorizedKey)
+        Struct._check_type("authorized_key", value, AuthorizedKey)
         self._authorized_key = value
 
     @property
@@ -15459,7 +15215,7 @@ class Action(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -15488,7 +15244,7 @@ class Action(Identified):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -15535,7 +15291,6 @@ class Action(Identified):
 
 
 class AffinityGroup(Identified):
-
     def __init__(
         self,
         broken=None,
@@ -15554,7 +15309,7 @@ class AffinityGroup(Identified):
         vms=None,
         vms_rule=None,
     ):
-        super(AffinityGroup, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -15598,7 +15353,7 @@ class AffinityGroup(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -15711,7 +15466,7 @@ class AffinityGroup(Identified):
         """
         Sets the value of the `vms_rule` property.
         """
-        Struct._check_type('vms_rule', value, AffinityRule)
+        Struct._check_type("vms_rule", value, AffinityRule)
         self._vms_rule = value
 
     @property
@@ -15726,12 +15481,11 @@ class AffinityGroup(Identified):
         """
         Sets the value of the `hosts_rule` property.
         """
-        Struct._check_type('hosts_rule', value, AffinityRule)
+        Struct._check_type("hosts_rule", value, AffinityRule)
         self._hosts_rule = value
 
 
 class AffinityLabel(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -15743,7 +15497,7 @@ class AffinityLabel(Identified):
         read_only=None,
         vms=None,
     ):
-        super(AffinityLabel, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -15812,7 +15566,6 @@ class AffinityLabel(Identified):
 
 
 class Agent(Identified):
-
     def __init__(
         self,
         address=None,
@@ -15830,7 +15583,7 @@ class Agent(Identified):
         type=None,
         username=None,
     ):
-        super(Agent, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -15915,7 +15668,7 @@ class Agent(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -15990,7 +15743,6 @@ class Agent(Identified):
 
 
 class Application(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -15999,7 +15751,7 @@ class Application(Identified):
         name=None,
         vm=None,
     ):
-        super(Application, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16019,12 +15771,11 @@ class Application(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
 
 class AuthorizedKey(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16034,7 +15785,7 @@ class AuthorizedKey(Identified):
         name=None,
         user=None,
     ):
-        super(AuthorizedKey, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16055,7 +15806,7 @@ class AuthorizedKey(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -16074,7 +15825,6 @@ class AuthorizedKey(Identified):
 
 
 class Backup(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16091,7 +15841,7 @@ class Backup(Identified):
         to_checkpoint_id=None,
         vm=None,
     ):
-        super(Backup, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16119,7 +15869,7 @@ class Backup(Identified):
         """
         Sets the value of the `phase` property.
         """
-        Struct._check_type('phase', value, BackupPhase)
+        Struct._check_type("phase", value, BackupPhase)
         self._phase = value
 
     @property
@@ -16162,7 +15912,7 @@ class Backup(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -16191,7 +15941,7 @@ class Backup(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -16220,7 +15970,7 @@ class Backup(Identified):
         """
         Sets the value of the `snapshot` property.
         """
-        Struct._check_type('snapshot', value, Snapshot)
+        Struct._check_type("snapshot", value, Snapshot)
         self._snapshot = value
 
     @property
@@ -16239,7 +15989,6 @@ class Backup(Identified):
 
 
 class Balance(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16249,7 +15998,7 @@ class Balance(Identified):
         scheduling_policy=None,
         scheduling_policy_unit=None,
     ):
-        super(Balance, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16270,7 +16019,7 @@ class Balance(Identified):
         """
         Sets the value of the `scheduling_policy` property.
         """
-        Struct._check_type('scheduling_policy', value, SchedulingPolicy)
+        Struct._check_type("scheduling_policy", value, SchedulingPolicy)
         self._scheduling_policy = value
 
     @property
@@ -16285,12 +16034,11 @@ class Balance(Identified):
         """
         Sets the value of the `scheduling_policy_unit` property.
         """
-        Struct._check_type('scheduling_policy_unit', value, SchedulingPolicyUnit)
+        Struct._check_type("scheduling_policy_unit", value, SchedulingPolicyUnit)
         self._scheduling_policy_unit = value
 
 
 class Bookmark(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16299,7 +16047,7 @@ class Bookmark(Identified):
         name=None,
         value=None,
     ):
-        super(Bookmark, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16323,13 +16071,12 @@ class Bookmark(Identified):
 
 
 class BrickProfileDetail(EntityProfileDetail):
-
     def __init__(
         self,
         brick=None,
         profile_details=None,
     ):
-        super(BrickProfileDetail, self).__init__(
+        super().__init__(
             profile_details=profile_details,
         )
         self.brick = brick
@@ -16346,12 +16093,11 @@ class BrickProfileDetail(EntityProfileDetail):
         """
         Sets the value of the `brick` property.
         """
-        Struct._check_type('brick', value, GlusterBrick)
+        Struct._check_type("brick", value, GlusterBrick)
         self._brick = value
 
 
 class Certificate(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16362,7 +16108,7 @@ class Certificate(Identified):
         organization=None,
         subject=None,
     ):
-        super(Certificate, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16416,7 +16162,6 @@ class Certificate(Identified):
 
 
 class Checkpoint(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -16429,7 +16174,7 @@ class Checkpoint(Identified):
         state=None,
         vm=None,
     ):
-        super(Checkpoint, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16467,7 +16212,7 @@ class Checkpoint(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -16496,7 +16241,7 @@ class Checkpoint(Identified):
         """
         Sets the value of the `state` property.
         """
-        Struct._check_type('state', value, CheckpointState)
+        Struct._check_type("state", value, CheckpointState)
         self._state = value
 
     @property
@@ -16515,7 +16260,6 @@ class Checkpoint(Identified):
 
 
 class Cluster(Identified):
-
     def __init__(
         self,
         affinity_groups=None,
@@ -16568,7 +16312,7 @@ class Cluster(Identified):
         virt_service=None,
         vnc_encryption=None,
     ):
-        super(Cluster, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -16632,7 +16376,7 @@ class Cluster(Identified):
         """
         Sets the value of the `serial_number` property.
         """
-        Struct._check_type('serial_number', value, SerialNumber)
+        Struct._check_type("serial_number", value, SerialNumber)
         self._serial_number = value
 
     @property
@@ -16675,7 +16419,7 @@ class Cluster(Identified):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -16704,7 +16448,7 @@ class Cluster(Identified):
         """
         Sets the value of the `display` property.
         """
-        Struct._check_type('display', value, Display)
+        Struct._check_type("display", value, Display)
         self._display = value
 
     @property
@@ -16733,7 +16477,7 @@ class Cluster(Identified):
         """
         Sets the value of the `cpu` property.
         """
-        Struct._check_type('cpu', value, Cpu)
+        Struct._check_type("cpu", value, Cpu)
         self._cpu = value
 
     @property
@@ -16776,7 +16520,7 @@ class Cluster(Identified):
         """
         Sets the value of the `mac_pool` property.
         """
-        Struct._check_type('mac_pool', value, MacPool)
+        Struct._check_type("mac_pool", value, MacPool)
         self._mac_pool = value
 
     @property
@@ -16791,7 +16535,7 @@ class Cluster(Identified):
         """
         Sets the value of the `firewall_type` property.
         """
-        Struct._check_type('firewall_type', value, FirewallType)
+        Struct._check_type("firewall_type", value, FirewallType)
         self._firewall_type = value
 
     @property
@@ -16834,7 +16578,7 @@ class Cluster(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -16849,7 +16593,7 @@ class Cluster(Identified):
         """
         Sets the value of the `memory_policy` property.
         """
-        Struct._check_type('memory_policy', value, MemoryPolicy)
+        Struct._check_type("memory_policy", value, MemoryPolicy)
         self._memory_policy = value
 
     @property
@@ -16864,7 +16608,7 @@ class Cluster(Identified):
         """
         Sets the value of the `fencing_policy` property.
         """
-        Struct._check_type('fencing_policy', value, FencingPolicy)
+        Struct._check_type("fencing_policy", value, FencingPolicy)
         self._fencing_policy = value
 
     @property
@@ -16963,7 +16707,7 @@ class Cluster(Identified):
         """
         Sets the value of the `migration` property.
         """
-        Struct._check_type('migration', value, MigrationOptions)
+        Struct._check_type("migration", value, MigrationOptions)
         self._migration = value
 
     @property
@@ -16978,7 +16722,7 @@ class Cluster(Identified):
         """
         Sets the value of the `fips_mode` property.
         """
-        Struct._check_type('fips_mode', value, FipsMode)
+        Struct._check_type("fips_mode", value, FipsMode)
         self._fips_mode = value
 
     @property
@@ -17021,7 +16765,7 @@ class Cluster(Identified):
         """
         Sets the value of the `ksm` property.
         """
-        Struct._check_type('ksm', value, Ksm)
+        Struct._check_type("ksm", value, Ksm)
         self._ksm = value
 
     @property
@@ -17036,7 +16780,9 @@ class Cluster(Identified):
         """
         Sets the value of the `log_max_memory_used_threshold_type` property.
         """
-        Struct._check_type('log_max_memory_used_threshold_type', value, LogMaxMemoryUsedThresholdType)
+        Struct._check_type(
+            "log_max_memory_used_threshold_type", value, LogMaxMemoryUsedThresholdType
+        )
         self._log_max_memory_used_threshold_type = value
 
     @property
@@ -17079,7 +16825,7 @@ class Cluster(Identified):
         """
         Sets the value of the `error_handling` property.
         """
-        Struct._check_type('error_handling', value, ErrorHandling)
+        Struct._check_type("error_handling", value, ErrorHandling)
         self._error_handling = value
 
     @property
@@ -17164,7 +16910,7 @@ class Cluster(Identified):
         """
         Sets the value of the `scheduling_policy` property.
         """
-        Struct._check_type('scheduling_policy', value, SchedulingPolicy)
+        Struct._check_type("scheduling_policy", value, SchedulingPolicy)
         self._scheduling_policy = value
 
     @property
@@ -17193,7 +16939,7 @@ class Cluster(Identified):
         """
         Sets the value of the `management_network` property.
         """
-        Struct._check_type('management_network', value, Network)
+        Struct._check_type("management_network", value, Network)
         self._management_network = value
 
     @property
@@ -17208,7 +16954,7 @@ class Cluster(Identified):
         """
         Sets the value of the `switch_type` property.
         """
-        Struct._check_type('switch_type', value, SwitchType)
+        Struct._check_type("switch_type", value, SwitchType)
         self._switch_type = value
 
     @property
@@ -17251,7 +16997,7 @@ class Cluster(Identified):
         """
         Sets the value of the `bios_type` property.
         """
-        Struct._check_type('bios_type', value, BiosType)
+        Struct._check_type("bios_type", value, BiosType)
         self._bios_type = value
 
     @property
@@ -17270,7 +17016,6 @@ class Cluster(Identified):
 
 
 class ClusterFeature(Identified):
-
     def __init__(
         self,
         cluster_level=None,
@@ -17279,7 +17024,7 @@ class ClusterFeature(Identified):
         id=None,
         name=None,
     ):
-        super(ClusterFeature, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17299,12 +17044,11 @@ class ClusterFeature(Identified):
         """
         Sets the value of the `cluster_level` property.
         """
-        Struct._check_type('cluster_level', value, ClusterLevel)
+        Struct._check_type("cluster_level", value, ClusterLevel)
         self._cluster_level = value
 
 
 class ClusterLevel(Identified):
-
     def __init__(
         self,
         cluster_features=None,
@@ -17315,7 +17059,7 @@ class ClusterLevel(Identified):
         name=None,
         permits=None,
     ):
-        super(ClusterLevel, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17369,7 +17113,6 @@ class ClusterLevel(Identified):
 
 
 class CpuProfile(Identified):
-
     def __init__(
         self,
         cluster=None,
@@ -17380,7 +17123,7 @@ class CpuProfile(Identified):
         permissions=None,
         qos=None,
     ):
-        super(CpuProfile, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17416,7 +17159,7 @@ class CpuProfile(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -17431,12 +17174,11 @@ class CpuProfile(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
 
 class DataCenter(Identified):
-
     def __init__(
         self,
         clusters=None,
@@ -17458,7 +17200,7 @@ class DataCenter(Identified):
         supported_versions=None,
         version=None,
     ):
-        super(DataCenter, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17491,7 +17233,7 @@ class DataCenter(Identified):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -17520,7 +17262,7 @@ class DataCenter(Identified):
         """
         Sets the value of the `storage_format` property.
         """
-        Struct._check_type('storage_format', value, StorageFormat)
+        Struct._check_type("storage_format", value, StorageFormat)
         self._storage_format = value
 
     @property
@@ -17535,7 +17277,7 @@ class DataCenter(Identified):
         """
         Sets the value of the `quota_mode` property.
         """
-        Struct._check_type('quota_mode', value, QuotaModeType)
+        Struct._check_type("quota_mode", value, QuotaModeType)
         self._quota_mode = value
 
     @property
@@ -17564,7 +17306,7 @@ class DataCenter(Identified):
         """
         Sets the value of the `mac_pool` property.
         """
-        Struct._check_type('mac_pool', value, MacPool)
+        Struct._check_type("mac_pool", value, MacPool)
         self._mac_pool = value
 
     @property
@@ -17663,7 +17405,7 @@ class DataCenter(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, DataCenterStatus)
+        Struct._check_type("status", value, DataCenterStatus)
         self._status = value
 
     @property
@@ -17682,7 +17424,6 @@ class DataCenter(Identified):
 
 
 class Device(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -17694,7 +17435,7 @@ class Device(Identified):
         vm=None,
         vms=None,
     ):
-        super(Device, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17717,7 +17458,7 @@ class Device(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -17732,7 +17473,7 @@ class Device(Identified):
         """
         Sets the value of the `instance_type` property.
         """
-        Struct._check_type('instance_type', value, InstanceType)
+        Struct._check_type("instance_type", value, InstanceType)
         self._instance_type = value
 
     @property
@@ -17747,7 +17488,7 @@ class Device(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -17766,7 +17507,6 @@ class Device(Identified):
 
 
 class Disk(Device):
-
     def __init__(
         self,
         active=None,
@@ -17813,7 +17553,7 @@ class Disk(Device):
         vms=None,
         wipe_after_delete=None,
     ):
-        super(Disk, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -17885,7 +17625,7 @@ class Disk(Device):
         """
         Sets the value of the `qcow_version` property.
         """
-        Struct._check_type('qcow_version', value, QcowVersion)
+        Struct._check_type("qcow_version", value, QcowVersion)
         self._qcow_version = value
 
     @property
@@ -17914,7 +17654,7 @@ class Disk(Device):
         """
         Sets the value of the `content_type` property.
         """
-        Struct._check_type('content_type', value, DiskContentType)
+        Struct._check_type("content_type", value, DiskContentType)
         self._content_type = value
 
     @property
@@ -17929,7 +17669,7 @@ class Disk(Device):
         """
         Sets the value of the `format` property.
         """
-        Struct._check_type('format', value, DiskFormat)
+        Struct._check_type("format", value, DiskFormat)
         self._format = value
 
     @property
@@ -18028,7 +17768,7 @@ class Disk(Device):
         """
         Sets the value of the `snapshot` property.
         """
-        Struct._check_type('snapshot', value, Snapshot)
+        Struct._check_type("snapshot", value, Snapshot)
         self._snapshot = value
 
     @property
@@ -18043,7 +17783,7 @@ class Disk(Device):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, DiskStatus)
+        Struct._check_type("status", value, DiskStatus)
         self._status = value
 
     @property
@@ -18100,7 +17840,7 @@ class Disk(Device):
         """
         Sets the value of the `backup` property.
         """
-        Struct._check_type('backup', value, DiskBackup)
+        Struct._check_type("backup", value, DiskBackup)
         self._backup = value
 
     @property
@@ -18115,7 +17855,7 @@ class Disk(Device):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -18158,7 +17898,7 @@ class Disk(Device):
         """
         Sets the value of the `backup_mode` property.
         """
-        Struct._check_type('backup_mode', value, DiskBackupMode)
+        Struct._check_type("backup_mode", value, DiskBackupMode)
         self._backup_mode = value
 
     @property
@@ -18173,7 +17913,7 @@ class Disk(Device):
         """
         Sets the value of the `openstack_volume_type` property.
         """
-        Struct._check_type('openstack_volume_type', value, OpenStackVolumeType)
+        Struct._check_type("openstack_volume_type", value, OpenStackVolumeType)
         self._openstack_volume_type = value
 
     @property
@@ -18230,7 +17970,7 @@ class Disk(Device):
         """
         Sets the value of the `sgio` property.
         """
-        Struct._check_type('sgio', value, ScsiGenericIO)
+        Struct._check_type("sgio", value, ScsiGenericIO)
         self._sgio = value
 
     @property
@@ -18245,7 +17985,7 @@ class Disk(Device):
         """
         Sets the value of the `disk_profile` property.
         """
-        Struct._check_type('disk_profile', value, DiskProfile)
+        Struct._check_type("disk_profile", value, DiskProfile)
         self._disk_profile = value
 
     @property
@@ -18260,7 +18000,7 @@ class Disk(Device):
         """
         Sets the value of the `interface` property.
         """
-        Struct._check_type('interface', value, DiskInterface)
+        Struct._check_type("interface", value, DiskInterface)
         self._interface = value
 
     @property
@@ -18275,7 +18015,7 @@ class Disk(Device):
         """
         Sets the value of the `storage_type` property.
         """
-        Struct._check_type('storage_type', value, DiskStorageType)
+        Struct._check_type("storage_type", value, DiskStorageType)
         self._storage_type = value
 
     @property
@@ -18304,7 +18044,7 @@ class Disk(Device):
         """
         Sets the value of the `lun_storage` property.
         """
-        Struct._check_type('lun_storage', value, HostStorage)
+        Struct._check_type("lun_storage", value, HostStorage)
         self._lun_storage = value
 
     @property
@@ -18333,7 +18073,7 @@ class Disk(Device):
         """
         Sets the value of the `quota` property.
         """
-        Struct._check_type('quota', value, Quota)
+        Struct._check_type("quota", value, Quota)
         self._quota = value
 
     @property
@@ -18366,7 +18106,6 @@ class Disk(Device):
 
 
 class DiskAttachment(Identified):
-
     def __init__(
         self,
         active=None,
@@ -18384,7 +18123,7 @@ class DiskAttachment(Identified):
         uses_scsi_reservation=None,
         vm=None,
     ):
-        super(DiskAttachment, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -18413,7 +18152,7 @@ class DiskAttachment(Identified):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
     @property
@@ -18428,7 +18167,7 @@ class DiskAttachment(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -18457,7 +18196,7 @@ class DiskAttachment(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -18528,7 +18267,7 @@ class DiskAttachment(Identified):
         """
         Sets the value of the `interface` property.
         """
-        Struct._check_type('interface', value, DiskInterface)
+        Struct._check_type("interface", value, DiskInterface)
         self._interface = value
 
     @property
@@ -18547,7 +18286,6 @@ class DiskAttachment(Identified):
 
 
 class DiskProfile(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -18558,7 +18296,7 @@ class DiskProfile(Identified):
         qos=None,
         storage_domain=None,
     ):
-        super(DiskProfile, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -18580,7 +18318,7 @@ class DiskProfile(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -18609,12 +18347,11 @@ class DiskProfile(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
 
 class DiskSnapshot(Disk):
-
     def __init__(
         self,
         active=None,
@@ -18663,7 +18400,7 @@ class DiskSnapshot(Disk):
         vms=None,
         wipe_after_delete=None,
     ):
-        super(DiskSnapshot, self).__init__(
+        super().__init__(
             active=active,
             actual_size=actual_size,
             alias=alias,
@@ -18723,7 +18460,7 @@ class DiskSnapshot(Disk):
         """
         Sets the value of the `parent` property.
         """
-        Struct._check_type('parent', value, DiskSnapshot)
+        Struct._check_type("parent", value, DiskSnapshot)
         self._parent = value
 
     @property
@@ -18738,12 +18475,11 @@ class DiskSnapshot(Disk):
         """
         Sets the value of the `disk` property.
         """
-        Struct._check_type('disk', value, Disk)
+        Struct._check_type("disk", value, Disk)
         self._disk = value
 
 
 class Domain(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -18754,7 +18490,7 @@ class Domain(Identified):
         user=None,
         users=None,
     ):
-        super(Domain, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -18790,7 +18526,7 @@ class Domain(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -18809,7 +18545,6 @@ class Domain(Identified):
 
 
 class Event(Identified):
-
     def __init__(
         self,
         cluster=None,
@@ -18834,7 +18569,7 @@ class Event(Identified):
         user=None,
         vm=None,
     ):
-        super(Event, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -18870,7 +18605,7 @@ class Event(Identified):
         """
         Sets the value of the `severity` property.
         """
-        Struct._check_type('severity', value, LogSeverity)
+        Struct._check_type("severity", value, LogSeverity)
         self._severity = value
 
     @property
@@ -18885,7 +18620,7 @@ class Event(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -18914,7 +18649,7 @@ class Event(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -18929,7 +18664,7 @@ class Event(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -19000,7 +18735,7 @@ class Event(Identified):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -19057,7 +18792,7 @@ class Event(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -19072,7 +18807,7 @@ class Event(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -19101,12 +18836,11 @@ class Event(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
 
 class EventSubscription(Identified):
-
     def __init__(
         self,
         address=None,
@@ -19118,7 +18852,7 @@ class EventSubscription(Identified):
         notification_method=None,
         user=None,
     ):
-        super(EventSubscription, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19155,7 +18889,7 @@ class EventSubscription(Identified):
         """
         Sets the value of the `notification_method` property.
         """
-        Struct._check_type('notification_method', value, NotificationMethod)
+        Struct._check_type("notification_method", value, NotificationMethod)
         self._notification_method = value
 
     @property
@@ -19170,7 +18904,7 @@ class EventSubscription(Identified):
         """
         Sets the value of the `user` property.
         """
-        Struct._check_type('user', value, User)
+        Struct._check_type("user", value, User)
         self._user = value
 
     @property
@@ -19185,12 +18919,11 @@ class EventSubscription(Identified):
         """
         Sets the value of the `event` property.
         """
-        Struct._check_type('event', value, NotifiableEvent)
+        Struct._check_type("event", value, NotifiableEvent)
         self._event = value
 
 
 class ExternalComputeResource(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -19202,7 +18935,7 @@ class ExternalComputeResource(Identified):
         url=None,
         user=None,
     ):
-        super(ExternalComputeResource, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19225,7 +18958,7 @@ class ExternalComputeResource(Identified):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -19272,7 +19005,6 @@ class ExternalComputeResource(Identified):
 
 
 class ExternalDiscoveredHost(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -19285,7 +19017,7 @@ class ExternalDiscoveredHost(Identified):
         name=None,
         subnet_name=None,
     ):
-        super(ExternalDiscoveredHost, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19323,7 +19055,7 @@ class ExternalDiscoveredHost(Identified):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -19370,7 +19102,6 @@ class ExternalDiscoveredHost(Identified):
 
 
 class ExternalHost(Identified):
-
     def __init__(
         self,
         address=None,
@@ -19380,7 +19111,7 @@ class ExternalHost(Identified):
         id=None,
         name=None,
     ):
-        super(ExternalHost, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19401,7 +19132,7 @@ class ExternalHost(Identified):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -19420,7 +19151,6 @@ class ExternalHost(Identified):
 
 
 class ExternalHostGroup(Identified):
-
     def __init__(
         self,
         architecture_name=None,
@@ -19433,7 +19163,7 @@ class ExternalHostGroup(Identified):
         operating_system_name=None,
         subnet_name=None,
     ):
-        super(ExternalHostGroup, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19485,7 +19215,7 @@ class ExternalHostGroup(Identified):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -19518,7 +19248,6 @@ class ExternalHostGroup(Identified):
 
 
 class ExternalNetworkProviderConfiguration(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -19528,7 +19257,7 @@ class ExternalNetworkProviderConfiguration(Identified):
         id=None,
         name=None,
     ):
-        super(ExternalNetworkProviderConfiguration, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19549,7 +19278,7 @@ class ExternalNetworkProviderConfiguration(Identified):
         """
         Sets the value of the `external_network_provider` property.
         """
-        Struct._check_type('external_network_provider', value, ExternalProvider)
+        Struct._check_type("external_network_provider", value, ExternalProvider)
         self._external_network_provider = value
 
     @property
@@ -19564,12 +19293,11 @@ class ExternalNetworkProviderConfiguration(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
 
 class ExternalProvider(Identified):
-
     def __init__(
         self,
         authentication_url=None,
@@ -19583,7 +19311,7 @@ class ExternalProvider(Identified):
         url=None,
         username=None,
     ):
-        super(ExternalProvider, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19682,7 +19410,6 @@ class ExternalProvider(Identified):
 
 
 class File(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -19693,7 +19420,7 @@ class File(Identified):
         storage_domain=None,
         type=None,
     ):
-        super(File, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19715,7 +19442,7 @@ class File(Identified):
         """
         Sets the value of the `storage_domain` property.
         """
-        Struct._check_type('storage_domain', value, StorageDomain)
+        Struct._check_type("storage_domain", value, StorageDomain)
         self._storage_domain = value
 
     @property
@@ -19748,7 +19475,6 @@ class File(Identified):
 
 
 class Filter(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -19758,7 +19484,7 @@ class Filter(Identified):
         position=None,
         scheduling_policy_unit=None,
     ):
-        super(Filter, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19779,7 +19505,7 @@ class Filter(Identified):
         """
         Sets the value of the `scheduling_policy_unit` property.
         """
-        Struct._check_type('scheduling_policy_unit', value, SchedulingPolicyUnit)
+        Struct._check_type("scheduling_policy_unit", value, SchedulingPolicyUnit)
         self._scheduling_policy_unit = value
 
     @property
@@ -19798,7 +19524,6 @@ class Filter(Identified):
 
 
 class Floppy(Device):
-
     def __init__(
         self,
         comment=None,
@@ -19811,7 +19536,7 @@ class Floppy(Device):
         vm=None,
         vms=None,
     ):
-        super(Floppy, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19835,12 +19560,11 @@ class Floppy(Device):
         """
         Sets the value of the `file` property.
         """
-        Struct._check_type('file', value, File)
+        Struct._check_type("file", value, File)
         self._file = value
 
 
 class GlusterBrickAdvancedDetails(Device):
-
     def __init__(
         self,
         comment=None,
@@ -19859,7 +19583,7 @@ class GlusterBrickAdvancedDetails(Device):
         vm=None,
         vms=None,
     ):
-        super(GlusterBrickAdvancedDetails, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -19977,7 +19701,6 @@ class GlusterBrickAdvancedDetails(Device):
 
 
 class GlusterHook(Identified):
-
     def __init__(
         self,
         checksum=None,
@@ -19995,7 +19718,7 @@ class GlusterHook(Identified):
         stage=None,
         status=None,
     ):
-        super(GlusterHook, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20024,7 +19747,7 @@ class GlusterHook(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -20039,7 +19762,7 @@ class GlusterHook(Identified):
         """
         Sets the value of the `stage` property.
         """
-        Struct._check_type('stage', value, HookStage)
+        Struct._check_type("stage", value, HookStage)
         self._stage = value
 
     @property
@@ -20054,7 +19777,7 @@ class GlusterHook(Identified):
         """
         Sets the value of the `content_type` property.
         """
-        Struct._check_type('content_type', value, HookContentType)
+        Struct._check_type("content_type", value, HookContentType)
         self._content_type = value
 
     @property
@@ -20111,7 +19834,7 @@ class GlusterHook(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, GlusterHookStatus)
+        Struct._check_type("status", value, GlusterHookStatus)
         self._status = value
 
     @property
@@ -20158,7 +19881,6 @@ class GlusterHook(Identified):
 
 
 class GlusterMemoryPool(Identified):
-
     def __init__(
         self,
         alloc_count=None,
@@ -20174,7 +19896,7 @@ class GlusterMemoryPool(Identified):
         pool_misses=None,
         type=None,
     ):
-        super(GlusterMemoryPool, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20303,7 +20025,6 @@ class GlusterMemoryPool(Identified):
 
 
 class GlusterServerHook(Identified):
-
     def __init__(
         self,
         checksum=None,
@@ -20315,7 +20036,7 @@ class GlusterServerHook(Identified):
         name=None,
         status=None,
     ):
-        super(GlusterServerHook, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20338,7 +20059,7 @@ class GlusterServerHook(Identified):
         """
         Sets the value of the `content_type` property.
         """
-        Struct._check_type('content_type', value, HookContentType)
+        Struct._check_type("content_type", value, HookContentType)
         self._content_type = value
 
     @property
@@ -20353,7 +20074,7 @@ class GlusterServerHook(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -20382,12 +20103,11 @@ class GlusterServerHook(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, GlusterHookStatus)
+        Struct._check_type("status", value, GlusterHookStatus)
         self._status = value
 
 
 class GlusterVolume(Identified):
-
     def __init__(
         self,
         bricks=None,
@@ -20406,7 +20126,7 @@ class GlusterVolume(Identified):
         transport_types=None,
         volume_type=None,
     ):
-        super(GlusterVolume, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20450,7 +20170,7 @@ class GlusterVolume(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -20493,7 +20213,7 @@ class GlusterVolume(Identified):
         """
         Sets the value of the `volume_type` property.
         """
-        Struct._check_type('volume_type', value, GlusterVolumeType)
+        Struct._check_type("volume_type", value, GlusterVolumeType)
         self._volume_type = value
 
     @property
@@ -20550,7 +20270,7 @@ class GlusterVolume(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, GlusterVolumeStatus)
+        Struct._check_type("status", value, GlusterVolumeStatus)
         self._status = value
 
     @property
@@ -20583,7 +20303,6 @@ class GlusterVolume(Identified):
 
 
 class GlusterVolumeProfileDetails(Identified):
-
     def __init__(
         self,
         brick_profile_details=None,
@@ -20593,7 +20312,7 @@ class GlusterVolumeProfileDetails(Identified):
         name=None,
         nfs_profile_details=None,
     ):
-        super(GlusterVolumeProfileDetails, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20632,7 +20351,6 @@ class GlusterVolumeProfileDetails(Identified):
 
 
 class GraphicsConsole(Identified):
-
     def __init__(
         self,
         address=None,
@@ -20647,7 +20365,7 @@ class GraphicsConsole(Identified):
         tls_port=None,
         vm=None,
     ):
-        super(GraphicsConsole, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20673,7 +20391,7 @@ class GraphicsConsole(Identified):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -20716,7 +20434,7 @@ class GraphicsConsole(Identified):
         """
         Sets the value of the `instance_type` property.
         """
-        Struct._check_type('instance_type', value, InstanceType)
+        Struct._check_type("instance_type", value, InstanceType)
         self._instance_type = value
 
     @property
@@ -20731,7 +20449,7 @@ class GraphicsConsole(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -20746,7 +20464,7 @@ class GraphicsConsole(Identified):
         """
         Sets the value of the `protocol` property.
         """
-        Struct._check_type('protocol', value, GraphicsType)
+        Struct._check_type("protocol", value, GraphicsType)
         self._protocol = value
 
     @property
@@ -20765,7 +20483,6 @@ class GraphicsConsole(Identified):
 
 
 class Group(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -20779,7 +20496,7 @@ class Group(Identified):
         roles=None,
         tags=None,
     ):
-        super(Group, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20804,7 +20521,7 @@ class Group(Identified):
         """
         Sets the value of the `domain` property.
         """
-        Struct._check_type('domain', value, Domain)
+        Struct._check_type("domain", value, Domain)
         self._domain = value
 
     @property
@@ -20879,7 +20596,6 @@ class Group(Identified):
 
 
 class Hook(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -20890,7 +20606,7 @@ class Hook(Identified):
         md5=None,
         name=None,
     ):
-        super(Hook, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -20912,7 +20628,7 @@ class Hook(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -20945,7 +20661,6 @@ class Hook(Identified):
 
 
 class Host(Identified):
-
     def __init__(
         self,
         address=None,
@@ -21007,7 +20722,7 @@ class Host(Identified):
         version=None,
         vgpu_placement=None,
     ):
-        super(Host, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -21025,7 +20740,9 @@ class Host(Identified):
         self.devices = devices
         self.display = display
         self.external_host_provider = external_host_provider
-        self.external_network_provider_configurations = external_network_provider_configurations
+        self.external_network_provider_configurations = (
+            external_network_provider_configurations
+        )
         self.external_status = external_status
         self.hardware_information = hardware_information
         self.hooks = hooks
@@ -21080,7 +20797,7 @@ class Host(Identified):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, Version)
+        Struct._check_type("version", value, Version)
         self._version = value
 
     @property
@@ -21095,7 +20812,7 @@ class Host(Identified):
         """
         Sets the value of the `summary` property.
         """
-        Struct._check_type('summary', value, VmSummary)
+        Struct._check_type("summary", value, VmSummary)
         self._summary = value
 
     @property
@@ -21110,7 +20827,7 @@ class Host(Identified):
         """
         Sets the value of the `os` property.
         """
-        Struct._check_type('os', value, OperatingSystem)
+        Struct._check_type("os", value, OperatingSystem)
         self._os = value
 
     @property
@@ -21153,7 +20870,7 @@ class Host(Identified):
         """
         Sets the value of the `se_linux` property.
         """
-        Struct._check_type('se_linux', value, SeLinux)
+        Struct._check_type("se_linux", value, SeLinux)
         self._se_linux = value
 
     @property
@@ -21182,7 +20899,7 @@ class Host(Identified):
         """
         Sets the value of the `hosted_engine` property.
         """
-        Struct._check_type('hosted_engine', value, HostedEngine)
+        Struct._check_type("hosted_engine", value, HostedEngine)
         self._hosted_engine = value
 
     @property
@@ -21309,7 +21026,7 @@ class Host(Identified):
         """
         Sets the value of the `ksm` property.
         """
-        Struct._check_type('ksm', value, Ksm)
+        Struct._check_type("ksm", value, Ksm)
         self._ksm = value
 
     @property
@@ -21324,7 +21041,7 @@ class Host(Identified):
         """
         Sets the value of the `ssh` property.
         """
-        Struct._check_type('ssh', value, Ssh)
+        Struct._check_type("ssh", value, Ssh)
         self._ssh = value
 
     @property
@@ -21339,7 +21056,7 @@ class Host(Identified):
         """
         Sets the value of the `kdump_status` property.
         """
-        Struct._check_type('kdump_status', value, KdumpStatus)
+        Struct._check_type("kdump_status", value, KdumpStatus)
         self._kdump_status = value
 
     @property
@@ -21452,7 +21169,7 @@ class Host(Identified):
         """
         Sets the value of the `power_management` property.
         """
-        Struct._check_type('power_management', value, PowerManagement)
+        Struct._check_type("power_management", value, PowerManagement)
         self._power_management = value
 
     @property
@@ -21481,7 +21198,7 @@ class Host(Identified):
         """
         Sets the value of the `device_passthrough` property.
         """
-        Struct._check_type('device_passthrough', value, HostDevicePassthrough)
+        Struct._check_type("device_passthrough", value, HostDevicePassthrough)
         self._device_passthrough = value
 
     @property
@@ -21510,7 +21227,7 @@ class Host(Identified):
         """
         Sets the value of the `protocol` property.
         """
-        Struct._check_type('protocol', value, HostProtocol)
+        Struct._check_type("protocol", value, HostProtocol)
         self._protocol = value
 
     @property
@@ -21567,7 +21284,7 @@ class Host(Identified):
         """
         Sets the value of the `display` property.
         """
-        Struct._check_type('display', value, Display)
+        Struct._check_type("display", value, Display)
         self._display = value
 
     @property
@@ -21582,7 +21299,7 @@ class Host(Identified):
         """
         Sets the value of the `auto_numa_status` property.
         """
-        Struct._check_type('auto_numa_status', value, AutoNumaStatus)
+        Struct._check_type("auto_numa_status", value, AutoNumaStatus)
         self._auto_numa_status = value
 
     @property
@@ -21597,7 +21314,7 @@ class Host(Identified):
         """
         Sets the value of the `cpu` property.
         """
-        Struct._check_type('cpu', value, Cpu)
+        Struct._check_type("cpu", value, Cpu)
         self._cpu = value
 
     @property
@@ -21612,7 +21329,7 @@ class Host(Identified):
         """
         Sets the value of the `external_status` property.
         """
-        Struct._check_type('external_status', value, ExternalStatus)
+        Struct._check_type("external_status", value, ExternalStatus)
         self._external_status = value
 
     @property
@@ -21641,7 +21358,7 @@ class Host(Identified):
         """
         Sets the value of the `spm` property.
         """
-        Struct._check_type('spm', value, Spm)
+        Struct._check_type("spm", value, Spm)
         self._spm = value
 
     @property
@@ -21656,7 +21373,7 @@ class Host(Identified):
         """
         Sets the value of the `libvirt_version` property.
         """
-        Struct._check_type('libvirt_version', value, Version)
+        Struct._check_type("libvirt_version", value, Version)
         self._libvirt_version = value
 
     @property
@@ -21671,7 +21388,7 @@ class Host(Identified):
         """
         Sets the value of the `iscsi` property.
         """
-        Struct._check_type('iscsi', value, IscsiDetails)
+        Struct._check_type("iscsi", value, IscsiDetails)
         self._iscsi = value
 
     @property
@@ -21700,7 +21417,7 @@ class Host(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, HostStatus)
+        Struct._check_type("status", value, HostStatus)
         self._status = value
 
     @property
@@ -21715,7 +21432,7 @@ class Host(Identified):
         """
         Sets the value of the `hardware_information` property.
         """
-        Struct._check_type('hardware_information', value, HardwareInformation)
+        Struct._check_type("hardware_information", value, HardwareInformation)
         self._hardware_information = value
 
     @property
@@ -21758,7 +21475,7 @@ class Host(Identified):
         """
         Sets the value of the `cluster` property.
         """
-        Struct._check_type('cluster', value, Cluster)
+        Struct._check_type("cluster", value, Cluster)
         self._cluster = value
 
     @property
@@ -21773,7 +21490,7 @@ class Host(Identified):
         """
         Sets the value of the `transparent_huge_pages` property.
         """
-        Struct._check_type('transparent_huge_pages', value, TransparentHugePages)
+        Struct._check_type("transparent_huge_pages", value, TransparentHugePages)
         self._transparent_huge_pages = value
 
     @property
@@ -21788,7 +21505,7 @@ class Host(Identified):
         """
         Sets the value of the `certificate` property.
         """
-        Struct._check_type('certificate', value, Certificate)
+        Struct._check_type("certificate", value, Certificate)
         self._certificate = value
 
     @property
@@ -21803,7 +21520,7 @@ class Host(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, HostType)
+        Struct._check_type("type", value, HostType)
         self._type = value
 
     @property
@@ -21818,7 +21535,7 @@ class Host(Identified):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -21833,7 +21550,7 @@ class Host(Identified):
         """
         Sets the value of the `vgpu_placement` property.
         """
-        Struct._check_type('vgpu_placement', value, VgpuPlacement)
+        Struct._check_type("vgpu_placement", value, VgpuPlacement)
         self._vgpu_placement = value
 
     @property
@@ -21852,7 +21569,6 @@ class Host(Identified):
 
 
 class HostCpuUnit(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -21865,7 +21581,7 @@ class HostCpuUnit(Identified):
         socket_id=None,
         vms=None,
     ):
-        super(HostCpuUnit, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -21949,7 +21665,6 @@ class HostCpuUnit(Identified):
 
 
 class HostDevice(Identified):
-
     def __init__(
         self,
         capability=None,
@@ -21969,7 +21684,7 @@ class HostDevice(Identified):
         virtual_functions=None,
         vm=None,
     ):
-        super(HostDevice, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -22000,7 +21715,7 @@ class HostDevice(Identified):
         """
         Sets the value of the `product` property.
         """
-        Struct._check_type('product', value, Product)
+        Struct._check_type("product", value, Product)
         self._product = value
 
     @property
@@ -22015,7 +21730,7 @@ class HostDevice(Identified):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -22030,7 +21745,7 @@ class HostDevice(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -22059,7 +21774,7 @@ class HostDevice(Identified):
         """
         Sets the value of the `vendor` property.
         """
-        Struct._check_type('vendor', value, Vendor)
+        Struct._check_type("vendor", value, Vendor)
         self._vendor = value
 
     @property
@@ -22130,7 +21845,7 @@ class HostDevice(Identified):
         """
         Sets the value of the `parent_device` property.
         """
-        Struct._check_type('parent_device', value, HostDevice)
+        Struct._check_type("parent_device", value, HostDevice)
         self._parent_device = value
 
     @property
@@ -22159,12 +21874,11 @@ class HostDevice(Identified):
         """
         Sets the value of the `physical_function` property.
         """
-        Struct._check_type('physical_function', value, HostDevice)
+        Struct._check_type("physical_function", value, HostDevice)
         self._physical_function = value
 
 
 class HostNic(Identified):
-
     def __init__(
         self,
         ad_aggregator_id=None,
@@ -22196,7 +21910,7 @@ class HostNic(Identified):
         virtual_functions_configuration=None,
         vlan=None,
     ):
-        super(HostNic, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -22267,7 +21981,7 @@ class HostNic(Identified):
         """
         Sets the value of the `boot_protocol` property.
         """
-        Struct._check_type('boot_protocol', value, BootProtocol)
+        Struct._check_type("boot_protocol", value, BootProtocol)
         self._boot_protocol = value
 
     @property
@@ -22282,7 +21996,7 @@ class HostNic(Identified):
         """
         Sets the value of the `ip` property.
         """
-        Struct._check_type('ip', value, Ip)
+        Struct._check_type("ip", value, Ip)
         self._ip = value
 
     @property
@@ -22353,7 +22067,7 @@ class HostNic(Identified):
         """
         Sets the value of the `network` property.
         """
-        Struct._check_type('network', value, Network)
+        Struct._check_type("network", value, Network)
         self._network = value
 
     @property
@@ -22368,7 +22082,7 @@ class HostNic(Identified):
         """
         Sets the value of the `mac` property.
         """
-        Struct._check_type('mac', value, Mac)
+        Struct._check_type("mac", value, Mac)
         self._mac = value
 
     @property
@@ -22411,7 +22125,7 @@ class HostNic(Identified):
         """
         Sets the value of the `vlan` property.
         """
-        Struct._check_type('vlan', value, Vlan)
+        Struct._check_type("vlan", value, Vlan)
         self._vlan = value
 
     @property
@@ -22426,7 +22140,7 @@ class HostNic(Identified):
         """
         Sets the value of the `qos` property.
         """
-        Struct._check_type('qos', value, Qos)
+        Struct._check_type("qos", value, Qos)
         self._qos = value
 
     @property
@@ -22441,7 +22155,11 @@ class HostNic(Identified):
         """
         Sets the value of the `virtual_functions_configuration` property.
         """
-        Struct._check_type('virtual_functions_configuration', value, HostNicVirtualFunctionsConfiguration)
+        Struct._check_type(
+            "virtual_functions_configuration",
+            value,
+            HostNicVirtualFunctionsConfiguration,
+        )
         self._virtual_functions_configuration = value
 
     @property
@@ -22456,7 +22174,7 @@ class HostNic(Identified):
         """
         Sets the value of the `ipv6` property.
         """
-        Struct._check_type('ipv6', value, Ip)
+        Struct._check_type("ipv6", value, Ip)
         self._ipv6 = value
 
     @property
@@ -22471,7 +22189,7 @@ class HostNic(Identified):
         """
         Sets the value of the `bonding` property.
         """
-        Struct._check_type('bonding', value, Bonding)
+        Struct._check_type("bonding", value, Bonding)
         self._bonding = value
 
     @property
@@ -22486,7 +22204,7 @@ class HostNic(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -22515,7 +22233,7 @@ class HostNic(Identified):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, NicStatus)
+        Struct._check_type("status", value, NicStatus)
         self._status = value
 
     @property
@@ -22530,7 +22248,7 @@ class HostNic(Identified):
         """
         Sets the value of the `ipv6_boot_protocol` property.
         """
-        Struct._check_type('ipv6_boot_protocol', value, BootProtocol)
+        Struct._check_type("ipv6_boot_protocol", value, BootProtocol)
         self._ipv6_boot_protocol = value
 
     @property
@@ -22545,7 +22263,7 @@ class HostNic(Identified):
         """
         Sets the value of the `physical_function` property.
         """
-        Struct._check_type('physical_function', value, HostNic)
+        Struct._check_type("physical_function", value, HostNic)
         self._physical_function = value
 
     @property
@@ -22578,7 +22296,6 @@ class HostNic(Identified):
 
 
 class HostStorage(Identified):
-
     def __init__(
         self,
         address=None,
@@ -22605,7 +22322,7 @@ class HostStorage(Identified):
         vfs_type=None,
         volume_group=None,
     ):
-        super(HostStorage, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -22699,7 +22416,7 @@ class HostStorage(Identified):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, StorageType)
+        Struct._check_type("type", value, StorageType)
         self._type = value
 
     @property
@@ -22784,7 +22501,7 @@ class HostStorage(Identified):
         """
         Sets the value of the `volume_group` property.
         """
-        Struct._check_type('volume_group', value, VolumeGroup)
+        Struct._check_type("volume_group", value, VolumeGroup)
         self._volume_group = value
 
     @property
@@ -22813,7 +22530,7 @@ class HostStorage(Identified):
         """
         Sets the value of the `nfs_version` property.
         """
-        Struct._check_type('nfs_version', value, NfsVersion)
+        Struct._check_type("nfs_version", value, NfsVersion)
         self._nfs_version = value
 
     @property
@@ -22842,7 +22559,7 @@ class HostStorage(Identified):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -22903,7 +22620,6 @@ class HostStorage(Identified):
 
 
 class Icon(Identified):
-
     def __init__(
         self,
         comment=None,
@@ -22913,7 +22629,7 @@ class Icon(Identified):
         media_type=None,
         name=None,
     ):
-        super(Icon, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -22952,7 +22668,6 @@ class Icon(Identified):
 
 
 class Nic(Device):
-
     def __init__(
         self,
         boot_protocol=None,
@@ -22980,7 +22695,7 @@ class Nic(Device):
         vms=None,
         vnic_profile=None,
     ):
-        super(Nic, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -23075,7 +22790,7 @@ class Nic(Device):
         """
         Sets the value of the `boot_protocol` property.
         """
-        Struct._check_type('boot_protocol', value, BootProtocol)
+        Struct._check_type("boot_protocol", value, BootProtocol)
         self._boot_protocol = value
 
     @property
@@ -23104,7 +22819,7 @@ class Nic(Device):
         """
         Sets the value of the `network` property.
         """
-        Struct._check_type('network', value, Network)
+        Struct._check_type("network", value, Network)
         self._network = value
 
     @property
@@ -23119,7 +22834,7 @@ class Nic(Device):
         """
         Sets the value of the `interface` property.
         """
-        Struct._check_type('interface', value, NicInterface)
+        Struct._check_type("interface", value, NicInterface)
         self._interface = value
 
     @property
@@ -23134,7 +22849,7 @@ class Nic(Device):
         """
         Sets the value of the `mac` property.
         """
-        Struct._check_type('mac', value, Mac)
+        Struct._check_type("mac", value, Mac)
         self._mac = value
 
     @property
@@ -23177,7 +22892,7 @@ class Nic(Device):
         """
         Sets the value of the `vnic_profile` property.
         """
-        Struct._check_type('vnic_profile', value, VnicProfile)
+        Struct._check_type("vnic_profile", value, VnicProfile)
         self._vnic_profile = value
 
     @property
@@ -23238,7 +22953,6 @@ class Nic(Device):
 
 
 class OpenStackProvider(ExternalProvider):
-
     def __init__(
         self,
         authentication_url=None,
@@ -23253,7 +22967,7 @@ class OpenStackProvider(ExternalProvider):
         url=None,
         username=None,
     ):
-        super(OpenStackProvider, self).__init__(
+        super().__init__(
             authentication_url=authentication_url,
             comment=comment,
             description=description,
@@ -23283,7 +22997,6 @@ class OpenStackProvider(ExternalProvider):
 
 
 class OpenStackVolumeProvider(OpenStackProvider):
-
     def __init__(
         self,
         authentication_keys=None,
@@ -23302,7 +23015,7 @@ class OpenStackVolumeProvider(OpenStackProvider):
         username=None,
         volume_types=None,
     ):
-        super(OpenStackVolumeProvider, self).__init__(
+        super().__init__(
             authentication_url=authentication_url,
             comment=comment,
             description=description,
@@ -23360,7 +23073,7 @@ class OpenStackVolumeProvider(OpenStackProvider):
         """
         Sets the value of the `data_center` property.
         """
-        Struct._check_type('data_center', value, DataCenter)
+        Struct._check_type("data_center", value, DataCenter)
         self._data_center = value
 
     @property
@@ -23379,7 +23092,6 @@ class OpenStackVolumeProvider(OpenStackProvider):
 
 
 class Template(VmBase):
-
     def __init__(
         self,
         auto_pinning_policy=None,
@@ -23445,7 +23157,7 @@ class Template(VmBase):
         vm=None,
         watchdogs=None,
     ):
-        super(Template, self).__init__(
+        super().__init__(
             auto_pinning_policy=auto_pinning_policy,
             bios=bios,
             cluster=cluster,
@@ -23536,7 +23248,7 @@ class Template(VmBase):
         """
         Sets the value of the `version` property.
         """
-        Struct._check_type('version', value, TemplateVersion)
+        Struct._check_type("version", value, TemplateVersion)
         self._version = value
 
     @property
@@ -23593,7 +23305,7 @@ class Template(VmBase):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -23650,7 +23362,7 @@ class Template(VmBase):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, TemplateStatus)
+        Struct._check_type("status", value, TemplateStatus)
         self._status = value
 
     @property
@@ -23669,7 +23381,6 @@ class Template(VmBase):
 
 
 class Vm(VmBase):
-
     def __init__(
         self,
         affinity_labels=None,
@@ -23763,7 +23474,7 @@ class Vm(VmBase):
         vm_pool=None,
         watchdogs=None,
     ):
-        super(Vm, self).__init__(
+        super().__init__(
             auto_pinning_policy=auto_pinning_policy,
             bios=bios,
             cluster=cluster,
@@ -23868,7 +23579,7 @@ class Vm(VmBase):
         """
         Sets the value of the `numa_tune_mode` property.
         """
-        Struct._check_type('numa_tune_mode', value, NumaTuneMode)
+        Struct._check_type("numa_tune_mode", value, NumaTuneMode)
         self._numa_tune_mode = value
 
     @property
@@ -23911,7 +23622,7 @@ class Vm(VmBase):
         """
         Sets the value of the `dynamic_cpu` property.
         """
-        Struct._check_type('dynamic_cpu', value, DynamicCpu)
+        Struct._check_type("dynamic_cpu", value, DynamicCpu)
         self._dynamic_cpu = value
 
     @property
@@ -24080,7 +23791,7 @@ class Vm(VmBase):
         """
         Sets the value of the `original_template` property.
         """
-        Struct._check_type('original_template', value, Template)
+        Struct._check_type("original_template", value, Template)
         self._original_template = value
 
     @property
@@ -24109,7 +23820,7 @@ class Vm(VmBase):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, VmStatus)
+        Struct._check_type("status", value, VmStatus)
         self._status = value
 
     @property
@@ -24180,7 +23891,7 @@ class Vm(VmBase):
         """
         Sets the value of the `template` property.
         """
-        Struct._check_type('template', value, Template)
+        Struct._check_type("template", value, Template)
         self._template = value
 
     @property
@@ -24251,7 +23962,7 @@ class Vm(VmBase):
         """
         Sets the value of the `guest_time_zone` property.
         """
-        Struct._check_type('guest_time_zone', value, TimeZone)
+        Struct._check_type("guest_time_zone", value, TimeZone)
         self._guest_time_zone = value
 
     @property
@@ -24266,7 +23977,7 @@ class Vm(VmBase):
         """
         Sets the value of the `guest_operating_system` property.
         """
-        Struct._check_type('guest_operating_system', value, GuestOperatingSystem)
+        Struct._check_type("guest_operating_system", value, GuestOperatingSystem)
         self._guest_operating_system = value
 
     @property
@@ -24281,7 +23992,7 @@ class Vm(VmBase):
         """
         Sets the value of the `vm_pool` property.
         """
-        Struct._check_type('vm_pool', value, VmPool)
+        Struct._check_type("vm_pool", value, VmPool)
         self._vm_pool = value
 
     @property
@@ -24338,7 +24049,7 @@ class Vm(VmBase):
         """
         Sets the value of the `external_host_provider` property.
         """
-        Struct._check_type('external_host_provider', value, ExternalHostProvider)
+        Struct._check_type("external_host_provider", value, ExternalHostProvider)
         self._external_host_provider = value
 
     @property
@@ -24353,7 +24064,7 @@ class Vm(VmBase):
         """
         Sets the value of the `instance_type` property.
         """
-        Struct._check_type('instance_type', value, InstanceType)
+        Struct._check_type("instance_type", value, InstanceType)
         self._instance_type = value
 
     @property
@@ -24382,7 +24093,7 @@ class Vm(VmBase):
         """
         Sets the value of the `host` property.
         """
-        Struct._check_type('host', value, Host)
+        Struct._check_type("host", value, Host)
         self._host = value
 
     @property
@@ -24415,7 +24126,6 @@ class Vm(VmBase):
 
 
 class VmMediatedDevice(Device):
-
     def __init__(
         self,
         comment=None,
@@ -24428,7 +24138,7 @@ class VmMediatedDevice(Device):
         vm=None,
         vms=None,
     ):
-        super(VmMediatedDevice, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -24456,7 +24166,6 @@ class VmMediatedDevice(Device):
 
 
 class Watchdog(Device):
-
     def __init__(
         self,
         action=None,
@@ -24470,7 +24179,7 @@ class Watchdog(Device):
         vm=None,
         vms=None,
     ):
-        super(Watchdog, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -24495,7 +24204,7 @@ class Watchdog(Device):
         """
         Sets the value of the `action` property.
         """
-        Struct._check_type('action', value, WatchdogAction)
+        Struct._check_type("action", value, WatchdogAction)
         self._action = value
 
     @property
@@ -24510,12 +24219,11 @@ class Watchdog(Device):
         """
         Sets the value of the `model` property.
         """
-        Struct._check_type('model', value, WatchdogModel)
+        Struct._check_type("model", value, WatchdogModel)
         self._model = value
 
 
 class Cdrom(Device):
-
     def __init__(
         self,
         comment=None,
@@ -24528,7 +24236,7 @@ class Cdrom(Device):
         vm=None,
         vms=None,
     ):
-        super(Cdrom, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             id=id,
@@ -24552,12 +24260,11 @@ class Cdrom(Device):
         """
         Sets the value of the `file` property.
         """
-        Struct._check_type('file', value, File)
+        Struct._check_type("file", value, File)
         self._file = value
 
 
 class ExternalHostProvider(ExternalProvider):
-
     def __init__(
         self,
         authentication_url=None,
@@ -24576,7 +24283,7 @@ class ExternalHostProvider(ExternalProvider):
         url=None,
         username=None,
     ):
-        super(ExternalHostProvider, self).__init__(
+        super().__init__(
             authentication_url=authentication_url,
             comment=comment,
             description=description,
@@ -24666,7 +24373,6 @@ class ExternalHostProvider(ExternalProvider):
 
 
 class GlusterBrick(GlusterBrickAdvancedDetails):
-
     def __init__(
         self,
         brick_dir=None,
@@ -24690,7 +24396,7 @@ class GlusterBrick(GlusterBrickAdvancedDetails):
         vm=None,
         vms=None,
     ):
-        super(GlusterBrick, self).__init__(
+        super().__init__(
             comment=comment,
             description=description,
             device=device,
@@ -24753,7 +24459,7 @@ class GlusterBrick(GlusterBrickAdvancedDetails):
         """
         Sets the value of the `gluster_volume` property.
         """
-        Struct._check_type('gluster_volume', value, GlusterVolume)
+        Struct._check_type("gluster_volume", value, GlusterVolume)
         self._gluster_volume = value
 
     @property
@@ -24768,7 +24474,7 @@ class GlusterBrick(GlusterBrickAdvancedDetails):
         """
         Sets the value of the `status` property.
         """
-        Struct._check_type('status', value, GlusterBrickStatus)
+        Struct._check_type("status", value, GlusterBrickStatus)
         self._status = value
 
     @property
@@ -24787,7 +24493,6 @@ class GlusterBrick(GlusterBrickAdvancedDetails):
 
 
 class InstanceType(Template):
-
     def __init__(
         self,
         auto_pinning_policy=None,
@@ -24853,7 +24558,7 @@ class InstanceType(Template):
         vm=None,
         watchdogs=None,
     ):
-        super(InstanceType, self).__init__(
+        super().__init__(
             auto_pinning_policy=auto_pinning_policy,
             bios=bios,
             cdroms=cdroms,
@@ -24917,11 +24622,9 @@ class InstanceType(Template):
             vm=vm,
             watchdogs=watchdogs,
         )
-        pass
 
 
 class OpenStackImageProvider(OpenStackProvider):
-
     def __init__(
         self,
         authentication_url=None,
@@ -24938,7 +24641,7 @@ class OpenStackImageProvider(OpenStackProvider):
         url=None,
         username=None,
     ):
-        super(OpenStackImageProvider, self).__init__(
+        super().__init__(
             authentication_url=authentication_url,
             comment=comment,
             description=description,
@@ -24984,7 +24687,6 @@ class OpenStackImageProvider(OpenStackProvider):
 
 
 class OpenStackNetworkProvider(OpenStackProvider):
-
     def __init__(
         self,
         agent_configuration=None,
@@ -25012,7 +24714,7 @@ class OpenStackNetworkProvider(OpenStackProvider):
         user_domain_name=None,
         username=None,
     ):
-        super(OpenStackNetworkProvider, self).__init__(
+        super().__init__(
             authentication_url=authentication_url,
             comment=comment,
             description=description,
@@ -25051,7 +24753,7 @@ class OpenStackNetworkProvider(OpenStackProvider):
         """
         Sets the value of the `agent_configuration` property.
         """
-        Struct._check_type('agent_configuration', value, AgentConfiguration)
+        Struct._check_type("agent_configuration", value, AgentConfiguration)
         self._agent_configuration = value
 
     @property
@@ -25094,7 +24796,7 @@ class OpenStackNetworkProvider(OpenStackProvider):
         """
         Sets the value of the `type` property.
         """
-        Struct._check_type('type', value, OpenStackNetworkProviderType)
+        Struct._check_type("type", value, OpenStackNetworkProviderType)
         self._type = value
 
     @property
@@ -25151,7 +24853,7 @@ class OpenStackNetworkProvider(OpenStackProvider):
         """
         Sets the value of the `plugin_type` property.
         """
-        Struct._check_type('plugin_type', value, NetworkPluginType)
+        Struct._check_type("plugin_type", value, NetworkPluginType)
         self._plugin_type = value
 
     @property
@@ -25226,7 +24928,6 @@ class OpenStackNetworkProvider(OpenStackProvider):
 
 
 class Snapshot(Vm):
-
     def __init__(
         self,
         affinity_labels=None,
@@ -25326,7 +25027,7 @@ class Snapshot(Vm):
         vm_pool=None,
         watchdogs=None,
     ):
-        super(Snapshot, self).__init__(
+        super().__init__(
             affinity_labels=affinity_labels,
             applications=applications,
             auto_pinning_policy=auto_pinning_policy,
@@ -25437,7 +25138,7 @@ class Snapshot(Vm):
         """
         Sets the value of the `snapshot_type` property.
         """
-        Struct._check_type('snapshot_type', value, SnapshotType)
+        Struct._check_type("snapshot_type", value, SnapshotType)
         self._snapshot_type = value
 
     @property
@@ -25452,7 +25153,7 @@ class Snapshot(Vm):
         """
         Sets the value of the `snapshot_status` property.
         """
-        Struct._check_type('snapshot_status', value, SnapshotStatus)
+        Struct._check_type("snapshot_status", value, SnapshotStatus)
         self._snapshot_status = value
 
     @property
@@ -25481,7 +25182,7 @@ class Snapshot(Vm):
         """
         Sets the value of the `vm` property.
         """
-        Struct._check_type('vm', value, Vm)
+        Struct._check_type("vm", value, Vm)
         self._vm = value
 
     @property
@@ -25515,9 +25216,9 @@ class Snapshot(Vm):
 
 @unique
 class AccessProtocol(Enum):
-    CIFS = 'cifs'
-    GLUSTER = 'gluster'
-    NFS = 'nfs'
+    CIFS = "cifs"
+    GLUSTER = "gluster"
+    NFS = "nfs"
 
     def __init__(self, image):
         self._image = image
@@ -25528,12 +25229,12 @@ class AccessProtocol(Enum):
 
 @unique
 class Architecture(Enum):
-    AARCH64 = 'aarch64'
-    LOONGARCH64 = 'loongarch64'
-    PPC64 = 'ppc64'
-    S390X = 's390x'
-    UNDEFINED = 'undefined'
-    X86_64 = 'x86_64'
+    AARCH64 = "aarch64"
+    LOONGARCH64 = "loongarch64"
+    PPC64 = "ppc64"
+    S390X = "s390x"
+    UNDEFINED = "undefined"
+    X86_64 = "x86_64"
 
     def __init__(self, image):
         self._image = image
@@ -25544,9 +25245,9 @@ class Architecture(Enum):
 
 @unique
 class AutoNumaStatus(Enum):
-    DISABLE = 'disable'
-    ENABLE = 'enable'
-    UNKNOWN = 'unknown'
+    DISABLE = "disable"
+    ENABLE = "enable"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -25557,9 +25258,9 @@ class AutoNumaStatus(Enum):
 
 @unique
 class AutoPinningPolicy(Enum):
-    ADJUST = 'adjust'
-    DISABLED = 'disabled'
-    EXISTING = 'existing'
+    ADJUST = "adjust"
+    DISABLED = "disabled"
+    EXISTING = "existing"
 
     def __init__(self, image):
         self._image = image
@@ -25570,12 +25271,12 @@ class AutoPinningPolicy(Enum):
 
 @unique
 class BackupPhase(Enum):
-    FAILED = 'failed'
-    FINALIZING = 'finalizing'
-    INITIALIZING = 'initializing'
-    READY = 'ready'
-    STARTING = 'starting'
-    SUCCEEDED = 'succeeded'
+    FAILED = "failed"
+    FINALIZING = "finalizing"
+    INITIALIZING = "initializing"
+    READY = "ready"
+    STARTING = "starting"
+    SUCCEEDED = "succeeded"
 
     def __init__(self, image):
         self._image = image
@@ -25586,11 +25287,11 @@ class BackupPhase(Enum):
 
 @unique
 class BiosType(Enum):
-    CLUSTER_DEFAULT = 'cluster_default'
-    I440FX_SEA_BIOS = 'i440fx_sea_bios'
-    Q35_OVMF = 'q35_ovmf'
-    Q35_SEA_BIOS = 'q35_sea_bios'
-    Q35_SECURE_BOOT = 'q35_secure_boot'
+    CLUSTER_DEFAULT = "cluster_default"
+    I440FX_SEA_BIOS = "i440fx_sea_bios"
+    Q35_OVMF = "q35_ovmf"
+    Q35_SEA_BIOS = "q35_sea_bios"
+    Q35_SECURE_BOOT = "q35_secure_boot"
 
     def __init__(self, image):
         self._image = image
@@ -25601,9 +25302,9 @@ class BiosType(Enum):
 
 @unique
 class BootDevice(Enum):
-    CDROM = 'cdrom'
-    HD = 'hd'
-    NETWORK = 'network'
+    CDROM = "cdrom"
+    HD = "hd"
+    NETWORK = "network"
 
     def __init__(self, image):
         self._image = image
@@ -25614,11 +25315,11 @@ class BootDevice(Enum):
 
 @unique
 class BootProtocol(Enum):
-    AUTOCONF = 'autoconf'
-    DHCP = 'dhcp'
-    NONE = 'none'
-    POLY_DHCP_AUTOCONF = 'poly_dhcp_autoconf'
-    STATIC = 'static'
+    AUTOCONF = "autoconf"
+    DHCP = "dhcp"
+    NONE = "none"
+    POLY_DHCP_AUTOCONF = "poly_dhcp_autoconf"
+    STATIC = "static"
 
     def __init__(self, image):
         self._image = image
@@ -25629,8 +25330,8 @@ class BootProtocol(Enum):
 
 @unique
 class CheckpointState(Enum):
-    CREATED = 'created'
-    INVALID = 'invalid'
+    CREATED = "created"
+    INVALID = "invalid"
 
     def __init__(self, image):
         self._image = image
@@ -25641,8 +25342,8 @@ class CheckpointState(Enum):
 
 @unique
 class CloudInitNetworkProtocol(Enum):
-    ENI = 'eni'
-    OPENSTACK_METADATA = 'openstack_metadata'
+    ENI = "eni"
+    OPENSTACK_METADATA = "openstack_metadata"
 
     def __init__(self, image):
         self._image = image
@@ -25653,9 +25354,9 @@ class CloudInitNetworkProtocol(Enum):
 
 @unique
 class ClusterUpgradeAction(Enum):
-    FINISH = 'finish'
-    START = 'start'
-    UPDATE_PROGRESS = 'update_progress'
+    FINISH = "finish"
+    START = "start"
+    UPDATE_PROGRESS = "update_progress"
 
     def __init__(self, image):
         self._image = image
@@ -25666,8 +25367,8 @@ class ClusterUpgradeAction(Enum):
 
 @unique
 class ConfigurationType(Enum):
-    OVA = 'ova'
-    OVF = 'ovf'
+    OVA = "ova"
+    OVF = "ovf"
 
     def __init__(self, image):
         self._image = image
@@ -25678,9 +25379,9 @@ class ConfigurationType(Enum):
 
 @unique
 class CpuMode(Enum):
-    CUSTOM = 'custom'
-    HOST_MODEL = 'host_model'
-    HOST_PASSTHROUGH = 'host_passthrough'
+    CUSTOM = "custom"
+    HOST_MODEL = "host_model"
+    HOST_PASSTHROUGH = "host_passthrough"
 
     def __init__(self, image):
         self._image = image
@@ -25691,11 +25392,11 @@ class CpuMode(Enum):
 
 @unique
 class CpuPinningPolicy(Enum):
-    DEDICATED = 'dedicated'
-    ISOLATE_THREADS = 'isolate_threads'
-    MANUAL = 'manual'
-    NONE = 'none'
-    RESIZE_AND_PIN_NUMA = 'resize_and_pin_numa'
+    DEDICATED = "dedicated"
+    ISOLATE_THREADS = "isolate_threads"
+    MANUAL = "manual"
+    NONE = "none"
+    RESIZE_AND_PIN_NUMA = "resize_and_pin_numa"
 
     def __init__(self, image):
         self._image = image
@@ -25706,10 +25407,10 @@ class CpuPinningPolicy(Enum):
 
 @unique
 class CreationStatus(Enum):
-    COMPLETE = 'complete'
-    FAILED = 'failed'
-    IN_PROGRESS = 'in_progress'
-    PENDING = 'pending'
+    COMPLETE = "complete"
+    FAILED = "failed"
+    IN_PROGRESS = "in_progress"
+    PENDING = "pending"
 
     def __init__(self, image):
         self._image = image
@@ -25720,12 +25421,12 @@ class CreationStatus(Enum):
 
 @unique
 class DataCenterStatus(Enum):
-    CONTEND = 'contend'
-    MAINTENANCE = 'maintenance'
-    NOT_OPERATIONAL = 'not_operational'
-    PROBLEMATIC = 'problematic'
-    UNINITIALIZED = 'uninitialized'
-    UP = 'up'
+    CONTEND = "contend"
+    MAINTENANCE = "maintenance"
+    NOT_OPERATIONAL = "not_operational"
+    PROBLEMATIC = "problematic"
+    UNINITIALIZED = "uninitialized"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -25736,8 +25437,8 @@ class DataCenterStatus(Enum):
 
 @unique
 class DiskBackup(Enum):
-    INCREMENTAL = 'incremental'
-    NONE = 'none'
+    INCREMENTAL = "incremental"
+    NONE = "none"
 
     def __init__(self, image):
         self._image = image
@@ -25748,8 +25449,8 @@ class DiskBackup(Enum):
 
 @unique
 class DiskBackupMode(Enum):
-    FULL = 'full'
-    INCREMENTAL = 'incremental'
+    FULL = "full"
+    INCREMENTAL = "incremental"
 
     def __init__(self, image):
         self._image = image
@@ -25760,16 +25461,16 @@ class DiskBackupMode(Enum):
 
 @unique
 class DiskContentType(Enum):
-    BACKUP_SCRATCH = 'backup_scratch'
-    DATA = 'data'
-    HOSTED_ENGINE = 'hosted_engine'
-    HOSTED_ENGINE_CONFIGURATION = 'hosted_engine_configuration'
-    HOSTED_ENGINE_METADATA = 'hosted_engine_metadata'
-    HOSTED_ENGINE_SANLOCK = 'hosted_engine_sanlock'
-    ISO = 'iso'
-    MEMORY_DUMP_VOLUME = 'memory_dump_volume'
-    MEMORY_METADATA_VOLUME = 'memory_metadata_volume'
-    OVF_STORE = 'ovf_store'
+    BACKUP_SCRATCH = "backup_scratch"
+    DATA = "data"
+    HOSTED_ENGINE = "hosted_engine"
+    HOSTED_ENGINE_CONFIGURATION = "hosted_engine_configuration"
+    HOSTED_ENGINE_METADATA = "hosted_engine_metadata"
+    HOSTED_ENGINE_SANLOCK = "hosted_engine_sanlock"
+    ISO = "iso"
+    MEMORY_DUMP_VOLUME = "memory_dump_volume"
+    MEMORY_METADATA_VOLUME = "memory_metadata_volume"
+    OVF_STORE = "ovf_store"
 
     def __init__(self, image):
         self._image = image
@@ -25780,8 +25481,8 @@ class DiskContentType(Enum):
 
 @unique
 class DiskFormat(Enum):
-    COW = 'cow'
-    RAW = 'raw'
+    COW = "cow"
+    RAW = "raw"
 
     def __init__(self, image):
         self._image = image
@@ -25792,11 +25493,11 @@ class DiskFormat(Enum):
 
 @unique
 class DiskInterface(Enum):
-    IDE = 'ide'
-    SATA = 'sata'
-    SPAPR_VSCSI = 'spapr_vscsi'
-    VIRTIO = 'virtio'
-    VIRTIO_SCSI = 'virtio_scsi'
+    IDE = "ide"
+    SATA = "sata"
+    SPAPR_VSCSI = "spapr_vscsi"
+    VIRTIO = "virtio"
+    VIRTIO_SCSI = "virtio_scsi"
 
     def __init__(self, image):
         self._image = image
@@ -25807,9 +25508,9 @@ class DiskInterface(Enum):
 
 @unique
 class DiskStatus(Enum):
-    ILLEGAL = 'illegal'
-    LOCKED = 'locked'
-    OK = 'ok'
+    ILLEGAL = "illegal"
+    LOCKED = "locked"
+    OK = "ok"
 
     def __init__(self, image):
         self._image = image
@@ -25820,10 +25521,10 @@ class DiskStatus(Enum):
 
 @unique
 class DiskStorageType(Enum):
-    CINDER = 'cinder'
-    IMAGE = 'image'
-    LUN = 'lun'
-    MANAGED_BLOCK_STORAGE = 'managed_block_storage'
+    CINDER = "cinder"
+    IMAGE = "image"
+    LUN = "lun"
+    MANAGED_BLOCK_STORAGE = "managed_block_storage"
 
     def __init__(self, image):
         self._image = image
@@ -25834,8 +25535,8 @@ class DiskStorageType(Enum):
 
 @unique
 class DiskType(Enum):
-    DATA = 'data'
-    SYSTEM = 'system'
+    DATA = "data"
+    SYSTEM = "system"
 
     def __init__(self, image):
         self._image = image
@@ -25846,8 +25547,8 @@ class DiskType(Enum):
 
 @unique
 class DisplayType(Enum):
-    SPICE = 'spice'
-    VNC = 'vnc'
+    SPICE = "spice"
+    VNC = "vnc"
 
     def __init__(self, image):
         self._image = image
@@ -25858,11 +25559,11 @@ class DisplayType(Enum):
 
 @unique
 class EntityExternalStatus(Enum):
-    ERROR = 'error'
-    FAILURE = 'failure'
-    INFO = 'info'
-    OK = 'ok'
-    WARNING = 'warning'
+    ERROR = "error"
+    FAILURE = "failure"
+    INFO = "info"
+    OK = "ok"
+    WARNING = "warning"
 
     def __init__(self, image):
         self._image = image
@@ -25873,11 +25574,11 @@ class EntityExternalStatus(Enum):
 
 @unique
 class ExternalStatus(Enum):
-    ERROR = 'error'
-    FAILURE = 'failure'
-    INFO = 'info'
-    OK = 'ok'
-    WARNING = 'warning'
+    ERROR = "error"
+    FAILURE = "failure"
+    INFO = "info"
+    OK = "ok"
+    WARNING = "warning"
 
     def __init__(self, image):
         self._image = image
@@ -25888,8 +25589,8 @@ class ExternalStatus(Enum):
 
 @unique
 class ExternalSystemType(Enum):
-    GLUSTER = 'gluster'
-    VDSM = 'vdsm'
+    GLUSTER = "gluster"
+    VDSM = "vdsm"
 
     def __init__(self, image):
         self._image = image
@@ -25900,9 +25601,9 @@ class ExternalSystemType(Enum):
 
 @unique
 class ExternalVmProviderType(Enum):
-    KVM = 'kvm'
-    VMWARE = 'vmware'
-    XEN = 'xen'
+    KVM = "kvm"
+    VMWARE = "vmware"
+    XEN = "xen"
 
     def __init__(self, image):
         self._image = image
@@ -25913,11 +25614,11 @@ class ExternalVmProviderType(Enum):
 
 @unique
 class FenceType(Enum):
-    MANUAL = 'manual'
-    RESTART = 'restart'
-    START = 'start'
-    STATUS = 'status'
-    STOP = 'stop'
+    MANUAL = "manual"
+    RESTART = "restart"
+    START = "start"
+    STATUS = "status"
+    STOP = "stop"
 
     def __init__(self, image):
         self._image = image
@@ -25928,9 +25629,9 @@ class FenceType(Enum):
 
 @unique
 class FipsMode(Enum):
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
-    UNDEFINED = 'undefined'
+    DISABLED = "disabled"
+    ENABLED = "enabled"
+    UNDEFINED = "undefined"
 
     def __init__(self, image):
         self._image = image
@@ -25941,8 +25642,8 @@ class FipsMode(Enum):
 
 @unique
 class FirewallType(Enum):
-    FIREWALLD = 'firewalld'
-    IPTABLES = 'iptables'
+    FIREWALLD = "firewalld"
+    IPTABLES = "iptables"
 
     def __init__(self, image):
         self._image = image
@@ -25953,9 +25654,9 @@ class FirewallType(Enum):
 
 @unique
 class GlusterBrickStatus(Enum):
-    DOWN = 'down'
-    UNKNOWN = 'unknown'
-    UP = 'up'
+    DOWN = "down"
+    UNKNOWN = "unknown"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -25966,9 +25667,9 @@ class GlusterBrickStatus(Enum):
 
 @unique
 class GlusterHookStatus(Enum):
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
-    MISSING = 'missing'
+    DISABLED = "disabled"
+    ENABLED = "enabled"
+    MISSING = "missing"
 
     def __init__(self, image):
         self._image = image
@@ -25979,9 +25680,9 @@ class GlusterHookStatus(Enum):
 
 @unique
 class GlusterState(Enum):
-    DOWN = 'down'
-    UNKNOWN = 'unknown'
-    UP = 'up'
+    DOWN = "down"
+    UNKNOWN = "unknown"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -25992,9 +25693,9 @@ class GlusterState(Enum):
 
 @unique
 class GlusterVolumeStatus(Enum):
-    DOWN = 'down'
-    UNKNOWN = 'unknown'
-    UP = 'up'
+    DOWN = "down"
+    UNKNOWN = "unknown"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -26005,15 +25706,15 @@ class GlusterVolumeStatus(Enum):
 
 @unique
 class GlusterVolumeType(Enum):
-    DISPERSE = 'disperse'
-    DISTRIBUTE = 'distribute'
-    DISTRIBUTED_DISPERSE = 'distributed_disperse'
-    DISTRIBUTED_REPLICATE = 'distributed_replicate'
-    DISTRIBUTED_STRIPE = 'distributed_stripe'
-    DISTRIBUTED_STRIPED_REPLICATE = 'distributed_striped_replicate'
-    REPLICATE = 'replicate'
-    STRIPE = 'stripe'
-    STRIPED_REPLICATE = 'striped_replicate'
+    DISPERSE = "disperse"
+    DISTRIBUTE = "distribute"
+    DISTRIBUTED_DISPERSE = "distributed_disperse"
+    DISTRIBUTED_REPLICATE = "distributed_replicate"
+    DISTRIBUTED_STRIPE = "distributed_stripe"
+    DISTRIBUTED_STRIPED_REPLICATE = "distributed_striped_replicate"
+    REPLICATE = "replicate"
+    STRIPE = "stripe"
+    STRIPED_REPLICATE = "striped_replicate"
 
     def __init__(self, image):
         self._image = image
@@ -26024,8 +25725,8 @@ class GlusterVolumeType(Enum):
 
 @unique
 class GraphicsType(Enum):
-    SPICE = 'spice'
-    VNC = 'vnc'
+    SPICE = "spice"
+    VNC = "vnc"
 
     def __init__(self, image):
         self._image = image
@@ -26036,8 +25737,8 @@ class GraphicsType(Enum):
 
 @unique
 class HookContentType(Enum):
-    BINARY = 'binary'
-    TEXT = 'text'
+    BINARY = "binary"
+    TEXT = "text"
 
     def __init__(self, image):
         self._image = image
@@ -26048,8 +25749,8 @@ class HookContentType(Enum):
 
 @unique
 class HookStage(Enum):
-    POST = 'post'
-    PRE = 'pre'
+    POST = "post"
+    PRE = "pre"
 
     def __init__(self, image):
         self._image = image
@@ -26060,9 +25761,9 @@ class HookStage(Enum):
 
 @unique
 class HookStatus(Enum):
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
-    MISSING = 'missing'
+    DISABLED = "disabled"
+    ENABLED = "enabled"
+    MISSING = "missing"
 
     def __init__(self, image):
         self._image = image
@@ -26073,8 +25774,8 @@ class HookStatus(Enum):
 
 @unique
 class HostProtocol(Enum):
-    STOMP = 'stomp'
-    XML = 'xml'
+    STOMP = "stomp"
+    XML = "xml"
 
     def __init__(self, image):
         self._image = image
@@ -26085,22 +25786,22 @@ class HostProtocol(Enum):
 
 @unique
 class HostStatus(Enum):
-    CONNECTING = 'connecting'
-    DOWN = 'down'
-    ERROR = 'error'
-    INITIALIZING = 'initializing'
-    INSTALL_FAILED = 'install_failed'
-    INSTALLING = 'installing'
-    INSTALLING_OS = 'installing_os'
-    KDUMPING = 'kdumping'
-    MAINTENANCE = 'maintenance'
-    NON_OPERATIONAL = 'non_operational'
-    NON_RESPONSIVE = 'non_responsive'
-    PENDING_APPROVAL = 'pending_approval'
-    PREPARING_FOR_MAINTENANCE = 'preparing_for_maintenance'
-    REBOOT = 'reboot'
-    UNASSIGNED = 'unassigned'
-    UP = 'up'
+    CONNECTING = "connecting"
+    DOWN = "down"
+    ERROR = "error"
+    INITIALIZING = "initializing"
+    INSTALL_FAILED = "install_failed"
+    INSTALLING = "installing"
+    INSTALLING_OS = "installing_os"
+    KDUMPING = "kdumping"
+    MAINTENANCE = "maintenance"
+    NON_OPERATIONAL = "non_operational"
+    NON_RESPONSIVE = "non_responsive"
+    PENDING_APPROVAL = "pending_approval"
+    PREPARING_FOR_MAINTENANCE = "preparing_for_maintenance"
+    REBOOT = "reboot"
+    UNASSIGNED = "unassigned"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -26111,9 +25812,9 @@ class HostStatus(Enum):
 
 @unique
 class HostType(Enum):
-    OVIRT_NODE = 'ovirt_node'
-    RHEL = 'rhel'
-    RHEV_H = 'rhev_h'
+    OVIRT_NODE = "ovirt_node"
+    RHEL = "rhel"
+    RHEV_H = "rhev_h"
 
     def __init__(self, image):
         self._image = image
@@ -26124,9 +25825,9 @@ class HostType(Enum):
 
 @unique
 class ImageFileType(Enum):
-    DISK = 'disk'
-    FLOPPY = 'floppy'
-    ISO = 'iso'
+    DISK = "disk"
+    FLOPPY = "floppy"
+    ISO = "iso"
 
     def __init__(self, image):
         self._image = image
@@ -26137,8 +25838,8 @@ class ImageFileType(Enum):
 
 @unique
 class ImageTransferDirection(Enum):
-    DOWNLOAD = 'download'
-    UPLOAD = 'upload'
+    DOWNLOAD = "download"
+    UPLOAD = "upload"
 
     def __init__(self, image):
         self._image = image
@@ -26149,21 +25850,21 @@ class ImageTransferDirection(Enum):
 
 @unique
 class ImageTransferPhase(Enum):
-    CANCELLED = 'cancelled'
-    CANCELLED_SYSTEM = 'cancelled_system'
-    CANCELLED_USER = 'cancelled_user'
-    FINALIZING_CLEANUP = 'finalizing_cleanup'
-    FINALIZING_FAILURE = 'finalizing_failure'
-    FINALIZING_SUCCESS = 'finalizing_success'
-    FINISHED_CLEANUP = 'finished_cleanup'
-    FINISHED_FAILURE = 'finished_failure'
-    FINISHED_SUCCESS = 'finished_success'
-    INITIALIZING = 'initializing'
-    PAUSED_SYSTEM = 'paused_system'
-    PAUSED_USER = 'paused_user'
-    RESUMING = 'resuming'
-    TRANSFERRING = 'transferring'
-    UNKNOWN = 'unknown'
+    CANCELLED = "cancelled"
+    CANCELLED_SYSTEM = "cancelled_system"
+    CANCELLED_USER = "cancelled_user"
+    FINALIZING_CLEANUP = "finalizing_cleanup"
+    FINALIZING_FAILURE = "finalizing_failure"
+    FINALIZING_SUCCESS = "finalizing_success"
+    FINISHED_CLEANUP = "finished_cleanup"
+    FINISHED_FAILURE = "finished_failure"
+    FINISHED_SUCCESS = "finished_success"
+    INITIALIZING = "initializing"
+    PAUSED_SYSTEM = "paused_system"
+    PAUSED_USER = "paused_user"
+    RESUMING = "resuming"
+    TRANSFERRING = "transferring"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26174,9 +25875,9 @@ class ImageTransferPhase(Enum):
 
 @unique
 class ImageTransferTimeoutPolicy(Enum):
-    CANCEL = 'cancel'
-    LEGACY = 'legacy'
-    PAUSE = 'pause'
+    CANCEL = "cancel"
+    LEGACY = "legacy"
+    PAUSE = "pause"
 
     def __init__(self, image):
         self._image = image
@@ -26187,9 +25888,9 @@ class ImageTransferTimeoutPolicy(Enum):
 
 @unique
 class InheritableBoolean(Enum):
-    FALSE = 'false'
-    INHERIT = 'inherit'
-    TRUE = 'true'
+    FALSE = "false"
+    INHERIT = "inherit"
+    TRUE = "true"
 
     def __init__(self, image):
         self._image = image
@@ -26200,8 +25901,8 @@ class InheritableBoolean(Enum):
 
 @unique
 class IpVersion(Enum):
-    V4 = 'v4'
-    V6 = 'v6'
+    V4 = "v4"
+    V6 = "v6"
 
     def __init__(self, image):
         self._image = image
@@ -26212,11 +25913,11 @@ class IpVersion(Enum):
 
 @unique
 class JobStatus(Enum):
-    ABORTED = 'aborted'
-    FAILED = 'failed'
-    FINISHED = 'finished'
-    STARTED = 'started'
-    UNKNOWN = 'unknown'
+    ABORTED = "aborted"
+    FAILED = "failed"
+    FINISHED = "finished"
+    STARTED = "started"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26227,9 +25928,9 @@ class JobStatus(Enum):
 
 @unique
 class KdumpStatus(Enum):
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
-    UNKNOWN = 'unknown'
+    DISABLED = "disabled"
+    ENABLED = "enabled"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26240,8 +25941,8 @@ class KdumpStatus(Enum):
 
 @unique
 class LogMaxMemoryUsedThresholdType(Enum):
-    ABSOLUTE_VALUE_IN_MB = 'absolute_value_in_mb'
-    PERCENTAGE = 'percentage'
+    ABSOLUTE_VALUE_IN_MB = "absolute_value_in_mb"
+    PERCENTAGE = "percentage"
 
     def __init__(self, image):
         self._image = image
@@ -26252,10 +25953,10 @@ class LogMaxMemoryUsedThresholdType(Enum):
 
 @unique
 class LogSeverity(Enum):
-    ALERT = 'alert'
-    ERROR = 'error'
-    NORMAL = 'normal'
-    WARNING = 'warning'
+    ALERT = "alert"
+    ERROR = "error"
+    NORMAL = "normal"
+    WARNING = "warning"
 
     def __init__(self, image):
         self._image = image
@@ -26266,9 +25967,9 @@ class LogSeverity(Enum):
 
 @unique
 class LunStatus(Enum):
-    FREE = 'free'
-    UNUSABLE = 'unusable'
-    USED = 'used'
+    FREE = "free"
+    UNUSABLE = "unusable"
+    USED = "used"
 
     def __init__(self, image):
         self._image = image
@@ -26279,8 +25980,8 @@ class LunStatus(Enum):
 
 @unique
 class MessageBrokerType(Enum):
-    QPID = 'qpid'
-    RABBIT_MQ = 'rabbit_mq'
+    QPID = "qpid"
+    RABBIT_MQ = "rabbit_mq"
 
     def __init__(self, image):
         self._image = image
@@ -26291,9 +25992,9 @@ class MessageBrokerType(Enum):
 
 @unique
 class MigrateOnError(Enum):
-    DO_NOT_MIGRATE = 'do_not_migrate'
-    MIGRATE = 'migrate'
-    MIGRATE_HIGHLY_AVAILABLE = 'migrate_highly_available'
+    DO_NOT_MIGRATE = "do_not_migrate"
+    MIGRATE = "migrate"
+    MIGRATE_HIGHLY_AVAILABLE = "migrate_highly_available"
 
     def __init__(self, image):
         self._image = image
@@ -26304,9 +26005,9 @@ class MigrateOnError(Enum):
 
 @unique
 class MigrationBandwidthAssignmentMethod(Enum):
-    AUTO = 'auto'
-    CUSTOM = 'custom'
-    HYPERVISOR_DEFAULT = 'hypervisor_default'
+    AUTO = "auto"
+    CUSTOM = "custom"
+    HYPERVISOR_DEFAULT = "hypervisor_default"
 
     def __init__(self, image):
         self._image = image
@@ -26317,7 +26018,7 @@ class MigrationBandwidthAssignmentMethod(Enum):
 
 @unique
 class NetworkPluginType(Enum):
-    OPEN_VSWITCH = 'open_vswitch'
+    OPEN_VSWITCH = "open_vswitch"
 
     def __init__(self, image):
         self._image = image
@@ -26328,8 +26029,8 @@ class NetworkPluginType(Enum):
 
 @unique
 class NetworkStatus(Enum):
-    NON_OPERATIONAL = 'non_operational'
-    OPERATIONAL = 'operational'
+    NON_OPERATIONAL = "non_operational"
+    OPERATIONAL = "operational"
 
     def __init__(self, image):
         self._image = image
@@ -26340,12 +26041,12 @@ class NetworkStatus(Enum):
 
 @unique
 class NetworkUsage(Enum):
-    DEFAULT_ROUTE = 'default_route'
-    DISPLAY = 'display'
-    GLUSTER = 'gluster'
-    MANAGEMENT = 'management'
-    MIGRATION = 'migration'
-    VM = 'vm'
+    DEFAULT_ROUTE = "default_route"
+    DISPLAY = "display"
+    GLUSTER = "gluster"
+    MANAGEMENT = "management"
+    MIGRATION = "migration"
+    VM = "vm"
 
     def __init__(self, image):
         self._image = image
@@ -26356,12 +26057,12 @@ class NetworkUsage(Enum):
 
 @unique
 class NfsVersion(Enum):
-    AUTO = 'auto'
-    V3 = 'v3'
-    V4 = 'v4'
-    V4_0 = 'v4_0'
-    V4_1 = 'v4_1'
-    V4_2 = 'v4_2'
+    AUTO = "auto"
+    V3 = "v3"
+    V4 = "v4"
+    V4_0 = "v4_0"
+    V4_1 = "v4_1"
+    V4_2 = "v4_2"
 
     def __init__(self, image):
         self._image = image
@@ -26372,13 +26073,13 @@ class NfsVersion(Enum):
 
 @unique
 class NicInterface(Enum):
-    E1000 = 'e1000'
-    E1000E = 'e1000e'
-    PCI_PASSTHROUGH = 'pci_passthrough'
-    RTL8139 = 'rtl8139'
-    RTL8139_VIRTIO = 'rtl8139_virtio'
-    SPAPR_VLAN = 'spapr_vlan'
-    VIRTIO = 'virtio'
+    E1000 = "e1000"
+    E1000E = "e1000e"
+    PCI_PASSTHROUGH = "pci_passthrough"
+    RTL8139 = "rtl8139"
+    RTL8139_VIRTIO = "rtl8139_virtio"
+    SPAPR_VLAN = "spapr_vlan"
+    VIRTIO = "virtio"
 
     def __init__(self, image):
         self._image = image
@@ -26389,8 +26090,8 @@ class NicInterface(Enum):
 
 @unique
 class NicStatus(Enum):
-    DOWN = 'down'
-    UP = 'up'
+    DOWN = "down"
+    UP = "up"
 
     def __init__(self, image):
         self._image = image
@@ -26401,164 +26102,218 @@ class NicStatus(Enum):
 
 @unique
 class NotifiableEvent(Enum):
-    CLUSTER_ALERT_HA_RESERVATION = 'cluster_alert_ha_reservation'
-    CLUSTER_ALERT_HA_RESERVATION_DOWN = 'cluster_alert_ha_reservation_down'
-    DWH_ERROR = 'dwh_error'
-    DWH_STOPPED = 'dwh_stopped'
-    ENGINE_BACKUP_COMPLETED = 'engine_backup_completed'
-    ENGINE_BACKUP_FAILED = 'engine_backup_failed'
-    ENGINE_BACKUP_STARTED = 'engine_backup_started'
-    ENGINE_CA_CERTIFICATION_HAS_EXPIRED = 'engine_ca_certification_has_expired'
-    ENGINE_CA_CERTIFICATION_IS_ABOUT_TO_EXPIRE = 'engine_ca_certification_is_about_to_expire'
-    ENGINE_CERTIFICATION_HAS_EXPIRED = 'engine_certification_has_expired'
-    ENGINE_CERTIFICATION_IS_ABOUT_TO_EXPIRE = 'engine_certification_is_about_to_expire'
-    ENGINE_STOP = 'engine_stop'
-    FAULTY_MULTIPATHS_ON_HOST = 'faulty_multipaths_on_host'
-    GLUSTER_BRICK_STATUS_CHANGED = 'gluster_brick_status_changed'
-    GLUSTER_HOOK_ADD_FAILED = 'gluster_hook_add_failed'
-    GLUSTER_HOOK_ADDED = 'gluster_hook_added'
-    GLUSTER_HOOK_CONFLICT_DETECTED = 'gluster_hook_conflict_detected'
-    GLUSTER_HOOK_DETECTED_DELETE = 'gluster_hook_detected_delete'
-    GLUSTER_HOOK_DETECTED_NEW = 'gluster_hook_detected_new'
-    GLUSTER_HOOK_DISABLE = 'gluster_hook_disable'
-    GLUSTER_HOOK_DISABLE_FAILED = 'gluster_hook_disable_failed'
-    GLUSTER_HOOK_ENABLE = 'gluster_hook_enable'
-    GLUSTER_HOOK_ENABLE_FAILED = 'gluster_hook_enable_failed'
-    GLUSTER_HOOK_REMOVE_FAILED = 'gluster_hook_remove_failed'
-    GLUSTER_HOOK_REMOVED = 'gluster_hook_removed'
-    GLUSTER_SERVER_ADD_FAILED = 'gluster_server_add_failed'
-    GLUSTER_SERVER_REMOVE = 'gluster_server_remove'
-    GLUSTER_SERVER_REMOVE_FAILED = 'gluster_server_remove_failed'
-    GLUSTER_SERVICE_RESTART_FAILED = 'gluster_service_restart_failed'
-    GLUSTER_SERVICE_RESTARTED = 'gluster_service_restarted'
-    GLUSTER_SERVICE_START_FAILED = 'gluster_service_start_failed'
-    GLUSTER_SERVICE_STARTED = 'gluster_service_started'
-    GLUSTER_SERVICE_STOP_FAILED = 'gluster_service_stop_failed'
-    GLUSTER_SERVICE_STOPPED = 'gluster_service_stopped'
-    GLUSTER_VOLUME_ADD_BRICK = 'gluster_volume_add_brick'
-    GLUSTER_VOLUME_ADD_BRICK_FAILED = 'gluster_volume_add_brick_failed'
-    GLUSTER_VOLUME_ALL_SNAPSHOTS_DELETE_FAILED = 'gluster_volume_all_snapshots_delete_failed'
-    GLUSTER_VOLUME_ALL_SNAPSHOTS_DELETED = 'gluster_volume_all_snapshots_deleted'
-    GLUSTER_VOLUME_BRICK_REPLACED = 'gluster_volume_brick_replaced'
-    GLUSTER_VOLUME_CONFIRMED_SPACE_LOW = 'gluster_volume_confirmed_space_low'
-    GLUSTER_VOLUME_CREATE = 'gluster_volume_create'
-    GLUSTER_VOLUME_CREATE_FAILED = 'gluster_volume_create_failed'
-    GLUSTER_VOLUME_DELETE = 'gluster_volume_delete'
-    GLUSTER_VOLUME_DELETE_FAILED = 'gluster_volume_delete_failed'
-    GLUSTER_VOLUME_MIGRATE_BRICK_DATA_FINISHED = 'gluster_volume_migrate_brick_data_finished'
-    GLUSTER_VOLUME_OPTION_ADDED = 'gluster_volume_option_added'
-    GLUSTER_VOLUME_OPTION_MODIFIED = 'gluster_volume_option_modified'
-    GLUSTER_VOLUME_OPTION_SET_FAILED = 'gluster_volume_option_set_failed'
-    GLUSTER_VOLUME_OPTIONS_RESET = 'gluster_volume_options_reset'
-    GLUSTER_VOLUME_OPTIONS_RESET_ALL = 'gluster_volume_options_reset_all'
-    GLUSTER_VOLUME_OPTIONS_RESET_FAILED = 'gluster_volume_options_reset_failed'
-    GLUSTER_VOLUME_PROFILE_START = 'gluster_volume_profile_start'
-    GLUSTER_VOLUME_PROFILE_START_FAILED = 'gluster_volume_profile_start_failed'
-    GLUSTER_VOLUME_PROFILE_STOP = 'gluster_volume_profile_stop'
-    GLUSTER_VOLUME_PROFILE_STOP_FAILED = 'gluster_volume_profile_stop_failed'
-    GLUSTER_VOLUME_REBALANCE_FINISHED = 'gluster_volume_rebalance_finished'
-    GLUSTER_VOLUME_REBALANCE_NOT_FOUND_FROM_CLI = 'gluster_volume_rebalance_not_found_from_cli'
-    GLUSTER_VOLUME_REBALANCE_START = 'gluster_volume_rebalance_start'
-    GLUSTER_VOLUME_REBALANCE_START_DETECTED_FROM_CLI = 'gluster_volume_rebalance_start_detected_from_cli'
-    GLUSTER_VOLUME_REBALANCE_START_FAILED = 'gluster_volume_rebalance_start_failed'
-    GLUSTER_VOLUME_REBALANCE_STOP = 'gluster_volume_rebalance_stop'
-    GLUSTER_VOLUME_REBALANCE_STOP_FAILED = 'gluster_volume_rebalance_stop_failed'
-    GLUSTER_VOLUME_REMOVE_BRICKS = 'gluster_volume_remove_bricks'
-    GLUSTER_VOLUME_REMOVE_BRICKS_FAILED = 'gluster_volume_remove_bricks_failed'
-    GLUSTER_VOLUME_REMOVE_BRICKS_STOP = 'gluster_volume_remove_bricks_stop'
-    GLUSTER_VOLUME_REMOVE_BRICKS_STOP_FAILED = 'gluster_volume_remove_bricks_stop_failed'
-    GLUSTER_VOLUME_REPLACE_BRICK_FAILED = 'gluster_volume_replace_brick_failed'
-    GLUSTER_VOLUME_REPLACE_BRICK_START = 'gluster_volume_replace_brick_start'
-    GLUSTER_VOLUME_REPLACE_BRICK_START_FAILED = 'gluster_volume_replace_brick_start_failed'
-    GLUSTER_VOLUME_SNAPSHOT_ACTIVATE_FAILED = 'gluster_volume_snapshot_activate_failed'
-    GLUSTER_VOLUME_SNAPSHOT_ACTIVATED = 'gluster_volume_snapshot_activated'
-    GLUSTER_VOLUME_SNAPSHOT_CREATE_FAILED = 'gluster_volume_snapshot_create_failed'
-    GLUSTER_VOLUME_SNAPSHOT_CREATED = 'gluster_volume_snapshot_created'
-    GLUSTER_VOLUME_SNAPSHOT_DEACTIVATE_FAILED = 'gluster_volume_snapshot_deactivate_failed'
-    GLUSTER_VOLUME_SNAPSHOT_DEACTIVATED = 'gluster_volume_snapshot_deactivated'
-    GLUSTER_VOLUME_SNAPSHOT_DELETE_FAILED = 'gluster_volume_snapshot_delete_failed'
-    GLUSTER_VOLUME_SNAPSHOT_DELETED = 'gluster_volume_snapshot_deleted'
-    GLUSTER_VOLUME_SNAPSHOT_RESTORE_FAILED = 'gluster_volume_snapshot_restore_failed'
-    GLUSTER_VOLUME_SNAPSHOT_RESTORED = 'gluster_volume_snapshot_restored'
-    GLUSTER_VOLUME_START = 'gluster_volume_start'
-    GLUSTER_VOLUME_START_FAILED = 'gluster_volume_start_failed'
-    GLUSTER_VOLUME_STOP = 'gluster_volume_stop'
-    GLUSTER_VOLUME_STOP_FAILED = 'gluster_volume_stop_failed'
-    HA_VM_FAILED = 'ha_vm_failed'
-    HA_VM_RESTART_FAILED = 'ha_vm_restart_failed'
-    HOST_ACTIVATE_FAILED = 'host_activate_failed'
-    HOST_ACTIVATE_MANUAL_HA = 'host_activate_manual_ha'
-    HOST_APPROVE_FAILED = 'host_approve_failed'
-    HOST_BOND_SLAVE_STATE_DOWN = 'host_bond_slave_state_down'
-    HOST_CERTIFICATE_HAS_INVALID_SAN = 'host_certificate_has_invalid_san'
-    HOST_CERTIFICATION_HAS_EXPIRED = 'host_certification_has_expired'
-    HOST_CERTIFICATION_IS_ABOUT_TO_EXPIRE = 'host_certification_is_about_to_expire'
-    HOST_FAILURE = 'host_failure'
-    HOST_HIGH_CPU_USE = 'host_high_cpu_use'
-    HOST_HIGH_MEM_USE = 'host_high_mem_use'
-    HOST_HIGH_SWAP_USE = 'host_high_swap_use'
-    HOST_INITIATED_RUN_VM_FAILED = 'host_initiated_run_vm_failed'
-    HOST_INSTALL_FAILED = 'host_install_failed'
-    HOST_INTERFACE_HIGH_NETWORK_USE = 'host_interface_high_network_use'
-    HOST_INTERFACE_STATE_DOWN = 'host_interface_state_down'
-    HOST_LOW_MEM = 'host_low_mem'
-    HOST_LOW_SWAP = 'host_low_swap'
-    HOST_RECOVER_FAILED = 'host_recover_failed'
-    HOST_SET_NONOPERATIONAL = 'host_set_nonoperational'
-    HOST_SET_NONOPERATIONAL_DOMAIN = 'host_set_nonoperational_domain'
-    HOST_SET_NONOPERATIONAL_IFACE_DOWN = 'host_set_nonoperational_iface_down'
-    HOST_SLOW_STORAGE_RESPONSE_TIME = 'host_slow_storage_response_time'
-    HOST_TIME_DRIFT_ALERT = 'host_time_drift_alert'
-    HOST_UNTRUSTED = 'host_untrusted'
-    HOST_UPDATES_ARE_AVAILABLE = 'host_updates_are_available'
-    HOST_UPDATES_ARE_AVAILABLE_WITH_PACKAGES = 'host_updates_are_available_with_packages'
-    IMPORTEXPORT_IMPORT_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = 'importexport_import_template_from_trusted_to_untrusted'
-    IMPORTEXPORT_IMPORT_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = 'importexport_import_template_from_untrusted_to_trusted'
-    IMPORTEXPORT_IMPORT_VM_FROM_TRUSTED_TO_UNTRUSTED = 'importexport_import_vm_from_trusted_to_untrusted'
-    IMPORTEXPORT_IMPORT_VM_FROM_UNTRUSTED_TO_TRUSTED = 'importexport_import_vm_from_untrusted_to_trusted'
-    IRS_CONFIRMED_DISK_SPACE_LOW = 'irs_confirmed_disk_space_low'
-    IRS_DISK_SPACE_LOW = 'irs_disk_space_low'
-    IRS_DISK_SPACE_LOW_ERROR = 'irs_disk_space_low_error'
-    IRS_FAILURE = 'irs_failure'
-    MAC_ADDRESS_IS_EXTERNAL = 'mac_address_is_external'
-    MULTIPATH_DEVICES_WITHOUT_VALID_PATHS_ON_HOST = 'multipath_devices_without_valid_paths_on_host'
-    NETWORK_UPDATE_DISPLAY_FOR_CLUSTER_WITH_ACTIVE_VM = 'network_update_display_for_cluster_with_active_vm'
-    NETWORK_UPDATE_DISPLAY_FOR_HOST_WITH_ACTIVE_VM = 'network_update_display_for_host_with_active_vm'
-    NO_FAULTY_MULTIPATHS_ON_HOST = 'no_faulty_multipaths_on_host'
-    NUMBER_OF_LVS_ON_STORAGE_DOMAIN_EXCEEDED_THRESHOLD = 'number_of_lvs_on_storage_domain_exceeded_threshold'
-    REMOVE_GLUSTER_VOLUME_BRICKS_NOT_FOUND_FROM_CLI = 'remove_gluster_volume_bricks_not_found_from_cli'
-    START_REMOVING_GLUSTER_VOLUME_BRICKS = 'start_removing_gluster_volume_bricks'
-    START_REMOVING_GLUSTER_VOLUME_BRICKS_DETECTED_FROM_CLI = 'start_removing_gluster_volume_bricks_detected_from_cli'
-    START_REMOVING_GLUSTER_VOLUME_BRICKS_FAILED = 'start_removing_gluster_volume_bricks_failed'
-    SYSTEM_CHANGE_STORAGE_POOL_STATUS_NO_HOST_FOR_SPM = 'system_change_storage_pool_status_no_host_for_spm'
-    SYSTEM_DEACTIVATED_STORAGE_DOMAIN = 'system_deactivated_storage_domain'
-    USER_ADD_VM_FROM_TRUSTED_TO_UNTRUSTED = 'user_add_vm_from_trusted_to_untrusted'
-    USER_ADD_VM_FROM_UNTRUSTED_TO_TRUSTED = 'user_add_vm_from_untrusted_to_trusted'
-    USER_ADD_VM_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = 'user_add_vm_template_from_trusted_to_untrusted'
-    USER_ADD_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = 'user_add_vm_template_from_untrusted_to_trusted'
-    USER_HOST_MAINTENANCE = 'user_host_maintenance'
-    USER_HOST_MAINTENANCE_MANUAL_HA = 'user_host_maintenance_manual_ha'
-    USER_HOST_MAINTENANCE_MIGRATION_FAILED = 'user_host_maintenance_migration_failed'
-    USER_UPDATE_VM_FROM_TRUSTED_TO_UNTRUSTED = 'user_update_vm_from_trusted_to_untrusted'
-    USER_UPDATE_VM_FROM_UNTRUSTED_TO_TRUSTED = 'user_update_vm_from_untrusted_to_trusted'
-    USER_UPDATE_VM_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = 'user_update_vm_template_from_trusted_to_untrusted'
-    USER_UPDATE_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = 'user_update_vm_template_from_untrusted_to_trusted'
-    VM_CONSOLE_CONNECTED = 'vm_console_connected'
-    VM_CONSOLE_DISCONNECTED = 'vm_console_disconnected'
-    VM_DOWN_ERROR = 'vm_down_error'
-    VM_FAILURE = 'vm_failure'
-    VM_MIGRATION_FAILED = 'vm_migration_failed'
-    VM_MIGRATION_START = 'vm_migration_start'
-    VM_MIGRATION_TO_SERVER_FAILED = 'vm_migration_to_server_failed'
-    VM_NOT_RESPONDING = 'vm_not_responding'
-    VM_PAUSED = 'vm_paused'
-    VM_PAUSED_EIO = 'vm_paused_eio'
-    VM_PAUSED_ENOSPC = 'vm_paused_enospc'
-    VM_PAUSED_EPERM = 'vm_paused_eperm'
-    VM_PAUSED_ERROR = 'vm_paused_error'
-    VM_RECOVERED_FROM_PAUSE_ERROR = 'vm_recovered_from_pause_error'
-    VM_SET_TICKET = 'vm_set_ticket'
-    VM_STATUS_RESTORED = 'vm_status_restored'
+    CLUSTER_ALERT_HA_RESERVATION = "cluster_alert_ha_reservation"
+    CLUSTER_ALERT_HA_RESERVATION_DOWN = "cluster_alert_ha_reservation_down"
+    DWH_ERROR = "dwh_error"
+    DWH_STOPPED = "dwh_stopped"
+    ENGINE_BACKUP_COMPLETED = "engine_backup_completed"
+    ENGINE_BACKUP_FAILED = "engine_backup_failed"
+    ENGINE_BACKUP_STARTED = "engine_backup_started"
+    ENGINE_CA_CERTIFICATION_HAS_EXPIRED = "engine_ca_certification_has_expired"
+    ENGINE_CA_CERTIFICATION_IS_ABOUT_TO_EXPIRE = (
+        "engine_ca_certification_is_about_to_expire"
+    )
+    ENGINE_CERTIFICATION_HAS_EXPIRED = "engine_certification_has_expired"
+    ENGINE_CERTIFICATION_IS_ABOUT_TO_EXPIRE = "engine_certification_is_about_to_expire"
+    ENGINE_STOP = "engine_stop"
+    FAULTY_MULTIPATHS_ON_HOST = "faulty_multipaths_on_host"
+    GLUSTER_BRICK_STATUS_CHANGED = "gluster_brick_status_changed"
+    GLUSTER_HOOK_ADD_FAILED = "gluster_hook_add_failed"
+    GLUSTER_HOOK_ADDED = "gluster_hook_added"
+    GLUSTER_HOOK_CONFLICT_DETECTED = "gluster_hook_conflict_detected"
+    GLUSTER_HOOK_DETECTED_DELETE = "gluster_hook_detected_delete"
+    GLUSTER_HOOK_DETECTED_NEW = "gluster_hook_detected_new"
+    GLUSTER_HOOK_DISABLE = "gluster_hook_disable"
+    GLUSTER_HOOK_DISABLE_FAILED = "gluster_hook_disable_failed"
+    GLUSTER_HOOK_ENABLE = "gluster_hook_enable"
+    GLUSTER_HOOK_ENABLE_FAILED = "gluster_hook_enable_failed"
+    GLUSTER_HOOK_REMOVE_FAILED = "gluster_hook_remove_failed"
+    GLUSTER_HOOK_REMOVED = "gluster_hook_removed"
+    GLUSTER_SERVER_ADD_FAILED = "gluster_server_add_failed"
+    GLUSTER_SERVER_REMOVE = "gluster_server_remove"
+    GLUSTER_SERVER_REMOVE_FAILED = "gluster_server_remove_failed"
+    GLUSTER_SERVICE_RESTART_FAILED = "gluster_service_restart_failed"
+    GLUSTER_SERVICE_RESTARTED = "gluster_service_restarted"
+    GLUSTER_SERVICE_START_FAILED = "gluster_service_start_failed"
+    GLUSTER_SERVICE_STARTED = "gluster_service_started"
+    GLUSTER_SERVICE_STOP_FAILED = "gluster_service_stop_failed"
+    GLUSTER_SERVICE_STOPPED = "gluster_service_stopped"
+    GLUSTER_VOLUME_ADD_BRICK = "gluster_volume_add_brick"
+    GLUSTER_VOLUME_ADD_BRICK_FAILED = "gluster_volume_add_brick_failed"
+    GLUSTER_VOLUME_ALL_SNAPSHOTS_DELETE_FAILED = (
+        "gluster_volume_all_snapshots_delete_failed"
+    )
+    GLUSTER_VOLUME_ALL_SNAPSHOTS_DELETED = "gluster_volume_all_snapshots_deleted"
+    GLUSTER_VOLUME_BRICK_REPLACED = "gluster_volume_brick_replaced"
+    GLUSTER_VOLUME_CONFIRMED_SPACE_LOW = "gluster_volume_confirmed_space_low"
+    GLUSTER_VOLUME_CREATE = "gluster_volume_create"
+    GLUSTER_VOLUME_CREATE_FAILED = "gluster_volume_create_failed"
+    GLUSTER_VOLUME_DELETE = "gluster_volume_delete"
+    GLUSTER_VOLUME_DELETE_FAILED = "gluster_volume_delete_failed"
+    GLUSTER_VOLUME_MIGRATE_BRICK_DATA_FINISHED = (
+        "gluster_volume_migrate_brick_data_finished"
+    )
+    GLUSTER_VOLUME_OPTION_ADDED = "gluster_volume_option_added"
+    GLUSTER_VOLUME_OPTION_MODIFIED = "gluster_volume_option_modified"
+    GLUSTER_VOLUME_OPTION_SET_FAILED = "gluster_volume_option_set_failed"
+    GLUSTER_VOLUME_OPTIONS_RESET = "gluster_volume_options_reset"
+    GLUSTER_VOLUME_OPTIONS_RESET_ALL = "gluster_volume_options_reset_all"
+    GLUSTER_VOLUME_OPTIONS_RESET_FAILED = "gluster_volume_options_reset_failed"
+    GLUSTER_VOLUME_PROFILE_START = "gluster_volume_profile_start"
+    GLUSTER_VOLUME_PROFILE_START_FAILED = "gluster_volume_profile_start_failed"
+    GLUSTER_VOLUME_PROFILE_STOP = "gluster_volume_profile_stop"
+    GLUSTER_VOLUME_PROFILE_STOP_FAILED = "gluster_volume_profile_stop_failed"
+    GLUSTER_VOLUME_REBALANCE_FINISHED = "gluster_volume_rebalance_finished"
+    GLUSTER_VOLUME_REBALANCE_NOT_FOUND_FROM_CLI = (
+        "gluster_volume_rebalance_not_found_from_cli"
+    )
+    GLUSTER_VOLUME_REBALANCE_START = "gluster_volume_rebalance_start"
+    GLUSTER_VOLUME_REBALANCE_START_DETECTED_FROM_CLI = (
+        "gluster_volume_rebalance_start_detected_from_cli"
+    )
+    GLUSTER_VOLUME_REBALANCE_START_FAILED = "gluster_volume_rebalance_start_failed"
+    GLUSTER_VOLUME_REBALANCE_STOP = "gluster_volume_rebalance_stop"
+    GLUSTER_VOLUME_REBALANCE_STOP_FAILED = "gluster_volume_rebalance_stop_failed"
+    GLUSTER_VOLUME_REMOVE_BRICKS = "gluster_volume_remove_bricks"
+    GLUSTER_VOLUME_REMOVE_BRICKS_FAILED = "gluster_volume_remove_bricks_failed"
+    GLUSTER_VOLUME_REMOVE_BRICKS_STOP = "gluster_volume_remove_bricks_stop"
+    GLUSTER_VOLUME_REMOVE_BRICKS_STOP_FAILED = (
+        "gluster_volume_remove_bricks_stop_failed"
+    )
+    GLUSTER_VOLUME_REPLACE_BRICK_FAILED = "gluster_volume_replace_brick_failed"
+    GLUSTER_VOLUME_REPLACE_BRICK_START = "gluster_volume_replace_brick_start"
+    GLUSTER_VOLUME_REPLACE_BRICK_START_FAILED = (
+        "gluster_volume_replace_brick_start_failed"
+    )
+    GLUSTER_VOLUME_SNAPSHOT_ACTIVATE_FAILED = "gluster_volume_snapshot_activate_failed"
+    GLUSTER_VOLUME_SNAPSHOT_ACTIVATED = "gluster_volume_snapshot_activated"
+    GLUSTER_VOLUME_SNAPSHOT_CREATE_FAILED = "gluster_volume_snapshot_create_failed"
+    GLUSTER_VOLUME_SNAPSHOT_CREATED = "gluster_volume_snapshot_created"
+    GLUSTER_VOLUME_SNAPSHOT_DEACTIVATE_FAILED = (
+        "gluster_volume_snapshot_deactivate_failed"
+    )
+    GLUSTER_VOLUME_SNAPSHOT_DEACTIVATED = "gluster_volume_snapshot_deactivated"
+    GLUSTER_VOLUME_SNAPSHOT_DELETE_FAILED = "gluster_volume_snapshot_delete_failed"
+    GLUSTER_VOLUME_SNAPSHOT_DELETED = "gluster_volume_snapshot_deleted"
+    GLUSTER_VOLUME_SNAPSHOT_RESTORE_FAILED = "gluster_volume_snapshot_restore_failed"
+    GLUSTER_VOLUME_SNAPSHOT_RESTORED = "gluster_volume_snapshot_restored"
+    GLUSTER_VOLUME_START = "gluster_volume_start"
+    GLUSTER_VOLUME_START_FAILED = "gluster_volume_start_failed"
+    GLUSTER_VOLUME_STOP = "gluster_volume_stop"
+    GLUSTER_VOLUME_STOP_FAILED = "gluster_volume_stop_failed"
+    HA_VM_FAILED = "ha_vm_failed"
+    HA_VM_RESTART_FAILED = "ha_vm_restart_failed"
+    HOST_ACTIVATE_FAILED = "host_activate_failed"
+    HOST_ACTIVATE_MANUAL_HA = "host_activate_manual_ha"
+    HOST_APPROVE_FAILED = "host_approve_failed"
+    HOST_BOND_SLAVE_STATE_DOWN = "host_bond_slave_state_down"
+    HOST_CERTIFICATE_HAS_INVALID_SAN = "host_certificate_has_invalid_san"
+    HOST_CERTIFICATION_HAS_EXPIRED = "host_certification_has_expired"
+    HOST_CERTIFICATION_IS_ABOUT_TO_EXPIRE = "host_certification_is_about_to_expire"
+    HOST_FAILURE = "host_failure"
+    HOST_HIGH_CPU_USE = "host_high_cpu_use"
+    HOST_HIGH_MEM_USE = "host_high_mem_use"
+    HOST_HIGH_SWAP_USE = "host_high_swap_use"
+    HOST_INITIATED_RUN_VM_FAILED = "host_initiated_run_vm_failed"
+    HOST_INSTALL_FAILED = "host_install_failed"
+    HOST_INTERFACE_HIGH_NETWORK_USE = "host_interface_high_network_use"
+    HOST_INTERFACE_STATE_DOWN = "host_interface_state_down"
+    HOST_LOW_MEM = "host_low_mem"
+    HOST_LOW_SWAP = "host_low_swap"
+    HOST_RECOVER_FAILED = "host_recover_failed"
+    HOST_SET_NONOPERATIONAL = "host_set_nonoperational"
+    HOST_SET_NONOPERATIONAL_DOMAIN = "host_set_nonoperational_domain"
+    HOST_SET_NONOPERATIONAL_IFACE_DOWN = "host_set_nonoperational_iface_down"
+    HOST_SLOW_STORAGE_RESPONSE_TIME = "host_slow_storage_response_time"
+    HOST_TIME_DRIFT_ALERT = "host_time_drift_alert"
+    HOST_UNTRUSTED = "host_untrusted"
+    HOST_UPDATES_ARE_AVAILABLE = "host_updates_are_available"
+    HOST_UPDATES_ARE_AVAILABLE_WITH_PACKAGES = (
+        "host_updates_are_available_with_packages"
+    )
+    IMPORTEXPORT_IMPORT_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = (
+        "importexport_import_template_from_trusted_to_untrusted"
+    )
+    IMPORTEXPORT_IMPORT_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = (
+        "importexport_import_template_from_untrusted_to_trusted"
+    )
+    IMPORTEXPORT_IMPORT_VM_FROM_TRUSTED_TO_UNTRUSTED = (
+        "importexport_import_vm_from_trusted_to_untrusted"
+    )
+    IMPORTEXPORT_IMPORT_VM_FROM_UNTRUSTED_TO_TRUSTED = (
+        "importexport_import_vm_from_untrusted_to_trusted"
+    )
+    IRS_CONFIRMED_DISK_SPACE_LOW = "irs_confirmed_disk_space_low"
+    IRS_DISK_SPACE_LOW = "irs_disk_space_low"
+    IRS_DISK_SPACE_LOW_ERROR = "irs_disk_space_low_error"
+    IRS_FAILURE = "irs_failure"
+    MAC_ADDRESS_IS_EXTERNAL = "mac_address_is_external"
+    MULTIPATH_DEVICES_WITHOUT_VALID_PATHS_ON_HOST = (
+        "multipath_devices_without_valid_paths_on_host"
+    )
+    NETWORK_UPDATE_DISPLAY_FOR_CLUSTER_WITH_ACTIVE_VM = (
+        "network_update_display_for_cluster_with_active_vm"
+    )
+    NETWORK_UPDATE_DISPLAY_FOR_HOST_WITH_ACTIVE_VM = (
+        "network_update_display_for_host_with_active_vm"
+    )
+    NO_FAULTY_MULTIPATHS_ON_HOST = "no_faulty_multipaths_on_host"
+    NUMBER_OF_LVS_ON_STORAGE_DOMAIN_EXCEEDED_THRESHOLD = (
+        "number_of_lvs_on_storage_domain_exceeded_threshold"
+    )
+    REMOVE_GLUSTER_VOLUME_BRICKS_NOT_FOUND_FROM_CLI = (
+        "remove_gluster_volume_bricks_not_found_from_cli"
+    )
+    START_REMOVING_GLUSTER_VOLUME_BRICKS = "start_removing_gluster_volume_bricks"
+    START_REMOVING_GLUSTER_VOLUME_BRICKS_DETECTED_FROM_CLI = (
+        "start_removing_gluster_volume_bricks_detected_from_cli"
+    )
+    START_REMOVING_GLUSTER_VOLUME_BRICKS_FAILED = (
+        "start_removing_gluster_volume_bricks_failed"
+    )
+    SYSTEM_CHANGE_STORAGE_POOL_STATUS_NO_HOST_FOR_SPM = (
+        "system_change_storage_pool_status_no_host_for_spm"
+    )
+    SYSTEM_DEACTIVATED_STORAGE_DOMAIN = "system_deactivated_storage_domain"
+    USER_ADD_VM_FROM_TRUSTED_TO_UNTRUSTED = "user_add_vm_from_trusted_to_untrusted"
+    USER_ADD_VM_FROM_UNTRUSTED_TO_TRUSTED = "user_add_vm_from_untrusted_to_trusted"
+    USER_ADD_VM_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = (
+        "user_add_vm_template_from_trusted_to_untrusted"
+    )
+    USER_ADD_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = (
+        "user_add_vm_template_from_untrusted_to_trusted"
+    )
+    USER_HOST_MAINTENANCE = "user_host_maintenance"
+    USER_HOST_MAINTENANCE_MANUAL_HA = "user_host_maintenance_manual_ha"
+    USER_HOST_MAINTENANCE_MIGRATION_FAILED = "user_host_maintenance_migration_failed"
+    USER_UPDATE_VM_FROM_TRUSTED_TO_UNTRUSTED = (
+        "user_update_vm_from_trusted_to_untrusted"
+    )
+    USER_UPDATE_VM_FROM_UNTRUSTED_TO_TRUSTED = (
+        "user_update_vm_from_untrusted_to_trusted"
+    )
+    USER_UPDATE_VM_TEMPLATE_FROM_TRUSTED_TO_UNTRUSTED = (
+        "user_update_vm_template_from_trusted_to_untrusted"
+    )
+    USER_UPDATE_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED = (
+        "user_update_vm_template_from_untrusted_to_trusted"
+    )
+    VM_CONSOLE_CONNECTED = "vm_console_connected"
+    VM_CONSOLE_DISCONNECTED = "vm_console_disconnected"
+    VM_DOWN_ERROR = "vm_down_error"
+    VM_FAILURE = "vm_failure"
+    VM_MIGRATION_FAILED = "vm_migration_failed"
+    VM_MIGRATION_START = "vm_migration_start"
+    VM_MIGRATION_TO_SERVER_FAILED = "vm_migration_to_server_failed"
+    VM_NOT_RESPONDING = "vm_not_responding"
+    VM_PAUSED = "vm_paused"
+    VM_PAUSED_EIO = "vm_paused_eio"
+    VM_PAUSED_ENOSPC = "vm_paused_enospc"
+    VM_PAUSED_EPERM = "vm_paused_eperm"
+    VM_PAUSED_ERROR = "vm_paused_error"
+    VM_RECOVERED_FROM_PAUSE_ERROR = "vm_recovered_from_pause_error"
+    VM_SET_TICKET = "vm_set_ticket"
+    VM_STATUS_RESTORED = "vm_status_restored"
 
     def __init__(self, image):
         self._image = image
@@ -26569,8 +26324,8 @@ class NotifiableEvent(Enum):
 
 @unique
 class NotificationMethod(Enum):
-    SMTP = 'smtp'
-    SNMP = 'snmp'
+    SMTP = "smtp"
+    SNMP = "snmp"
 
     def __init__(self, image):
         self._image = image
@@ -26581,9 +26336,9 @@ class NotificationMethod(Enum):
 
 @unique
 class NumaTuneMode(Enum):
-    INTERLEAVE = 'interleave'
-    PREFERRED = 'preferred'
-    STRICT = 'strict'
+    INTERLEAVE = "interleave"
+    PREFERRED = "preferred"
+    STRICT = "strict"
 
     def __init__(self, image):
         self._image = image
@@ -26594,8 +26349,8 @@ class NumaTuneMode(Enum):
 
 @unique
 class OpenStackNetworkProviderType(Enum):
-    EXTERNAL = 'external'
-    NEUTRON = 'neutron'
+    EXTERNAL = "external"
+    NEUTRON = "neutron"
 
     def __init__(self, image):
         self._image = image
@@ -26606,7 +26361,7 @@ class OpenStackNetworkProviderType(Enum):
 
 @unique
 class OpenstackVolumeAuthenticationKeyUsageType(Enum):
-    CEPH = 'ceph'
+    CEPH = "ceph"
 
     def __init__(self, image):
         self._image = image
@@ -26617,28 +26372,28 @@ class OpenstackVolumeAuthenticationKeyUsageType(Enum):
 
 @unique
 class OsType(Enum):
-    OTHER = 'other'
-    OTHER_LINUX = 'other_linux'
-    RHEL_3 = 'rhel_3'
-    RHEL_3X64 = 'rhel_3x64'
-    RHEL_4 = 'rhel_4'
-    RHEL_4X64 = 'rhel_4x64'
-    RHEL_5 = 'rhel_5'
-    RHEL_5X64 = 'rhel_5x64'
-    RHEL_6 = 'rhel_6'
-    RHEL_6X64 = 'rhel_6x64'
-    UNASSIGNED = 'unassigned'
-    WINDOWS_2003 = 'windows_2003'
-    WINDOWS_2003X64 = 'windows_2003x64'
-    WINDOWS_2008 = 'windows_2008'
-    WINDOWS_2008R2X64 = 'windows_2008r2x64'
-    WINDOWS_2008X64 = 'windows_2008x64'
-    WINDOWS_2012X64 = 'windows_2012x64'
-    WINDOWS_7 = 'windows_7'
-    WINDOWS_7X64 = 'windows_7x64'
-    WINDOWS_8 = 'windows_8'
-    WINDOWS_8X64 = 'windows_8x64'
-    WINDOWS_XP = 'windows_xp'
+    OTHER = "other"
+    OTHER_LINUX = "other_linux"
+    RHEL_3 = "rhel_3"
+    RHEL_3X64 = "rhel_3x64"
+    RHEL_4 = "rhel_4"
+    RHEL_4X64 = "rhel_4x64"
+    RHEL_5 = "rhel_5"
+    RHEL_5X64 = "rhel_5x64"
+    RHEL_6 = "rhel_6"
+    RHEL_6X64 = "rhel_6x64"
+    UNASSIGNED = "unassigned"
+    WINDOWS_2003 = "windows_2003"
+    WINDOWS_2003X64 = "windows_2003x64"
+    WINDOWS_2008 = "windows_2008"
+    WINDOWS_2008R2X64 = "windows_2008r2x64"
+    WINDOWS_2008X64 = "windows_2008x64"
+    WINDOWS_2012X64 = "windows_2012x64"
+    WINDOWS_7 = "windows_7"
+    WINDOWS_7X64 = "windows_7x64"
+    WINDOWS_8 = "windows_8"
+    WINDOWS_8X64 = "windows_8x64"
+    WINDOWS_XP = "windows_xp"
 
     def __init__(self, image):
         self._image = image
@@ -26649,11 +26404,11 @@ class OsType(Enum):
 
 @unique
 class ParallelMigrationsPolicy(Enum):
-    AUTO = 'auto'
-    AUTO_PARALLEL = 'auto_parallel'
-    CUSTOM = 'custom'
-    DISABLED = 'disabled'
-    INHERIT = 'inherit'
+    AUTO = "auto"
+    AUTO_PARALLEL = "auto_parallel"
+    CUSTOM = "custom"
+    DISABLED = "disabled"
+    INHERIT = "inherit"
 
     def __init__(self, image):
         self._image = image
@@ -26664,8 +26419,8 @@ class ParallelMigrationsPolicy(Enum):
 
 @unique
 class PayloadEncoding(Enum):
-    BASE64 = 'base64'
-    PLAINTEXT = 'plaintext'
+    BASE64 = "base64"
+    PLAINTEXT = "plaintext"
 
     def __init__(self, image):
         self._image = image
@@ -26676,9 +26431,9 @@ class PayloadEncoding(Enum):
 
 @unique
 class PmProxyType(Enum):
-    CLUSTER = 'cluster'
-    DC = 'dc'
-    OTHER_DC = 'other_dc'
+    CLUSTER = "cluster"
+    DC = "dc"
+    OTHER_DC = "other_dc"
 
     def __init__(self, image):
         self._image = image
@@ -26689,9 +26444,9 @@ class PmProxyType(Enum):
 
 @unique
 class PolicyUnitType(Enum):
-    FILTER = 'filter'
-    LOAD_BALANCING = 'load_balancing'
-    WEIGHT = 'weight'
+    FILTER = "filter"
+    LOAD_BALANCING = "load_balancing"
+    WEIGHT = "weight"
 
     def __init__(self, image):
         self._image = image
@@ -26702,9 +26457,9 @@ class PolicyUnitType(Enum):
 
 @unique
 class PowerManagementStatus(Enum):
-    OFF = 'off'
-    ON = 'on'
-    UNKNOWN = 'unknown'
+    OFF = "off"
+    ON = "on"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26715,8 +26470,8 @@ class PowerManagementStatus(Enum):
 
 @unique
 class QcowVersion(Enum):
-    QCOW2_V2 = 'qcow2_v2'
-    QCOW2_V3 = 'qcow2_v3'
+    QCOW2_V2 = "qcow2_v2"
+    QCOW2_V3 = "qcow2_v3"
 
     def __init__(self, image):
         self._image = image
@@ -26727,10 +26482,10 @@ class QcowVersion(Enum):
 
 @unique
 class QosType(Enum):
-    CPU = 'cpu'
-    HOSTNETWORK = 'hostnetwork'
-    NETWORK = 'network'
-    STORAGE = 'storage'
+    CPU = "cpu"
+    HOSTNETWORK = "hostnetwork"
+    NETWORK = "network"
+    STORAGE = "storage"
 
     def __init__(self, image):
         self._image = image
@@ -26741,9 +26496,9 @@ class QosType(Enum):
 
 @unique
 class QuotaModeType(Enum):
-    AUDIT = 'audit'
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
+    AUDIT = "audit"
+    DISABLED = "disabled"
+    ENABLED = "enabled"
 
     def __init__(self, image):
         self._image = image
@@ -26754,7 +26509,7 @@ class QuotaModeType(Enum):
 
 @unique
 class ReportedDeviceType(Enum):
-    NETWORK = 'network'
+    NETWORK = "network"
 
     def __init__(self, image):
         self._image = image
@@ -26765,8 +26520,8 @@ class ReportedDeviceType(Enum):
 
 @unique
 class ResolutionType(Enum):
-    ADD = 'add'
-    COPY = 'copy'
+    ADD = "add"
+    COPY = "copy"
 
     def __init__(self, image):
         self._image = image
@@ -26777,9 +26532,9 @@ class ResolutionType(Enum):
 
 @unique
 class RngSource(Enum):
-    HWRNG = 'hwrng'
-    RANDOM = 'random'
-    URANDOM = 'urandom'
+    HWRNG = "hwrng"
+    RANDOM = "random"
+    URANDOM = "urandom"
 
     def __init__(self, image):
         self._image = image
@@ -26790,8 +26545,8 @@ class RngSource(Enum):
 
 @unique
 class RoleType(Enum):
-    ADMIN = 'admin'
-    USER = 'user'
+    ADMIN = "admin"
+    USER = "user"
 
     def __init__(self, image):
         self._image = image
@@ -26802,9 +26557,9 @@ class RoleType(Enum):
 
 @unique
 class ScsiGenericIO(Enum):
-    DISABLED = 'disabled'
-    FILTERED = 'filtered'
-    UNFILTERED = 'unfiltered'
+    DISABLED = "disabled"
+    FILTERED = "filtered"
+    UNFILTERED = "unfiltered"
 
     def __init__(self, image):
         self._image = image
@@ -26815,9 +26570,9 @@ class ScsiGenericIO(Enum):
 
 @unique
 class SeLinuxMode(Enum):
-    DISABLED = 'disabled'
-    ENFORCING = 'enforcing'
-    PERMISSIVE = 'permissive'
+    DISABLED = "disabled"
+    ENFORCING = "enforcing"
+    PERMISSIVE = "permissive"
 
     def __init__(self, image):
         self._image = image
@@ -26828,10 +26583,10 @@ class SeLinuxMode(Enum):
 
 @unique
 class SerialNumberPolicy(Enum):
-    CUSTOM = 'custom'
-    HOST = 'host'
-    NONE = 'none'
-    VM = 'vm'
+    CUSTOM = "custom"
+    HOST = "host"
+    NONE = "none"
+    VM = "vm"
 
     def __init__(self, image):
         self._image = image
@@ -26842,9 +26597,9 @@ class SerialNumberPolicy(Enum):
 
 @unique
 class SnapshotStatus(Enum):
-    IN_PREVIEW = 'in_preview'
-    LOCKED = 'locked'
-    OK = 'ok'
+    IN_PREVIEW = "in_preview"
+    LOCKED = "locked"
+    OK = "ok"
 
     def __init__(self, image):
         self._image = image
@@ -26855,10 +26610,10 @@ class SnapshotStatus(Enum):
 
 @unique
 class SnapshotType(Enum):
-    ACTIVE = 'active'
-    PREVIEW = 'preview'
-    REGULAR = 'regular'
-    STATELESS = 'stateless'
+    ACTIVE = "active"
+    PREVIEW = "preview"
+    REGULAR = "regular"
+    STATELESS = "stateless"
 
     def __init__(self, image):
         self._image = image
@@ -26869,9 +26624,9 @@ class SnapshotType(Enum):
 
 @unique
 class SpmStatus(Enum):
-    CONTENDING = 'contending'
-    NONE = 'none'
-    SPM = 'spm'
+    CONTENDING = "contending"
+    NONE = "none"
+    SPM = "spm"
 
     def __init__(self, image):
         self._image = image
@@ -26882,8 +26637,8 @@ class SpmStatus(Enum):
 
 @unique
 class SshAuthenticationMethod(Enum):
-    PASSWORD = 'password'
-    PUBLICKEY = 'publickey'
+    PASSWORD = "password"
+    PUBLICKEY = "publickey"
 
     def __init__(self, image):
         self._image = image
@@ -26894,7 +26649,7 @@ class SshAuthenticationMethod(Enum):
 
 @unique
 class SsoMethod(Enum):
-    GUEST_AGENT = 'guest_agent'
+    GUEST_AGENT = "guest_agent"
 
     def __init__(self, image):
         self._image = image
@@ -26905,8 +26660,8 @@ class SsoMethod(Enum):
 
 @unique
 class StatisticKind(Enum):
-    COUNTER = 'counter'
-    GAUGE = 'gauge'
+    COUNTER = "counter"
+    GAUGE = "gauge"
 
     def __init__(self, image):
         self._image = image
@@ -26917,13 +26672,13 @@ class StatisticKind(Enum):
 
 @unique
 class StatisticUnit(Enum):
-    BITS_PER_SECOND = 'bits_per_second'
-    BYTES = 'bytes'
-    BYTES_PER_SECOND = 'bytes_per_second'
-    COUNT_PER_SECOND = 'count_per_second'
-    NONE = 'none'
-    PERCENT = 'percent'
-    SECONDS = 'seconds'
+    BITS_PER_SECOND = "bits_per_second"
+    BYTES = "bytes"
+    BYTES_PER_SECOND = "bytes_per_second"
+    COUNT_PER_SECOND = "count_per_second"
+    NONE = "none"
+    PERCENT = "percent"
+    SECONDS = "seconds"
 
     def __init__(self, image):
         self._image = image
@@ -26934,12 +26689,12 @@ class StatisticUnit(Enum):
 
 @unique
 class StepEnum(Enum):
-    EXECUTING = 'executing'
-    FINALIZING = 'finalizing'
-    REBALANCING_VOLUME = 'rebalancing_volume'
-    REMOVING_BRICKS = 'removing_bricks'
-    UNKNOWN = 'unknown'
-    VALIDATING = 'validating'
+    EXECUTING = "executing"
+    FINALIZING = "finalizing"
+    REBALANCING_VOLUME = "rebalancing_volume"
+    REMOVING_BRICKS = "removing_bricks"
+    UNKNOWN = "unknown"
+    VALIDATING = "validating"
 
     def __init__(self, image):
         self._image = image
@@ -26950,11 +26705,11 @@ class StepEnum(Enum):
 
 @unique
 class StepStatus(Enum):
-    ABORTED = 'aborted'
-    FAILED = 'failed'
-    FINISHED = 'finished'
-    STARTED = 'started'
-    UNKNOWN = 'unknown'
+    ABORTED = "aborted"
+    FAILED = "failed"
+    FINISHED = "finished"
+    STARTED = "started"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26965,16 +26720,16 @@ class StepStatus(Enum):
 
 @unique
 class StorageDomainStatus(Enum):
-    ACTIVATING = 'activating'
-    ACTIVE = 'active'
-    DETACHING = 'detaching'
-    INACTIVE = 'inactive'
-    LOCKED = 'locked'
-    MAINTENANCE = 'maintenance'
-    MIXED = 'mixed'
-    PREPARING_FOR_MAINTENANCE = 'preparing_for_maintenance'
-    UNATTACHED = 'unattached'
-    UNKNOWN = 'unknown'
+    ACTIVATING = "activating"
+    ACTIVE = "active"
+    DETACHING = "detaching"
+    INACTIVE = "inactive"
+    LOCKED = "locked"
+    MAINTENANCE = "maintenance"
+    MIXED = "mixed"
+    PREPARING_FOR_MAINTENANCE = "preparing_for_maintenance"
+    UNATTACHED = "unattached"
+    UNKNOWN = "unknown"
 
     def __init__(self, image):
         self._image = image
@@ -26985,12 +26740,12 @@ class StorageDomainStatus(Enum):
 
 @unique
 class StorageDomainType(Enum):
-    DATA = 'data'
-    EXPORT = 'export'
-    IMAGE = 'image'
-    ISO = 'iso'
-    MANAGED_BLOCK_STORAGE = 'managed_block_storage'
-    VOLUME = 'volume'
+    DATA = "data"
+    EXPORT = "export"
+    IMAGE = "image"
+    ISO = "iso"
+    MANAGED_BLOCK_STORAGE = "managed_block_storage"
+    VOLUME = "volume"
 
     def __init__(self, image):
         self._image = image
@@ -27001,11 +26756,11 @@ class StorageDomainType(Enum):
 
 @unique
 class StorageFormat(Enum):
-    V1 = 'v1'
-    V2 = 'v2'
-    V3 = 'v3'
-    V4 = 'v4'
-    V5 = 'v5'
+    V1 = "v1"
+    V2 = "v2"
+    V3 = "v3"
+    V4 = "v4"
+    V5 = "v5"
 
     def __init__(self, image):
         self._image = image
@@ -27016,15 +26771,15 @@ class StorageFormat(Enum):
 
 @unique
 class StorageType(Enum):
-    CINDER = 'cinder'
-    FCP = 'fcp'
-    GLANCE = 'glance'
-    GLUSTERFS = 'glusterfs'
-    ISCSI = 'iscsi'
-    LOCALFS = 'localfs'
-    MANAGED_BLOCK_STORAGE = 'managed_block_storage'
-    NFS = 'nfs'
-    POSIXFS = 'posixfs'
+    CINDER = "cinder"
+    FCP = "fcp"
+    GLANCE = "glance"
+    GLUSTERFS = "glusterfs"
+    ISCSI = "iscsi"
+    LOCALFS = "localfs"
+    MANAGED_BLOCK_STORAGE = "managed_block_storage"
+    NFS = "nfs"
+    POSIXFS = "posixfs"
 
     def __init__(self, image):
         self._image = image
@@ -27035,8 +26790,8 @@ class StorageType(Enum):
 
 @unique
 class SwitchType(Enum):
-    LEGACY = 'legacy'
-    OVS = 'ovs'
+    LEGACY = "legacy"
+    OVS = "ovs"
 
     def __init__(self, image):
         self._image = image
@@ -27047,9 +26802,9 @@ class SwitchType(Enum):
 
 @unique
 class TemplateStatus(Enum):
-    ILLEGAL = 'illegal'
-    LOCKED = 'locked'
-    OK = 'ok'
+    ILLEGAL = "illegal"
+    LOCKED = "locked"
+    OK = "ok"
 
     def __init__(self, image):
         self._image = image
@@ -27060,9 +26815,9 @@ class TemplateStatus(Enum):
 
 @unique
 class TpmSupport(Enum):
-    REQUIRED = 'required'
-    SUPPORTED = 'supported'
-    UNSUPPORTED = 'unsupported'
+    REQUIRED = "required"
+    SUPPORTED = "supported"
+    UNSUPPORTED = "unsupported"
 
     def __init__(self, image):
         self._image = image
@@ -27073,8 +26828,8 @@ class TpmSupport(Enum):
 
 @unique
 class TransportType(Enum):
-    RDMA = 'rdma'
-    TCP = 'tcp'
+    RDMA = "rdma"
+    TCP = "tcp"
 
     def __init__(self, image):
         self._image = image
@@ -27085,8 +26840,8 @@ class TransportType(Enum):
 
 @unique
 class UsbType(Enum):
-    LEGACY = 'legacy'
-    NATIVE = 'native'
+    LEGACY = "legacy"
+    NATIVE = "native"
 
     def __init__(self, image):
         self._image = image
@@ -27097,9 +26852,9 @@ class UsbType(Enum):
 
 @unique
 class ValueType(Enum):
-    DECIMAL = 'decimal'
-    INTEGER = 'integer'
-    STRING = 'string'
+    DECIMAL = "decimal"
+    INTEGER = "integer"
+    STRING = "string"
 
     def __init__(self, image):
         self._image = image
@@ -27110,8 +26865,8 @@ class ValueType(Enum):
 
 @unique
 class VgpuPlacement(Enum):
-    CONSOLIDATED = 'consolidated'
-    SEPARATED = 'separated'
+    CONSOLIDATED = "consolidated"
+    SEPARATED = "separated"
 
     def __init__(self, image):
         self._image = image
@@ -27122,10 +26877,10 @@ class VgpuPlacement(Enum):
 
 @unique
 class VideoType(Enum):
-    BOCHS = 'bochs'
-    CIRRUS = 'cirrus'
-    QXL = 'qxl'
-    VGA = 'vga'
+    BOCHS = "bochs"
+    CIRRUS = "cirrus"
+    QXL = "qxl"
+    VGA = "vga"
 
     def __init__(self, image):
         self._image = image
@@ -27136,9 +26891,9 @@ class VideoType(Enum):
 
 @unique
 class VmAffinity(Enum):
-    MIGRATABLE = 'migratable'
-    PINNED = 'pinned'
-    USER_MIGRATABLE = 'user_migratable'
+    MIGRATABLE = "migratable"
+    PINNED = "pinned"
+    USER_MIGRATABLE = "user_migratable"
 
     def __init__(self, image):
         self._image = image
@@ -27149,8 +26904,8 @@ class VmAffinity(Enum):
 
 @unique
 class VmDeviceType(Enum):
-    CDROM = 'cdrom'
-    FLOPPY = 'floppy'
+    CDROM = "cdrom"
+    FLOPPY = "floppy"
 
     def __init__(self, image):
         self._image = image
@@ -27161,8 +26916,8 @@ class VmDeviceType(Enum):
 
 @unique
 class VmPoolType(Enum):
-    AUTOMATIC = 'automatic'
-    MANUAL = 'manual'
+    AUTOMATIC = "automatic"
+    MANUAL = "manual"
 
     def __init__(self, image):
         self._image = image
@@ -27173,21 +26928,21 @@ class VmPoolType(Enum):
 
 @unique
 class VmStatus(Enum):
-    DOWN = 'down'
-    IMAGE_LOCKED = 'image_locked'
-    MIGRATING = 'migrating'
-    NOT_RESPONDING = 'not_responding'
-    PAUSED = 'paused'
-    POWERING_DOWN = 'powering_down'
-    POWERING_UP = 'powering_up'
-    REBOOT_IN_PROGRESS = 'reboot_in_progress'
-    RESTORING_STATE = 'restoring_state'
-    SAVING_STATE = 'saving_state'
-    SUSPENDED = 'suspended'
-    UNASSIGNED = 'unassigned'
-    UNKNOWN = 'unknown'
-    UP = 'up'
-    WAIT_FOR_LAUNCH = 'wait_for_launch'
+    DOWN = "down"
+    IMAGE_LOCKED = "image_locked"
+    MIGRATING = "migrating"
+    NOT_RESPONDING = "not_responding"
+    PAUSED = "paused"
+    POWERING_DOWN = "powering_down"
+    POWERING_UP = "powering_up"
+    REBOOT_IN_PROGRESS = "reboot_in_progress"
+    RESTORING_STATE = "restoring_state"
+    SAVING_STATE = "saving_state"
+    SUSPENDED = "suspended"
+    UNASSIGNED = "unassigned"
+    UNKNOWN = "unknown"
+    UP = "up"
+    WAIT_FOR_LAUNCH = "wait_for_launch"
 
     def __init__(self, image):
         self._image = image
@@ -27198,9 +26953,9 @@ class VmStatus(Enum):
 
 @unique
 class VmStorageErrorResumeBehaviour(Enum):
-    AUTO_RESUME = 'auto_resume'
-    KILL = 'kill'
-    LEAVE_PAUSED = 'leave_paused'
+    AUTO_RESUME = "auto_resume"
+    KILL = "kill"
+    LEAVE_PAUSED = "leave_paused"
 
     def __init__(self, image):
         self._image = image
@@ -27211,9 +26966,9 @@ class VmStorageErrorResumeBehaviour(Enum):
 
 @unique
 class VmType(Enum):
-    DESKTOP = 'desktop'
-    HIGH_PERFORMANCE = 'high_performance'
-    SERVER = 'server'
+    DESKTOP = "desktop"
+    HIGH_PERFORMANCE = "high_performance"
+    SERVER = "server"
 
     def __init__(self, image):
         self._image = image
@@ -27224,8 +26979,8 @@ class VmType(Enum):
 
 @unique
 class VnicPassThroughMode(Enum):
-    DISABLED = 'disabled'
-    ENABLED = 'enabled'
+    DISABLED = "disabled"
+    ENABLED = "enabled"
 
     def __init__(self, image):
         self._image = image
@@ -27236,11 +26991,11 @@ class VnicPassThroughMode(Enum):
 
 @unique
 class WatchdogAction(Enum):
-    DUMP = 'dump'
-    NONE = 'none'
-    PAUSE = 'pause'
-    POWEROFF = 'poweroff'
-    RESET = 'reset'
+    DUMP = "dump"
+    NONE = "none"
+    PAUSE = "pause"
+    POWEROFF = "poweroff"
+    RESET = "reset"
 
     def __init__(self, image):
         self._image = image
@@ -27251,8 +27006,8 @@ class WatchdogAction(Enum):
 
 @unique
 class WatchdogModel(Enum):
-    DIAG288 = 'diag288'
-    I6300ESB = 'i6300esb'
+    DIAG288 = "diag288"
+    I6300ESB = "i6300esb"
 
     def __init__(self, image):
         self._image = image

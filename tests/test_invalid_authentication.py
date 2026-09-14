@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,15 +14,16 @@
 # limitations under the License.
 #
 
-import ovirtsdk4 as sdk
 import unittest
+
 import pytest
+
+import ovirtsdk4 as sdk
 
 from .server import TestServer
 
 
 class InvalidAuthTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -41,11 +40,11 @@ class InvalidAuthTest(unittest.TestCase):
         """
         connection = self.server.connection()
         self.server.set_json_response(
-            path='%s/sso/oauth/token' % self.server.prefix(),
+            path=f"{self.server.prefix()}/sso/oauth/token",
             code=401,
             body={
-                'error': 'access_denied',
-                'error_description': "Cannot authenticate user 'admin@internal': The username or password is incorrect..",
+                "error": "access_denied",
+                "error_description": "Cannot authenticate user 'admin@internal': The username or password is incorrect..",
             },
         )
         with pytest.raises(sdk.AuthError) as ctx:
@@ -63,11 +62,11 @@ class InvalidAuthTest(unittest.TestCase):
         """
         connection = self.server.connection()
         self.server.set_json_response(
-            path='%s/sso/oauth/token' % self.server.prefix(),
+            path=f"{self.server.prefix()}/sso/oauth/token",
             code=401,
             body={
-                'error': "Cannot authenticate user 'admin@internal': The username or password is incorrect..",
-                'error_code': 'access_denied',
+                "error": "Cannot authenticate user 'admin@internal': The username or password is incorrect..",
+                "error_code": "access_denied",
             },
         )
         with pytest.raises(sdk.AuthError) as ctx:

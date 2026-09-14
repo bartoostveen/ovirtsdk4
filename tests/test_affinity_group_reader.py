@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2017 Red Hat, Inc.
 #
@@ -16,18 +14,19 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.readers import AffinityGroupReader
+
 from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import types
+from ovirtsdk4.readers import AffinityGroupReader
 
 
 def make_buffer(str):
     """
     Creates an IO object to be used for writing.
     """
-    return BytesIO(str.encode('utf-8'))
+    return BytesIO(str.encode("utf-8"))
 
 
 def test_affinity_group_reader_with_assigned_vms():
@@ -35,19 +34,21 @@ def test_affinity_group_reader_with_assigned_vms():
     Test that reading of `vms` attribute of affinity group reads the `href`
     of the link as well as content of the `vms` element.
     """
-    reader = XmlReader(make_buffer(
-        '<affinity_group>'
-        '<link href="/ovirt-engine/api/clusters/123/affinitygroups/456/vms" rel="vms"/>'
-        '<vms><vm id="123"/></vms>'
-        '</affinity_group>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<affinity_group>"
+            '<link href="/ovirt-engine/api/clusters/123/affinitygroups/456/vms" rel="vms"/>'
+            '<vms><vm id="123"/></vms>'
+            "</affinity_group>"
+        )
+    )
     result = AffinityGroupReader.read_one(reader)
     reader.close()
 
     assert isinstance(result, types.AffinityGroup)
     assert len(result.vms) > 0
-    assert result.vms.href == '/ovirt-engine/api/clusters/123/affinitygroups/456/vms'
-    assert result.vms[0].id == '123'
+    assert result.vms.href == "/ovirt-engine/api/clusters/123/affinitygroups/456/vms"
+    assert result.vms[0].id == "123"
 
 
 def test_affinity_group_reader_with_assigned_vms_no_order():
@@ -56,16 +57,18 @@ def test_affinity_group_reader_with_assigned_vms_no_order():
     of the link as well as content of the `vms` element. Test it's
     correctly processed when link is provided after 'vms' element.
     """
-    reader = XmlReader(make_buffer(
-        '<affinity_group>'
-        '<vms><vm id="123"/></vms>'
-        '<link href="/ovirt-engine/api/clusters/123/affinitygroups/456/vms" rel="vms"/>'
-        '</affinity_group>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<affinity_group>"
+            '<vms><vm id="123"/></vms>'
+            '<link href="/ovirt-engine/api/clusters/123/affinitygroups/456/vms" rel="vms"/>'
+            "</affinity_group>"
+        )
+    )
     result = AffinityGroupReader.read_one(reader)
     reader.close()
 
     assert isinstance(result, types.AffinityGroup)
     assert len(result.vms) > 0
-    assert result.vms.href == '/ovirt-engine/api/clusters/123/affinitygroups/456/vms'
-    assert result.vms[0].id == '123'
+    assert result.vms.href == "/ovirt-engine/api/clusters/123/affinitygroups/456/vms"
+    assert result.vms[0].id == "123"

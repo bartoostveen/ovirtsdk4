@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -22,7 +20,6 @@ from .server import TestServer
 
 
 class DataCenterServiceTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -68,7 +65,7 @@ class DataCenterServiceTest(unittest.TestCase):
         self.server.set_xml_response(
             path="datacenters/123",
             code=200,
-            body="<data_center id=\"123\"><name>testdc</name></data_center>"
+            body='<data_center id="123"><name>testdc</name></data_center>',
         )
         dc = self.data_centers_service.data_center_service("123").get()
         assert dc.id == "123"

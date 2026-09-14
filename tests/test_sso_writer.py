@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,11 +14,12 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.writers import SsoWriter
+
 from ovirtsdk4.xml import XmlWriter
+
+from ovirtsdk4 import types
+from ovirtsdk4.writers import SsoWriter
 
 
 def make_buffer():
@@ -35,7 +34,7 @@ def decode_buffer(io_buffer):
     Extracts the text stored in the given bytes buffer and generates an
     Unicode string.
     """
-    return io_buffer.getvalue().decode('utf-8')
+    return io_buffer.getvalue().decode("utf-8")
 
 
 def test_sso_method_id_is_attribute():
@@ -43,23 +42,11 @@ def test_sso_method_id_is_attribute():
     Test that writing an SSL object with one method writes the method
     identifier as the 'id' attribute.
     """
-    sso = types.Sso(
-        methods=[
-            types.Method(
-                id=types.SsoMethod.GUEST_AGENT
-            )
-        ]
-    )
+    sso = types.Sso(methods=[types.Method(id=types.SsoMethod.GUEST_AGENT)])
     buf = make_buffer()
     writer = XmlWriter(buf, indent=True)
     SsoWriter.write_one(sso, writer)
     writer.flush()
-    assert (
-        decode_buffer(buf) == (
-            '<sso>\n'
-            '  <methods>\n'
-            '    <method id="guest_agent"/>\n'
-            '  </methods>\n'
-            '</sso>\n'
-        )
+    assert decode_buffer(buf) == (
+        '<sso>\n  <methods>\n    <method id="guest_agent"/>\n  </methods>\n</sso>\n'
     )

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2017 Red Hat, Inc.
 #
@@ -16,18 +14,19 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.readers import VmReader
+
 from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import types
+from ovirtsdk4.readers import VmReader
 
 
 def make_buffer(text):
     """
     Creates an IO object to be used for writing.
     """
-    text = text.encode('utf-8')
+    text = text.encode("utf-8")
     return BytesIO(text)
 
 
@@ -35,13 +34,11 @@ def test_reading_of_INHERITABLE_BOOLEAN_FALSE():
     """
     Test reading the InheritableBoolean enum false value.
     """
-    reader = XmlReader(make_buffer(
-        '<vm>'
-        '<migration>'
-        '<auto_converge>false</auto_converge>'
-        '</migration>'
-        '</vm>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<vm><migration><auto_converge>false</auto_converge></migration></vm>"
+        )
+    )
     result = VmReader.read_one(reader)
     reader.close()
 
@@ -53,13 +50,11 @@ def test_reading_of_INHERITABLE_BOOLEAN_TRUE():
     """
     Test reading the InheritableBoolean enum true value.
     """
-    reader = XmlReader(make_buffer(
-        '<vm>'
-        '<migration>'
-        '<auto_converge>true</auto_converge>'
-        '</migration>'
-        '</vm>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<vm><migration><auto_converge>true</auto_converge></migration></vm>"
+        )
+    )
     result = VmReader.read_one(reader)
     reader.close()
 
@@ -71,13 +66,11 @@ def test_reading_of_INHERITABLE_BOOLEAN_INHERIT():
     """
     Test reading the InheritableBoolean enum inherit value.
     """
-    reader = XmlReader(make_buffer(
-        '<vm>'
-        '<migration>'
-        '<auto_converge>inherit</auto_converge>'
-        '</migration>'
-        '</vm>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<vm><migration><auto_converge>inherit</auto_converge></migration></vm>"
+        )
+    )
     result = VmReader.read_one(reader)
     reader.close()
 
@@ -89,13 +82,11 @@ def test_reading_of_INHERITABLE_BOOLEAN_unsupported_value():
     """
     Test reading the InheritableBoolean enum unsupported value return None.
     """
-    reader = XmlReader(make_buffer(
-        '<vm>'
-            '<migration>'
-                '<auto_converge>ugly</auto_converge>'
-            '</migration>'
-        '</vm>'
-    ))
+    reader = XmlReader(
+        make_buffer(
+            "<vm><migration><auto_converge>ugly</auto_converge></migration></vm>"
+        )
+    )
     result = VmReader.read_one(reader)
     reader.close()
 
@@ -107,13 +98,9 @@ def test_reading_name_with_accents():
     """
     Test that reading a VM that has a name with accents works correctly.
     """
-    reader = XmlReader(make_buffer(
-        '<vm>'
-            '<name>áéíóúÁÉÍÓÚ</name>'
-        '</vm>'
-    ))
+    reader = XmlReader(make_buffer("<vm><name>áéíóúÁÉÍÓÚ</name></vm>"))
     result = VmReader.read_one(reader)
     reader.close()
 
     assert isinstance(result, types.Vm)
-    assert result.name == 'áéíóúÁÉÍÓÚ'
+    assert result.name == "áéíóúÁÉÍÓÚ"

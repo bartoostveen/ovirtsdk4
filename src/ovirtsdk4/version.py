@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -18,9 +16,9 @@
 
 
 # The version of the SDK:
-VERSION = '4.6.4'
+VERSION = "4.6.4"
 
 # This module is executed as a script during the build process, and it
 # should print to the output the value of the version:
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(VERSION)

@@ -19,9 +19,11 @@ limitations under the License.
 
 #include <Python.h>
 
-/* Checks the the given `value` is a string and extracts the content. If the value isn't a string then it generates an
-   exception indicating the the parameter with name `name` isn't a string, and returns NULL. If the value is a string
-   returns a newly allocated libxml string. The caller is responsible for freeing it. */
-extern xmlChar* ov_xml_get_string_parameter(const char* name, PyObject* value);
+/* Checks the the given `value` is a string and extracts the content. If the
+   value isn't a string then it generates an exception indicating the the
+   parameter with name `name` isn't a string, and returns NULL. If the value is
+   a string returns a newly allocated libxml string. The caller is responsible
+   for freeing it. */
+extern xmlChar *ov_xml_get_string_parameter(const char *name, PyObject *value);
 
 #endif

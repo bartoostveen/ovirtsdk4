@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -17,25 +15,20 @@
 #
 
 import datetime
-import time
 import io
 import re
+import time
+from typing import ClassVar
 
-from ovirtsdk4 import Error
-from ovirtsdk4 import xml
-
+from ovirtsdk4 import Error, xml
 
 # Regular expression used to check if the representation of a date contains a
 # time zone offset:
-TZ_OFFSET_RE = re.compile(
-    r'(?P<sign>[+-])(?P<hours>\d{2}):(?P<minutes>\d{2}$)'
-)
+TZ_OFFSET_RE = re.compile(r"(?P<sign>[+-])(?P<hours>\d{2}):(?P<minutes>\d{2}$)")
 
 # Regular expression used to check if the representation of the date contains
 # the number of microseconds:
-TZ_USEC_RE = re.compile(
-    r'\.\d+$'
-)
+TZ_USEC_RE = re.compile(r"\.\d+$")
 
 
 class TZ(datetime.tzinfo):
@@ -45,7 +38,7 @@ class TZ(datetime.tzinfo):
     """
 
     def __init__(self, minutes, name):
-        super(TZ, self).__init__()
+        super().__init__()
         self._delta = datetime.timedelta(minutes=minutes)
         self._name = name
 
@@ -59,7 +52,7 @@ class TZ(datetime.tzinfo):
         return self._delta
 
 
-class Reader(object):
+class Reader:
     """
     This is the base class for all the readers of the SDK. It contains
     the utility methods used by all of them.
@@ -70,7 +63,7 @@ class Reader(object):
     # `vm` tag it will contain a reference to the `VmReader.read_one` method,
     # and for the `vms` tag it will contain a reference to the
     # `VmReader.read_many` method.
-    _readers = {}
+    _readers: ClassVar[dict[str, any]] = {}  # type: ignore
 
     def __init__(self):
         pass
@@ -99,11 +92,11 @@ class Reader(object):
         if text is None:
             return None
         text = text.lower()
-        if text == 'false' or text == '0':
+        if text == "false" or text == "0":
             return False
-        if text == 'true' or text == '1':
+        if text == "true" or text == "1":
             return True
-        raise ValueError('The text \'%s\' isn\'t a valid boolean value' % text)
+        raise ValueError(f"The text '{text}' isn't a valid boolean value")
 
     @staticmethod
     def read_boolean(reader):
@@ -131,9 +124,7 @@ class Reader(object):
         try:
             return int(text)
         except ValueError:
-            raise ValueError(
-                'The text \'%s\' isn\'t a valid integer value' % text
-            )
+            raise ValueError(f"The text '{text}' isn't a valid integer value")
 
     @staticmethod
     def read_integer(reader):
@@ -161,9 +152,7 @@ class Reader(object):
         try:
             return float(text)
         except ValueError:
-            raise ValueError(
-                'The text \'%s\' isn\'t a valid decimal value' % text
-            )
+            raise ValueError(f"The text '{text}' isn't a valid decimal value")
 
     @staticmethod
     def read_decimal(reader):
@@ -193,37 +182,37 @@ class Reader(object):
 
         # Extract the time zone:
         tz = None
-        if text[-1] == 'Z':
-            tz = TZ(0, 'UTC')
+        if text[-1] == "Z":
+            tz = TZ(0, "UTC")
             text = text[:-1]
         else:
             match = TZ_OFFSET_RE.search(text)
             if match:
                 name = match.group(0)
-                sign = match.group('sign')
-                hours = int(match.group('hours'))
-                minutes = int(match.group('minutes'))
+                sign = match.group("sign")
+                hours = int(match.group("hours"))
+                minutes = int(match.group("minutes"))
                 offset = hours * 60 + minutes
-                if sign == '-':
+                if sign == "-":
                     offset *= -1
                 tz = TZ(offset, name)
-                text = text[:-len(name)]
+                text = text[: -len(name)]
 
         # Parse the rest of the date:
-        format = '%Y-%m-%dT%H:%M:%S'
+        format = "%Y-%m-%dT%H:%M:%S"
         if TZ_USEC_RE.search(text):
-            format += '.%f'
+            format += ".%f"
         try:
             try:
-                date = datetime.datetime.strptime(text, format)
+                date = datetime.datetime.strptime(text, format)  # noqa: DTZ007
             except TypeError:
                 # when have TypeError: attribute of type 'NoneType'
                 #  workaround to treat a issue of python module: https://bugs.python.org/issue27400
-                date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(text, format)))
+                date = datetime.datetime.fromtimestamp(  # noqa: DTZ006
+                    time.mktime(time.strptime(text, format))
+                )
         except ValueError:
-            raise ValueError(
-                'The text \'%s\' isn\'t a valid date value' % text
-            )
+            raise ValueError(f"The text '{text}' isn't a valid date value")
 
         # Set the time zone:
         if tz is not None:
@@ -273,9 +262,7 @@ class Reader(object):
         Reads a list of enum values, assuming that the cursor is positioned
         at the start element of the element that contains the first value.
         """
-        return [
-            Reader.parse_enum(enum_type, e) for e in reader.read_elements()
-        ]
+        return [Reader.parse_enum(enum_type, e) for e in reader.read_elements()]
 
     @classmethod
     def register(cls, tag, reader):
@@ -303,7 +290,7 @@ class Reader(object):
             # In Python 3 str is a list of 16 bits characters, so it
             # needs to be converted to an array of bytes, using UTF-8,
             # before trying to parse it.
-            source = source.encode('utf-8')
+            source = source.encode("utf-8")
             cursor = xml.XmlReader(io.BytesIO(source))
         elif isinstance(source, bytes):
             cursor = xml.XmlReader(io.BytesIO(source))
@@ -312,10 +299,8 @@ class Reader(object):
         elif isinstance(source, xml.XmlReader):
             cursor = source
         else:
-            raise AttributeError(
-                "Expected a 'str', 'BytesIO' or 'XmlReader', but got '{source}'".format(
-                    source=type(source)
-                )
+            raise AttributeError(  # noqa: TRY004
+                f"Expected a 'str', 'BytesIO' or 'XmlReader', but got '{type(source)}'"
             )
 
         try:
@@ -327,9 +312,7 @@ class Reader(object):
             tag = cursor.node_name()
             reader = cls._readers.get(tag)
             if reader is None:
-                raise Error(
-                    "Can't find a reader for tag '{tag}'".format(tag=tag)
-                )
+                raise Error(f"Can't find a reader for tag '{tag}'")
 
             # Read the object using the specific reader:
             return reader(cursor)

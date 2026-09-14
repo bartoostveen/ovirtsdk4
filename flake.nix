@@ -27,6 +27,7 @@
             programs.nixfmt.enable = true;
             programs.ruff-check.enable = true;
             programs.ruff-format.enable = true;
+            programs.clang-format.enable = true;
           };
 
           packages = {

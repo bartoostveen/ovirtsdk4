@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright oVirt Authors
 #
@@ -16,20 +14,15 @@
 # limitations under the License.
 #
 
-from ovirtsdk4 import AuthError
-from ovirtsdk4 import Error
-from ovirtsdk4 import NotFoundError
-from ovirtsdk4 import http
-from ovirtsdk4 import reader
-from ovirtsdk4 import types
-from ovirtsdk4 import writer
+from ovirtsdk4 import AuthError, Error, NotFoundError, http, reader, types, writer
 
 
-class Future(object):
+class Future:
     """
     Instances of this class are returned for operations that specify the
     `wait=False` parameter.
     """
+
     def __init__(self, connection, context, code):
         """
         Creates a new future result.
@@ -55,7 +48,7 @@ class Future(object):
         return self._code(response)
 
 
-class Service(object):
+class Service:
     """
     This is the base class for all the services of the SDK. It contains the
     utility methods used by all of them.
@@ -80,30 +73,30 @@ class Service(object):
         """
         fault = detail if isinstance(detail, types.Fault) else None
 
-        msg = ''
+        msg = ""
         if fault:
             if fault.reason:
                 if msg:
-                    msg += ' '
-                msg = msg + 'Fault reason is "%s".' % fault.reason
+                    msg += " "
+                msg = msg + f'Fault reason is "{fault.reason}".'
             if fault.detail:
                 if msg:
-                    msg += ' '
-                msg = msg + 'Fault detail is "%s".' % fault.detail
+                    msg += " "
+                msg = msg + f'Fault detail is "{fault.detail}".'
         if response:
             if response.code:
                 if msg:
-                    msg += ' '
-                msg = msg + 'HTTP response code is %s.' % response.code
+                    msg += " "
+                msg = msg + f"HTTP response code is {response.code}."
             if response.message:
                 if msg:
-                    msg += ' '
-                msg = msg + 'HTTP response message is "%s".' % response.message
+                    msg += " "
+                msg = msg + f'HTTP response message is "{response.message}".'
 
         if isinstance(detail, str):
             if msg:
-                msg += ' '
-            msg = msg + detail + '.'
+                msg += " "
+            msg = msg + detail + "."
 
         class_ = Error
         if response is not None:
@@ -132,7 +125,7 @@ class Service(object):
             self._raise_error(response, body)
         elif isinstance(body, types.Action) and body.fault:
             self._raise_error(response, body.fault)
-        raise Error("Expected a fault, but got %s" % type(body).__name__)
+        raise Error(f"Expected a fault, but got {type(body).__name__}")
 
     def _check_action(self, response):
         """
@@ -153,11 +146,7 @@ class Service(object):
         elif isinstance(body, types.Action):
             return body
         else:
-            raise Error(
-                "Expected a fault or action, but got %s" % (
-                    type(body).__name__
-                )
-            )
+            raise Error(f"Expected a fault or action, but got {type(body).__name__}")
         return body
 
     @staticmethod
@@ -179,16 +168,12 @@ class Service(object):
             if value is not None:
                 actual = type(value)
                 if actual != expected:
-                    messages.append((
-                        "The '{name}' parameter should be of type "
-                        "'{expected}', but it is of type \'{actual}\'."
-                    ).format(
-                        name=name,
-                        expected=expected.__name__,
-                        actual=actual.__name__,
-                    ))
+                    messages.append(
+                        f"The '{name}' parameter should be of type "
+                        f"'{expected.__name__}', but it is of type '{actual.__name__}'."
+                    )
         if len(messages) > 0:
-            raise TypeError(' '.join(messages))
+            raise TypeError(" ".join(messages))
 
     def _internal_get(self, headers=None, query=None, wait=None):
         """
@@ -198,7 +183,9 @@ class Service(object):
         headers = headers or {}
 
         # Send the request:
-        request = http.Request(method='GET', path=self._path, query=query, headers=headers)
+        request = http.Request(
+            method="GET", path=self._path, query=query, headers=headers
+        )
         context = self._connection.send(request)
 
         def callback(response):
@@ -218,7 +205,9 @@ class Service(object):
         headers = headers or {}
 
         # Send the request and wait for the response:
-        request = http.Request(method='POST', path=self._path, query=query, headers=headers)
+        request = http.Request(
+            method="POST", path=self._path, query=query, headers=headers
+        )
         request.body = writer.Writer.write(object, indent=True)
         context = self._connection.send(request)
 
@@ -239,7 +228,9 @@ class Service(object):
         headers = headers or {}
 
         # Send the request and wait for the response:
-        request = http.Request(method='PUT', path=self._path, query=query, headers=headers)
+        request = http.Request(
+            method="PUT", path=self._path, query=query, headers=headers
+        )
         request.body = writer.Writer.write(object, indent=True)
         context = self._connection.send(request)
 
@@ -260,7 +251,9 @@ class Service(object):
         headers = headers or {}
 
         # Send the request and wait for the response:
-        request = http.Request(method='DELETE', path=self._path, query=query, headers=headers)
+        request = http.Request(
+            method="DELETE", path=self._path, query=query, headers=headers
+        )
         context = self._connection.send(request)
 
         def callback(response):
@@ -270,7 +263,9 @@ class Service(object):
         future = Future(self._connection, context, callback)
         return future.wait() if wait else future
 
-    def _internal_action(self, action, path, member=None, headers=None, query=None, wait=None):
+    def _internal_action(
+        self, action, path, member=None, headers=None, query=None, wait=None
+    ):
         """
         Executes an action method.
         """
@@ -279,8 +274,8 @@ class Service(object):
 
         # Send the request and wait for the response:
         request = http.Request(
-            method='POST',
-            path='%s/%s' % (self._path, path),
+            method="POST",
+            path=f"{self._path}/{path}",
             query=query,
             headers=headers,
         )

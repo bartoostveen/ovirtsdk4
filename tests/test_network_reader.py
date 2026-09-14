@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,25 +14,26 @@
 # limitations under the License.
 #
 
-import ovirtsdk4.types as types
-
 from io import BytesIO
-from ovirtsdk4.readers import NetworkReader
+
 from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import types
+from ovirtsdk4.readers import NetworkReader
 
 
 def make_buffer(str):
     """
     Creates an IO object to be used for writing.
     """
-    return BytesIO(str.encode('utf-8'))
+    return BytesIO(str.encode("utf-8"))
 
 
 def test_network_with_no_usages():
     """
     Test given network with no usages element, the usages attribute is None.
     """
-    reader = XmlReader(make_buffer('<network/>'))
+    reader = XmlReader(make_buffer("<network/>"))
     result = NetworkReader.read_one(reader)
     reader.close()
 
@@ -45,7 +44,7 @@ def test_network_with_empty_usages():
     """
     Test given network with empty usages element, the usages attribute is empty list.
     """
-    reader = XmlReader(make_buffer('<network><usages/></network>'))
+    reader = XmlReader(make_buffer("<network><usages/></network>"))
     result = NetworkReader.read_one(reader)
     reader.close()
 
@@ -58,9 +57,7 @@ def test_network_with_one_usages():
     Test given network with no usages element, the usages attribute is None.
     """
     reader = XmlReader(
-        make_buffer(
-            '<network><usages><usage>vm</usage></usages></network>'
-        )
+        make_buffer("<network><usages><usage>vm</usage></usages></network>")
     )
     result = NetworkReader.read_one(reader)
     reader.close()
@@ -76,12 +73,12 @@ def test_network_with_two_usages():
     """
     reader = XmlReader(
         make_buffer(
-            '<network>'
-                '<usages>'
-                    '<usage>vm</usage>'
-                    '<usage>display</usage>'
-                '</usages>'
-            '</network>'
+            "<network>"
+            "<usages>"
+            "<usage>vm</usage>"
+            "<usage>display</usage>"
+            "</usages>"
+            "</network>"
         )
     )
     result = NetworkReader.read_one(reader)
@@ -100,12 +97,12 @@ def test_unsupported_usage_dont_raise_exception():
     """
     reader = XmlReader(
         make_buffer(
-            '<network>'
-                '<usages>'
-                    '<usage>ugly</usage>'
-                    '<usage>display</usage>'
-                '</usages>'
-            '</network>'
+            "<network>"
+            "<usages>"
+            "<usage>ugly</usage>"
+            "<usage>display</usage>"
+            "</usages>"
+            "</network>"
         )
     )
     result = NetworkReader.read_one(reader)

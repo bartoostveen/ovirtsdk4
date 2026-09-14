@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -17,16 +15,17 @@
 #
 
 from io import BytesIO
-from ovirtsdk4 import types
-from ovirtsdk4 import readers
+
 from ovirtsdk4.xml import XmlReader
+
+from ovirtsdk4 import readers, types
 
 
 def make_reader(text):
     """
     Creates an IO objec that reads from the given text.
     """
-    return XmlReader(BytesIO(text.encode('utf-8')))
+    return XmlReader(BytesIO(text.encode("utf-8")))
 
 
 def test_read_one_with_empty_xml():
@@ -34,7 +33,7 @@ def test_read_one_with_empty_xml():
     Checks that given an empty XML element the `read_one` method creates
     creates the expected fault.
     """
-    reader = make_reader('<fault/>')
+    reader = make_reader("<fault/>")
     result = readers.FaultReader.read_one(reader)
     reader.close()
     assert result is not None
@@ -48,12 +47,12 @@ def test_read_one_with_reason_only():
     Checks that given an an XML with only the reason element the
     `read_one` method creates creates the expected fault.
     """
-    reader = make_reader('<fault><reason>myreason</reason></fault>')
+    reader = make_reader("<fault><reason>myreason</reason></fault>")
     result = readers.FaultReader.read_one(reader)
     reader.close()
     assert result is not None
     assert type(result) is types.Fault
-    assert result.reason == 'myreason'
+    assert result.reason == "myreason"
     assert result.detail is None
 
 
@@ -62,13 +61,13 @@ def test_read_one_with_detail_only():
     Checks that given an an XML with only the detail element the
     `read_one` method creates creates the expected fault.
     """
-    reader = make_reader('<fault><detail>mydetail</detail></fault>')
+    reader = make_reader("<fault><detail>mydetail</detail></fault>")
     result = readers.FaultReader.read_one(reader)
     reader.close()
     assert result is not None
     assert type(result) is types.Fault
     assert result.reason is None
-    assert result.detail == 'mydetail'
+    assert result.detail == "mydetail"
 
 
 def test_read_one_with_reason_and_detail():
@@ -86,5 +85,5 @@ def test_read_one_with_reason_and_detail():
     reader.close()
     assert result is not None
     assert type(result) is types.Fault
-    assert result.reason == 'myreason'
-    assert result.detail == 'mydetail'
+    assert result.reason == "myreason"
+    assert result.detail == "mydetail"

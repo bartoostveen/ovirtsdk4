@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,36 +14,30 @@
 # limitations under the License.
 #
 
-import ovirtsdk4 as sdk
-import ovirtsdk4.xml as xml
-import ovirtsdk4.readers as readers
-import ovirtsdk4.types as types
-
 from io import BytesIO
+
+import ovirtsdk4 as sdk
+from ovirtsdk4 import readers, types, xml
 
 
 def make_reader(text):
     """
     Creates an IO object that reads from the given text.
     """
-    return xml.XmlReader(BytesIO(text.encode('utf-8')))
+    return xml.XmlReader(BytesIO(text.encode("utf-8")))
 
 
 def test_link_href():
     """
     Checks that given an link the corresponding attribute is populate
     """
-    reader = make_reader(
-        '<vm>'
-          '<link rel="nics" href="/vms/123/nics"/>'
-        '</vm>'
-    )
+    reader = make_reader('<vm><link rel="nics" href="/vms/123/nics"/></vm>')
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
     assert result.nics is not None
     assert isinstance(result.nics, sdk.List)
-    assert result.nics.href == '/vms/123/nics'
+    assert result.nics.href == "/vms/123/nics"
 
 
 def test_element_after_link():
@@ -53,26 +45,19 @@ def test_element_after_link():
     Check that another attribute after link is read correctly
     """
     reader = make_reader(
-        '<vm>'
-          '<link rel="nics" href="/vms/123/nics"/>'
-          '<name>myvm</name>'
-        '</vm>'
+        '<vm><link rel="nics" href="/vms/123/nics"/><name>myvm</name></vm>'
     )
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
-    assert result.name == 'myvm'
+    assert result.name == "myvm"
 
 
 def test_link_is_ignored_if_not_exists():
     """
     Check that the link is ignored if there is no such link
     """
-    reader = make_reader(
-        '<vm>'
-          '<link rel="junks" href="/junks"/>'
-        '</vm>'
-    )
+    reader = make_reader('<vm><link rel="junks" href="/junks"/></vm>')
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
@@ -83,11 +68,7 @@ def test_link_is_ignored_if_no_rel():
     """
     Check that the link is ignored if there is no rel
     """
-    reader = make_reader(
-        '<vm>'
-          '<link href="/junks"/>'
-        '</vm>'
-    )
+    reader = make_reader('<vm><link href="/junks"/></vm>')
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
@@ -98,11 +79,7 @@ def test_link_is_ignored_if_no_href():
     """
     Check that the link is ignored if there is no href
     """
-    reader = make_reader(
-        '<vm>'
-          '<link rel="nics"/>'
-        '</vm>'
-    )
+    reader = make_reader('<vm><link rel="nics"/></vm>')
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
@@ -114,20 +91,20 @@ def test_multiple_links():
     Check that the multiple links are read correctly
     """
     reader = make_reader(
-        '<vm>'
-          '<link rel="nics" href="/vms/123/nics"/>'
-          '<link rel="cdroms" href="/vms/123/cdroms"/>'
-        '</vm>'
+        "<vm>"
+        '<link rel="nics" href="/vms/123/nics"/>'
+        '<link rel="cdroms" href="/vms/123/cdroms"/>'
+        "</vm>"
     )
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
     assert result.nics is not None
     assert isinstance(result.nics, sdk.List)
-    assert result.nics.href == '/vms/123/nics'
+    assert result.nics.href == "/vms/123/nics"
     assert result.cdroms is not None
     assert isinstance(result.cdroms, sdk.List)
-    assert result.cdroms.href == '/vms/123/cdroms'
+    assert result.cdroms.href == "/vms/123/cdroms"
 
 
 def test_attribute_after_multiple_links():
@@ -135,13 +112,13 @@ def test_attribute_after_multiple_links():
     Check when the multiple links, following attribute is populated correctly
     """
     reader = make_reader(
-        '<vm>'
-          '<link rel="nics" href="/vms/123/nics"/>'
-          '<link rel="cdroms" href="/vms/123/cdroms"/>'
-          '<name>myvm</name>'
-        '</vm>'
+        "<vm>"
+        '<link rel="nics" href="/vms/123/nics"/>'
+        '<link rel="cdroms" href="/vms/123/cdroms"/>'
+        "<name>myvm</name>"
+        "</vm>"
     )
     result = readers.VmReader.read_one(reader)
     assert result is not None
     assert isinstance(result, types.Vm)
-    assert result.name == 'myvm'
+    assert result.name == "myvm"

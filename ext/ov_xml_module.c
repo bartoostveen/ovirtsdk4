@@ -19,7 +19,7 @@ limitations under the License.
 #include "ov_xml_module.h"
 
 /* Module: */
-PyObject* ov_xml_module;
+PyObject *ov_xml_module;
 
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef ov_xml_module_definition = {
@@ -31,14 +31,13 @@ static struct PyModuleDef ov_xml_module_definition = {
     /* m_reload   */ 0,
     /* m_traverse */ 0,
     /* m_clear    */ 0,
-    /* m_free     */ 0
-};
+    /* m_free     */ 0};
 #endif
 
 void ov_xml_module_define(void) {
 #if PY_MAJOR_VERSION >= 3
-    ov_xml_module = PyModule_Create(&ov_xml_module_definition);
+  ov_xml_module = PyModule_Create(&ov_xml_module_definition);
 #else
-    ov_xml_module = Py_InitModule(OV_XML_MODULE_NAME, NULL);
+  ov_xml_module = Py_InitModule(OV_XML_MODULE_NAME, NULL);
 #endif
 }

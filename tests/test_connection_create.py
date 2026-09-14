@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,15 +14,16 @@
 # limitations under the License.
 #
 
-import ovirtsdk4 as sdk
 import unittest
+
 import pytest
+
+import ovirtsdk4 as sdk
 
 from .server import TestServer
 
 
 class ConnectionCreateTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -44,7 +43,7 @@ class ConnectionCreateTest(unittest.TestCase):
                 url=self.server.url(),
                 username=self.server.user(),
                 password=self.server.password(),
-                ca_file='ugly.pem'
+                ca_file="ugly.pem",
             )
             connection.authenticate()
             connection.close()
@@ -93,8 +92,8 @@ class ConnectionCreateTest(unittest.TestCase):
         """
         with pytest.raises(sdk.Error):
             request = sdk.http.Request(
-                method='GET',
-                headers={'X-header': 'žčě'},
+                method="GET",
+                headers={"X-header": "žčě"},
             )
             connection = self.server.connection()
             connection.send(request)
@@ -104,10 +103,10 @@ class ConnectionCreateTest(unittest.TestCase):
         When valid header is properly encoded and sent
         """
         request = sdk.http.Request(
-            method='GET',
+            method="GET",
             headers={
-                'X-header1': u'ABCDEF123',
-                'X-header2': 'ABCDEF123',
+                "X-header1": "ABCDEF123",
+                "X-header2": "ABCDEF123",
             },
         )
         connection = self.server.connection()

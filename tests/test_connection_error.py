@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2017 Red Hat, Inc.
 #
@@ -16,15 +14,16 @@
 # limitations under the License.
 #
 
-import ovirtsdk4 as sdk
 import unittest
+
 import pytest
+
+import ovirtsdk4 as sdk
 
 from .server import TestServer
 
 
 class ConnectionErrorTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -43,7 +42,7 @@ class ConnectionErrorTest(unittest.TestCase):
                 username=self.server.user(),
                 password=self.server.password(),
                 insecure=True,
-                url='https://300.300.300.300/ovirt-engine/api',
+                url="https://300.300.300.300/ovirt-engine/api",
             )
             connection.test(raise_exception=True)
             connection.close()
@@ -57,7 +56,7 @@ class ConnectionErrorTest(unittest.TestCase):
                 username=self.server.user(),
                 password=self.server.password(),
                 insecure=True,
-                url='https://bad.host/ovirt-engine/api',
+                url="https://bad.host/ovirt-engine/api",
             )
             connection.test(raise_exception=True)
             connection.close()

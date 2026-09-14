@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -22,7 +20,6 @@ from .server import TestServer
 
 
 class StorageDomainServiceTest(unittest.TestCase):
-
     @classmethod
     def setup_class(cls):
         cls.server = TestServer()
@@ -46,9 +43,7 @@ class StorageDomainServiceTest(unittest.TestCase):
         """
         Test returning empty storage domains list
         """
-        self.server.set_xml_response(
-            "storagedomains", 200, "<storage_domains/>"
-        )
+        self.server.set_xml_response("storagedomains", 200, "<storage_domains/>")
         storage_domains = self.sd_service.list()
         assert storage_domains is not None
         assert storage_domains == []
@@ -57,9 +52,7 @@ class StorageDomainServiceTest(unittest.TestCase):
         """
         Test returning empty storage domains list
         """
-        self.server.set_xml_response(
-            "storagedomains", 200, "<storage_domains/>"
-        )
+        self.server.set_xml_response("storagedomains", 200, "<storage_domains/>")
         storage_domains = self.sd_service.list(search="name=ugly")
         assert storage_domains is not None
         assert storage_domains == []
@@ -72,7 +65,7 @@ class StorageDomainServiceTest(unittest.TestCase):
         self.server.set_xml_response(
             path="storagedomains/123",
             code=200,
-            body="<storage_domain id=\"123\"><name>testsd</name></storage_domain>"
+            body='<storage_domain id="123"><name>testsd</name></storage_domain>',
         )
         dc = self.sd_service.storage_domain_service("123").get()
         assert dc.id == "123"

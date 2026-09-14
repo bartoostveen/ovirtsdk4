@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
@@ -16,13 +14,14 @@
 # limitations under the License.
 #
 
-from io import BytesIO
 import re
-from ovirtsdk4 import Error
-from ovirtsdk4 import types
-from ovirtsdk4.writer import Writer
-from ovirtsdk4.xml import XmlWriter
+from io import BytesIO
+
 import pytest
+from ovirtsdk4.xml import XmlWriter
+
+from ovirtsdk4 import Error, types
+from ovirtsdk4.writer import Writer
 
 
 def make_buffer():
@@ -37,7 +36,7 @@ def decode_buffer(io_buffer):
     Extracts the text stored in the given bytes buffer and generates an
     Unicode string.
     """
-    return io_buffer.getvalue().decode('utf-8')
+    return io_buffer.getvalue().decode("utf-8")
 
 
 def test_write_string():
@@ -47,9 +46,9 @@ def test_write_string():
     """
     io_buffer = make_buffer()
     xml_writer = XmlWriter(io_buffer)
-    Writer.write_string(xml_writer, 'value', 'myvalue')
+    Writer.write_string(xml_writer, "value", "myvalue")
     xml_writer.flush()
-    assert decode_buffer(io_buffer) == '<value>myvalue</value>'
+    assert decode_buffer(io_buffer) == "<value>myvalue</value>"
 
 
 def test_write_boolean_true():
@@ -59,9 +58,9 @@ def test_write_boolean_true():
     """
     io_buffer = make_buffer()
     xml_writer = XmlWriter(io_buffer)
-    Writer.write_boolean(xml_writer, 'value', True)
+    Writer.write_boolean(xml_writer, "value", True)
     xml_writer.flush()
-    assert decode_buffer(io_buffer) == '<value>true</value>'
+    assert decode_buffer(io_buffer) == "<value>true</value>"
 
 
 def test_write_boolean_false():
@@ -71,9 +70,9 @@ def test_write_boolean_false():
     """
     io_buffer = make_buffer()
     xml_writer = XmlWriter(io_buffer)
-    Writer.write_boolean(xml_writer, 'value', False)
+    Writer.write_boolean(xml_writer, "value", False)
     xml_writer.flush()
-    assert decode_buffer(io_buffer) == '<value>false</value>'
+    assert decode_buffer(io_buffer) == "<value>false</value>"
 
 
 def test_write_integer_0():
@@ -83,9 +82,9 @@ def test_write_integer_0():
     """
     io_buffer = make_buffer()
     xml_writer = XmlWriter(io_buffer)
-    Writer.write_integer(xml_writer, 'value', 0)
+    Writer.write_integer(xml_writer, "value", 0)
     xml_writer.flush()
-    assert decode_buffer(io_buffer) == '<value>0</value>'
+    assert decode_buffer(io_buffer) == "<value>0</value>"
 
 
 def test_write_integer_1():
@@ -95,9 +94,9 @@ def test_write_integer_1():
     """
     io_buffer = make_buffer()
     xml_writer = XmlWriter(io_buffer)
-    Writer.write_integer(xml_writer, 'value', 1)
+    Writer.write_integer(xml_writer, "value", 1)
     xml_writer.flush()
-    assert decode_buffer(io_buffer) == '<value>1</value>'
+    assert decode_buffer(io_buffer) == "<value>1</value>"
 
 
 def test_write_does_not_require_xml_writer():
@@ -107,7 +106,7 @@ def test_write_does_not_require_xml_writer():
     """
     vm = types.Vm()
     result = Writer.write(vm)
-    assert result == '<vm/>'
+    assert result == "<vm/>"
 
 
 def test_write_uses_alternative_root_tag():
@@ -116,8 +115,8 @@ def test_write_uses_alternative_root_tag():
     if provided.
     """
     vm = types.Vm()
-    result = Writer.write(vm, root='list')
-    assert result == '<list/>'
+    result = Writer.write(vm, root="list")
+    assert result == "<list/>"
 
 
 def test_write_accepts_xml_writer():
@@ -131,7 +130,7 @@ def test_write_accepts_xml_writer():
     text = writer.string()
     writer.close()
     assert result is None
-    assert text == '<vm/>'
+    assert text == "<vm/>"
 
 
 def test_write_raises_exception_if_given_list_and_no_root():
@@ -148,8 +147,8 @@ def test_write_accepts_empty_lists():
     """
     Checks that the generic `write` method accepts empty lists.
     """
-    result = Writer.write([], root='list')
-    assert result == '<list/>'
+    result = Writer.write([], root="list")
+    assert result == "<list/>"
 
 
 def test_write_accepts_list_with_one_element():
@@ -158,8 +157,8 @@ def test_write_accepts_list_with_one_element():
     element.
     """
     vm = types.Vm()
-    result = Writer.write([vm], root='list')
-    assert result == '<list><vm/></list>'
+    result = Writer.write([vm], root="list")
+    assert result == "<list><vm/></list>"
 
 
 def test_write_accepts_list_with_two_elements():
@@ -168,8 +167,8 @@ def test_write_accepts_list_with_two_elements():
     elements.
     """
     vm = types.Vm()
-    result = Writer.write([vm, vm], root='list')
-    assert result == '<list><vm/><vm/></list>'
+    result = Writer.write([vm, vm], root="list")
+    assert result == "<list><vm/><vm/></list>"
 
 
 def test_write_accepts_elements_of_different_types():
@@ -179,5 +178,5 @@ def test_write_accepts_elements_of_different_types():
     """
     vm = types.Vm()
     disk = types.Disk()
-    result = Writer.write([vm, disk], root='list')
-    assert result == '<list><vm/><disk/></list>'
+    result = Writer.write([vm, disk], root="list")
+    assert result == "<list><vm/><disk/></list>"
