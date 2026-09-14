@@ -1,10 +1,10 @@
-= oVirt Engine API Python SDK
+# oVirt Engine API Python SDK
 
-== Introduction
+## Introduction
 
 This project contains the Python SDK for the oVirt Engine API.
 
-== Important
+## Important
 
 Note that most of the code of this SDK is automatically generated. If
 you just installed the package then you will have everything already,
@@ -12,49 +12,48 @@ but if you downloaded the source then you will need to generate it,
 follow the instructions in the `README.adoc` file of the parent
 directory.
 
-== Installation
+## Installation
 
 The SDK can be installed in CentOS Linux 8 and CentOS Stream using the RPM packages
 provided by the oVirt project. To do so install the oVirt release package:
 
-  # dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release44.rpm
+    # dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release44.rpm
 
 Then install the SDK packages. For Python 3:
 
-  # dnf install python3-ovirt-engine-sdk4
+    # dnf install python3-ovirt-engine-sdk4
 
 For other operating systems (and also for CentOS) you can
 install the SDK using the `pip` command, which will download the source
-from https://pypi.python.org/pypi[PyPI], build and install it.
+from [PyPI](https://pypi.python.org/pypi), build and install it.
 
-The SDK uses http://www.xmlsoft.org[libxml2] for parsing and rendering
+The SDK uses [libxml2](http://www.xmlsoft.org) for parsing and rendering
 XML. The part of the SDK that interacts with that library is written in
 C. This means that before building you must make sure you have the C
 compiler and the required header and libraries files installed in your
 system. For example, if you are using distributions like Fedora, or
 CentOS:
 
-  # dnf -y install \
-  gcc \
-  libxml2-devel \
-  python3-devel
+    # dnf -y install \
+    gcc \
+    libxml2-devel \
+    python3-devel
 
 If you are using distributions like Debian, or Ubuntu:
 
-  # apt-get --assume-yes install \
-  gcc \
-  libxml2-dev \
-  python3-dev
+    # apt-get --assume-yes install \
+    gcc \
+    libxml2-dev \
+    python3-dev
 
+## Usage
 
-== Usage
-
-=== Packages
+### Packages
 
 The following are the Python modules that are most frequently needed in
 order to use the SDK:
 
-ovirtsdk4::
+* **ovirtsdk4**
 
 This is the top level module. It most important element is the
 `Connection` class, as is the mechanism to connect to the server and to
@@ -67,26 +66,22 @@ For certain kinds of errors there are specific error classes, extending
 the base error class:
 
 * `AuthError` - Raised when authentication or authorization fail.
-
-* `ConnectionError` - Raised when the name of the server can't be resolved,
+* `ConnectionError` - Raised when the name of the server can’t be resolved,
 and when the server is down or unreachable.
-
-* `NotFoundError` - Raised when the requested object doesn't exist.
-
+* `NotFoundError` - Raised when the requested object doesn’t exist.
 * `TimeoutError` - Raised when an operation times out.
-
-ovirtsdk4.types::
+  * **ovirtsdk4.types**
 
 This module contains the classes that implement the _types_ used in the
 API. For example, the `ovirtsdk4.types.Vm` Python class is the
 implementation of the virtual machine type. These classes are just
-containers of data, they don't contain any logic.
+containers of data, they don’t contain any logic.
 +
 Instances of these classes are used as parameters and return values of
 _service methods_. The conversion to/from the underlying representation
 is handled transparently by the SDK.
 
-ovirtsdk4.services::
+* **ovirtsdk4.services**
 
 This module contains the classes that implement the _services_ supported
 by the API. For example, the `ovirtsdk4.services.VmsService` Python
@@ -96,12 +91,11 @@ of virtual machines of the system.
 Instances of these classes are automatically created by the SDK when a
 service is located. For example, a new instance of the `VmsService`
 class will be automatically created by the SDK when doing the following:
-+
-[source,python]
-----
+
+```python
 vms_service = connection.system_service().vms_service()
-----
-+
+```
+
 Avoid creating instances of these classes manually, as the parameters of
 the constructors, and in general all the methods except the _service
 locators_ and _service methods_ (described later) may change in the
@@ -111,16 +105,15 @@ There are other modules, like `ovirtsdk4.http`, `ovirtsdk4.readers` and
 `ovirtsdk4.writers`. These are used to implement the HTTP communication,
 and to for XML parsing and rendering. Refrain from using them, as they
 are internal implementation details that may change in the future:
-backwards compatibility isn't guaranteed.
+backwards compatibility isn’t guaranteed.
 
-=== Connecting to the server
+### Connecting to the server
 
 To connect to the server import the `ovirtsdk4` module. That will give
 to the `Connection` class. This is the entry point of the SDK, and gives
 you access to the root of the tree of services of the API:
 
-[source,python]
-----
+```python
 import ovirtsdk4 as sdk
 
 # Create a connection to the server:
@@ -130,39 +123,38 @@ connection = sdk.Connection(
   password='...',
   ca_file='ca.pem',
 )
-----
+```
 
 The connection holds expensive resources, including a pool of HTTP
 connections to the server and an authentication token. It is very
 important to free these resources when they are no longer in use:
 
-[source,python]
-----
+```python
 # Close the connection to the server:
 connection.close()
-----
+```
 
-Once a connection is closed it can't be reused.
+Once a connection is closed it can’t be reused.
 
 The `ca.pem` file is required when connecting to a server protected
 with TLS. In an usual oVirt installation it will be in
-`/etc/pki/ovirt-engine/ca.pem`. If you don't specify `ca_file`, then
+`/etc/pki/ovirt-engine/ca.pem`. If you don’t specify `ca_file`, then
 system wide CA certificate store will be used.
 
 If something fails when trying to create the connection (authentication
 failure, communication failure, etc) the SDK will raise a
 `ovirtsdk4.Error` exception containing the details.
 
-=== Using _types_
+### Using _types_
 
 The classes in the `ovirtsdk4.types` module are pure data containers,
-they don't have any logic or operations. Instances can be created and
+they don’t have any logic or operations. Instances can be created and
 modified at will.
 
-Creating or modifying one of this instances does *not* have any effect
+Creating or modifying one of this instances does **not** have any effect
 in the server side, unless one they are explicitly passed to a call to
 one of the service methods described below. Changes in the server side
-are *not* automatically reflected in the instances that already exist in
+are **not** automatically reflected in the instances that already exist in
 memory.
 
 The constructors of these classes have multiple optional arguments, one
@@ -172,8 +164,7 @@ create an instance of a virtual machine, with an specification of the
 cluster and template that it should use, and the memory in bytes it
 should have:
 
-[source,python]
-----
+```python
 from ovirtsdk4 import types
 
 vm = types.Vm(
@@ -186,31 +177,29 @@ vm = types.Vm(
     ),
     memory=1073741824
 )
-----
+```
 
 Using the constructors in this way is recommended, but not mandatory.
 You can also create the instance with no arguments in the call to the
 constructor, and then populate the object step by step, using the
 setters, or using a mix of both approaches:
 
-[source,python]
-----
+```python
 vm = types.Vm()
 vm.name = 'myvm'
 vm.cluster = types.Cluster(name='mycluster')
 vm.template = types.Template(name='mytemplate')
 vm.memory=1073741824
-----
+```
 
 Attributes that are defined as lists of objects in the specification of
 the API are implemented as Python lists. For example, the
 `custom_properties` attributes of the
-http://ovirt.github.io/ovirt-engine-api-model/master/#types/vm[Vm]
+[Vm](http://ovirt.github.io/ovirt-engine-api-model/master/#types/vm)
 type is defined as a list of objects of type `CustomProperty`, so when
 using it in the SDK it will be a Python list:
 
-[source,python]
-----
+```python
 vm = types.Vm(
     name='myvm',
     custom_properties=[
@@ -219,60 +208,53 @@ vm = types.Vm(
         ...
     ]
 )
-----
+```
 
 Attributes that are defined as enumerated values in the specification of
 the API are implemented as `enum` in Python, using the native support
 for enums in Python 3, and using the
-https://pypi.python.org/pypi/enum34[enum34] package in Python 2.7. For
-example, the `status` attribute of the `Vm` type is defined using the
-http://ovirt.github.io/ovirt-engine-api-model/master/#types/vm_status[VmStatus]
-enum:
+[enum34](https://pypi.python.org/pypi/enum34) package in Python 2.7. For
+example, the `status` attribute of the `Vm` type is defined using the [VmStatus](http://ovirt.github.io/ovirt-engine-api-model/master/#types/vm_status) enum:
 
-[source,python]
-----
+```python
 if vm.status == types.VmStatus.DOWN:
     ...
 elif vm.status == types.VmStatus.IMAGE_LOCKED:
-    ....
-----
+    ...
+```
 
-NOTE: In the specification of the API the values of enum types appear in
-lower case, because that is what is used in the XML or JSON documents.
-But in Python it is common practice to use upper case for this kind of
-constants, so that is how they are defined in the Python SDK: all upper
-case.
+> [!NOTE]
+> In the specification of the API the values of enum types appear in lower case, because that is what is used in the XML or JSON documents.
+> But in Python it is common practice to use upper case for this kind of constants, so that is how they are defined in the Python SDK: all upper case.
 
 Reading the attributes of instances of types is done using the
 corresponding properties:
 
-[source,python]
-----
+```python
 print("vm.name: %s" % vm.name)
 print("vm.memory: %s" % vm.memory)
 for custom_property in vm.custom_properties:
     ...
-----
+```
 
-=== Using _links_
+### Using _links_
 
 Some of the attributes of types are defined as _links_ in the
 specification of the API. This is done to indicate that their value
-won't usually be populated when retrieving the representation of that
+won’t usually be populated when retrieving the representation of that
 object, only a link will be returned instead. For example, when
 retrieving a virtual machine, the XML returned by the server will look
 like this:
 
-[source,python]
-----
+```python
 <vm id="123" href="/ovirt-engine/api/vms/123">
   <name>myvm</name>
   <link rel="diskattachments" href="/ovirt-engine/api/vms/123/diskattachments/>
   ...
 </vm>
-----
+```
 
-That link is available as `vm.diskattachments`, but it doesn't contain
+That link is available as `vm.diskattachments`, but it doesn’t contain
 the actual disk attachments. To get the actual data the `Connection`
 class provides a `follow_link` method that uses the value of the `href`
 XML attribute to retrieve the actual data. For example, to retrieve the
@@ -280,8 +262,7 @@ details of the disks of the virtual machine, you can first follow the
 link to the disk attachments, and then follow the link to each of the
 disks:
 
-[source,python]
-----
+```python
 # Retrieve the virtual machine:
 vm = vm_service.get()
 
@@ -290,9 +271,9 @@ attachments = connection.follow_link(vm.disk_attachments)
 for attachment in attachments:
     disk = connection.follow_link(attachment.disk)
     print("disk.alias: " % disk.alias)
-----
+```
 
-=== Locating services
+### Locating services
 
 The API provides a set of _services_, each associated to a particular
 path within the URL space of the server. For example, the service that
@@ -304,40 +285,34 @@ In the SDK the root of that tree of services is implemented by the
 _system service_. It is obtained calling the `system_service` method
 of the connection:
 
-[source,python]
-----
+```python
 system_service = connection.system_service()
-----
+```
 
 Once you have the reference to this system service you can use it to get
-references to other services, calling the `+*_service+` methods (called
+references to other services, calling the `*_service` methods (called
 _service locators_) of the previous service. For example, to get a
 reference to the service that manages the collection of virtual machines
 of the system use the `vms_service` service locator:
 
-[source,python]
-----
+```python
 vms_service = system_service.vms_service()
-----
+```
 
 To get a reference to the service that manages the virtual machine with
 identifier `123`, use the `vm_service` service locator of the service
 that manages the collection of virtual machines. It receives as a
 parameter the identifier of the virtual machine:
 
-[source,python]
-----
+```python
 vm_service = vms_service.vms_service('123')
-----
+```
 
-IMPORTANT: Calling the service locators doesn't send any request to the
-server. The Python objects that they return are pure services, they
-don't contain any data. For example, the `vm_service` Python object
-obtained in the previous example is *not* the representation of a
-virtual machine. It is the service that can be used to retrieve, update,
-delete, start and stop that virtual machine.
+**❗ IMPORTANT**\
+> [!IMPORTANT]
+> Calling the service locators doesn’t send any request to the server. The Python objects that they return are pure services, they don't contain any data. For example, the `vm_service` Python object obtained in the previous example is **not** the representation of a virtual machine. It is the service that can be used to retrieve, update, delete, start and stop that virtual machine.
 
-=== Using services
+### Using services
 
 Once you have located the service you are interested on, you can start
 calling its _service methods_, the methods that send requests to the
@@ -353,21 +328,18 @@ Both kind of services can also have additional _action methods_, which
 perform actions other than retrieving, creating, updating or removing.
 Most frequently they available in services that manage a single object.
 
-==== Using the _get_ methods
+#### Using the _get_ methods
 
-These service methods are used to retrieve the representation of a
-single object. For example, to retrieve the representation of the
-virtual machine with identifier `123`:
+These service methods are used to retrieve the representation of a single object. For example, to retrieve the representation of the virtual machine with identifier `123`:
 
-[source,python]
-----
+```python
 # Find the service that manages the virtual machine:
 vms_service = system_service.vms_service()
 vm_service = vms_service.vm_service('123')
 
 # Retrieve the representation of the virtual machine:
 vm = vm_service.get()
-----
+```
 
 The result will be an instance of the corresponding type. For example,
 in this case, the result will be an instance of the Python class
@@ -380,51 +352,48 @@ For example, for virtual machines you may want to retrieve its current
 state, or the state that will be used the next time it is started, as
 they may be different. To do so the `get` method of the service that
 manages a virtual machine supports a
-http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/get/parameters/next_run[next_run]
+[next_run](http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/get/parameters/next_run)
 boolean parameter:
 
-[source,python]
-----
+```python
 # Retrieve the representation of the virtual machine, not the
 # current one, but the one that will be used after the next
 # boot:
 vm = vm_service.get(next_run=True)
-----
+```
 
-Check the http://ovirt.github.io/ovirt-engine-sdk/master[reference]
+Check the [reference](http://ovirt.github.io/ovirt-engine-sdk/master)
 documentation of the SDK to find out the details.
 
-If the object can't be retrieved, for whatever the reason, the SDK will
+If the object can’t be retrieved, for whatever the reason, the SDK will
 raise a `ovirtsdk4.Error` exception, containing the details of the
-failure. This includes the situation when the object doesn't actually
+failure. This includes the situation when the object doesn’t actually
 exist. Note that the exception will be raised when calling the `get`
 service method, the call to the service locator method never fails, even
-if the object doesn't exist, because it doesn't send any request to the
+if the object doesn’t exist, because it doesn’t send any request to the
 server. For example:
 
-[source,python]
-----
+```python
 # Find the service that manages a virtual machine that does
 # not exist. This will succeed.
 vm_service = vms_service.vm_service('junk')
 
 # Retrieve the virtual machine. This will raise an exception.
 vm = vm_service.get()
-----
+```
 
-==== Using the _list_ methods
+#### Using the _list_ methods
 
 These service methods are used to retrieve the representations of the
 objects of the collection. For example, to retrieve the complete
 collection of virtual machines of the system:
 
-[source,python]
-----
+```python
 # Find the service that manages the collection of virtual
 # machines:
 vms_service = system_service.vms_service()
 vms = vms_service.list()
-----
+```
 
 The result will be a Python list containing the instances of
 corresponding types. For example, in this case, the result will be a
@@ -437,14 +406,14 @@ parameter that can be used ask the server to filter the results, and a
 by the server. For example, to get the list of virtual machines whose
 name starts with `my`, and to get at most 10 results:
 
-[source,python]
-----
+```python
 vms = vms_service.list(search='name=my*', max=10)
-----
+```
 
-NOTE: Not all the `list` methods support these parameters, and some
+**📌 NOTE**\
+Not all the `list` methods support these parameters, and some
 `list` methods may support other additional parameters. Check the
-http://ovirt.github.io/ovirt-engine-sdk/master[reference] documentation
+[reference](http://ovirt.github.io/ovirt-engine-sdk/master) documentation
 of the SDK to find out the details.
 
 If list of results is empty, for whatever the reason, the returned value
@@ -454,7 +423,7 @@ If there is an error while trying to retrieve the result, then the SDK
 will raise an `ovirtsdk4.Error` exception containing the details of the
 failure.
 
-==== Using the _add_ methods
+#### Using the _add_ methods
 
 These service methods add new elements to the collection. They receive
 an instance of the relevant type describing the object to add, send the
@@ -463,8 +432,7 @@ added object.
 
 For example, to add a new virtual machine named `myvm`:
 
-[source,python]
-----
+```python
 from ovirtsdk4 import types
 
 # Add the virtual machine:
@@ -479,14 +447,14 @@ vm = vms_service.add(
         )
     )
 )
-----
+```
 
-If the object can't be created, for whatever the reason, the SDK will
+If the object can’t be created, for whatever the reason, the SDK will
 raise an `ovirtsdk4.Error` exception containing the details of the
 failure. It will never return `None`.
 
 It is very important to understand that the Python object returned by
-this `add` method is an instance of the relevant type, it isn't a
+this `add` method is an instance of the relevant type, it isn’t a
 service, just a container of data. In this particular example the
 returned object will be an instance of the `ovirtsdk4.types.Vm` class.
 If once the virtual machine is created you need to perform some
@@ -494,8 +462,7 @@ operation on it, like retrieving it again, or starting it, you will
 first need to find the service that manages it, calling the
 corresponding service locator:
 
-[source,python]
-----
+```python
 # Add the virtual machine:
 vm = vms_service.add(
   ...
@@ -507,18 +474,17 @@ vm_service = vms_service.vm_service(vm.id)
 # Perform some other operation on the virtual machine, like
 # starting it:
 vm_service.start()
-----
+```
 
 Note that the creation of most objects is an asynchronous task. That
 means, for example, that when creating a new virtual machine the `add`
-method will return *before* the virtual machine is completely created
+method will return **before** the virtual machine is completely created
 and ready to be used. It is good practice to poll the status of the
 object till it is completely created. For a virtual machine that means
 checking till the status is _down_. So the recommended approach to create
 a virtual machine is the following:
 
-[source,python]
-----
+```python
 # Add the virtual machine:
 vm = vms_service.add(
   ...
@@ -534,13 +500,13 @@ while True:
     vm = vm_service.get()
     if vm.status == types.VmStatus.DOWN:
         break
-----
+```
 
 In the above loop it is very important to retrieve the object each time,
-using the `get` method, otherwise the `status` attribute won't be
+using the `get` method, otherwise the `status` attribute won’t be
 updated.
 
-==== Using the _update_ methods
+#### Using the _update_ methods
 
 These service methods update existing objects. They receive
 an instance of the relevant type describing the update to perform, send
@@ -550,8 +516,7 @@ the updated object.
 For example, to update the name of a virtual machine from `myvm` to
 `newvm`:
 
-[source,python]
-----
+```python
 from ovirtsdk4 import types
 
 # Find the virtual machine, and then the service that
@@ -565,14 +530,13 @@ updated_vm = vms_service.update(
         name='newvm'
     )
 )
-----
+```
 
 When performing updates, try to avoid sending the complete
 representation of the object, send only the attributes that you want to
-update. For example, try to *avoid* this:
+update. For example, try to **avoid** this:
 
-[source,python]
-----
+```python
 # Retrieve the current representation:
 vm = vm_service.get()
 
@@ -582,13 +546,13 @@ vm.name = 'newvm'
 
 # Send the update. Do *not* do this.
 vm_service.update(vm)
-----
+```
 
 The problem with that is double. First you are sending much more
 information than what the server needs, thus wasting resources. Second,
 and more important, the server will try to update all the attributes of
-the object, even those that you didn't need to change. Usually that
-isn't a problem, but has caused many unexpected bugs in the server side
+the object, even those that you didn’t need to change. Usually that
+isn’t a problem, but has caused many unexpected bugs in the server side
 in the past.
 
 The `update` methods of some services support additional parameters that
@@ -596,11 +560,10 @@ control how or what to update. For example, for virtual machines you may
 want to update its current state, or the state that will be used the
 next time it is started. To do so the `update` method of the service
 that manages a virtual machine supports a
-http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/update/parameters/next_run[next_run]
+[next_run](http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/update/parameters/next_run)
 boolean parameter:
 
-[source,python]
-----
+```python
 # Update the memory of the virtual machine 1 GiB, but not the current
 # one, the one it will have after the next boot:
 vm = vm_service.update(
@@ -609,104 +572,99 @@ vm = vm_service.update(
     ),
     next_run=True
 )
-----
+```
 
-If the update can't be performed, for whatever the reason, the SDK will
+If the update can’t be performed, for whatever the reason, the SDK will
 raise an `ovirtsdk4.Error` exception containing the details of the
 failure. It will never return `None`.
 
 The Python object returned by this `update` method is an instance of the
-relevant type, it isn't a service, just a container of data. In this
+relevant type, it isn’t a service, just a container of data. In this
 particular example the returned object will be an instance of the
 `ovirtsdk4.types.Vm` class.
 
-==== Using the _remove_ methods
+#### Using the _remove_ methods
 
-These service methods remove existing objects. They usually don't
+These service methods remove existing objects. They usually don’t
 receive any parameters, as they are methods of the services that manage
 single objects, therefore the service already knows what object to
 remove.
 
 For example, to remove the virtual machine with identifier `123`:
 
-[source,python]
-----
+```python
 # Find the service that manages the virtual machine:
 vm_service = vms_service.vm_service('123')
 
 # Remove the virtual machine:
 vm_service.remove()
-----
+```
 
 The `remove` methods of some services support additional parameters that
 control how or what to remove. For example, for virtual machines it is
 possible to remove the virtual machine while preserving the disks.
 To do so the `remove` method of the service that manages a virtual machine supports a
-http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/remove[detach_only]
+[detach_only](http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/remove)
 boolean parameter:
 
-[source,python]
-----
+```python
 # Remove the virtual machine, but preserve the disks:
 vm_service.remove(detach_only=True)
-----
+```
 
 The `remove` methods return `None` if the object is removed
-successfully. It does *not* return the removed object. If the object
-can't removed, for whatever the reason, the SDK will raise an
+successfully. It does **not** return the removed object. If the object
+can’t removed, for whatever the reason, the SDK will raise an
 `ovirtsdk4.Error` exception containing the details of the failure.
 
-==== Using _action_ methods
+#### Using _action_ methods
 
 These service methods perform miscellaneous operations. For example, the
 service that manages a virtual machine has methods to start and stop it:
 
-[source,python]
-----
+```python
 # Start the virtual machine:
 vm_service.start()
-----
+```
 
 Many of these methods include parameters that modify the operation. For
 example, the method that starts a virtual machine supports a
-http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/start/parameters/use_cloud_init[use_cloud_init]
+[use_cloud_init](http://ovirt.github.io/ovirt-engine-api-model/master/#services/vm/methods/start/parameters/use_cloud_init)
 parameter that indicates if you want to start it using
-https://cloudinit.readthedocs.io/cloud-init[cloud-init]:
+[cloud-init](https://cloudinit.readthedocs.io/cloud-init):
 
-[source,python]
-----
+```python
 # Start the virtual machine:
 vm_service.start(cloud_init=True)
-----
+```
 
 Most action methods return `None` when they succeed, and raise a
 `ovirtsdk4.Error` when they fail. But a few action methods return
 values. For example, the service that manages a storage domains has an
-http://ovirt.github.io/ovirt-engine-api-model/master/#services/storage_domain/methods/is_attachedd[is_attached]
+[is_attached](http://ovirt.github.io/ovirt-engine-api-model/master/#services/storage_domain/methods/is_attachedd)
 action method that checks if the storage domain is already attached to a
 data center. That method returns a boolean:
 
-[source,python]
-----
+```python
 # Check if the storage domain is attached to a data center:
 sds_service = system_service.storage_domains_service()
 sd_service = sds_service.storage_domain_service('123')
 if sd_service.is_attached():
     ...
-----
+```
 
-Check the http://ovirt.github.io/ovirt-engine-sdk[reference]
+Check the [reference](http://ovirt.github.io/ovirt-engine-sdk)
 documentation of the SDK to see the action methods supported by each
 service, the parameters that they support, and the values that they
 return.
 
-== More information
+## More information
 
 The reference documentation of the API is available
-http://ovirt.github.io/ovirt-engine-api-model[here].
+[here](http://ovirt.github.io/ovirt-engine-api-model).
 
 The reference documentation of the SDK is available
-http://ovirt.github.io/ovirt-engine-sdk[here].
+[here](http://ovirt.github.io/ovirt-engine-sdk).
 
 There is a collection of examples that show how to use the SDK
-https://github.com/oVirt/ovirt-engine-sdk/tree/master/sdk/examples[here].
+[here](https://github.com/oVirt/ovirt-engine-sdk/tree/master/sdk/examples).

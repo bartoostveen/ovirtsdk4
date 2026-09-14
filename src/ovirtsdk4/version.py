@@ -18,7 +18,7 @@
 
 
 # The version of the SDK:
-VERSION = '@RPM_VERSION@'
+VERSION = '4.6.4'
 
 # This module is executed as a script during the build process, and it
 # should print to the output the value of the version:
