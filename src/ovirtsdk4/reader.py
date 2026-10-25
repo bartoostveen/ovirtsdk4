@@ -204,11 +204,11 @@ class Reader:
             format += ".%f"
         try:
             try:
-                date = datetime.datetime.strptime(text, format)  # noqa: DTZ007
+                date = datetime.datetime.strptime(text, format)
             except TypeError:
                 # when have TypeError: attribute of type 'NoneType'
                 #  workaround to treat a issue of python module: https://bugs.python.org/issue27400
-                date = datetime.datetime.fromtimestamp(  # noqa: DTZ006
+                date = datetime.datetime.fromtimestamp(
                     time.mktime(time.strptime(text, format))
                 )
         except ValueError:
